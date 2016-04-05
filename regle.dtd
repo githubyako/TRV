@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT regle (unite, terrain)>
+<!ELEMENT unite EMPTY>
+<!ATTLIST unite type CDATA #REQUIRED>
+<!ATTLIST unite deplacement CDATA #IMPLIED>
+<!ATTLIST unite contrainte CDATA #IMPLIED>
+<!ELEMENT terrain EMPTY>
+<!ATTLIST terrain type CDATA #REQUIRED>
+<!ATTLIST terrain contrainte CDATA #IMPLIED>
+

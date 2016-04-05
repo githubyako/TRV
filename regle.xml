@@ -1,0 +1,19 @@
+<!DOCTYPE regle SYSTEM "regle.dtd">
+
+<regle>
+	<terrains>
+		<terrain type="Marais"/>
+		<terrain type="Foret"/>
+		<terrain type="Montagne"/>
+		<terrain type="Colline"/>
+	</terrains>
+	<contraintes>
+		<contrainte type="avoine"/>
+		<contrainte type="ble"/>
+	</contraintes>
+	<unites>
+		<unite type="Cavalier" deplacement="Marais:3,Foret:5,Colline:2,Montagne:99" contrainte="avoine:3,ble:2"/>
+		<unite type="Infanterie" deplacement="Marais:5,Foret:3,Colline:3,Montagne:99" contrainte="avoine:0,ble:2"/>
+		<unite type="Artillerie" deplacement="Marais:10,Foret:10,Colline:10,Montagne:99" contrainte="avoine:3,ble:5"/>
+	</unites>
+</regle>

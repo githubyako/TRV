@@ -11,7 +11,7 @@
 - Réflexion sur le mono pathfinding à coût variable
 - Ecriture des classes Unité, Agent, Map, Case, Terrain
 - Définition du format de communication pathfinding/jeu (en attente retour prof)
-- Création d'un exemple pour travail sur algos pathfinding: XML(done), INIT_MAP(WIP), CREATE_AGENT(en att),SUPPR_AGENT(en att), DEPLACE_AGENT(en att), SET_OBSTACLE(en att), DEMANDE_CHEMIN(en att)
+- Création d'un exemple pour travail sur algos pathfinding: XM_REGLES(done), INIT_MAP(WIP), CREATE_AGENT(en att),SUPPR_AGENT(en att), DEPLACE_AGENT(en att), SET_OBSTACLE(en att), DEMANDE_CHEMIN(en att)
 
 
 ***********************************************************************************

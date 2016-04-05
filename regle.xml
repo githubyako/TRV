@@ -2,18 +2,19 @@
 
 <regle>
 	<terrains>
-		<terrain type="Marais"/>
-		<terrain type="Foret"/>
-		<terrain type="Montagne"/>
-		<terrain type="Colline"/>
+		<terrain_defaut type="Plaine" contrainte_defaut="avoine:2;ble:3"/>
+		<terrain type="Marais" contrainte_defaut="avoine:1;ble:1"/>
+		<terrain type="Foret" contrainte_defaut="avoine:5;ble:10"/>
+		<terrain type="Montagne" contrainte_defaut="avoine:0;ble:0" obstacle="1"/>
+		<terrain type="Colline" contrainte_defaut="avoine:2;ble:3"/>
 	</terrains>
 	<contraintes>
 		<contrainte type="avoine"/>
 		<contrainte type="ble"/>
 	</contraintes>
 	<unites>
-		<unite type="Cavalier" deplacement="Marais:3,Foret:5,Colline:2,Montagne:99" contrainte="avoine:3,ble:2"/>
-		<unite type="Infanterie" deplacement="Marais:5,Foret:3,Colline:3,Montagne:99" contrainte="avoine:0,ble:2"/>
-		<unite type="Artillerie" deplacement="Marais:10,Foret:10,Colline:10,Montagne:99" contrainte="avoine:3,ble:5"/>
+		<unite type="Cavalier" deplacement="Marais:3;Foret:5;Colline:2;Montagne:99" contrainte="avoine:3;ble:2"/>
+		<unite type="Infanterie" deplacement="Marais:5;Foret:3;Colline:3;Montagne:99" contrainte="avoine:0;ble:2"/>
+		<unite type="Artillerie" deplacement="Marais:10;Foret:10;Colline:10;Montagne:99" contrainte="avoine:3;ble:5"/>
 	</unites>
 </regle>

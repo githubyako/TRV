@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!ELEMENT regle (terrains, contraintes, unites)>
+<!ELEMENT regle (contraintes, terrains, unites)>
+<!ELEMENT contraintes (contrainte)+>
+<!ELEMENT contrainte EMPTY>
+<!ATTLIST contrainte type CDATA #REQUIRED>
 <!ELEMENT terrains (terrain_defaut, (terrain+))>
 <!ELEMENT terrain_defaut EMPTY>
 <!ATTLIST terrain_defaut type CDATA #REQUIRED>
@@ -8,9 +11,6 @@
 <!ATTLIST terrain type CDATA #REQUIRED>
 <!ATTLIST terrain contrainte_defaut CDATA #REQUIRED>
 <!ATTLIST terrain obstacle CDATA #IMPLIED>
-<!ELEMENT contraintes (contrainte)+>
-<!ELEMENT contrainte EMPTY>
-<!ATTLIST contrainte type CDATA #REQUIRED>
 <!ELEMENT unites (unite)+>
 <!ELEMENT unite EMPTY>
 <!ATTLIST unite type CDATA #REQUIRED>

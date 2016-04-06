@@ -2,31 +2,30 @@
 #define CASE_H
 #include <map>
 #include "terrain.h"
-
+#include "contrainte.h"
+#include <vector>
 class Case{
   
 private:
-  unsigned int x;
-  unsigned int y;
-  std::map<std::string,float> contrainte_obs;
-  bool obstacle;
-  unsigned int somm;
-  Terrain *terrain;
+  unsigned int m_x,m_y;
+  std::vector<std::pair<Contrainte*,float> >m_contraintes;
+  bool m_obstacle;
+  unsigned int m_somm;
+  Terrain * m_terrain;
   
   static unsigned int id_somm;
   
-  void setObstacle(bool b);
-  void setTerrain(Terrain* terrain);
-  void setContrainte_obs(std::string,float);
-  
+  void setObstacle(bool _b);
+  void setTerrain(Terrain* _terrain);
+  void setContrainte_obs(Contrainte* _contrainte,float _qte);
+  Case();
+  Case(Case const & _case);
 public:
-  Case(int _x, int _y,
+  Case(int _x, int _y, int _somm, Terrain * _terrain);
   unsigned int getX() const;
   unsigned int getY() const;
-  float getContrainte(std::string ressource) const;
-  const Terrain* getTerrain() const;
+  float getContrainte(Contrainte const & contrainte) const;
+  const Terrain & getTerrain() const;
   bool isObstacle() const;
-  
-  
 };
 #endif

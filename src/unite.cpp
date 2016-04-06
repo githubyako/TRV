@@ -1,6 +1,7 @@
 #include "unite.h"
 
-Unite::Unite(const std::string& _type, std::vector< std::pair< Terrain*, float > > _vitesse_d, std::vector< std::pair< std::string, float > > _consoRessources)
+Unite::Unite(const std::string& _type, std::vector< std::pair< Terrain*, float > > _vitesse_d, 
+	     std::vector< std::pair< Contrainte*, float > > _consoContraintes)
 {
 
 }
@@ -25,7 +26,7 @@ const std::string& Unite::getType()
   return m_type;
 }
 
-float Unite::getConso(const std::string& _ressource)
+float Unite::getConso(Contrainte const & _contrainte)
 {
   
 }

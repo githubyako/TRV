@@ -16,7 +16,7 @@ private:
 public:
   ~Controller();
   static Controller * create();
-  
+  // ici, méthode de parsing du fichier txt
 };
 
 #endif

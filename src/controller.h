@@ -5,6 +5,7 @@
 #include <thread>
 #include <unistd.h>
 #include "str_exception.h"
+#include "map.h"
 
 // classe réalisée avec le design pattern "singleton"
 class Controller{
@@ -13,10 +14,19 @@ private:
   Controller();
   Controller(Controller const & _controller);
   
+  Map* map;
+  
 public:
   ~Controller();
   static Controller * create();
-  // ici, méthode de parsing du fichier txt
+  void creer_agent(int x, int y, std::string type, int id);
+  void supprimer_agent(int id);
+  void deplacement_agent(int id, int x, int y);
+  void setObstacle(int x, int y, bool obs);
+  void demande_chemin(int id, int x, int y);
+  void initiateRules(std::string xmlFileName);
+  void initiateMap(std::string rulesFileName);
+  
 };
 
 #endif

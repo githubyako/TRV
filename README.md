@@ -11,6 +11,7 @@
 - Réflexion sur le mono pathfinding à coût variable (dijkstra, astar)
 - Ecriture des classes Unité, Agent, Map, Case, Terrain 
 - Création d'un exemple pour travail sur algos pathfinding: XML_REGLES(done), INIT_MAP(WIP), CREATE_AGENT(en att),SUPPR_AGENT(en att), DEPLACE_AGENT(en att), SET_OBSTACLE(en att), DEMANDE_CHEMIN(en att)
+- (algo fourmis?)
 
 
 ***********************************************************************************

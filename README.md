@@ -23,3 +23,4 @@
 - Représentation UML de notre projet
 - Définition du format d'initialisation de la carte
 - Transfert des informations entre interface et pathfinding par bibliothèque.
+- Exemple de map en fichier .txt

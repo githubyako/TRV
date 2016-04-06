@@ -9,7 +9,7 @@ Map::Map(const Map& _map)
 {
 
 }
-
+/*A MODIFIER
 
 Map::Map(unsigned int _w, unsigned int _h):m_map()
 {
@@ -19,4 +19,9 @@ Map::Map(unsigned int _w, unsigned int _h):m_map()
       m_map.insert( std::pair<unsigned int, Case*>(casenum++,new Case()) );
     }
   }
+}*/
+
+Map::~Map()
+{
+
 }

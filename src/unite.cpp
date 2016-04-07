@@ -22,12 +22,12 @@ Unite::~Unite()
 
 }
 
-const std::string& Unite::getType()
+const std::string& Unite::getType() const
 {
   return m_type;
 }
 
-float Unite::getConso(Contrainte * _contrainte)
+float Unite::getConso(Contrainte * _contrainte) const
 {
   float result=0.0;
   for(unsigned int i=0;i<m_consoContraintes.size();++i){
@@ -39,7 +39,7 @@ float Unite::getConso(Contrainte * _contrainte)
   return result;
 }
 
-float Unite::getVitesse(Terrain* _terrain)
+float Unite::getVitesse(Terrain* _terrain) const
 {
   float result=0.0;
   for(unsigned int i=0;i<m_vitesse_d.size();++i){

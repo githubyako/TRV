@@ -97,6 +97,27 @@ void Map::addContrainte(std::string const & _contrainte)
   m_terrains.push_back(new Contrainte(_contrainte));
 }
 
+void Map::move_agent(int id, int x, int y)
+{
+	if (id > m_agents.size())
+		throw new str_exception("Cette unité n'existe pas");
+	else
+	{
+		if (m_agents[i]==NULL)
+			throw new str_exception("Cette unité n'existe plus");
+		else
+			m_agent[i].setCase(this.get_Case(x,y));
+	}
+}
+
+void Map::suppr_agent(int id)
+{
+	if (m_agents[i]==NULL)
+		throw new str_exception("Cette unité n'existe plus");
+	else
+		m_agent[i]=NULL;
+}
+
 int Map::get_m_h()
 {
   return m_h;

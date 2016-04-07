@@ -8,16 +8,23 @@
 
 class Map{
 private:
-//   std::map<unsigned int, Case*> m_map; A MODIFIER
+  static Map* m_map;
+  int m_w,m_h;
+  std::map<int, Case*> m_sommets;
   std::vector<Terrain*> m_terrains;
   std::vector<Agent*> m_agents;
   std::vector<Unite*> m_unites;
-  std::vector<std::string> m_contrainteNames;
+  std::vector<Contrainte*> m_contrainteNames;
   Map();
   Map(Map const & _map);
-  
+  Map( int _w,  int _h); 
 public:
-//   Map(unsigned int _w, unsigned int _h); A MODIFIER
+  static Map* create(int _w, int _h);
+  void addTerrain(std::string _type, std::vector<std::pair<std::string, float> > _contraintes_defaut);
+  void addTerrain(std::string & _type, std::vector<std::pair<std::string, float> > _contraintes_defaut, bool _obstacle);
+  void addUnite(std::string const & _type, std::vector< std::pair<Terrain*,float> > _vitesse_d,std::vector< std::pair<Contrainte*, float> > _consoContraintes);
+  void addAgent(int _iden, int _x, int _y, std::string _unite);
+  void addContrainte(std::string _contrainte);
   ~Map();
   
 };

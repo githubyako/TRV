@@ -10,9 +10,9 @@ private:
   std::vector< std::pair<Terrain*,float> > m_vitesse_d;
   std::vector< std::pair<std::string, float> > m_consoContraintes;
   Unite();
+  Unite(Unite const & _unite);
 public:
 
-  Unite(Unite const & _unite);
   Unite(std::string const & _type, std::vector< std::pair<Terrain*,float> > _vitesse_d,std::vector< std::pair<Contrainte*, float> > _consoContraintes);
   std::string const & getType();
   float getVitesse(Terrain*);

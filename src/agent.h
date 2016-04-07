@@ -3,6 +3,7 @@
 
 #include "unite.h"
 #include "case.h"
+#include <libxml++-2.6/libxml++/libxml++.h>
 
 class Agent{
   

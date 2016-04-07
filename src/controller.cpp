@@ -48,14 +48,12 @@ void Controller::demande_chemin(int id, int x, int y)
 
 void Controller::deplacement_agent(int id, int x, int y)
 {
-	if (x>=Map.get_m_w() || x<0 || y<0 || y>=Map.get_m_h())
-		throw new str_exception("La case n'existe pas");
-	else
-		Map.get_Agents()[id].setCase(x,y);
+	Map.move_agent(id, x, y);
 }
 
 void Controller::supprimer_agent(int id)
 {
+	Map.suppr_agent(id);
 }
 
 void Controller::initiateMap(std::string contentFileName)

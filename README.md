@@ -24,3 +24,4 @@
 - Définition du format d'initialisation de la carte
 - Transfert des informations entre interface et pathfinding par bibliothèque.
 - Exemple de map en fichier .txt
+- Fonction pour parser le fichier map.txt pour en créer une map (parsing fait, il reste à créer la map)

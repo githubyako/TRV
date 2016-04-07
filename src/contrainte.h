@@ -12,7 +12,7 @@ public:
   Contrainte(std::string const & _nom); // seul constructeur qui servira
   ~Contrainte();
   
-  std::string const & getNom();
+  std::string const & getNom() const;
   
 };
 #endif

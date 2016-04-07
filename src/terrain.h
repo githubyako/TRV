@@ -13,8 +13,8 @@ public:
   Terrain(std::string & _type, std::vector<std::pair<std::string, float> > _contraintes_defaut);
   ~Terrain();
   
-  std::string const & getType();
-  float getContrainteDef(std::string const & _nomContrainte);
-  bool isObstacle();
+  std::string const & getType() const;
+  float getContrainteDef(std::string const & _nomContrainte) const;
+  bool isObstacle() const;
 };
 #endif

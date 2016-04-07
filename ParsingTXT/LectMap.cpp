@@ -39,7 +39,7 @@ LectMap::LectMap(const std::string& F)
 	  //M.getCase(x,y).setObstacle(obst);
 	  break;
       }
-      //M.getCase(x,y).setTerrain(M.getTerrain(type_terr));
+      //M.setTerrain(x,y,type_terr);
       /*std::cout << x << std::endl;
       std::cout << y << std::endl;
       std::cout << type_terr << std::endl;

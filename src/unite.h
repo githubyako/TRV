@@ -14,9 +14,9 @@ private:
 public:
 
   Unite(std::string const & _type, std::vector< std::pair<Terrain*,float> > _vitesse_d,std::vector< std::pair<Contrainte*, float> > _consoContraintes);
-  std::string const & getType();
-  float getVitesse(Terrain* _terrain);
-  float getConso(Contrainte * _contrainte);
+  std::string const & getType() const;
+  float getVitesse(Terrain* _terrain) const;
+  float getConso(Contrainte * _contrainte) const;
   ~Unite();
 };
 

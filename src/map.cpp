@@ -118,22 +118,22 @@ void Map::suppr_agent(int id)
 		m_agent[i]=NULL;
 }
 
-int Map::get_m_h()
+int Map::get_m_h() const
 {
   return m_h;
 }
 
-int Map::get_m_w()
+int Map::get_m_w() const
 {
   return m_w;
 }
 
-Case* Map::get_Case(int _x, int _y)
+Case* Map::get_Case(int _x, int _y) const
 {
   return m_sommets.at((_x*m_h)+_y);
 }
 
-std::vector< Agent* > Map::get_Agents()
+std::vector< Agent* > Map::get_Agents() const
 {
   return m_agents;
 }

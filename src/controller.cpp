@@ -28,12 +28,18 @@ Controller* Controller::create()
 
 void Controller::setObstacle(int x, int y, bool obs)
 {
-  // Modifier les boolean de la case aux coordonnées x y
+  if (x>=Map.get_m_w() || x<0 || y<0 || y>=Map.get_m_h())
+		throw new str_exception("La case n'existe pas");
+	else
+		Map.get_Case(x,y).setObstacle(obs);
 }
 
-void Controller::creer_agent(int x, int y, std::string type, int id)
+void Controller::creer_agent(int x, int y, const std::string type, int id)
 {
-  //Créer agent à la case aux coordonnées x y, avec le type et l'id
+  if (x>=Map.get_m_w() || x<0 || y<0 || y>=Map.get_m_h())
+		throw new str_exception("La case n'existe pas");
+	else
+		Map.addAgent(id, x, y, type);
 }
 
 void Controller::demande_chemin(int id, int x, int y)
@@ -42,12 +48,14 @@ void Controller::demande_chemin(int id, int x, int y)
 
 void Controller::deplacement_agent(int id, int x, int y)
 {
-
+	if (x>=Map.get_m_w() || x<0 || y<0 || y>=Map.get_m_h())
+		throw new str_exception("La case n'existe pas");
+	else
+		Map.get_Agents()[id].setCase(x,y);
 }
 
 void Controller::supprimer_agent(int id)
 {
-
 }
 
 void Controller::initiateMap(std::string contentFileName)

@@ -21,7 +21,7 @@ private:
 public:
   ~Controller();
   static Controller * create();
-  void creer_agent(int x, int y, std::string type, int id);
+  void creer_agent(int x, int y, const std::string type, int id);
   void supprimer_agent(int id);
   void deplacement_agent(int id, int x, int y);
   void setObstacle(int x, int y, bool obs);

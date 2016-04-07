@@ -7,10 +7,10 @@
 class Agent{
   
 private:
-  int id;
-  float multiplicateur_v;
-  Unite *_unite;
-  Case *_case;
+  int m_id;
+  float m_multiplicateur_v;
+  Unite *m_unite;
+  Case *m_case;
   
   void setCase(Case* _c);
   void setUnite(Unite* _u);

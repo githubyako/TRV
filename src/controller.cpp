@@ -1,24 +1,28 @@
 #include "controller.h"
 
-Controller::Controller(int _w, int _h)
+Controller::Controller()
 {
-  m_map=Map::create(_w,_h);
+  // création des pipes entrants ? IL FAUT CHOISIR CLASSE INTERFACE OU THREAD+PIPES
+  /*int creation_unite[2],;
+  pipe(creation_unite);*/
+  
+  // création du pipe sortant
 }
 
 Controller::Controller(const Controller& _controller)
 {
-  
+   
 }
 
 Controller* Controller::create()
 {
-  if(s_controller!=nullptr){
+  /*if(Controller::s_controller!=nullptr){
     throw new str_exception("An instance of controller already exists");
   }else{
-    s_controller = new Controller();
+    Controller::s_controller = new Controller();
     // thread?
-    return s_controller;
-  }
+    return Controller::s_controller;
+  }*/
 }
 
 
@@ -54,6 +58,16 @@ void Controller::initiateMap(std::string contentFileName)
 void Controller::initiateRules(std::string xmlFileName)
 {
   //Parse fichier .xml des règles de la carte
+  xmlpp::DomParser parser;
+  parser.set_validate();
+  parser.parse_file(xmlFileName);
+  
+  Node* rootNode = parser.get_document()->get_root_node();
+  NodeSet contraintes = rootNode->find("/regle/contraintes");
+  NodeSet terrains = rootNode->find("/regle/terrains");
+  NodeSet unites = rootNode->find("/regle/unites");
+  Node* firstNodeInResult = result.at(0);
+  
 }
 
 

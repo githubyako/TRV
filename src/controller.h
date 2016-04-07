@@ -4,8 +4,10 @@
 #include <mutex>
 #include <thread>
 #include <unistd.h>
+#include <iostream>
 #include "str_exception.h"
 #include "map.h"
+#include <libxml++/libxml++.h>
 
 // classe réalisée avec le design pattern "singleton"
 class Controller{
@@ -14,7 +16,7 @@ private:
   Controller();
   Controller(Controller const & _controller);
   
-  Map* m_map;
+  Map* map;
   
 public:
   ~Controller();

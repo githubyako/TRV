@@ -35,7 +35,7 @@ Map* Map::create(int _w, int _h)
   }
 }
 
-void Map::addTerrain(std::string& _type, std::vector< std::pair< std::string, float > > _contraintes_defaut)
+void Map::addTerrain(const std::string& _type, std::vector< std::pair< std::string, float > > _contraintes_defaut)
 {
   for(int i=0;i<m_terrains.size();++i){
     if(m_terrains.at(i)->getType()==_type){
@@ -45,7 +45,7 @@ void Map::addTerrain(std::string& _type, std::vector< std::pair< std::string, fl
   m_terrains.push_back(new Terrain(_type,_contraintes_defaut));
 }
 
-void Map::addTerrain(std::string& _type, std::vector< std::pair< std::string, float > > _contraintes_defaut, bool _obstacle)
+void Map::addTerrain(const std::string& _type, std::vector< std::pair< std::string, float > > _contraintes_defaut, bool _obstacle)
 {
   for(int i=0;i<m_terrains.size();++i){
     if(m_terrains.at(i)->getType()==_type){
@@ -66,7 +66,7 @@ void Map::addUnite(const std::string& _type, std::vector< std::pair< Terrain*, f
   m_unites.push_back(new Unite(_type,_vitesse_d,_consoContraintes));
 }
 
-// Agent(int _iden, Case* _c, Unite* _u);
+
 void Map::addAgent(int _iden, int _x, int _y, std::string _unite)
 {
   if(m_agents.size()<_iden){
@@ -80,14 +80,14 @@ void Map::addAgent(int _iden, int _x, int _y, std::string _unite)
       break;
     }
   }
-  if(caseptr==nullptr||uniteptr==nulltr){
+  if(caseptr==nullptr||uniteptr==nullptr){
     throw new str_exception("Impossible de créer l'agent '" + std::to_string(_iden) +"': coordonnées ou type d'unité non valides");
   }else{
     m_agents.at(_iden)=new Agent(_iden,caseptr,uniteptr);
   }
 }
 
-void Map::addContrainte(std::string _contrainte)
+void Map::addContrainte(std::string const & _contrainte)
 {
   for(int i=0;i<m_contrainteNames.size();++i){
     if(m_contrainteNames.at(i)->getType()==_contrainte){
@@ -107,3 +107,12 @@ int Map::get_m_w()
   return m_w;
 }
 
+Case* Map::get_Case(int _x, int _y)
+{
+  return m_sommets.at((_x*m_h)+_y);
+}
+
+std::vector< Agent* > Map::get_Agents()
+{
+  return m_agents;
+}

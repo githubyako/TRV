@@ -14,7 +14,7 @@ private:
   Controller();
   Controller(Controller const & _controller);
   
-  Map* map;
+  Map* m_map;
   
 public:
   ~Controller();

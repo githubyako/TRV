@@ -50,14 +50,14 @@ bool Case::isObstacle() const
 void Case::setContrainte_obs(Contrainte* _contrainte,float _qte)
 {
   bool foundContr=false;
-  for(int i=0;i<m_contraintes.size();++i){
+  for(unsigned int i=0;i<m_contraintes.size();++i){
     if(m_contraintes.at(i).first==_contrainte){
       m_contraintes.at(i).second=_qte;
       foundContr=true;
     }
   }
   if(foundContr==false){
-    m_contraintes.push_back(_contrainte,_qte);
+    m_contraintes.push_back(std::pair<Contrainte*,int>(_contrainte,_qte));
   }
 }
 

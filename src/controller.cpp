@@ -1,12 +1,8 @@
 #include "controller.h"
 
-Controller::Controller()
+Controller::Controller(int _w, int _h)
 {
-  // création des pipes entrants ? IL FAUT CHOISIR CLASSE INTERFACE OU THREAD+PIPES
-  int creation_unite[2],;
-  pipe(creation_unite);
-  
-  // création du pipe sortant
+  m_map=Map::create(_w,_h);
 }
 
 Controller::Controller(const Controller& _controller)

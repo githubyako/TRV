@@ -21,7 +21,7 @@ Contrainte::~Contrainte()
 
 }
 
-std::string const & Contrainte::getNom()
+std::string const & Contrainte::getNom() const
 {
   return m_nom;
 }

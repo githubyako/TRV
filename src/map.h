@@ -20,11 +20,13 @@ private:
   Map( int _w,  int _h); 
 public:
   static Map* create(int _w, int _h);
-  void addTerrain(std::string _type, std::vector<std::pair<std::string, float> > _contraintes_defaut);
+  void addTerrain(std::string & _type, std::vector<std::pair<std::string, float> > _contraintes_defaut);
   void addTerrain(std::string & _type, std::vector<std::pair<std::string, float> > _contraintes_defaut, bool _obstacle);
   void addUnite(std::string const & _type, std::vector< std::pair<Terrain*,float> > _vitesse_d,std::vector< std::pair<Contrainte*, float> > _consoContraintes);
   void addAgent(int _iden, int _x, int _y, std::string _unite);
   void addContrainte(std::string _contrainte);
+  int get_m_w();
+  int get_m_h();
   ~Map();
   
 };

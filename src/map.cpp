@@ -35,7 +35,7 @@ Map* Map::create(int _w, int _h)
   }
 }
 
-void Map::addTerrain(std::string _type, std::vector< std::pair< std::string, float > > _contraintes_defaut)
+void Map::addTerrain(std::string& _type, std::vector< std::pair< std::string, float > > _contraintes_defaut)
 {
   for(int i=0;i<m_terrains.size();++i){
     if(m_terrains.at(i)->getType()==_type){
@@ -96,3 +96,14 @@ void Map::addContrainte(std::string _contrainte)
   }
   m_terrains.push_back(new Contrainte(_contrainte));
 }
+
+int Map::get_m_h()
+{
+  return m_h;
+}
+
+int Map::get_m_w()
+{
+  return m_w;
+}
+

@@ -3,32 +3,32 @@
 
 const Case* Agent::getCase() const
 {
-  return _case;
+  return m_case;
 }
 
 int Agent::getId() const
 {
-  return id;
+  return m_id;
 }
 
 float Agent::getMultiplicateurV() const
 {
-  return multiplicateur_v;
+  return m_multiplicateur_v;
 }
 
 const Unite* Agent::getUnite() const
 {
-  return _unite;
+  return m_unite;
 }
 
 void Agent::setCase(Case* _c)
 {
-  _case = _c;
+  m_case = _c;
 }
 
 void Agent::setUnite(Unite* _u)
 {
-  _unite = _u;
+  m_unite = _u;
 }
 
 

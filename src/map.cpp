@@ -35,7 +35,7 @@ Map* Map::create(int _w, int _h)
   }
 }
 
-void Map::addTerrain(const std::string& _type, std::vector< std::pair< std::string, float > > _contraintes_defaut)
+void Map::addTerrain(const std::string& _type, std::vector< std::pair< std::string, float > > & _contraintes_defaut)
 {
   for(int i=0;i<m_terrains.size();++i){
     if(m_terrains.at(i)->getType()==_type){
@@ -45,7 +45,7 @@ void Map::addTerrain(const std::string& _type, std::vector< std::pair< std::stri
   m_terrains.push_back(new Terrain(_type,_contraintes_defaut));
 }
 
-void Map::addTerrain(const std::string& _type, std::vector< std::pair< std::string, float > > _contraintes_defaut, bool _obstacle)
+void Map::addTerrain(const std::string& _type, std::vector< std::pair< std::string, float > > & _contraintes_defaut, bool _obstacle)
 {
   for(int i=0;i<m_terrains.size();++i){
     if(m_terrains.at(i)->getType()==_type){
@@ -55,8 +55,8 @@ void Map::addTerrain(const std::string& _type, std::vector< std::pair< std::stri
   m_terrains.push_back(new Terrain(_type,_contraintes_defaut,_obstacle));
 }
 
-void Map::addUnite(const std::string& _type, std::vector< std::pair< Terrain*, float > > _vitesse_d, 
-		   std::vector< std::pair< Contrainte*, float > > _consoContraintes)
+void Map::addUnite(const std::string& _type, std::vector< std::pair< Terrain*, float > >& _vitesse_d, 
+		   std::vector< std::pair< Contrainte*, float > >& _consoContraintes)
 {
   for(int i=0;i<m_unites.size();++i){
     if(m_unites.at(i)->getType()==_type){

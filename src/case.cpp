@@ -19,7 +19,7 @@ Case::Case(const Case& _case)
 
 float Case::getContrainte(Contrainte const & _contrainte) const
 {
-  for(int i=0;i<m_contraintes.size();++i){
+  for(unsigned int i=0;i<m_contraintes.size();++i){
     if(m_contraintes.at(i).first==&_contrainte){
       return m_contraintes.at(i).second;
     }
@@ -29,7 +29,7 @@ float Case::getContrainte(Contrainte const & _contrainte) const
 
 const Terrain& Case::getTerrain() const
 {
-  return &m_terrain;
+  return *m_terrain;
 }
 
 unsigned int Case::getX() const

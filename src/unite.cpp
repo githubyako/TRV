@@ -50,4 +50,3 @@ float Unite::getVitesse(Terrain* _terrain)
   }
   return result;
 }
-

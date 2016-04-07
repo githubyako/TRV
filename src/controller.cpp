@@ -107,16 +107,78 @@ void Controller::initiateMap(std::string contentFileName)
 
 void Controller::initiateRules(std::string xmlFileName)
 {
-  //Parse fichier .xml des règles de la carte
+   //Parse fichier .xml des règles de la carte
   xmlpp::DomParser parser;
   parser.set_validate();
   parser.parse_file(xmlFileName);
   
-  Node* rootNode = parser.get_document()->get_root_node();
-  NodeSet contraintes = rootNode->find("/regle/contraintes");
-  NodeSet terrains = rootNode->find("/regle/terrains");
-  NodeSet unites = rootNode->find("/regle/unites");
-  Node* firstNodeInResult = result.at(0);
+  xmlpp::Node* rootNode = parser.get_document()->get_root_node();
+  xmlpp::NodeSet contraintes = rootNode->find("/regle/contraintes");
+  for(xmlpp::NodeSet::iterator i=contraintes.begin(); i != contraintes.end(); ++i){
+    xmlpp::NodeList c_attributes = (*i).get_children();
+    for (xmlpp::NodeList::iterator a_i=c_attributes.begin(); a_i != c_attributes.end(); i++)
+    {
+      xmlpp::Attribute &attribute = dynamic_cast<xmlpp::Attribute&>(*a_i);
+      map->addContrainte(attribute.get_value().raw());
+    }
+  }
+  xmlpp::NodeSet terrains = rootNode->find("/regle/terrains");
+  for(xmlpp::NodeSet::iterator i=terrains.begin(); i != terrains.end(); ++i){
+    xmlpp::NodeList t_attributes = (*i).get_children();
+    std::string type, contrainte_def;
+    bool obstacle = false;
+    std::vector< std::pair< std::string,float > > _contraintes;
+    for (xmlpp::NodeList::iterator a_i=t_attributes.begin(); a_i != t_attributes.end(); i++)
+    {
+      xmlpp::Attribute &attribute = dynamic_cast<xmlpp::Attribute&>(*a_i);
+      if (attribute.get_name() == "type")
+      {
+	  type = attribute.get_value().raw();
+      } else if(attribute.get_name() == "contrainte_defaut")
+      {
+	contrainte_def = attribute.get_value().raw();
+	std:vector<std::string> vec_contrainte = split(contrainte_def,';');
+	for(std::vector::iterator v_i = vec_contrainte.begin(); v_i != vec_contrainte.end(); ++i)
+	{
+	  std:vector<std::string> vec_detail = split(*v_i,':');
+	  _contraintes.push_back(std::pair<std::string,float>(vec_detail[0], ::atof(vec_detail[1].c_str()));
+	}
+      } else if(attribute.get_name() == "obstacle")
+      {
+	 obstacle = true;
+      }
+    }
+    map->addTerrain(type,_contraintes,obstacle);
+    
+  }
+  xmlpp::NodeSet unites = rootNode->find("/regle/unites");
+  for(xmlpp::NodeSet::iterator i=unites.begin(); i != unites.end(); ++i){
+    xmlpp::NodeList u_attributes = (*i).get_children();
+    std::string type, contrainte, deplacement;
+    std::vector< std::pair< std::string,float > > _contraintes, _deplacements;
+    for (xmlpp::NodeList::iterator a_i=u_attributes.begin(); a_i != u_attributes.end(); i++)
+    {
+      xmlpp::Attribute &attribute = dynamic_cast<xmlpp::Attribute&>(*a_i);
+      if (attribute.get_name() == "type"){
+	  type = attribute.get_value().raw();
+      } else if(attribute.get_name() == "contrainte"){
+	contrainte = attribute.get_value().raw();
+	std:vector<std::string> vec_contrainte = split(contrainte,';');
+	for(std::vector::iterator v_i = vec_contrainte.begin(); v_i != vec_contrainte.end(); ++i){
+	  std:vector<std::string> vec_detail = split(*v_i,':');
+	  _contraintes.push_back(std::pair<std::string,float>(vec_detail[0], ::atof(vec_detail[1].c_str()));
+	}
+      } else if(attribute.get_name() == "deplacement"){
+	deplacement = attribute.get_value().raw();
+	std:vector<std::string> vec_deplacement = split(deplacement,';');
+	for(std::vector::iterator v_i = vec_deplacement.begin(); v_i != vec_deplacement.end(); ++i){
+	  std:vector<std::string> vec_detail = split(*v_i,':');
+	  _deplacements.push_back(std::pair<std::string,float>(vec_detail[0], ::atof(vec_detail[1].c_str()));
+	}
+      }
+    }
+    map->addUnite(type,_contraintes,_deplacements);
+  }
   
 }
 

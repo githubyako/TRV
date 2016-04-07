@@ -28,7 +28,7 @@ public:
   void demande_chemin(int id, int x, int y);
   void initiateRules(std::string xmlFileName);
   void initiateMap(std::string rulesFileName);
-  
+  std::vector<std::string> split(std::string str, char delimiter);
 };
 
 #endif

@@ -25,6 +25,8 @@ public:
   void addUnite(std::string const & _type, std::vector< std::pair<Terrain*,float> > _vitesse_d,std::vector< std::pair<Contrainte*, float> > _consoContraintes);
   void addAgent(int _iden, int _x, int _y, std::string const &_unite);
   void addContrainte(const std::string& _contrainte);
+  void move_agent(int id, int x, int y);
+  void suppr_agent(int id);
   int get_m_w();
   int get_m_h();
   Case* get_Case(int _x, int _y);

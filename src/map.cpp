@@ -35,24 +35,34 @@ Map* Map::create(int _w, int _h)
   }
 }
 
-void Map::addTerrain(const std::string& _type, std::vector< std::pair< std::string, float > > & _contraintes_defaut)
+void Map::addTerrain(const std::string& _type, std::vector< std::pair<std::string const &, float > > & _contraintes_defaut)
 {
+  std::vector< std::pair<Contrainte*, float> > vec_cont;
   for(unsigned int i=0;i<m_terrains.size();++i){
     if(m_terrains.at(i)->getType()==_type){
       throw new str_exception("Le terrain '" + _type + "' existe déjà");
     }
   }
-  m_terrains.push_back(new Terrain(_type,_contraintes_defaut));
+  for(unsigned int i=0;i<_contraintes_defaut.size();++i){			// creation du vecteur de contraintes
+    Contrainte * t = this->get_Contrainte(_contraintes_defaut.at(i).first);
+    vec_cont.push_back(t,_contraintes_defaut.at(i).second);
+  }
+  m_terrains.push_back(new Terrain(_type,vec_cont));
 }
 
-void Map::addTerrain(const std::string& _type, std::vector< std::pair< std::string, float > > & _contraintes_defaut, bool _obstacle)
+void Map::addTerrain(const std::string& _type, std::vector< std::pair<std::string const &, float > > & _contraintes_defaut, bool _obstacle)
 {
+  std::vector< std::pair<Contrainte*, float> > vec_cont;
   for(unsigned int i=0;i<m_terrains.size();++i){
     if(m_terrains.at(i)->getType()==_type){
       throw new str_exception("Le terrain '" + _type + "' existe déjà");
     }
   }
-  m_terrains.push_back(new Terrain(_type,_contraintes_defaut,_obstacle));
+  for(unsigned int i=0;i<_contraintes_defaut.size();++i){			// creation du vecteur de contraintes
+    Contrainte * t = this->get_Contrainte(_contraintes_defaut.at(i).first);
+    vec_cont.push_back(t,_contraintes_defaut.at(i).second);
+  }
+  m_terrains.push_back(new Terrain(_type,vec_cont,_obstacle));
 }
 
 void Map::addUnite(const std::string& _type, std::vector< std::pair< std::string const &, float > >& _vitesse_d, 
@@ -70,8 +80,8 @@ void Map::addUnite(const std::string& _type, std::vector< std::pair< std::string
     vec_vit.push_back(t,_vitesse_d.at(i).second);
   }
   for(unsigned int i=0;i<_consoContraintes.size();++i){			// creation du vecteur de contraintes
-    Contrainte * t = this->get_Contrainte(_vitesse_d.at(i).first);
-    vec_vit.push_back(t,_consoContraintes.at(i).second);
+    Contrainte * t = this->get_Contrainte(_consoContraintes.at(i).first);
+    vec_cont.push_back(t,_consoContraintes.at(i).second);
   }
   m_unites.push_back(new Unite(_type,vec_vit,vec_cont));
 }

@@ -6,15 +6,15 @@
 class Terrain{
 private:
   std::string m_type;
-  Contrainte* m_contraintes_defaut;
+  std::vector<std::pair<Contrainte*, float> > m_contraintes_defaut;
   bool m_obstacle;
 public:
-  Terrain(std::string & _type, Contrainte* _contraintes_defaut, bool _obstacle);
-  Terrain(std::string & _type, Contrainte* std::vector<std::pair<std::string, float> > _contraintes_defaut);
+  Terrain(std::string & _type, std::vector<std::pair<Contrainte*, float> > _contraintes_defaut, bool _obstacle);
+  Terrain(std::string & _type, std::vector<std::pair<Contrainte*, float> > _contraintes_defaut);
   ~Terrain();
   
   std::string const & getType() const;
-  float getContrainteDef(std::string const & _nomContrainte) const;
+  float getContrainteDef(Contrainte*) const;
   bool isObstacle() const;
 };
 #endif

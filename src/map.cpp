@@ -153,7 +153,7 @@ Case* Map::get_Case(int _x, int _y) const
   return m_sommets.at((_x*m_h)+_y);
 }
 
-Agent* Map::get_Agents(int id) const
+Agent* Map::get_Agent(int id) const
 {
 	if (id > m_agents.size())
 		throw new str_exception("Cette unité n'existe pas");
@@ -168,7 +168,7 @@ Agent* Map::get_Agents(int id) const
 
 Terrain* Map::get_Terrain(const std::string& _terrName) const
 {
-  for(unsigned int j=0;j<m_terrains.size();++i){
+  for(unsigned int j=0;j<m_terrains.size();++j){
     if(m_terrains.at(j)->getType()==_terrName){
       return m_terrains.at(j);
     }
@@ -185,7 +185,7 @@ void Map::set_Terrain(int _x, int _y, const std::string& _terrName)
 
 Contrainte* Map::get_Contrainte(const std::string& _contrName) const
 {
-  for(unsigned int j=0;j<m_contraintes.size();++i){
+  for(unsigned int j=0;j<m_contraintes.size();++j){
     if(m_contraintes.at(j)->getNom()==_contrName){
       return m_contraintes.at(j);
     }

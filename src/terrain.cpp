@@ -20,11 +20,12 @@ Terrain::~Terrain()
 float Terrain::getContrainteDef(Contrainte* _nomContrainte) const
 {
   for(unsigned int i=0;i<m_contraintes_defaut.size();++i){
-    if((m_contraintes_defaut.at(i).first).getNom()==_nomContrainte.getNom()){
+    if((m_contraintes_defaut.at(i).first)->getNom()==_nomContrainte->getNom()){
       return m_contraintes_defaut.at(i).second;
     }
   }
-  throw new str_exception("Contrainte '" + _nomContrainte.getNom() + "' non trouvée dans les valeurs par défaut pour le terrain " + m_type);
+  throw new str_exception("Contrainte '" + _nomContrainte->getNom() + "' non trouvée dans les valeurs par défaut pour le terrain " + m_type);
+  return 0.0;
 }
 
 const std::string& Terrain::getType() const

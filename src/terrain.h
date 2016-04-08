@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "str_exception.h"
+#include "contrainte.h"
 class Terrain{
 private:
   std::string m_type;

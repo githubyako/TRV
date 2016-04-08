@@ -31,7 +31,7 @@ public:
   int get_m_w() const;
   int get_m_h() const;
   Case* get_Case(int _x, int _y) const;
-  std::vector<Agent*> get_Agents() const;
+  Agent* get_Agent() const;
   Terrain* get_Terrain(std::string const & _terrName) const;
   Contrainte * get_Contrainte(std::string const & _contrName) const;
   void set_Terrain(int _x, int _y, std::string const & _terrName);

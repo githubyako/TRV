@@ -32,7 +32,7 @@ void Agent::setUnite(Unite* _u)
 }
 
 
-Agent::Agent(int _iden, Case* _c, Unite* _u): id(_iden), multiplicateur_v(1.0), _unite(_u), _case(_c)
+Agent::Agent(int _iden, Case* _c, Unite* _u): m_id(_iden), m_multiplicateur_v(1.0), m_unite(_u), m_case(_c)
 {
 
 }

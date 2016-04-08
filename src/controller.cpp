@@ -31,7 +31,7 @@ void Controller::setObstacle(int x, int y, bool obs)
   if (x>=Map.get_m_w() || x<0 || y<0 || y>=Map.get_m_h())
 		throw new str_exception("La case n'existe pas");
 	else
-		Map.get_Case(x,y).setObstacle(obs);
+		(Map.get_Case(x,y)).setObstacle(obs);
 }
 
 void Controller::creer_agent(int x, int y, const std::string type, int id)
@@ -66,7 +66,7 @@ void Controller::initiateMap(std::string contentFileName)
   int obst=0;
   int i;
   std::vector<std::string> splitter;
-  std::ifstream fichier (F.c_str(), std::ios::in);
+  std::ifstream fichier (contentFileName.c_str(), std::ios::in);
   if(fichier)
   {
     std::string contenu;
@@ -86,16 +86,16 @@ void Controller::initiateMap(std::string contentFileName)
       {
 	case 4:
 	  contrainte = splitter[3];
-	  M.getCase(x,y).setContrainte(contrainte);
+	  (M.get_Case(x,y)).setContrainte(contrainte);
 	  break;
 	case 5:
 	  contrainte = splitter[3];
 	  obst = atoi(splitter[4].c_str());
-	  M.getCase(x,y).setContrainte(contrainte);
-	  M.getCase(x,y).setObstacle(obst);
+	  (M.get_Case(x,y)).setContrainte(contrainte);
+	  (M.get_Case(x,y)).setObstacle(obst);
 	  break;
       }
-      M.getCase(x,y).setTerrain(M.getTerrain(type_terr));
+      (M.get_Case(x,y)).setTerrain(M.getTerrain(type_terr));
     }
     fichier.close();
   }

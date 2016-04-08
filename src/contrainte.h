@@ -3,7 +3,7 @@
 #include <string>
 class Contrainte{
 private:
-  std::string & m_nom;
+  std::string m_nom;
   Contrainte(); // private pour rendre inaccessible
   Contrainte(Contrainte const & _contrainte); // private pour rendre inaccessible
 public:

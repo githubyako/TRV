@@ -77,20 +77,21 @@ void Map::addUnite(const std::string& _type, std::vector< std::pair< std::string
   std::vector< std::pair<Contrainte*, float> > vec_cont;
   for(unsigned int i=0;i<_vitesse_d.size();++i){			// creation du vecteur de vitesses
     Terrain * t = this->get_Terrain(_vitesse_d.at(i).first);
-    vec_vit.push_back(t,_vitesse_d.at(i).second);
+    vec_vit.push_back(std::pair<Terrain*, float>(t,_vitesse_d.at(i).second));
   }
   for(unsigned int i=0;i<_consoContraintes.size();++i){			// creation du vecteur de contraintes
     Contrainte * t = this->get_Contrainte(_consoContraintes.at(i).first);
-    vec_cont.push_back(t,_consoContraintes.at(i).second);
+    vec_cont.push_back(std::pair<Contrainte*, float>(t,_consoContraintes.at(i).second));
   }
   m_unites.push_back(new Unite(_type,vec_vit,vec_cont));
 }
 
 
-void Map::addAgent(int _iden, int _x, int _y, std::string _unite)
+void Map::addAgent(int _iden, int _x, int _y, std::string const & _unite)
 {
-  if(m_agents.size()<_iden){
-    m_agents.resize(_iden+5);
+  unsigned int id = (unsigned int) _iden;
+  if(m_agents.size()<id){
+    m_agents.resize(id+5);
   }
   Case * caseptr = m_sommets.at((_x*m_h)+_y);
   Unite * uniteptr;
@@ -101,41 +102,43 @@ void Map::addAgent(int _iden, int _x, int _y, std::string _unite)
     }
   }
   if(caseptr==nullptr||uniteptr==nullptr){
-    throw new str_exception("Impossible de créer l'agent '" + std::to_string(_iden) +"': coordonnées ou type d'unité non valides");
+    throw new str_exception("Impossible de créer l'agent '" + std::to_string(id) +"': coordonnées ou type d'unité non valides");
   }else{
-    m_agents.at(_iden)=new Agent(_iden,caseptr,uniteptr);
+    m_agents.at(id)=new Agent(id,caseptr,uniteptr);
   }
 }
 
 void Map::addContrainte(std::string const & _contrainte)
 {
   for(unsigned int i=0;i<m_contraintes.size();++i){
-    if(m_contraintes.at(i)->getType()==_contrainte){
+    if(m_contraintes.at(i)->getNom()==_contrainte){
       throw new str_exception("La contrainte '" + _contrainte + "' existe déjà");
     }
   }
-  m_terrains.push_back(new Contrainte(_contrainte));
+  m_contraintes.push_back(new Contrainte(_contrainte));
 }
 
 void Map::move_agent(int id, int x, int y)
 {
-	if (id > m_agents.size())
+  unsigned int id2 = (unsigned int) id;
+	if (id2 > m_agents.size())
 		throw new str_exception("Cette unité n'existe pas");
 	else
 	{
-		if (m_agents[id]==NULL)
+		if (m_agents[id2]==NULL)
 			throw new str_exception("Cette unité n'existe plus");
 		else
-			m_agents[id]->setCase(this.get_Case(x,y));
+			m_agents[id2]->setCase(m_map->get_Case(x,y));
 	}
 }
 
 void Map::suppr_agent(int id)
 {
-	if (m_agents[id]==NULL)
+  unsigned int id2 = (unsigned int) id;
+	if (m_agents[id2]==NULL)
 		throw new str_exception("Cette unité n'existe plus");
 	else
-		m_agents[id]=NULL;
+		m_agents[id2]=NULL;
 }
 
 int Map::get_m_h() const
@@ -155,14 +158,15 @@ Case* Map::get_Case(int _x, int _y) const
 
 Agent* Map::get_Agent(int id) const
 {
-	if (id > m_agents.size())
+  unsigned int id2 = (unsigned int) id;
+	if (id2 > m_agents.size())
 		throw new str_exception("Cette unité n'existe pas");
 	else
 	{
-		if (m_agents[id]==NULL)
+		if (m_agents[id2]==NULL)
 			throw new str_exception("Cette unité n'existe plus");
 		else
-			return m_agents[id];
+			return m_agents[id2];
 	}
 }
 

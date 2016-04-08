@@ -10,12 +10,12 @@ Map::Map(const Map& _map)
 
 }
 
-Map::Map(int _w, int _h):m_sommets(),m_w(_w),m_h(_h)
+Map::Map(int _w, int _h):m_w(_w),m_h(_h),m_sommets()
 {
   int casenum=0;
   for(int i=0;i<_w;++i){
     for(int j=0;j<_h;++j){
-      m_sommets.insert( std::pair<int, Case*>(casenum++,new Case(_w,_h)) );
+      m_sommets.insert( std::pair<int, Case*>(casenum++,new Case(_w,_h,(i*_h)+_w,m_terrains.at(0))) );
     }
   }
 }
@@ -37,7 +37,7 @@ Map* Map::create(int _w, int _h)
 
 void Map::addTerrain(const std::string& _type, std::vector< std::pair< std::string, float > > & _contraintes_defaut)
 {
-  for(int i=0;i<m_terrains.size();++i){
+  for(unsigned int i=0;i<m_terrains.size();++i){
     if(m_terrains.at(i)->getType()==_type){
       throw new str_exception("Le terrain '" + _type + "' existe déjà");
     }
@@ -47,7 +47,7 @@ void Map::addTerrain(const std::string& _type, std::vector< std::pair< std::stri
 
 void Map::addTerrain(const std::string& _type, std::vector< std::pair< std::string, float > > & _contraintes_defaut, bool _obstacle)
 {
-  for(int i=0;i<m_terrains.size();++i){
+  for(unsigned int i=0;i<m_terrains.size();++i){
     if(m_terrains.at(i)->getType()==_type){
       throw new str_exception("Le terrain '" + _type + "' existe déjà");
     }
@@ -58,7 +58,7 @@ void Map::addTerrain(const std::string& _type, std::vector< std::pair< std::stri
 void Map::addUnite(const std::string& _type, std::vector< std::pair< std::string const &, float > >& _vitesse_d, 
 		   std::vector< std::pair< std::string const &, float > >& _consoContraintes)
 {
-  for(int i=0;i<m_unites.size();++i){
+  for(unsigned int i=0;i<m_unites.size();++i){
     if(m_unites.at(i)->getType()==_type){
       throw new str_exception("Le type d'unité '" + _type + "' existe déjà");
     }
@@ -84,7 +84,7 @@ void Map::addAgent(int _iden, int _x, int _y, std::string _unite)
   }
   Case * caseptr = m_sommets.at((_x*m_h)+_y);
   Unite * uniteptr;
-  for(int i=0;i<m_unites.size();++i){
+  for(unsigned int i=0;i<m_unites.size();++i){
     if(m_unites.at(i)->getType()==_unite){
       uniteptr=m_unites.at(i);
       break;
@@ -99,7 +99,7 @@ void Map::addAgent(int _iden, int _x, int _y, std::string _unite)
 
 void Map::addContrainte(std::string const & _contrainte)
 {
-  for(int i=0;i<m_contraintes.size();++i){
+  for(unsigned int i=0;i<m_contraintes.size();++i){
     if(m_contraintes.at(i)->getType()==_contrainte){
       throw new str_exception("La contrainte '" + _contrainte + "' existe déjà");
     }

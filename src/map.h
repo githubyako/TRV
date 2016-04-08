@@ -22,11 +22,10 @@ public:
   static Map* create(int _w, int _h);
   void addTerrain(std::string const & _type, std::vector<std::pair<std::string, float> > & _contraintes_defaut);
   void addTerrain(std::string const & _type, std::vector<std::pair<std::string, float> > & _contraintes_defaut, bool _obstacle);
-  void addUnite(const std::string& _type, std::vector< std::pair< const std::string const&, float > >& _vitesse_d, 
-		std::vector< std::pair< const std::string const&, float > >& _consoContraintes);
+  void addUnite(const std::string& _type, std::vector< std::pair< std::string const&, float > >& _vitesse_d, 
+		std::vector< std::pair< std::string const&, float > >& _consoContraintes);
   void addAgent(int _iden, int _x, int _y, std::string const &_unite);
   void addContrainte(std::string const& _contrainte);
-  void addContrainte(const std::string& _contrainte);
   void move_agent(int id, int x, int y);
   void suppr_agent(int id);
   int get_m_w() const;

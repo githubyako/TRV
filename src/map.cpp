@@ -143,9 +143,17 @@ Case* Map::get_Case(int _x, int _y) const
   return m_sommets.at((_x*m_h)+_y);
 }
 
-std::vector< Agent* > Map::get_Agents() const
+Agent* Map::get_Agents(int id) const
 {
-  return m_agents;
+	if (id > m_agents.size())
+		throw new str_exception("Cette unité n'existe pas");
+	else
+	{
+		if (m_agents[id]==NULL)
+			throw new str_exception("Cette unité n'existe plus");
+		else
+			return m_agents[id];
+	}
 }
 
 Terrain* Map::get_Terrain(const std::string& _terrName) const

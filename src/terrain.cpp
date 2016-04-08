@@ -1,12 +1,12 @@
 #include "terrain.h"
 
-Terrain::Terrain(std::string& _type, std::vector< std::pair< std::string, float > > _contraintes_defaut, bool _obstacle)
+Terrain::Terrain(std::string& _type, Contrainte* _contraintes_defaut, bool _obstacle)
 :m_type(_type),m_contraintes_defaut(_contraintes_defaut),m_obstacle(_obstacle)
 {
   
 }
 
-Terrain::Terrain(std::string& _type, std::vector< std::pair< std::string, float > > _contraintes_defaut)
+Terrain::Terrain(std::string& _type, Contrainte* _contraintes_defaut)
 :m_type(_type), m_contraintes_defaut(_contraintes_defaut),m_obstacle(0)
 {
 

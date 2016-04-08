@@ -15,9 +15,6 @@ private:
   
   static unsigned int id_somm;
   
-  void setObstacle(bool _b);
-  void setTerrain(Terrain* _terrain);
-  void setContrainte_obs(Contrainte* _contrainte,float _qte);
   Case();
   Case(Case const & _case);
 public:
@@ -25,6 +22,9 @@ public:
   unsigned int getX() const;
   unsigned int getY() const;
   float getContrainte(Contrainte const & contrainte) const;
+  void setObstacle(bool _b);
+  void setTerrain(Terrain* _terrain);
+  void setContrainte_obs(Contrainte* _contrainte,float _qte);
   const Terrain & getTerrain() const;
   bool isObstacle() const;
 };

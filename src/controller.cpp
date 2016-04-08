@@ -95,7 +95,7 @@ void Controller::initiateMap(std::string contentFileName)
 	  (M.get_Case(x,y)).setObstacle(obst);
 	  break;
       }
-      (M.get_Case(x,y)).setTerrain(M.get_Terrain(type_terr));
+      M.set_Terrait(x,y,type_terr);
     }
     fichier.close();
   }

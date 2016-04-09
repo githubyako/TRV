@@ -45,7 +45,7 @@ void Map::addTerrain(const std::string& _type, std::vector< std::pair<std::strin
   }
   for(unsigned int i=0;i<_contraintes_defaut.size();++i){			// creation du vecteur de contraintes
     Contrainte * t = this->get_Contrainte(_contraintes_defaut.at(i).first);
-    vec_cont.push_back(t,_contraintes_defaut.at(i).second);
+    vec_cont.push_back(std::make_pair(t,_contraintes_defaut.at(i).second));
   }
   m_terrains.push_back(new Terrain(_type,vec_cont));
 }
@@ -60,7 +60,7 @@ void Map::addTerrain(const std::string& _type, std::vector< std::pair<std::strin
   }
   for(unsigned int i=0;i<_contraintes_defaut.size();++i){			// creation du vecteur de contraintes
     Contrainte * t = this->get_Contrainte(_contraintes_defaut.at(i).first);
-    vec_cont.push_back(t,_contraintes_defaut.at(i).second);
+    vec_cont.push_back(std::make_pair(t,_contraintes_defaut.at(i).second));
   }
   m_terrains.push_back(new Terrain(_type,vec_cont,_obstacle));
 }
@@ -196,3 +196,13 @@ Contrainte* Map::get_Contrainte(const std::string& _contrName) const
   }
   throw new str_exception("Erreur: la contrainte '" + _contrName + "' n'existe pas.");
 }
+
+void Map::set_Obstacle(int _x, int _y, int obst)
+{
+  Case * c = this->get_Case(_x,_y);
+  if (obst == 0)
+    c->setObstacle(false);
+  else
+    c->setObstacle(true);
+}
+

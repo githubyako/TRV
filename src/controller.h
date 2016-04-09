@@ -1,6 +1,7 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
+#include <fstream>
 #include <mutex>
 #include <thread>
 #include <unistd.h>
@@ -27,7 +28,7 @@ public:
   void setObstacle(int x, int y, bool obs);
   void demande_chemin(int id, int x, int y);
   void initiateRules(std::string xmlFileName);
-  void initiateMap(std::string rulesFileName);
+  void initiateMap(const std::string & contentFileName);
   std::vector<std::string> split(std::string str, char delimiter);
 };
 

@@ -10,8 +10,8 @@ private:
   std::vector<std::pair<Contrainte*, float> > m_contraintes_defaut;
   bool m_obstacle;
 public:
-  Terrain(std::string & _type, std::vector<std::pair<Contrainte*, float> > _contraintes_defaut, bool _obstacle);
-  Terrain(std::string & _type, std::vector<std::pair<Contrainte*, float> > _contraintes_defaut);
+  Terrain(const std::string & _type, std::vector<std::pair<Contrainte*, float> > _contraintes_defaut, bool _obstacle);
+  Terrain(const std::string & _type, std::vector<std::pair<Contrainte*, float> > _contraintes_defaut);
   ~Terrain();
   
   std::string const & getType() const;

@@ -15,10 +15,11 @@ private:
   std::vector<Agent*> m_agents;
   std::vector<Unite*> m_unites;
   std::vector<Contrainte*> m_contraintes;
+ 
+public:
   Map();
   Map(Map const & _map);
-  Map( int _w,  int _h); 
-public:
+  Map( int _w,  int _h);
   static Map* create(int _w, int _h);
   void addTerrain(std::string const & _type, std::vector<std::pair<std::string const &, float> > & _contraintes_defaut);
   void addTerrain(std::string const & _type, std::vector<std::pair<std::string const &, float> > & _contraintes_defaut, bool _obstacle);
@@ -35,6 +36,7 @@ public:
   Terrain* get_Terrain(std::string const & _terrName) const;
   Contrainte * get_Contrainte(std::string const & _contrName) const;
   void set_Terrain(int _x, int _y, std::string const & _terrName);
+  void set_Obstacle(int _x, int _y, int obst);
   ~Map();
   
 };

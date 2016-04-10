@@ -4,28 +4,39 @@
 #include "terrain.h"
 #include "contrainte.h"
 #include <vector>
+
+// Classe représentant une case de la Map
+
 class Case{
   
 private:
-  unsigned int m_x,m_y;
-  std::vector<std::pair<Contrainte*,float> >m_contraintes;
-  bool m_obstacle;
-  unsigned int m_somm;
-  Terrain * m_terrain;
+  unsigned int m_x,m_y; // Coordonnée x et y
+  std::vector<std::pair<Contrainte*,float> >m_contraintes; // Contrainte (ex: ressource : avoine, blé...)
+  bool m_obstacle; // Booléen si la case est, ou non, franchissable
+  unsigned int m_somm; // Numéro du sommet associé à cette case dans le graphe
+  Terrain * m_terrain; // Pointeur vers le terrain qu'est la case
   
   static unsigned int id_somm;
   
+  // Constructeurs :
   Case();
   Case(Case const & _case);
+  
 public:
+
+  // Constructeur 
   Case(int _x, int _y, int _somm, Terrain * _terrain);
+  
+  // Getteurs
   unsigned int getX() const;
   unsigned int getY() const;
   float getContrainte(Contrainte const & contrainte) const;
+  const Terrain & getTerrain() const;
+  bool isObstacle() const;
+  
+  // Setteurs
   void setObstacle(bool _b);
   void setTerrain(Terrain* _terrain);
   void setContrainte_obs(Contrainte* _contrainte,float _qte);
-  const Terrain & getTerrain() const;
-  bool isObstacle() const;
 };
 #endif

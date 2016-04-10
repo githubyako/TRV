@@ -9,14 +9,19 @@
 
 class Terrain{
 private:
-  std::string m_type;
-  std::vector<std::pair<Contrainte*, float> > m_contraintes_defaut;
-  bool m_obstacle;
+  std::string m_type; // Nom du type de terrain
+  std::vector<std::pair<Contrainte*, float> > m_contraintes_defaut; // Vector de pair contrainte, float représentant le nombre (float) de contraintes par défaut sur le terrain (lors d'une initialisation d'une case avec un terrain sans spécifier de ressource)
+  bool m_obstacle; // Booléen représentant si le terrain est, par défaut, franchissable ou non
 public:
+
+  // Constructeurs :
   Terrain(const std::string & _type, std::vector<std::pair<Contrainte*, float> > _contraintes_defaut, bool _obstacle);
   Terrain(const std::string & _type, std::vector<std::pair<Contrainte*, float> > _contraintes_defaut);
+  
+  // Destructeur :
   ~Terrain();
   
+  // Getteur :
   std::string const & getType() const;
   float getContrainteDef(Contrainte*) const;
   bool isObstacle() const;

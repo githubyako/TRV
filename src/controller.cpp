@@ -1,5 +1,9 @@
 #include "controller.h"
 
+// *************
+// Constructeurs
+// *************
+
 Controller::Controller()
 {
   // création des pipes entrants ? IL FAUT CHOISIR CLASSE INTERFACE OU THREAD+PIPES
@@ -25,17 +29,20 @@ Controller* Controller::create()
   }*/
 }
 
-
+// Fonction permettant la création ou la suppression d'un obstacle à la case de coordonnées x,y
 void Controller::setObstacle(int x, int y, bool obs)
 {
+  // On regarde si la case de coordonnées x,y existe
   if (x>=map->get_m_w() || x<0 || y<0 || y>=map->get_m_h())
 		throw new str_exception("La case n'existe pas");
 	else
 		(map->get_Case(x,y))->setObstacle(obs);
 }
 
+// Fonction de création d'un agent, créé un instance de la classe Agent lorsque le jeu génère une nouvelle unité
 void Controller::creer_agent(int x, int y, const std::string type, int id)
 {
+  // On regarde si la case de coordonnées x,y existe
   if (x>=map->get_m_w() || x<0 || y<0 || y>=map->get_m_h())
 		throw new str_exception("La case n'existe pas");
 	else
@@ -46,59 +53,62 @@ void Controller::demande_chemin(int id, int x, int y)
 {
 }
 
+// Fonction de déplacement d'agent, déplace l'Agent d'identificateur id à la case de coordonnées x,y
 void Controller::deplacement_agent(int id, int x, int y)
 {
 	map->move_agent(id, x, y);
 }
 
+// Fonction permettant la création ou la suppression d'un obstacle à la case de coordonnées x,y
 void Controller::supprimer_agent(int id)
 {
 	map->suppr_agent(id);
 }
 
+// Fonction de parsing du fichier map.txt représentant la map actuelle de leur jeu (description de toutes les cases variant du terrain par défaut)
 void Controller::initiateMap(const std::string& contentFileName)
 {
-  int x;
-  int y;
-  std::string type_terr;
-  std::string contrainte ="";
+  int x; // Coordonnée x récupérée à chaque lecture de ligne
+  int y; // Coordonnée y récupérée à chaque lecture de ligne
+  std::string type_terr; // Type de terrain récupéré à chaque lecture de ligne
+  std::string contrainte =""; // Contraintes récupérées, ou non, à chaque lecture de ligne
   std::string::size_type sz;
-  int obst=0;
-  std::vector<std::string> splitter;
-  std::ifstream fichier (contentFileName.c_str(), std::ios::in);
-  if(fichier)
+  int obst=0; // Obstacle récupéré, ou non, à chaque lecture de ligne
+  std::vector<std::string> splitter; // Chaîne utile à la décomposition de chaque ligne par le délimiteur ' '
+  std::ifstream fichier (contentFileName.c_str(), std::ios::in); // On ouvre le fichier
+  if(fichier) // On regarde si le fichier s'est bien ouvert
   {
-    std::string contenu;
-    std::getline(fichier, contenu);
-    splitter = split(contenu, ' ');
-    x = atoi(splitter[0].c_str());
-    y = atoi(splitter[1].c_str());
-    Map M(x,y);
-    while (std::getline(fichier, contenu))
+    std::string contenu; // Contenu d'une ligne
+    std::getline(fichier, contenu); // On récupère le contenu de la première ligne indiquant la taille de la map en x et y
+    splitter = split(contenu, ' '); // On splitt la ligne
+    x = atoi(splitter[0].c_str()); // On récupère le nombre de case en x de la map
+    y = atoi(splitter[1].c_str()); // On récupère le nombre de case en y de la map
+    Map M(x,y); // On créé une map
+    while (std::getline(fichier, contenu)) // On récupère le contenu des lignes suivants (décrivant les différentes case différentes du terrain par défaut)
     {
-      splitter.clear();
-      splitter = split(contenu, ' ');  
-      x = atoi(splitter[0].c_str());
-      y = atoi(splitter[1].c_str());
-      type_terr = splitter[2];
-      switch (splitter.size())
+      splitter.clear(); // On vide la chaîne splitter
+      splitter = split(contenu, ' '); // On splitt le contenu de la ligne
+      x = atoi(splitter[0].c_str()); // On récupère la coordonnée x de la case
+      y = atoi(splitter[1].c_str()); // On récupère la coordonnée y de la case
+      type_terr = splitter[2]; // On récupère le type de terrain de la case
+      switch (splitter.size()) // On switch sur la taille du splitter
       {
 	case 4:
-	  contrainte = splitter[3];
-	  M.set_Terrain(x,y,contrainte);
+	  contrainte = splitter[3]; // Dans ce cas on récupère les contraintes de la case
+	  M.set_Terrain(x,y,contrainte); // On instancie les contraintes de cette case dans la map
 	  break;
 	case 5:
-	  contrainte = splitter[3];
-	  obst = atoi(splitter[4].c_str());
-	  M.set_Terrain(x,y,contrainte);
-	  M.set_Obstacle(x,y,obst);
+	  contrainte = splitter[3]; // Dans ce cas on récupère les contraintes de la case
+	  obst = atoi(splitter[4].c_str()); // Ainsi que son obstacle
+	  M.set_Terrain(x,y,contrainte); // On instancie les contraintes de cette case dans la map
+	  M.set_Obstacle(x,y,obst); // On instancie l'obstacle de cette case dans la map
 	  break;
       }
-      M.set_Terrain(x,y,type_terr);
+      M.set_Terrain(x,y,type_terr); // On instancie le type de terrain de cette case dans la map
     }
-    fichier.close();
+    fichier.close(); // On ferme le fichier
   }
-   else
+   else // Cas où le fichier s'est mal ouvert
    {
      std::cout << "Impossible d'ouvrir le fichier !" << std::endl;
    }
@@ -194,6 +204,9 @@ std::vector< std::string > Controller::split(std::string str, char delimiter)
   return internal;
 }
 
+// ***********
+// Destructeur
+// ***********
 
 Controller::~Controller()
 {

@@ -1,5 +1,17 @@
 #include "agent.h"
 
+// ************
+// Constructeur
+// ************
+
+Agent::Agent(int _iden, Case* _c, Unite* _u): m_id(_iden), m_multiplicateur_v(1.0), m_unite(_u), m_case(_c)
+{
+
+}
+
+// ********
+// Getteurs
+// ********
 
 const Case* Agent::getCase() const
 {
@@ -21,6 +33,10 @@ const Unite* Agent::getUnite() const
   return m_unite;
 }
 
+// ********
+// Setteurs
+// ********
+
 void Agent::setCase(Case* _c)
 {
   m_case = _c;
@@ -29,10 +45,4 @@ void Agent::setCase(Case* _c)
 void Agent::setUnite(Unite* _u)
 {
   m_unite = _u;
-}
-
-
-Agent::Agent(int _iden, Case* _c, Unite* _u): m_id(_iden), m_multiplicateur_v(1.0), m_unite(_u), m_case(_c)
-{
-
 }

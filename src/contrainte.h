@@ -16,6 +16,7 @@ public:
   // Constructeur
   Contrainte(std::string const & _nom); // seul constructeur qui servira
   
+  // Destructeur
   ~Contrainte();
   
   // Getteur

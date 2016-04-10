@@ -4,6 +4,9 @@
 #include <vector>
 #include "str_exception.h"
 #include "contrainte.h"
+
+// Classe représentant un type de terrain (instancié une et une seule fois lors du parsing des règles par type de terrain)
+
 class Terrain{
 private:
   std::string m_type;

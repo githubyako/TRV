@@ -24,7 +24,7 @@ public:
   
   static Map* create(int _w, int _h);
   
-  // Fonction d'ajout de Terrain avec ou sans obstacle) à la map
+  // Fonction d'ajout de Terrain (avec ou sans obstacle) à la map
   void addTerrain(std::string const & _type, std::vector<std::pair<std::string const &, float> > & _contraintes_defaut);
   void addTerrain(std::string const & _type, std::vector<std::pair<std::string const &, float> > & _contraintes_defaut, bool _obstacle);
   

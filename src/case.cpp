@@ -7,7 +7,10 @@
 
 Case::Case(int _x, int _y, int _somm, Terrain * _terrain)
 :m_x(_x),m_y(_y),m_somm(_somm),m_terrain(_terrain)
-{}
+{
+  m_obstacle = _terrain->isObstacle();
+  m_contraintes = _terrain->getContraintes();
+}
 
 Case::Case()
 {}
@@ -19,15 +22,15 @@ Case::Case(const Case& _case)
 // Getteurs
 // ********
 
-float Case::getContrainte(Contrainte const & _contrainte) const
+float Case::getContrainte(Contrainte* _contrainte) const
 {
   // On regarde si la contrainte existe dans le vecteur m_contraintes de la case
   for(unsigned int i=0;i<m_contraintes.size();++i){
-    if(m_contraintes.at(i).first==&_contrainte){
+    if(m_contraintes.at(i).first->getNom() ==_contrainte->getNom()){
       return m_contraintes.at(i).second;
     }
   }
-  throw new str_exception("Contrainte '" + _contrainte.getNom() + "' non trouvée dans la case (" + std::to_string(m_x) + "," + std::to_string(m_y) + ").");
+  throw new str_exception("Contrainte '" + _contrainte->getNom() + "' non trouvée dans la case (" + std::to_string(m_x) + "," + std::to_string(m_y) + ").");
 }
 
 const Terrain& Case::getTerrain() const
@@ -45,6 +48,12 @@ unsigned int Case::getY() const
   return m_y;
 }
 
+unsigned int Case::get_sommet() const
+{
+  return m_somm;
+}
+
+
 bool Case::isObstacle() const
 {
   return m_obstacle;
@@ -54,7 +63,13 @@ bool Case::isObstacle() const
 // Setteurs
 // ********
 
-void Case::setContrainte_obs(Contrainte* _contrainte,float _qte)
+void Case::setContrainte(std::vector< std::pair< Contrainte*, float > > _contr)
+{
+  m_contraintes=_contr;
+}
+
+
+void Case::setContrainte(Contrainte* _contrainte,float _qte)
 {
   bool foundContr=false;
   // On regarde si la contrainte existe déjà dans le vecteur m_contrainte de la case
@@ -77,5 +92,6 @@ void Case::setObstacle(bool _b)
 
 void Case::setTerrain(Terrain* _terrain)
 {
+  m_obstacle = _terrain->isObstacle();
   m_terrain=_terrain;
 }

@@ -51,6 +51,8 @@ public:
   // Fonction de parsing du fichier map.txt représentant la map actuelle de leur jeu (description de toutes les cases variant du terrain par défaut)
   void initiateMap(const std::string & contentFileName);
   
+  void test();
+  
   // Fonction spéciale au parsing utile à la décomposition de la chaîne str par le délimiteur delimiter
   std::vector<std::string> split(std::string str, char delimiter);
 };

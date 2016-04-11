@@ -29,6 +29,12 @@ Terrain::~Terrain()
 // Getteurs
 // ********
 
+const std::vector< std::pair< Contrainte*, float > > Terrain::getContraintes() const
+{
+  return m_contraintes_defaut;
+}
+
+
 float Terrain::getContrainteDef(Contrainte* _nomContrainte) const
 {
   // On regarde si la contrainte _nomContrainte appartient au vector m_contraintes_defaut du terrain

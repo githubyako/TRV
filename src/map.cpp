@@ -4,7 +4,7 @@ Map * Map::m_map;
 // Constructeurs
 // *************
 
-Map::Map()
+Map::Map() : m_w(),m_h(),m_sommets(), m_terrains(), m_agents(), m_unites(), m_contraintes()
 {
 
 }
@@ -14,15 +14,6 @@ Map::Map(const Map& _map)
 
 }
 
-Map::Map(int _w, int _h):m_w(_w),m_h(_h),m_sommets()
-{
-  int casenum=0;
-  for(int i=0;i<_w;++i){
-    for(int j=0;j<_h;++j){
-      m_sommets.insert( std::pair<int, Case*>(casenum++,new Case(_w,_h,(i*_h)+_w,m_terrains.at(0))) );
-    }
-  }
-}
 
 // ************
 // Destructeurs
@@ -33,10 +24,10 @@ Map::~Map()
 
 }
 
-Map* Map::create(int _w, int _h)
+Map* Map::create()
 {
   if(Map::m_map==nullptr){
-    Map::m_map = new Map(_w,_h);
+    Map::m_map = new Map();
     return Map::m_map;
   }else{
     throw new str_exception("Une map existe déjà.");
@@ -114,8 +105,8 @@ void Map::addAgent(int _iden, int _x, int _y, std::string const & _unite)
 {
   // On aggrandit le vector m_agents s'il n'y a pas assez de place
   unsigned int id = (unsigned int) _iden;
-  if(m_agents.size()<id){
-    m_agents.resize(id+5);
+  if(m_agents.size()<=id){
+    m_agents.resize(id+10);
   }
   // On récupère le pointeur vers la case de coordonnée x,y du vector m_sommets de la map
   Case * caseptr = m_sommets.at((_x*m_h)+_y);
@@ -235,6 +226,22 @@ void Map::set_Terrain(int _x, int _y, const std::string& _terrName)
   c->setTerrain(t);
 }
 
+void Map::set_Contrainte(int _x, int _y, const std::string& _terrName)
+{
+  Case * c = this->get_Case(_x,_y);
+  Terrain * terr = this->get_Terrain(_terrName);
+  c->setContrainte(terr->getContraintes());
+}
+
+
+void Map::set_Contrainte(int _x, int _y, const std::string& _contrName, float _qte)
+{
+ Case * c = this->get_Case(_x,_y);
+ Contrainte * con = this->get_Contrainte(_contrName);
+ c->setContrainte(con,_qte);
+ 
+}
+
 Contrainte* Map::get_Contrainte(const std::string& _contrName) const
 {
   for(unsigned int j=0;j<m_contraintes.size();++j){
@@ -253,4 +260,66 @@ void Map::set_Obstacle(int _x, int _y, int obst)
   else
     c->setObstacle(true);
 }
+
+void Map::set_Taille(int _w, int _h)
+{
+  m_w = _w;
+  m_h = _h;
+  int casenum=0;
+  for(int i=0;i<_w;++i){
+    for(int j=0;j<_h;++j){
+      m_sommets.insert( std::pair<int, Case*>(casenum++,new Case(i,j,(i*_h)+j,m_terrains.at(0))) );
+    }
+  }
+}
+
+void Map::test()
+{
+  try{
+//   for (unsigned int i = 0; i<m_sommets.size(); ++i){
+//     std::cout << m_sommets[i]->getX() << std::endl;
+//     std::cout << m_sommets[i]->getY() << std::endl;
+//     std::cout << m_sommets[i]->get_sommet() << std::endl;
+//     std::cout << m_sommets[i]->getTerrain().getType() << std::endl;
+//     if (m_sommets[i]->isObstacle())
+//       std::cout << "obstacle" << std::endl;
+//     for(std::vector<Contrainte*>::iterator i2 = m_contraintes.begin(); i2 != m_contraintes.end(); ++i2){
+//       std::cout << (*i2)->getNom() << std::endl; 
+//       std::cout << m_sommets[i]->getContrainte(*i2) << std::endl;
+//     }
+//     std::cout << "//////////////////////////" << std::endl;
+//   }
+//   std::cout << std::endl;
+  std::cout << "agents:" << std::endl;
+  std::cout << m_agents.size() << std::endl;
+  for(unsigned int i=0;i<m_agents.size();++i){
+    if(m_agents[i]!=nullptr){
+      std::cout << m_agents[i]->getUnite()->getType() << ", id=" << m_agents[i]->getId() << ", case n°: " << std::to_string(m_agents[i]->getCase()->get_sommet()) << std::endl;
+    }
+  }
+  } catch(str_exception* e)
+  {
+    std::cout << e->what() << std::endl;
+  }
+//   std::vector<Terrain*>::iterator i;
+//   for(std::vector<Terrain*>::iterator i = m_terrains.begin(); i != m_terrains.end(); ++i){
+//     std::cout << (*i)->getType() << std::endl; 
+//     std::cout << (*i)->isObstacle() << std::endl;
+//     for(std::vector<Unite*>::iterator i1 = m_unites.begin(); i1 != m_unites.end(); ++i1){
+//       std::cout << (*i1)->getVitesse(*i) << std::endl;
+//     }
+//   }
+//   for(std::vector<Unite*>::iterator i2 = m_unites.begin(); i2 != m_unites.end(); ++i2){
+//     std::cout << (*i2)->getType() << std::endl; 
+//   }
+//   
+//   for(std::vector<Contrainte*>::iterator i = m_contraintes.begin(); i != m_contraintes.end(); ++i){
+//     std::cout << (*i)->getNom() << std::endl; 
+//     for(std::vector<Unite*>::iterator i1 = m_unites.begin(); i1 != m_unites.end(); ++i1){
+//       std::cout << (*i1)->getConso(*i) << std::endl;
+//     }
+//   }
+  
+}
+
 

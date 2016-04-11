@@ -30,13 +30,15 @@ public:
   // Getteurs
   unsigned int getX() const;
   unsigned int getY() const;
-  float getContrainte(Contrainte const & contrainte) const;
+  unsigned int get_sommet() const;
+  float getContrainte(Contrainte* _contrainte) const;
   const Terrain & getTerrain() const;
   bool isObstacle() const;
   
   // Setteurs
   void setObstacle(bool _b);
   void setTerrain(Terrain* _terrain);
-  void setContrainte_obs(Contrainte* _contrainte,float _qte);
+  void setContrainte(std::vector<std::pair<Contrainte*,float> > _contr);
+  void setContrainte(Contrainte* _contrainte,float _qte);
 };
 #endif

@@ -23,6 +23,7 @@ public:
   
   // Getteur :
   std::string const & getType() const;
+  const std::vector<std::pair<Contrainte*, float> > getContraintes() const;
   float getContrainteDef(Contrainte*) const;
   bool isObstacle() const;
 };

@@ -157,8 +157,13 @@ void Controller::initiateRules(std::string xmlFileName)
 	 obstacle = true;
       }
     }
-    map->addTerrain(type,_contraintes,obstacle);
-    
+/*    std::vector<std::pair<std::string const&,float> > v;
+    for(unsigned int i=0;i<_contraintes.size();++i){
+      std::string const & stref = _contraintes.at(i).first;
+      v.push_back(std::pair<std::string const&,float>(stref,_contraintes.at(i).second));
+    }
+    map->addTerrain(type,v,obstacle);
+   */ 
   }
   xmlpp::NodeSet unites = rootNode->find("/regle/unites");
   for(xmlpp::NodeSet::iterator i=unites.begin(); i != unites.end(); ++i){
@@ -186,7 +191,16 @@ void Controller::initiateRules(std::string xmlFileName)
 	}
       }
     }
-    map->addUnite(type,_contraintes,_deplacements);
+//     std::vector<std::pair<std::string const&,float> > v,v2;
+//     for(unsigned int i=0;i<_contraintes.size();++i){
+//       std::string const & stref = _contraintes.at(i).first;
+//       v.push_back(std::pair<std::string const&,float>(stref,_contraintes.at(i).second));
+//     }
+//     for(unsigned int i=0;i<_deplacements.size();++i){
+//       std::string const& stref = _deplacements.at(i).first;
+//       v2.push_back(std::pair<std::string const&,float>(stref,_deplacements.at(i).second));
+//     }
+//     map->addUnite(type,v,v2);
   }
   
 }

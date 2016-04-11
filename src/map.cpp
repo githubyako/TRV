@@ -1,5 +1,5 @@
 #include "map.h"
-
+Map * Map::m_map;
 // *************
 // Constructeurs
 // *************
@@ -35,9 +35,9 @@ Map::~Map()
 
 Map* Map::create(int _w, int _h)
 {
-  if(m_map==nullptr){
-    m_map = new Map(_w,_h);
-    return m_map;
+  if(Map::m_map==nullptr){
+    Map::m_map = new Map(_w,_h);
+    return Map::m_map;
   }else{
     throw new str_exception("Une map existe déjà.");
   }
@@ -168,7 +168,7 @@ void Map::move_agent(int id, int x, int y)
 			throw new str_exception("Cette unité n'existe plus");
 		else
 			// Si oui, on change la case de l'unité
-			m_agents[id2]->setCase(m_map->get_Case(x,y));
+			m_agents[id2]->setCase(Map::m_map->get_Case(x,y));
 	}
 }
 

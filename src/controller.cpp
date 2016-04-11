@@ -117,90 +117,101 @@ void Controller::initiateMap(const std::string& contentFileName)
 void Controller::initiateRules(std::string xmlFileName)
 {
    //Parse fichier .xml des règles de la carte
-  xmlpp::DomParser parser;
-  parser.set_validate();
-  parser.parse_file(xmlFileName);
+  xmlpp::DomParser parser;		//Objet parser DOM de libxml++
+  parser.set_validate();		//Demande de validation automatique à l'ouverture d'un fichier
+  parser.parse_file(xmlFileName);	//Ouverture du xml avec validation
   
-  xmlpp::Node* rootNode = parser.get_document()->get_root_node();
-  xmlpp::NodeSet contraintes = rootNode->find("/regle/contraintes");
-  for(xmlpp::NodeSet::iterator i=contraintes.begin(); i != contraintes.end(); ++i){
-    xmlpp::Node::NodeList c_attributes = (*i)->get_children();
-    for (xmlpp::Node::NodeList::iterator a_i=c_attributes.begin(); a_i != c_attributes.end(); i++)
+  xmlpp::Node* rootNode = parser.get_document()->get_root_node();	//On prend le tout premier noeud du xml (<regles>)
+  xmlpp::NodeSet contraintes = rootNode->find("/regle/contraintes");	//XPath, on va chercher les balises concernant les contraintes
+  for(xmlpp::NodeSet::iterator i=contraintes.begin(); i != contraintes.end(); ++i){	//iterations sur les noeuds de contraintes
+    xmlpp::Element * element = dynamic_cast<xmlpp::Element*>(*i);			//On transforme le noeud en "Element", pour pouvoir prendre ses attributs
+    xmlpp::Element::AttributeList c_attributes = element->get_attributes();		// On prend les attributs de l'élement
+    for (xmlpp::Element::AttributeList::iterator a_i=c_attributes.begin(); a_i != c_attributes.end(); i++) //On itère sur les attributs
     {
-      xmlpp::Attribute &attribute = static_cast<xmlpp::Attribute*>(a_i);
-      map->addContrainte(attribute.get_value().raw());
+      xmlpp::Attribute *attribute = *a_i;	//On prend l'attribut
+      map->addContrainte(attribute->get_value().raw());	//On prend sa valeur
     }
   }
-  xmlpp::NodeSet terrains = rootNode->find("/regle/terrains");
-  for(xmlpp::NodeSet::iterator i=terrains.begin(); i != terrains.end(); ++i){
-    xmlpp::Node::NodeList t_attributes = (*i)->get_children();
-    std::string type, contrainte_def;
+  xmlpp::NodeSet terrains = rootNode->find("/regle/terrains");		//XPath, on va chercher les balises concernant les terrains
+  for(xmlpp::NodeSet::iterator i=terrains.begin(); i != terrains.end(); ++i){	//On itère sur les noeuds de terrains
+    xmlpp::Element * element = dynamic_cast<xmlpp::Element*>(*i);		//On transforme le noeud en Element
+    xmlpp::Element::AttributeList t_attributes = element->get_attributes();	//On prend les attributs de l'élement
+    std::string type, contrainte_def;						//On définit ici les différentes informations qui nous intéressent 
     bool obstacle = false;
-    std::vector< std::pair< std::string,float > > _contraintes;
-    for (xmlpp::Node::NodeList::iterator a_i=t_attributes.begin(); a_i != t_attributes.end(); i++)
+    std::vector< std::pair< std::string,float > > _contraintes;			//Le vecteur renvoyé au final
+    for (xmlpp::Element::AttributeList::iterator a_i=t_attributes.begin(); a_i != t_attributes.end(); i++)	//on itère sur les attributs de la chaque terrain
     {
-      xmlpp::Attribute &attribute = static_cast<xmlpp::Attribute&>(a_i);
-      if (attribute.get_name() == "type")
+      xmlpp::Attribute *attribute = *a_i;	//On prend l'attribut
+      
+      //*************** Traitement des différents attributs *********************
+      
+      if (attribute->get_name() == "type")	// Type : On prend le string sans traitement
       {
-	  type = attribute.get_value().raw();
-      } else if(attribute.get_name() == "contrainte_defaut")
+	  type = attribute->get_value().raw();
+      } else if(attribute->get_name() == "contrainte_defaut")	//Contraintes : On doit parser le string qu'on nous envoie
       {
-	contrainte_def = attribute.get_value().raw();
-	std::vector<std::string> vec_contrainte = split(contrainte_def,';');
-	for(std::vector<std::string>::iterator v_i = vec_contrainte.begin(); v_i != vec_contrainte.end(); ++i)
+	contrainte_def = attribute->get_value().raw();		//On prend le string contenant toutes les contraintes
+	std::vector<std::string> vec_contrainte = split(contrainte_def,';');	//On utilise la méthode split pour avoir tous les string séparés par des ";"
+	for(std::vector<std::string>::iterator v_i = vec_contrainte.begin(); v_i != vec_contrainte.end(); ++i)	//On itère sur ces strings
 	{
-	  std::vector<std::string> vec_detail = split(*v_i,':');
-	  _contraintes.push_back(std::pair<std::string,float>(vec_detail[0], ::atof(vec_detail[1].c_str())));
+	  std::vector<std::string> vec_detail = split(*v_i,':');		//On utilise la méthode split pour avoir tous les string séparés par des ":"
+	  _contraintes.push_back(std::pair<std::string,float>(vec_detail[0], ::atof(vec_detail[1].c_str())));	//Le string renvoyé contiendra forcément deux string, donc on envoie les deux
+	  // Ici, le premier est le nom de la contrainte, et le deuxième la valeur
 	}
-      } else if(attribute.get_name() == "obstacle")
+      } else if(attribute->get_name() == "obstacle")	//Obstacle : On indique seulement que le terrain est un obstacle
       {
 	 obstacle = true;
       }
     }
-/*    std::vector<std::pair<std::string const&,float> > v;
+    std::vector<std::pair<std::string const&,float> > v;	//On transforme le vecteur sans reference de string en references de string
     for(unsigned int i=0;i<_contraintes.size();++i){
       std::string const & stref = _contraintes.at(i).first;
       v.push_back(std::pair<std::string const&,float>(stref,_contraintes.at(i).second));
-    }
-    map->addTerrain(type,v,obstacle);
-   */ 
+    }		
+    map->addTerrain(type,v,obstacle);			//On envoie le vecteur
+    
   }
-  xmlpp::NodeSet unites = rootNode->find("/regle/unites");
-  for(xmlpp::NodeSet::iterator i=unites.begin(); i != unites.end(); ++i){
-    xmlpp::Node::NodeList u_attributes = (*i)->get_children();
-    std::string type, contrainte, deplacement;
+  
+  xmlpp::NodeSet unites = rootNode->find("/regle/unites");		//XPath, on va chercher les balises concernant les unités
+  for(xmlpp::NodeSet::iterator i=unites.begin(); i != unites.end(); ++i){	//On itère sur les unités
+    xmlpp::Element * element = dynamic_cast<xmlpp::Element*>(*i);		//On transforme le noeud en élement
+    xmlpp::Element::AttributeList u_attributes = element->get_attributes();	//On prend les attributs de l'éléments
+    std::string type, contrainte, deplacement;					//On indique ce qu'on veut récupérer
     std::vector< std::pair< std::string,float > > _contraintes, _deplacements;
-    for (xmlpp::Node::NodeList::iterator a_i=u_attributes.begin(); a_i != u_attributes.end(); i++)
+    for (xmlpp::Element::AttributeList::iterator a_i=u_attributes.begin(); a_i != u_attributes.end(); i++)	//On itère sur les attributs de chaque unités
     {
-      xmlpp::Attribute &attribute = dynamic_cast<xmlpp::Attribute&>(a_i);
-      if (attribute.get_name() == "type"){
-	  type = attribute.get_value().raw();
-      } else if(attribute.get_name() == "contrainte"){
-	contrainte = attribute.get_value().raw();
-	std::vector<std::string> vec_contrainte = split(contrainte,';');
-	for(std::vector<std::string>::iterator v_i = vec_contrainte.begin(); v_i != vec_contrainte.end(); ++i){
-	  std::vector<std::string> vec_detail = split(*v_i,':');
-	  _contraintes.push_back(std::pair<std::string,float>(vec_detail[0], ::atof(vec_detail[1].c_str())));
+      xmlpp::Attribute *attribute = *a_i;		//On prend l'attribut
+      if (attribute->get_name() == "type"){		//Type : On prend le string
+	  type = attribute->get_value().raw();
+      } else if(attribute->get_name() == "contrainte"){	//Contrainte : On doit traiter le string qui nous ait envoyé
+	contrainte = attribute->get_value().raw();	//On prend le string qui nous ait envoyé
+	std::vector<std::string> vec_contrainte = split(contrainte,';');	//On split le string selon les ";"
+	for(std::vector<std::string>::iterator v_i = vec_contrainte.begin(); v_i != vec_contrainte.end(); ++i){	//On itère sur les string séparés
+	  std::vector<std::string> vec_detail = split(*v_i,':');						//On split chaque string selon ":"
+	  //On a alors exactement deux string, le premier donnant la contrainte et le deuxième sa valeur
+	  _contraintes.push_back(std::pair<std::string,float>(vec_detail[0], ::atof(vec_detail[1].c_str())));	
 	}
-      } else if(attribute.get_name() == "deplacement"){
-	deplacement = attribute.get_value().raw();
-	std::vector<std::string> vec_deplacement = split(deplacement,';');
-	for(std::vector<std::string>::iterator v_i = vec_deplacement.begin(); v_i != vec_deplacement.end(); ++i){
-	  std::vector<std::string> vec_detail = split(*v_i,':');
-	  _deplacements.push_back(std::pair<std::string,float>(vec_detail[0], ::atof(vec_detail[1].c_str())));
+      } else if(attribute->get_name() == "deplacement"){	//Deplacement : On doit traiter le string qui nous ait envoyé
+	deplacement = attribute->get_value().raw();		// On prend le string qui nous ait envoyé
+	std::vector<std::string> vec_deplacement = split(deplacement,';');	//On sépare le string selon les ";"
+	for(std::vector<std::string>::iterator v_i = vec_deplacement.begin(); v_i != vec_deplacement.end(); ++i){	//On itère sur les string séparés
+	  std::vector<std::string> vec_detail = split(*v_i,':');						//On sépare chaque string selon les ":"
+	  //On a alors exactement deux string, le premier donnant le terrain concerné et le deuxième sa valeur
+	  _deplacements.push_back(std::pair<std::string,float>(vec_detail[0], ::atof(vec_detail[1].c_str())));	
 	}
       }
     }
-//     std::vector<std::pair<std::string const&,float> > v,v2;
-//     for(unsigned int i=0;i<_contraintes.size();++i){
-//       std::string const & stref = _contraintes.at(i).first;
-//       v.push_back(std::pair<std::string const&,float>(stref,_contraintes.at(i).second));
-//     }
-//     for(unsigned int i=0;i<_deplacements.size();++i){
-//       std::string const& stref = _deplacements.at(i).first;
-//       v2.push_back(std::pair<std::string const&,float>(stref,_deplacements.at(i).second));
-//     }
-//     map->addUnite(type,v,v2);
+    //On convertit les deux vecteur à envoyé de string en &string
+    std::vector<std::pair<std::string const&,float> > v,v2;	
+     for(unsigned int i=0;i<_contraintes.size();++i){
+       std::string const & stref = _contraintes.at(i).first;
+       v.push_back(std::pair<std::string const&,float>(stref,_contraintes.at(i).second));
+     }
+     for(unsigned int i=0;i<_deplacements.size();++i){
+       std::string const& stref = _deplacements.at(i).first;
+       v2.push_back(std::pair<std::string const&,float>(stref,_deplacements.at(i).second));
+     }
+     map->addUnite(type,v,v2);
   }
   
 }

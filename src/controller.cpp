@@ -1,5 +1,7 @@
 #include "controller.h"
 
+Controller* Controller::s_controller;
+
 // *************
 // Constructeurs
 // *************
@@ -20,13 +22,13 @@ Controller::Controller(const Controller& _controller)
 
 Controller* Controller::create()
 {
-  /*if(Controller::s_controller!=nullptr){
+  if(Controller::s_controller!=nullptr){
     throw new str_exception("An instance of controller already exists");
   }else{
     Controller::s_controller = new Controller();
     // thread?
     return Controller::s_controller;
-  }*/
+  }
 }
 
 // Fonction permettant la création ou la suppression d'un obstacle à la case de coordonnées x,y

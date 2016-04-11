@@ -3,13 +3,9 @@ CPP = *.cpp
 
 FLAGS = -O2 -Wall -std=c++11 $(shell pkg-config --cflags --libs libxml++-2.6)
 
-all: trv.exe
-
-
-trv.exe:
-	@echo "-> Compiling $@"
+all: 
 	g++ $(CPP) $(FLAGS) -o trv.exe
-	
+
 clean:
 	@echo "-> Clean project"
 	rm -rf *.exe

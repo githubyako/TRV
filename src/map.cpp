@@ -24,13 +24,14 @@ Map::~Map()
 
 }
 
+// On ne veut pas donner accès au constructeur de Controller car on ne souhaite qu'une instance de Controller à la fois
 Map* Map::create()
 {
-  if(Map::m_map==nullptr){
-    Map::m_map = new Map();
+  if(Map::m_map==nullptr){ // On regarde si une map existe déjà
+    Map::m_map = new Map(); // Si non, on en créé une
     return Map::m_map;
   }else{
-    throw new str_exception("Une map existe déjà.");
+    throw new str_exception("Une map existe déjà."); //Si oui, on lève une exception
   }
 }
 
@@ -219,29 +220,6 @@ Terrain* Map::get_Terrain(const std::string& _terrName) const
   throw new str_exception("Erreur: le terrain '" + _terrName + "' n'existe pas.");
 }
 
-void Map::set_Terrain(int _x, int _y, const std::string& _terrName)
-{
-  Case * c = this->get_Case(_x,_y);
-  Terrain * t = this->get_Terrain(_terrName);
-  c->setTerrain(t);
-}
-
-void Map::set_Contrainte(int _x, int _y, const std::string& _terrName)
-{
-  Case * c = this->get_Case(_x,_y);
-  Terrain * terr = this->get_Terrain(_terrName);
-  c->setContrainte(terr->getContraintes());
-}
-
-
-void Map::set_Contrainte(int _x, int _y, const std::string& _contrName, float _qte)
-{
- Case * c = this->get_Case(_x,_y);
- Contrainte * con = this->get_Contrainte(_contrName);
- c->setContrainte(con,_qte);
- 
-}
-
 Contrainte* Map::get_Contrainte(const std::string& _contrName) const
 {
   for(unsigned int j=0;j<m_contraintes.size();++j){
@@ -252,6 +230,36 @@ Contrainte* Map::get_Contrainte(const std::string& _contrName) const
   throw new str_exception("Erreur: la contrainte '" + _contrName + "' n'existe pas.");
 }
 
+// ********
+// Setteurs
+// ********
+
+// Fonction pour changer le type de la case de coordonnée x,y en terrain de type _terrName
+void Map::set_Terrain(int _x, int _y, const std::string& _terrName)
+{
+  Case * c = this->get_Case(_x,_y);
+  Terrain * t = this->get_Terrain(_terrName);
+  c->setTerrain(t);
+}
+
+// Fonction pour changer le type de la case de coordonnée x,y en contrainte de type _contrName
+void Map::set_Contrainte(int _x, int _y, const std::__cxx11::string& _contrName)
+{
+  Case * c = this->get_Case(_x,_y);
+  Terrain * terr = this->get_Terrain(_contrName);
+  c->setContrainte(terr->getContraintes());
+}
+
+// Fonction pour changer le type de la case de coordonnée x,y en contrainte de type _contrName et en obstacle
+void Map::set_Contrainte(int _x, int _y, const std::string& _contrName, float _qte)
+{
+ Case * c = this->get_Case(_x,_y);
+ Contrainte * con = this->get_Contrainte(_contrName);
+ c->setContrainte(con,_qte);
+ 
+}
+
+// Fonction changeant le booléen obst de la case à la coordonnée x,y
 void Map::set_Obstacle(int _x, int _y, int obst)
 {
   Case * c = this->get_Case(_x,_y);
@@ -261,6 +269,7 @@ void Map::set_Obstacle(int _x, int _y, int obst)
     c->setObstacle(true);
 }
 
+// Fonction pour modifier la taille de la map
 void Map::set_Taille(int _w, int _h)
 {
   m_w = _w;
@@ -273,6 +282,7 @@ void Map::set_Taille(int _w, int _h)
   }
 }
 
+// Fonction pour tester l'état de la map
 void Map::test()
 {
   try{

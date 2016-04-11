@@ -16,12 +16,13 @@ Controller::Controller(const Controller& _controller)
    
 }
 
+// On ne veut pas donner accès au constructeur de Controller car on ne souhaite qu'une instance de Controller à la fois
 Controller* Controller::create()
 {
-  if(Controller::s_controller!=nullptr){
-    throw new str_exception("An instance of controller already exists");
+  if(Controller::s_controller!=nullptr){ // On regarde si un Controller existe déjà
+    throw new str_exception("An instance of controller already exists"); // Si oui, on lève une exception
   }else{
-    Controller::s_controller = new Controller();
+    Controller::s_controller = new Controller(); // Si non, on créé le controller
     // thread?
     return Controller::s_controller;
   }
@@ -73,11 +74,11 @@ void Controller::initiateMap(const std::string& contentFileName)
   int x; // Coordonnée x récupérée à chaque lecture de ligne
   int y; // Coordonnée y récupérée à chaque lecture de ligne
   std::string type_terr; // Type de terrain récupéré à chaque lecture de ligne
-  std::string contrainte =""; // Contraintes récupérées, ou non, à chaque lecture de ligne
+  std::string contraintes =""; // Contraintes récupérées, ou non, à chaque lecture de ligne
   std::string::size_type sz;
   bool obst=false; // Obstacle récupéré, ou non, à chaque lecture de ligne
   std::vector<std::string> splitter; // Chaîne utile à la décomposition de chaque ligne par le délimiteur ' '
-  std::vector<std::string> splitter2;
+  std::vector<std::string> contrainte;
   std::vector<std::string> splitter3;
   std::ifstream fichier (contentFileName.c_str(), std::ios::in); // On ouvre le fichier
   if(fichier) // On regarde si le fichier s'est bien ouvert
@@ -101,20 +102,20 @@ void Controller::initiateMap(const std::string& contentFileName)
       switch (splitter.size()) // On switch sur la taille du splitter
       {
 	case 4:
-	  contrainte = splitter[3]; // Dans ce cas on récupère les contraintes de la case
-	  splitter2 = split(contrainte, ';');
-	  for (unsigned int i=0; i<splitter2.size(); i++)
+	  contraintes = splitter[3]; // Dans ce cas on récupère les contraintes de la case
+	  contrainte = split(contraintes, ';'); // On split les différentes contraintes (séparées par un ';')
+	  for (unsigned int i=0; i<contrainte.size(); i++) // Pour chaque split
 	  {
-	    splitter3 = split(splitter2[i], ':');
+	    splitter3 = split(contrainte[i], ':'); // On split les différentes contraintes pour récupérer son nom (splitter3[0]) et sa valeur (splitter3[1])
 	    map->set_Contrainte(x,y,splitter3[0],atof(splitter3[1].c_str())); // On instancie les contraintes de cette case dans la map
 	  }
 	  break;
 	case 5:
-	  contrainte = splitter[3]; // Dans ce cas on récupère les contraintes de la case
-	  splitter2 = split(contrainte, ';');
-	  for (unsigned int i=0; i<splitter2.size(); i++)
+	  contraintes = splitter[3]; // Dans ce cas on récupère les contraintes de la case
+	  contrainte = split(contraintes, ';'); // On split les différentes contraintes (séparées par un ';')
+	  for (unsigned int i=0; i<contrainte.size(); i++) // Pour chaque split
 	  {
-	    splitter3 = split(splitter2[i], ':');
+	    splitter3 = split(contrainte[i], ':'); // On split les différentes contraintes pour récupérer son nom (splitter3[0]) et sa valeur (splitter3[1])
 	    map->set_Contrainte(x,y,splitter3[0],atof(splitter3[1].c_str())); // On instancie les contraintes de cette case dans la map
 	  }
 	  if (atoi(splitter[4].c_str()) == 1)
@@ -280,6 +281,12 @@ std::vector< std::string > Controller::split(std::string str, char delimiter)
   return internal;
 }
 
+// Fonction pour tester l'état de notre map
+void Controller::test()
+{
+  map->test();
+}
+
 // ***********
 // Destructeur
 // ***********
@@ -287,9 +294,4 @@ std::vector< std::string > Controller::split(std::string str, char delimiter)
 Controller::~Controller()
 {
 
-}
-
-void Controller::test()
-{
-  map->test();
 }

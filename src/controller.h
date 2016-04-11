@@ -14,7 +14,7 @@
 // Classe réalisée avec le design pattern "singleton"
 class Controller{
 private:
-  static Controller * s_controller;
+  static Controller * s_controller; // On ne souhaite qu'il n'y ai qu'une et une seule instance de Controller 
   Map* map; // La map associé au controlleur, c'est sur celle-ci que se déroule le jeu et le pathfinding
   
   // Constructeurs :
@@ -28,7 +28,7 @@ public:
   ~Controller();
   
   // 
-  static Controller * create();
+  static Controller * create(); // On ne veut pas donner accès au constructeur de Controller car on ne souhaite qu'une instance de Controller à la fois
   
   // Fonction de création d'un agent, créé un instance de la classe Agent lorsque le jeu génère une nouvelle unité
   void creer_agent(int x, int y, const std::string type, int id);
@@ -51,6 +51,7 @@ public:
   // Fonction de parsing du fichier map.txt représentant la map actuelle de leur jeu (description de toutes les cases variant du terrain par défaut)
   void initiateMap(const std::string & contentFileName);
   
+  // Fonction pour tester l'état de notre map
   void test();
   
   // Fonction spéciale au parsing utile à la décomposition de la chaîne str par le délimiteur delimiter

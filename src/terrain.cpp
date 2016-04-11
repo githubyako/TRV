@@ -4,13 +4,13 @@
 // Constructeurs
 // *************
 
-Terrain::Terrain(const std::__cxx11::string& _type, std::vector< std::pair< Contrainte*, float > > _contraintes_defaut, bool _obstacle)
+Terrain::Terrain(const std::string& _type, std::vector< std::pair< Contrainte*, float > > _contraintes_defaut, bool _obstacle)
 :m_type(_type),m_contraintes_defaut(_contraintes_defaut),m_obstacle(_obstacle)
 {
   
 }
 
-Terrain::Terrain(const std::__cxx11::string& _type, std::vector< std::pair< Contrainte*, float > > _contraintes_defaut)
+Terrain::Terrain(const std::string& _type, std::vector< std::pair< Contrainte*, float > > _contraintes_defaut)
 :m_type(_type), m_contraintes_defaut(_contraintes_defaut),m_obstacle(0)
 {
 

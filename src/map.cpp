@@ -119,7 +119,7 @@ void Map::addAgent(int _iden, int _x, int _y, std::string const & _unite)
   }
   // On récupère le pointeur vers la case de coordonnée x,y du vector m_sommets de la map
   Case * caseptr = m_sommets.at((_x*m_h)+_y);
-  Unite * uniteptr;
+  Unite * uniteptr = nullptr;
   // On récupère l'unité de nom _unite avec le vector m_unites de map
   for(unsigned int i=0;i<m_unites.size();++i){
     if(m_unites.at(i)->getType()==_unite){

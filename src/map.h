@@ -29,6 +29,9 @@ public:
   // Fonction pour tester l'état de la map
   void test();
   
+  // Fonction pour ajouter les voisins d'une case
+  void Init_vois();
+  
   // Fonction d'ajout de Terrain (avec ou sans obstacle) à la map
   void addTerrain(std::string const & _type, std::vector<std::pair<std::string const &, float> > & _contraintes_defaut);
   void addTerrain(std::string const & _type, std::vector<std::pair<std::string const &, float> > & _contraintes_defaut, bool _obstacle);

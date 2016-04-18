@@ -35,6 +35,34 @@ Map* Map::create()
   }
 }
 
+// Fonction pour ajouter les voisins d'une case
+void Map::Init_vois()
+{
+  unsigned int x;
+  unsigned int y;
+  unsigned int j;
+  unsigned int k;
+  unsigned int maxX;
+  unsigned int maxY;
+  for(unsigned int i=0; i<m_cases.size(); ++i)
+  {
+    x = m_cases.at(i)->getX();
+    y = m_cases.at(i)->getY();
+    (x==0) ? j=x : j=x-1;
+    (x==m_w-1) ? maxX=x : maxX=x+1;
+    (y==0) ? k=y : k=y-1;
+    (y==m_h-1) ? maxY=y : maxY=y+1;
+    for (j;j<=maxX;++j)
+    {
+      for (k;k<=maxY;++k)
+      {
+    	if (i!=(j*m_h+k))
+    	  m_cases.at(i)->set_cases_vois(m_cases.at(j*m_h+k));
+      }
+    }
+  }
+}
+
 // Fonction d'ajout de Terrain (sans précision d'obstacle) à la map
 
 void Map::addTerrain(const std::string& _type, std::vector< std::pair<std::string const &, float > > & _contraintes_defaut)

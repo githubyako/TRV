@@ -18,6 +18,15 @@ Case::Case()
 Case::Case(const Case& _case)
 {}
 
+// **************
+// Initialisation
+// **************
+
+void Case::Init_vois()
+{
+  
+}
+
 // ********
 // Getteurs
 // ********

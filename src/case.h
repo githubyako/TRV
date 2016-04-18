@@ -29,7 +29,7 @@ public:
   Case(int _x, int _y, int _somm, Terrain * _terrain);
   
   // Initialisation
-  Init_vois();
+  void Init_vois();
   
   // Getteurs
   unsigned int getX() const;

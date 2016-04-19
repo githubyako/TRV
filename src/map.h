@@ -52,6 +52,9 @@ public:
   // Fonction pour la suppresion d'un agent d'identifiant id et à la "position" id du vector m_agents
   void suppr_agent(int id);
   
+  // Fonction pour trouver un chemin vers une case cible pour un agent
+  void dijkstra(int id);
+  
   // Getteurs :
   int get_m_w() const;
   int get_m_h() const;

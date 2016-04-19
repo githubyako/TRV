@@ -54,6 +54,7 @@ void Controller::creer_agent(int x, int y, const std::string type, int id)
 
 void Controller::demande_chemin(int id, int x, int y)
 {
+  map->
 }
 
 // Fonction de déplacement d'agent, déplace l'Agent d'identificateur id à la case de coordonnées x,y

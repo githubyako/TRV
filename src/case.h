@@ -44,5 +44,6 @@ public:
   void setTerrain(Terrain* _terrain);
   void setContrainte(std::vector<std::pair<Contrainte*,float> > _contr);
   void setContrainte(Contrainte* _contrainte,float _qte);
+  void set_cases_vois(Case* _case);
 };
 #endif

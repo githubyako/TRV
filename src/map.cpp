@@ -44,20 +44,20 @@ void Map::Init_vois()
   unsigned int k;
   unsigned int maxX;
   unsigned int maxY;
-  for(unsigned int i=0; i<m_cases.size(); ++i)
+  for(unsigned int i=0; i<m_sommets.size(); ++i)
   {
-    x = m_cases.at(i)->getX();
-    y = m_cases.at(i)->getY();
+    x = m_sommets.at(i)->getX();
+    y = m_sommets.at(i)->getY();
     (x==0) ? j=x : j=x-1;
-    (x==m_w-1) ? maxX=x : maxX=x+1;
+    (x==(unsigned int)m_w-1) ? maxX=x : maxX=x+1;
     (y==0) ? k=y : k=y-1;
-    (y==m_h-1) ? maxY=y : maxY=y+1;
-    for (j;j<=maxX;++j)
+    (y==(unsigned int)m_h-1) ? maxY=y : maxY=y+1;
+    for (;j<=maxX;++j)
     {
-      for (k;k<=maxY;++k)
+      for (;k<=maxY;++k)
       {
     	if (i!=(j*m_h+k))
-    	  m_cases.at(i)->set_cases_vois(m_cases.at(j*m_h+k));
+    	  m_sommets.at(i)->set_cases_vois(m_sommets.at(j*m_h+k));
       }
     }
   }
@@ -271,7 +271,7 @@ void Map::set_Terrain(int _x, int _y, const std::string& _terrName)
 }
 
 // Fonction pour changer le type de la case de coordonnée x,y en contrainte de type _contrName
-void Map::set_Contrainte(int _x, int _y, const std::__cxx11::string& _contrName)
+void Map::set_Contrainte(int _x, int _y, const std::string& _contrName)
 {
   Case * c = this->get_Case(_x,_y);
   Terrain * terr = this->get_Terrain(_contrName);
@@ -359,5 +359,11 @@ void Map::test()
 //   }
   
 }
+
+void Map::dijkstra(int id)
+{
+  
+}
+
 
 

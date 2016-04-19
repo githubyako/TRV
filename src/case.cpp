@@ -104,3 +104,9 @@ void Case::setTerrain(Terrain* _terrain)
   m_obstacle = _terrain->isObstacle();
   m_terrain=_terrain;
 }
+
+void Case::set_cases_vois(Case* _case)
+{
+  m_cases_vois.push_back(_case);
+}
+

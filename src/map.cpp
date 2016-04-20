@@ -50,18 +50,14 @@ void Map::Init_vois()
     y = m_sommets.at(i)->getY();
     (x==0) ? j=x : j=x-1;
     (x==(unsigned int)m_w-1) ? maxX=x : maxX=x+1;
-
+    (y==0) ? k=y : k=y-1;
+    (y==(unsigned int)m_h-1) ? maxY=y : maxY=y+1;
     for (;j<=maxX;++j)
-    {
-
-      (y==0) ? k=y : k=y-1;
-      (y==(unsigned int)m_h-1) ? maxY=y : maxY=y+1;
-      for (;k<=maxY;++k)
-      {
-    	if (i!=(j*m_h+k))
-    	  m_sommets.at(i)->set_cases_vois(m_sommets.at(j*m_h+k));
-      }
-    }
+      if (j!=x)
+	m_sommets.at(i)->set_cases_vois(m_sommets.at(j*m_h+y));
+    for (;k<=maxY;++k)
+      if (k!=y)
+    	m_sommets.at(i)->set_cases_vois(m_sommets.at(x*m_h+k));
   }
 }
 
@@ -392,7 +388,6 @@ const std::vector<unsigned int> Map::dijkstra(unsigned int id, unsigned int idCi
   unsigned int tmp_somm = id;
   
   while(!end){
-    std::cout << tmp_somm << std::endl;
     for(std::vector<Case*>::iterator i1 = tmp_vois.begin(); i1 != tmp_vois.end(); i1++){
       if(std::find(parcouru.begin(), parcouru.end(), (*i1)->get_sommet()) == parcouru.end()){
 	if((*i1)->isObstacle()){

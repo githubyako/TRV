@@ -10,12 +10,19 @@ int main(int argc, char **argv) {
       controller->creer_agent(3,0,"Cavalier",0);
       controller->creer_agent(3,0,"Cavalier",1);
       controller->creer_agent(4,0,"Cavalier",0);
+      controller->creer_agent(2,1,"Artillerie",2);
+      controller->creer_agent(14,6,"Infanterie",3);
       controller->test();
       controller->supprimer_agent(1);
       //controller->test();
      controller->deplacement_agent(0, 4, 1);
      // controller->test();
-     controller->demande_chemin(0,4,5);
+     std::cout << "Déplacement cavalerie : 4,1 jusqu'à : 12,8 " << std::endl;
+     controller->demande_chemin(0,12,8);
+     std::cout << "Déplacement artillerie : 2,1 jusqu'à : 10,1 " << std::endl;
+     controller->demande_chemin(2,10,1);
+     std::cout << "Déplacement infanterie : 14,6 jusqu'à : 14,2 " << std::endl;
+     controller->demande_chemin(3,14,2);
 
     } catch(str_exception& e){
     

@@ -55,7 +55,10 @@ void Controller::creer_agent(int x, int y, const std::string type, int id)
 void Controller::demande_chemin(int id, int x, int y)
 {
 //   try{
-    std::vector<unsigned int> vec = map->dijkstra(map->get_Agent(id)->getCase()->get_sommet(), x*map->get_m_h()+y, map->get_Agent(id)->getUnite()); 
+  if (x >= map->get_m_w() || y >= map->get_m_h())
+    throw new str_exception("Cette case n'existe pas");
+  else
+    std::vector<unsigned int> vec = map->dijkstra(map->get_Agent(id)->getCase()->get_sommet(), map->get_Case(x,y)->get_sommet(), map->get_Agent(id)->getUnite()); 
 //     for(std::vector<unsigned int>::iterator i = vec.begin(); i != vec.end(); i++)
 //     {
 //       std::cout << *i << std::endl;

@@ -189,8 +189,10 @@ void Map::move_agent(int id, int x, int y)
 			// Si non, on lève une exception
 			throw new str_exception("Cette unité n'existe plus");
 		else
-			// Si oui, on change la case de l'unité
-			m_agents[id2]->setCase(Map::m_map->get_Case(x,y));
+			if (x >= m_w || y >= m_h)
+			  throw new str_exception("Cette case n'existe pas");
+			else
+			  m_agents[id2]->setCase(Map::m_map->get_Case(x,y));
 	}
 }
 
@@ -359,23 +361,28 @@ void Map::test()
 //       std::cout << (*i1)->getConso(*i) << std::endl;
 //     }
 //   }
-    
-    std::vector<Case*> test = m_sommets.at(25)->getVois();
-    for(std::vector<Case*>::iterator i = test.begin(); i != test.end(); i++)
-    {
-      std::cout << (*i)->get_sommet() << std::endl;
-    }
+    std::cout << m_w << " " << m_h << std::endl;
+//     std::vector<Case*> test = m_sommets.at(25)->getVois();
+//     for(std::vector<Case*>::iterator i = test.begin(); i != test.end(); i++)
+//     {
+//       std::cout << (*i)->get_sommet() << std::endl;
+//     }
   
 }
 
 const std::vector<unsigned int> Map::dijkstra(unsigned int id, unsigned int idCible, const Unite* unite)
 {
+  std::vector<unsigned int> chemin;
+  if (m_sommets.at(idCible)->isObstacle())
+  {
+    return chemin;
+  }
   bool end = false;
   unsigned int somm_act;
-  std::unordered_map<unsigned int, int> couts;
+  std::unordered_map<unsigned int, float> couts;
   std::unordered_map<unsigned int, int> antec;
   for(std::map<int, Case*>::iterator i = m_sommets.begin(); i!= m_sommets.end(); i++){
-    couts.insert(std::pair<unsigned int,int>((unsigned int)(i->first), -1));
+    couts.insert(std::pair<unsigned int,float>((unsigned int)(i->first), -1));
     antec.insert(std::pair<unsigned int,int>((unsigned int)(i->first), -1));
   }
   couts.at(id) = 0;
@@ -387,7 +394,7 @@ const std::vector<unsigned int> Map::dijkstra(unsigned int id, unsigned int idCi
   while(!end){
     std::cout << tmp_somm << std::endl;
     for(std::vector<Case*>::iterator i1 = tmp_vois.begin(); i1 != tmp_vois.end(); i1++){
-      if( std::find(parcouru.begin(), parcouru.end(), (*i1)->get_sommet()) == parcouru.end()){
+      if(std::find(parcouru.begin(), parcouru.end(), (*i1)->get_sommet()) == parcouru.end()){
 	if((*i1)->isObstacle()){
 	   couts.at((*i1)->get_sommet()) = -1;
 	   parcouru.push_back((*i1)->get_sommet());
@@ -409,26 +416,28 @@ const std::vector<unsigned int> Map::dijkstra(unsigned int id, unsigned int idCi
     }
     parcouru.push_back(tmp_somm);
     somm_act = tmp_somm;
-    std::cout << "coucou1" << std::endl;
-    for(std::vector<Case*>::iterator i3 = tmp_vois.begin(); i3 != tmp_vois.end(); i3++)
+    //std::cout << "coucou1" << std::endl;
+    for(std::unordered_map<unsigned int, float>::iterator i3 = couts.begin(); i3 != couts.end(); i3++)
     {
-      if (tmp_somm == somm_act && couts.at((*i3)->get_sommet()>0) && (std::find(parcouru.begin(), parcouru.end(), (*i3)->get_sommet()) == parcouru.end()) )
+      if ((tmp_somm == somm_act)
+	  && (i3->second > 0)
+	  && (std::find(parcouru.begin(), parcouru.end(), i3->first) == parcouru.end()))
       {
-	tmp_somm=(*i3)->get_sommet();
+	tmp_somm=i3->first;
       }
-      else if((couts.at((*i3)->get_sommet()) > 0) 
-	  && (std::find(parcouru.begin(), parcouru.end(), (*i3)->get_sommet()) == parcouru.end()) 
-	  && (couts.at((*i3)->get_sommet()) < couts.at(tmp_somm) ))
+      else if((i3->second > 0) 
+	  && (std::find(parcouru.begin(), parcouru.end(), i3->first) == parcouru.end())
+	  && (i3->second < couts.at(tmp_somm) ))
       {
-	tmp_somm=(*i3)->get_sommet();
+	tmp_somm=i3->first;
       }
     }
-    std::cout << "coucou2" << std::endl;
+    //std::cout << "coucou2" << std::endl;
     tmp_vois = m_sommets.at(tmp_somm)->getVois();
     if(couts.at(idCible) != -1)
     {
       end = true;
-      for (std::unordered_map<unsigned int, int>::iterator i4 = couts.begin(); i4 != couts.end() ; i4++)
+      for (std::unordered_map<unsigned int, float>::iterator i4 = couts.begin(); i4 != couts.end() ; i4++)
       {
 	if(std::find(parcouru.begin(), parcouru.end(), i4->first) == parcouru.end()
 	  && i4->second != -1
@@ -439,7 +448,6 @@ const std::vector<unsigned int> Map::dijkstra(unsigned int id, unsigned int idCi
       }
     }
   }
-  std::vector<unsigned int> chemin;
   unsigned int sommet_cour = antec.at(idCible);
   chemin.push_back(idCible);
   while(sommet_cour != id)
@@ -448,6 +456,7 @@ const std::vector<unsigned int> Map::dijkstra(unsigned int id, unsigned int idCi
     sommet_cour = antec.at(sommet_cour);
   }
   chemin.push_back(id);
+  std::reverse(chemin.begin(), chemin.end());
   for(std::vector<unsigned int>::iterator i = chemin.begin(); i != chemin.end(); i++)
   {
     std::cout << *i << std::endl;

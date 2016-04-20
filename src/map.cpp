@@ -50,10 +50,12 @@ void Map::Init_vois()
     y = m_sommets.at(i)->getY();
     (x==0) ? j=x : j=x-1;
     (x==(unsigned int)m_w-1) ? maxX=x : maxX=x+1;
-    (y==0) ? k=y : k=y-1;
-    (y==(unsigned int)m_h-1) ? maxY=y : maxY=y+1;
+
     for (;j<=maxX;++j)
     {
+
+      (y==0) ? k=y : k=y-1;
+      (y==(unsigned int)m_h-1) ? maxY=y : maxY=y+1;
       for (;k<=maxY;++k)
       {
     	if (i!=(j*m_h+k))
@@ -313,7 +315,7 @@ void Map::set_Taille(int _w, int _h)
 // Fonction pour tester l'état de la map
 void Map::test()
 {
-  try{
+  //try{
 //   for (unsigned int i = 0; i<m_sommets.size(); ++i){
 //     std::cout << m_sommets[i]->getX() << std::endl;
 //     std::cout << m_sommets[i]->getY() << std::endl;
@@ -328,17 +330,17 @@ void Map::test()
 //     std::cout << "//////////////////////////" << std::endl;
 //   }
 //   std::cout << std::endl;
-  std::cout << "agents:" << std::endl;
-  std::cout << m_agents.size() << std::endl;
-  for(unsigned int i=0;i<m_agents.size();++i){
-    if(m_agents[i]!=nullptr){
-      std::cout << m_agents[i]->getUnite()->getType() << ", id=" << m_agents[i]->getId() << ", case n°: " << std::to_string(m_agents[i]->getCase()->get_sommet()) << std::endl;
-    }
-  }
-  } catch(str_exception* e)
-  {
-    std::cout << e->what() << std::endl;
-  }
+//   std::cout << "agents:" << std::endl;
+//   std::cout << m_agents.size() << std::endl;
+//   for(unsigned int i=0;i<m_agents.size();++i){
+//     if(m_agents[i]!=nullptr){
+//       std::cout << m_agents[i]->getUnite()->getType() << ", id=" << m_agents[i]->getId() << ", case n°: " << std::to_string(m_agents[i]->getCase()->get_sommet()) << std::endl;
+//     }
+//   }
+//   } catch(str_exception* e)
+//   {
+//     std::cout << e->what() << std::endl;
+//   }
 //   std::vector<Terrain*>::iterator i;
 //   for(std::vector<Terrain*>::iterator i = m_terrains.begin(); i != m_terrains.end(); ++i){
 //     std::cout << (*i)->getType() << std::endl; 
@@ -357,13 +359,102 @@ void Map::test()
 //       std::cout << (*i1)->getConso(*i) << std::endl;
 //     }
 //   }
+    
+    std::vector<Case*> test = m_sommets.at(25)->getVois();
+    for(std::vector<Case*>::iterator i = test.begin(); i != test.end(); i++)
+    {
+      std::cout << (*i)->get_sommet() << std::endl;
+    }
   
 }
 
-void Map::dijkstra(int id)
+const std::vector<unsigned int> Map::dijkstra(unsigned int id, unsigned int idCible, const Unite* unite)
 {
+  bool end = false;
+  unsigned int somm_act;
+  std::unordered_map<unsigned int, int> couts;
+  std::unordered_map<unsigned int, int> antec;
+  for(std::map<int, Case*>::iterator i = m_sommets.begin(); i!= m_sommets.end(); i++){
+    couts.insert(std::pair<unsigned int,int>((unsigned int)(i->first), -1));
+    antec.insert(std::pair<unsigned int,int>((unsigned int)(i->first), -1));
+  }
+  couts.at(id) = 0;
+  std::vector<unsigned int> parcouru;
   
+  std::vector<Case*> tmp_vois = m_sommets.at(id)->getVois();
+  unsigned int tmp_somm = id;
+  
+  while(!end){
+    std::cout << tmp_somm << std::endl;
+    for(std::vector<Case*>::iterator i1 = tmp_vois.begin(); i1 != tmp_vois.end(); i1++){
+      if( std::find(parcouru.begin(), parcouru.end(), (*i1)->get_sommet()) == parcouru.end()){
+	if((*i1)->isObstacle()){
+	   couts.at((*i1)->get_sommet()) = -1;
+	   parcouru.push_back((*i1)->get_sommet());
+	}
+	else{
+	  if(couts.at((*i1)->get_sommet()) == -1){
+	    couts.at((*i1)->get_sommet()) = couts.at(tmp_somm) + unite->getVitesse(m_sommets.at(tmp_somm)->getTerrain());
+	    antec.at((*i1)->get_sommet()) = tmp_somm;
+	  }else{
+	    int tmp_cout = couts.at(tmp_somm) + unite->getVitesse(m_sommets.at(tmp_somm)->getTerrain());
+	    if(tmp_cout < couts.at((*i1)->get_sommet())){
+	      couts.at((*i1)->get_sommet()) = tmp_cout;
+	      antec.at((*i1)->get_sommet()) = tmp_somm;
+	    }
+	  }
+	}
+      }
+      //std::cout << couts.at((*i1)->get_sommet()) << std::endl;
+    }
+    parcouru.push_back(tmp_somm);
+    somm_act = tmp_somm;
+    std::cout << "coucou1" << std::endl;
+    for(std::vector<Case*>::iterator i3 = tmp_vois.begin(); i3 != tmp_vois.end(); i3++)
+    {
+      if (tmp_somm == somm_act && couts.at((*i3)->get_sommet()>0) && (std::find(parcouru.begin(), parcouru.end(), (*i3)->get_sommet()) == parcouru.end()) )
+      {
+	tmp_somm=(*i3)->get_sommet();
+      }
+      else if((couts.at((*i3)->get_sommet()) > 0) 
+	  && (std::find(parcouru.begin(), parcouru.end(), (*i3)->get_sommet()) == parcouru.end()) 
+	  && (couts.at((*i3)->get_sommet()) < couts.at(tmp_somm) ))
+      {
+	tmp_somm=(*i3)->get_sommet();
+      }
+    }
+    std::cout << "coucou2" << std::endl;
+    tmp_vois = m_sommets.at(tmp_somm)->getVois();
+    if(couts.at(idCible) != -1)
+    {
+      end = true;
+      for (std::unordered_map<unsigned int, int>::iterator i4 = couts.begin(); i4 != couts.end() ; i4++)
+      {
+	if(std::find(parcouru.begin(), parcouru.end(), i4->first) == parcouru.end()
+	  && i4->second != -1
+	  && i4->second < couts.at(idCible))
+	{
+	  end = false;
+	}
+      }
+    }
+  }
+  std::vector<unsigned int> chemin;
+  unsigned int sommet_cour = antec.at(idCible);
+  chemin.push_back(idCible);
+  while(sommet_cour != id)
+  {
+    chemin.push_back(sommet_cour);
+    sommet_cour = antec.at(sommet_cour);
+  }
+  chemin.push_back(id);
+  for(std::vector<unsigned int>::iterator i = chemin.begin(); i != chemin.end(); i++)
+  {
+    std::cout << *i << std::endl;
+  }
+  return chemin;
 }
+
 
 
 

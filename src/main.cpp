@@ -10,15 +10,20 @@ int main(int argc, char **argv) {
       controller->creer_agent(3,0,"Cavalier",0);
       controller->creer_agent(3,0,"Cavalier",1);
       controller->creer_agent(4,0,"Cavalier",0);
-      controller->test();
+      //controller->test();
       controller->supprimer_agent(1);
-      controller->test();
-      controller->deplacement_agent(0, 8, 12);
-      controller->test();
+      //controller->test();
+      //controller->deplacement_agent(0, 8, 12);
+     // controller->test();
+     controller->demande_chemin(0,6,3);
 
-    } catch(str_exception e){
+    } catch(str_exception& e){
     
-      std::cout << e.what() << std::endl;
+      std::cout << "str_exception" << e.what() << std::endl;
+    }
+    catch(std::exception& e1)
+    {
+      std::cout << e1.what() << std::endl;
     }
     
     return 0;

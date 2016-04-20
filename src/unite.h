@@ -23,7 +23,7 @@ public:
   
   // Getteurs
   std::string const & getType() const;
-  float getVitesse(Terrain* _terrain) const;
+  float getVitesse(const Terrain&) const;
   float getConso(Contrainte * _contrainte) const;
   
   // Destructeur

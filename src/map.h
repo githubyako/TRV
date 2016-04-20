@@ -1,8 +1,12 @@
 #ifndef MAP_H
 #define MAP_H
+
 #include <map>
-#include "case.h"
+#include <unordered_map>
 #include <iostream>
+#include <algorithm>
+
+#include "case.h"
 #include "terrain.h"
 #include "agent.h"
 #include "unite.h"
@@ -53,7 +57,7 @@ public:
   void suppr_agent(int id);
   
   // Fonction pour trouver un chemin vers une case cible pour un agent
-  void dijkstra(int id);
+  const std::vector<unsigned int> dijkstra(unsigned int id, unsigned int idCible, const Unite* unite);
   
   // Getteurs :
   int get_m_w() const;

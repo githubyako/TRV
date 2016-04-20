@@ -38,6 +38,7 @@ public:
   float getContrainte(Contrainte* _contrainte) const;
   const Terrain & getTerrain() const;
   bool isObstacle() const;
+  const std::vector<Case*>& getVois() const;
   
   // Setteurs
   void setObstacle(bool _b);

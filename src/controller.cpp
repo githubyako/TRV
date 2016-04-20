@@ -54,7 +54,16 @@ void Controller::creer_agent(int x, int y, const std::string type, int id)
 
 void Controller::demande_chemin(int id, int x, int y)
 {
-  map->
+//   try{
+    std::vector<unsigned int> vec = map->dijkstra(map->get_Agent(id)->getCase()->get_sommet(), x*map->get_m_h()+y, map->get_Agent(id)->getUnite()); 
+//     for(std::vector<unsigned int>::iterator i = vec.begin(); i != vec.end(); i++)
+//     {
+//       std::cout << *i << std::endl;
+//     }
+//   } catch(std::exception& e){
+//   
+//     throw e;
+//   }
 }
 
 // Fonction de déplacement d'agent, déplace l'Agent d'identificateur id à la case de coordonnées x,y
@@ -68,6 +77,7 @@ void Controller::supprimer_agent(int id)
 {
 	map->suppr_agent(id);
 }
+
 
 // Fonction de parsing du fichier map.txt représentant la map actuelle de leur jeu (description de toutes les cases variant du terrain par défaut)
 void Controller::initiateMap(const std::string& contentFileName)
@@ -125,6 +135,7 @@ void Controller::initiateMap(const std::string& contentFileName)
 	  break;
       }
     }
+    map->Init_vois();
     fichier.close(); // On ferme le fichier
   }
    else // Cas où le fichier s'est mal ouvert
@@ -136,7 +147,7 @@ void Controller::initiateMap(const std::string& contentFileName)
 
 void Controller::initiateRules(std::string xmlFileName)
 {
-   //Parse fichier .xml des règles de la carte
+   //Parse fichier .xml des règles 	de la carte
   
   map = Map::create();
   xmlpp::DomParser parser;		//Objet parser DOM de libxml++

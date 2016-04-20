@@ -12,17 +12,25 @@ Launch Configurations=Launch Configuration 0
 [Launch][Launch Configuration 0]
 Configured Launch Modes=execute
 Configured Launchers=nativeAppLauncher
-Name=New Application Launcher
+Name=Nouveau lanceur Application
 Type=Native Application
 
 [Launch][Launch Configuration 0][Data]
 Arguments=
+Debugger Shell=
 Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x00)
 Dependency Action=Nothing
+Display Demangle Names=true
+Display Static Members=false
 EnvironmentGroup=default
-Executable=file:///home/coco/Stage/TRV-master/src/trv.exe
+Executable=file:///home/etud/info/l3info/ctalarmain/Stage/TRV/src/trv.exe
 External Terminal=konsole --noclose --workdir %workdir -e %exe
+GDB Path=
 Project Target=
+Remote GDB Config Script=
+Remote GDB Run Script=
+Remote GDB Shell Script=
+Start With=ApplicationOutput
 Use External Terminal=false
 Working Directory=
 isExecutable=true

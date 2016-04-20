@@ -68,6 +68,12 @@ bool Case::isObstacle() const
   return m_obstacle;
 }
 
+const std::vector< Case* >& Case::getVois() const
+{
+  return m_cases_vois;
+}
+
+
 // ********
 // Setteurs
 // ********

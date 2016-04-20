@@ -52,12 +52,12 @@ float Unite::getConso(Contrainte * _contrainte) const
   return result;
 }
 
-float Unite::getVitesse(Terrain* _terrain) const
+float Unite::getVitesse(const Terrain& _terrain) const
 {
   float result=0.0;
   // On recherche le terrain _terrain dans le vecteur m_vitesse_d de l'unité
   for(unsigned int i=0;i<m_vitesse_d.size();++i){
-    if(m_vitesse_d.at(i).first==_terrain){
+    if(m_vitesse_d.at(i).first->getType()==_terrain.getType()){
       result=m_vitesse_d.at(i).second;
       break;
     }

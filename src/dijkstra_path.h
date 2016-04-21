@@ -4,6 +4,7 @@
 #include <algorithm>
 #include "case.h"
 #include "map.h"
+#include "agent.h"
 #include <iostream>
 class Map;
 class Dijkstra_path{

@@ -10,6 +10,7 @@
 #include "terrain.h"
 #include "agent.h"
 #include "unite.h"
+#include "dijkstra_path.h"
 
 class Map{
 private:
@@ -59,13 +60,19 @@ public:
   // Fonction pour trouver un chemin vers une case cible pour un agent
   const std::vector<unsigned int> dijkstra(unsigned int id, unsigned int idCible, const Unite* unite);
   
+  // Fonction pour trouver un chemin vers une case cible pour un agent
+  const std::vector<unsigned int> dijkstra_path(unsigned int id, unsigned int idCible);
+  
+  
   // Getteurs :
   int get_m_w() const;
   int get_m_h() const;
   Case* get_Case(int _x, int _y) const;
+  Case* get_Case(int _idcase) const;
   Agent* get_Agent(int id) const;
   Terrain* get_Terrain(std::string const & _terrName) const;
   Contrainte * get_Contrainte(std::string const & _contrName) const;
+  Map const* get_instance() const;
   
   // Setteurs :
   

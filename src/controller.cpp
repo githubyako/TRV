@@ -59,6 +59,8 @@ void Controller::demande_chemin(int id, int x, int y)
     throw new str_exception("Cette case n'existe pas");
   else
     std::vector<unsigned int> vec = map->dijkstra(map->get_Agent(id)->getCase()->get_sommet(), map->get_Case(x,y)->get_sommet(), map->get_Agent(id)->getUnite()); 
+    std::cout << "recursive:" << std::endl;
+//     std::vector<unsigned int> vec = map->dijkstra_path(id, map->get_Case(x,y)->get_sommet()); 
 //     for(std::vector<unsigned int>::iterator i = vec.begin(); i != vec.end(); i++)
 //     {
 //       std::cout << *i << std::endl;

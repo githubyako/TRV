@@ -224,6 +224,12 @@ Case* Map::get_Case(int _x, int _y) const
   return m_sommets.at((_x*m_h)+_y);
 }
 
+Case* Map::get_Case(int _idcase) const
+{
+  return m_sommets.at(_idcase);
+}
+
+
 Agent* Map::get_Agent(int id) const
 {
   unsigned int id2 = (unsigned int) id;
@@ -257,6 +263,12 @@ Contrainte* Map::get_Contrainte(const std::string& _contrName) const
   }
   throw new str_exception("Erreur: la contrainte '" + _contrName + "' n'existe pas.");
 }
+
+const Map* Map::get_instance() const
+{
+  return m_map;
+}
+
 
 // ********
 // Setteurs
@@ -459,6 +471,11 @@ const std::vector<unsigned int> Map::dijkstra(unsigned int id, unsigned int idCi
   return chemin;
 }
 
-
-
-
+const std::vector< unsigned int > Map::dijkstra_path(unsigned int id, unsigned int idCible)
+{
+  Dijkstra_path djk(this);
+  std::vector<int> vec = djk.findPath(id, idCible);
+  for (int i=0;i<vec.size();++i){
+    std::cout << vec.at(i) << std::endl;
+  }
+}

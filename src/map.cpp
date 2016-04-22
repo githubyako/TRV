@@ -224,9 +224,9 @@ Case* Map::get_Case(int _x, int _y) const
   return m_sommets.at((_x*m_h)+_y);
 }
 
-Case* Map::get_Case(int _idcase) const
+Case* Map::get_Case(int _somm) const
 {
-  return m_sommets.at(_idcase);
+  return m_sommets.at(_somm);
 }
 
 
@@ -263,12 +263,6 @@ Contrainte* Map::get_Contrainte(const std::string& _contrName) const
   }
   throw new str_exception("Erreur: la contrainte '" + _contrName + "' n'existe pas.");
 }
-
-const Map* Map::get_instance() const
-{
-  return m_map;
-}
-
 
 // ********
 // Setteurs
@@ -471,11 +465,107 @@ const std::vector<unsigned int> Map::dijkstra(unsigned int id, unsigned int idCi
   return chemin;
 }
 
-const std::vector< unsigned int > Map::dijkstra_path(unsigned int id, unsigned int idCible)
+const std::vector<std::pair<bool,bool>> Map::dijkstra_GA(unsigned int id, unsigned int idCible, const Unite* unite)
 {
-  Dijkstra_path djk(this);
-  std::vector<int> vec = djk.findPath(id, idCible);
-  for (int i=0;i<vec.size();++i){
-    std::cout << vec.at(i) << std::endl;
+  std::vector<std::pair<bool,bool>> chemin;
+  std::vector<deplacement *>deplacement;
+  if (m_sommets.at(idCible)->isObstacle())
+  {
+    return chemin;
   }
+  bool end = false;
+  unsigned int somm_act;
+  std::unordered_map<unsigned int, float> couts;
+  std::unordered_map<unsigned int, int> antec;
+  for(std::map<int, Case*>::iterator i = m_sommets.begin(); i!= m_sommets.end(); i++){
+    couts.insert(std::pair<unsigned int,float>((unsigned int)(i->first), -1));
+    antec.insert(std::pair<unsigned int,int>((unsigned int)(i->first), -1));
+  }
+  couts.at(id) = 0;
+  std::vector<unsigned int> parcouru;
+  
+  std::vector<Case*> tmp_vois = m_sommets.at(id)->getVois();
+  unsigned int tmp_somm = id;
+  
+  while(!end){
+    for(std::vector<Case*>::iterator i1 = tmp_vois.begin(); i1 != tmp_vois.end(); i1++){
+      if(std::find(parcouru.begin(), parcouru.end(), (*i1)->get_sommet()) == parcouru.end()){
+	if((*i1)->isObstacle()){
+	   couts.at((*i1)->get_sommet()) = -1;
+	   parcouru.push_back((*i1)->get_sommet());
+	}
+	else{
+	  if(couts.at((*i1)->get_sommet()) == -1){
+	    couts.at((*i1)->get_sommet()) = couts.at(tmp_somm) + unite->getVitesse(m_sommets.at(tmp_somm)->getTerrain());
+	    antec.at((*i1)->get_sommet()) = tmp_somm;
+	  }else{
+	    int tmp_cout = couts.at(tmp_somm) + unite->getVitesse(m_sommets.at(tmp_somm)->getTerrain());
+	    if(tmp_cout < couts.at((*i1)->get_sommet())){
+	      couts.at((*i1)->get_sommet()) = tmp_cout;
+	      antec.at((*i1)->get_sommet()) = tmp_somm;
+	    }
+	  }
+	}
+      }
+      //std::cout << couts.at((*i1)->get_sommet()) << std::endl;
+    }
+    parcouru.push_back(tmp_somm);
+    somm_act = tmp_somm;
+    //std::cout << "coucou1" << std::endl;
+    for(std::unordered_map<unsigned int, float>::iterator i3 = couts.begin(); i3 != couts.end(); i3++)
+    {
+      if ((tmp_somm == somm_act)
+	  && (i3->second > 0)
+	  && (std::find(parcouru.begin(), parcouru.end(), i3->first) == parcouru.end()))
+      {
+	tmp_somm=i3->first;
+      }
+      else if((i3->second > 0) 
+	  && (std::find(parcouru.begin(), parcouru.end(), i3->first) == parcouru.end())
+	  && (i3->second < couts.at(tmp_somm) ))
+      {
+	tmp_somm=i3->first;
+      }
+    }
+    //std::cout << "coucou2" << std::endl;
+    tmp_vois = m_sommets.at(tmp_somm)->getVois();
+    if(couts.at(idCible) != -1)
+    {
+      end = true;
+      for (std::unordered_map<unsigned int, float>::iterator i4 = couts.begin(); i4 != couts.end() ; i4++)
+      {
+	if(std::find(parcouru.begin(), parcouru.end(), i4->first) == parcouru.end()
+	  && i4->second != -1
+	  && i4->second < couts.at(idCible))
+	{
+	  end = false;
+	}
+      }
+    }
+  }
+  int sommet_cour = antec.at(idCible);
+  unsigned int sommet_cible = idCible;
+  int diff=0;
+  while(sommet_cour != -1)
+  {
+    diff = sommet_cible - sommet_cour;
+    if (diff == 1){
+      chemin.push_back(std::pair<bool,bool>(0,0));
+    }
+    else if (diff == -1){
+      chemin.push_back(std::pair<bool,bool>(1,0));
+    }
+    else if (diff == m_h){
+      chemin.push_back(std::pair<bool,bool>(0,1));
+    }
+    else if (diff == -m_h){
+      chemin.push_back(std::pair<bool,bool>(1,1));
+    }
+    sommet_cible = sommet_cour;
+    sommet_cour = antec.at(sommet_cour);
+  }
+  return chemin;
 }
+
+
+

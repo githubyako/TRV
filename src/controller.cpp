@@ -59,7 +59,6 @@ void Controller::demande_chemin(int id, int x, int y)
     throw new str_exception("Cette case n'existe pas");
   else
     std::vector<unsigned int> vec = map->dijkstra(map->get_Agent(id)->getCase()->get_sommet(), map->get_Case(x,y)->get_sommet(), map->get_Agent(id)->getUnite()); 
-    std::cout << "recursive:" << std::endl;
 //     std::vector<unsigned int> vec = map->dijkstra_path(id, map->get_Case(x,y)->get_sommet()); 
 //     for(std::vector<unsigned int>::iterator i = vec.begin(); i != vec.end(); i++)
 //     {
@@ -70,6 +69,15 @@ void Controller::demande_chemin(int id, int x, int y)
 //     throw e;
 //   }
 }
+
+void Controller::demande_chemin_A_star(int id, int x, int y)
+{
+  if (x >= map->get_m_w() || y >= map->get_m_h())
+    throw new str_exception("Cette case n'existe pas");
+  else
+    std::vector<unsigned int> vec = map->A_star(map->get_Agent(id)->getCase()->get_sommet(), map->get_Case(x,y)->get_sommet(), map->get_Agent(id)->getUnite());
+}
+
 
 // Fonction de déplacement d'agent, déplace l'Agent d'identificateur id à la case de coordonnées x,y
 void Controller::deplacement_agent(int id, int x, int y)

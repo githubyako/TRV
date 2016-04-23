@@ -6,8 +6,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-
-#include "deplacement.h"
+#include <math.h>
 #include "case.h"
 #include "terrain.h"
 #include "agent.h"
@@ -62,6 +61,8 @@ public:
   const std::vector<unsigned int> dijkstra(unsigned int id, unsigned int idCible, const Unite* unite);
   
   const std::vector<std::pair<bool,bool>> dijkstra_GA(unsigned int id, unsigned int idCible, const Unite* unite);
+  
+  const std::vector<unsigned int> A_star(unsigned int id, unsigned int idCible, const Unite* unite);
   
   // Getteurs :
   int get_m_w() const;

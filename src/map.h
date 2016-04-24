@@ -6,12 +6,17 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+<<<<<<< Updated upstream
 #include <math.h>
+=======
+
+
+>>>>>>> Stashed changes
 #include "case.h"
 #include "terrain.h"
 #include "agent.h"
 #include "unite.h"
-
+class Algogen;
 class Map{
 private:
   static Map* m_map; // On ne souhaite qu'il n'y ai qu'une et une seule instance de Map

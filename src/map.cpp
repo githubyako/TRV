@@ -468,6 +468,10 @@ const std::vector<unsigned int> Map::dijkstra(unsigned int id, unsigned int idCi
 const std::vector<std::pair<bool,bool>> Map::dijkstra_GA(unsigned int id, unsigned int idCible, const Unite* unite)
 {
   std::vector<std::pair<bool,bool>> chemin;
+<<<<<<< Updated upstream
+=======
+//   std::vector<deplacement *>deplacement;
+>>>>>>> Stashed changes
   if (m_sommets.at(idCible)->isObstacle())
   {
     return chemin;

@@ -8,19 +8,40 @@
 
 #include "minion.h"
 #include "map.h"
-
+#include "str_exception.h"
 class Algogen{
+
 private:
   Map * m_map;
-  Agent* m_agent;
-  Case* m_cible;
-  std::set<Minion*> m_pop;
+  Case *m_orig, * m_cible;
+  std::vector<Minion*> m_pop;
   unsigned int m_popsize;
+  unsigned int m_nbkids;
+  unsigned int m_lowestElite;
+  float m_manhattanImportance; // importance relative de la distance de manhattan 
+  float m_mutationRatio; // ratio de mutation par individu et par génération
+  float m_popToMutate; // ratio de population sujette à mutation à chaque génération
+  float m_ratioAjouts, m_ratioSupprs, m_ratioModifs; // ratios INITIAUX (par mutation et par rapport au genome total de l'indivudu) d'ajouts de chromosomes, de suppr de chromosomes, d'altérations de chromosomes
+  float m_ratioElitism; // ratio de meilleurs individus dont le génome n'est ni modifié ni amputé de chromosomes
+  float m_cullRatio; // ratio d'individus éliminés en dehors des élites par génération
+  std::vector<float> m_generationTotalFitness;
 public:
-  Algogen(Map * _map, unsigned int _popsize);
-  std::vector<int> const & findPath(int _idAgent, int _caseCible);
-  unsigned int fitness();
-  
+  Algogen(Map * _map, unsigned int _popsize, float _manhattanImportance, float _mutationRatio, 
+		  float _popToMutate, float _ratioAjouts, float _ratioSupprs,float _ratioModifs, float _ratioElitism, float _cullRatio, unsigned int _nbkids);
   ~Algogen();
+  
+  
+  void initPop(int _caseSource, int _caseCible);
+  
+  void iterate();
+  
+  void crossover(Minion* _parent0, Minion* _parent1, Minion* _parent2);
+  void mutatePop();
+  void cull();
+  void evaluate(Minion* _minion);
 };
+
+
+
+
 #endif

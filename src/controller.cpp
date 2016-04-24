@@ -74,8 +74,13 @@ void Controller::demande_chemin_A_star(int id, int x, int y)
 {
   if (x >= map->get_m_w() || y >= map->get_m_h())
     throw new str_exception("Cette case n'existe pas");
-  else
+  else{
+	  std::cout << "astar ints" << std::endl;
     std::vector<unsigned int> vec = map->A_star(map->get_Agent(id)->getCase()->get_sommet(), map->get_Case(x,y)->get_sommet(), map->get_Agent(id)->getUnite());
+	std::cout << "astar bools" << std::endl;
+	std::vector<std::pair<bool, bool> > vec2 = map->A_star_GA(map->get_Agent(id)->getCase()->get_sommet(), map->get_Case(x,y)->get_sommet(), map->get_Agent(id)->getUnite());
+	std::cout << "done" << std::endl;
+  }
 }
 
 

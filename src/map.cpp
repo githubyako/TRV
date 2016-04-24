@@ -468,10 +468,6 @@ const std::vector<unsigned int> Map::dijkstra(unsigned int id, unsigned int idCi
 const std::vector<std::pair<bool,bool>> Map::dijkstra_GA(unsigned int id, unsigned int idCible, const Unite* unite)
 {
   std::vector<std::pair<bool,bool>> chemin;
-<<<<<<< Updated upstream
-=======
-//   std::vector<deplacement *>deplacement;
->>>>>>> Stashed changes
   if (m_sommets.at(idCible)->isObstacle())
   {
     return chemin;
@@ -657,10 +653,121 @@ const std::vector< unsigned int > Map::A_star(unsigned int id, unsigned int idCi
   }
   chemin.push_back(id);
   std::reverse(chemin.begin(), chemin.end());
+  std::cout << "astar size: " << chemin.size() << std::endl;
   for(std::vector<unsigned int>::iterator i = chemin.begin(); i != chemin.end(); i++)
   {
     std::cout << *i << std::endl;
   }
   return chemin;
+}
+
+const std::vector< std::pair< bool, bool > > Map::A_star_GA(unsigned int id, unsigned int idCible, const Unite* unite)
+{
+  unsigned int x1 = m_sommets.at(idCible)->getX();
+  unsigned int y1 = m_sommets.at(idCible)->getY();
+  unsigned int x2;
+  unsigned int y2;
+  std::vector<unsigned int> list_ouv;
+  std::vector<unsigned int> list_ferm;
+  std::unordered_map<unsigned int, float> couts;
+  std::unordered_map<unsigned int, int> antec;
+  std::vector<std::pair<bool,bool> > chemin_ga;
+  std::vector<unsigned int> chemin;
+  if (m_sommets.at(idCible)->isObstacle())
+  {
+    return chemin_ga;
+  }
+  bool end = false;
+  float distance;
+  float couts_act;
+  for(std::map<int, Case*>::iterator i = m_sommets.begin(); i!= m_sommets.end(); i++){
+    couts.insert(std::pair<unsigned int,float>((unsigned int)(i->first), -1));
+    antec.insert(std::pair<unsigned int,int>((unsigned int)(i->first), -1));
+  }
+  couts.at(id) = 0;
+  std::vector<Case*> tmp_vois = m_sommets.at(id)->getVois();
+  unsigned int tmp_somm = id;
+  list_ouv.push_back(tmp_somm);
+  while(!end){
+    for(std::vector<Case*>::iterator i1 = tmp_vois.begin(); i1 != tmp_vois.end(); i1++){
+      if(std::find(list_ferm.begin(), list_ferm.end(), (*i1)->get_sommet()) == list_ferm.end()){
+	if((*i1)->isObstacle()){
+	   couts.at((*i1)->get_sommet()) = -1;
+	   list_ferm.push_back((*i1)->get_sommet());
+	}
+	else{
+	  x2 = (*i1)->getX();
+	  y2 = (*i1)->getY();
+	  if(couts.at((*i1)->get_sommet()) == -1){
+	    couts.at((*i1)->get_sommet()) = couts.at(tmp_somm) + unite->getVitesse(m_sommets.at(tmp_somm)->getTerrain()) + std::sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+	    antec.at((*i1)->get_sommet()) = tmp_somm;
+	    list_ouv.push_back((*i1)->get_sommet());
+	  }else{
+	    distance = couts.at(tmp_somm) + unite->getVitesse(m_sommets.at(tmp_somm)->getTerrain()) + std::sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+	    if(distance < couts.at((*i1)->get_sommet())){
+	      couts.at((*i1)->get_sommet()) = distance;
+	      antec.at((*i1)->get_sommet()) = tmp_somm;
+	      list_ouv.push_back((*i1)->get_sommet());
+	    }
+	  }
+	}
+      }
+    }
+    list_ouv.erase(std::find(list_ouv.begin(), list_ouv.end(), tmp_somm));
+    if (list_ouv.empty())
+    {
+      return chemin_ga;
+    }
+    else
+    {
+      list_ferm.push_back(tmp_somm);
+      tmp_somm = list_ouv.at(0);
+      couts_act = couts.at(tmp_somm);
+      unsigned int i3=1;
+      for(;i3 < list_ouv.size(); i3++)
+      {
+	if (couts.at(list_ouv.at(i3)) < couts_act)
+	{
+	  tmp_somm = list_ouv.at(i3);
+	  couts_act = couts.at(list_ouv.at(i3));
+	}
+      }
+    }
+    tmp_vois = m_sommets.at(tmp_somm)->getVois();
+    if(std::find(list_ferm.begin(), list_ferm.end(), idCible) < list_ferm.end())
+    {
+      end = true;
+      end = true;
+    }
+    }
+  unsigned int sommet_cour = antec.at(idCible);
+
+  unsigned int sommet_cible = idCible;
+  int diff=0;
+  while(sommet_cour != -1)
+  {
+    diff = sommet_cible - sommet_cour;
+    if (diff == 1){
+      chemin_ga.push_back(std::pair<bool,bool>(0,0));
+    }
+    else if (diff == -1){
+      chemin_ga.push_back(std::pair<bool,bool>(1,0));
+    }
+    else if (diff == m_h){
+      chemin_ga.push_back(std::pair<bool,bool>(0,1));
+    }
+    else if (diff == -m_h){
+      chemin_ga.push_back(std::pair<bool,bool>(1,1));
+    }
+    sommet_cible = sommet_cour;
+    sommet_cour = antec.at(sommet_cour);
+  }
+  std::reverse(chemin_ga.begin(), chemin_ga.end());
+  std::cout << "size astar ga = " << chemin_ga.size() << std::endl;
+  for(std::vector<std::pair<bool,bool> >::iterator i = chemin_ga.begin(); i != chemin_ga.end(); i++)
+  {
+    std::cout << (*i).first << ", " << (*i).second << std::endl;
+  }
+  return chemin_ga;
 }
 

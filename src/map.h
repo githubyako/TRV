@@ -6,12 +6,8 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-<<<<<<< Updated upstream
 #include <math.h>
-=======
 
-
->>>>>>> Stashed changes
 #include "case.h"
 #include "terrain.h"
 #include "agent.h"
@@ -68,6 +64,8 @@ public:
   const std::vector<std::pair<bool,bool>> dijkstra_GA(unsigned int id, unsigned int idCible, const Unite* unite);
   
   const std::vector<unsigned int> A_star(unsigned int id, unsigned int idCible, const Unite* unite);
+  
+  const std::vector<std::pair<bool,bool>> A_star_GA(unsigned int id, unsigned int idCible, const Unite* unite);
   
   // Getteurs :
   int get_m_w() const;

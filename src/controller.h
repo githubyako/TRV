@@ -47,6 +47,8 @@ public:
   
   void demande_chemin_A_star(int id, int x, int y);
   
+  void demande_chemin_algogen(int id, int x, int y);
+  
   // Fonction de parsing du fichier regle.xml représentant les règles de leur jeu (description de toutes les unités, contraintes et terrains différents)
   void initiateRules(std::string xmlFileName);
   

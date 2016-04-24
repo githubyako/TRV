@@ -771,3 +771,21 @@ const std::vector< std::pair< bool, bool > > Map::A_star_GA(unsigned int id, uns
   return chemin_ga;
 }
 
+void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* unite)
+{
+	unsigned int popsize=50;
+	float manhattan = 0.7;
+	float mutaRatio = 0.1;
+	float popToMutate = 0.1;
+	float ratioAjouts = 0.1;
+	float ratioSupprs = 0.05;
+	float ratioModifs = 0.05;
+	float ratioElitism = 0.2;
+	float cullRatio = 0.3;
+	unsigned int  nbkids=3;
+	
+	Algogen algg(m_w,m_h,& m_sommets,popsize,manhattan,mutaRatio,popToMutate,ratioAjouts,ratioSupprs,ratioModifs,ratioElitism,cullRatio,nbkids);
+	int idsource = m_agents.at(id)->getCase()->get_sommet();
+	algg.initPop(idsource,idCible);
+	algg.iterate();
+}

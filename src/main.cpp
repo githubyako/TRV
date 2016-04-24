@@ -21,6 +21,7 @@ int main(int argc, char **argv) {
 //      controller->demande_chemin(0,99,88);
      std::cout << "Déplacement cavalerie A* : 4,1 jusqu'à : 12,8 " << std::endl;
      controller->demande_chemin_A_star(0,99,88);
+	 controller->demande_chemin_algogen(0,99,88);
     } catch(str_exception& e){
     
       std::cout << "str_exception" << e.what() << std::endl;

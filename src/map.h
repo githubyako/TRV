@@ -12,7 +12,8 @@
 #include "terrain.h"
 #include "agent.h"
 #include "unite.h"
-class Algogen;
+#include "algogen.h"
+
 class Map{
 private:
   static Map* m_map; // On ne souhaite qu'il n'y ai qu'une et une seule instance de Map
@@ -22,7 +23,6 @@ private:
   std::vector<Agent*> m_agents; // Vector contenant tous les agents du jeu. Si on rajoute un agent, on rajoute un élément un vecteur, si on le supprime, on mets cette élément à NULL
   std::vector<Unite*> m_unites; // Vector contenant toutes les unités décrient dans regle.xml
   std::vector<Contrainte*> m_contraintes; // Vector contenant toutes les contraintes décrient dans regle.xml
-  
   // Constructeurs :
   Map();
   Map(Map const & _map);
@@ -66,6 +66,8 @@ public:
   const std::vector<unsigned int> A_star(unsigned int id, unsigned int idCible, const Unite* unite);
   
   const std::vector<std::pair<bool,bool>> A_star_GA(unsigned int id, unsigned int idCible, const Unite* unite);
+  
+  void create_algogen(unsigned int id, unsigned int idCible, const Unite* unite);
   
   // Getteurs :
   int get_m_w() const;

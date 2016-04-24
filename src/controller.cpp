@@ -83,6 +83,17 @@ void Controller::demande_chemin_A_star(int id, int x, int y)
   }
 }
 
+void Controller::demande_chemin_algogen(int id, int x, int y)
+{
+  if (x >= map->get_m_w() || y >= map->get_m_h())
+    throw new str_exception("Cette case n'existe pas");
+  else{
+	std::cout << "creation de l'algogen" << std::endl;
+	map->create_algogen(id,map->get_Case(x,y)->get_sommet(),map->get_Agent(id)->getUnite());
+	std::cout << "algogen done" << std::endl;
+  }
+}
+
 
 // Fonction de déplacement d'agent, déplace l'Agent d'identificateur id à la case de coordonnées x,y
 void Controller::deplacement_agent(int id, int x, int y)

@@ -58,15 +58,13 @@ public:
   // Fonction pour la suppresion d'un agent d'identifiant id et à la "position" id du vector m_agents
   void suppr_agent(int id);
   
-  // Fonction pour trouver un chemin vers une case cible pour un agent
-  const std::vector<unsigned int> dijkstra(unsigned int id, unsigned int idCible, const Unite* unite);
-  
+  // Fonction pour trouver un chemin vers une case cible pour un agent avec l'algorithme de Dijkstra adapté pour l'algorithme génétique
   const std::vector<std::pair<bool,bool>> dijkstra_GA(unsigned int id, unsigned int idCible, const Unite* unite);
   
-  const std::vector<unsigned int> A_star(unsigned int id, unsigned int idCible, const Unite* unite);
-  
+  // Fonction pour trouver un chemin vers une case cible pour un agent avec l'algorithme A* adapté pour l'algorithme génétique
   const std::vector<std::pair<bool,bool>> A_star_GA(unsigned int id, unsigned int idCible, const Unite* unite);
   
+  // Fonction pour trouver un chemin vers une case cible pour un agent avec un algorithme génétique
   void create_algogen(unsigned int id, unsigned int idCible, const Unite* unite);
   
   // Getteurs :

@@ -372,405 +372,211 @@ void Map::test()
   
 }
 
-const std::vector<unsigned int> Map::dijkstra(unsigned int id, unsigned int idCible, const Unite* unite)
-{
-  std::vector<unsigned int> chemin;
-  if (m_sommets.at(idCible)->isObstacle())
-  {
-    return chemin;
-  }
-  bool end = false;
-  unsigned int somm_act;
-  std::unordered_map<unsigned int, float> couts;
-  std::unordered_map<unsigned int, int> antec;
-  for(std::map<int, Case*>::iterator i = m_sommets.begin(); i!= m_sommets.end(); i++){
-    couts.insert(std::pair<unsigned int,float>((unsigned int)(i->first), -1));
-    antec.insert(std::pair<unsigned int,int>((unsigned int)(i->first), -1));
-  }
-  couts.at(id) = 0;
-  std::vector<unsigned int> parcouru;
-  
-  std::vector<Case*> tmp_vois = m_sommets.at(id)->getVois();
-  unsigned int tmp_somm = id;
-  
-  while(!end){
-    for(std::vector<Case*>::iterator i1 = tmp_vois.begin(); i1 != tmp_vois.end(); i1++){
-      if(std::find(parcouru.begin(), parcouru.end(), (*i1)->get_sommet()) == parcouru.end()){
-	if((*i1)->isObstacle()){
-	   couts.at((*i1)->get_sommet()) = -1;
-	   parcouru.push_back((*i1)->get_sommet());
-	}
-	else{
-	  if(couts.at((*i1)->get_sommet()) == -1){
-	    couts.at((*i1)->get_sommet()) = couts.at(tmp_somm) + unite->getVitesse(m_sommets.at(tmp_somm)->getTerrain());
-	    antec.at((*i1)->get_sommet()) = tmp_somm;
-	  }else{
-	    int tmp_cout = couts.at(tmp_somm) + unite->getVitesse(m_sommets.at(tmp_somm)->getTerrain());
-	    if(tmp_cout < couts.at((*i1)->get_sommet())){
-	      couts.at((*i1)->get_sommet()) = tmp_cout;
-	      antec.at((*i1)->get_sommet()) = tmp_somm;
-	    }
-	  }
-	}
-      }
-      //std::cout << couts.at((*i1)->get_sommet()) << std::endl;
-    }
-    parcouru.push_back(tmp_somm);
-    somm_act = tmp_somm;
-    //std::cout << "coucou1" << std::endl;
-    for(std::unordered_map<unsigned int, float>::iterator i3 = couts.begin(); i3 != couts.end(); i3++)
-    {
-      if ((tmp_somm == somm_act)
-	  && (i3->second > 0)
-	  && (std::find(parcouru.begin(), parcouru.end(), i3->first) == parcouru.end()))
-      {
-	tmp_somm=i3->first;
-      }
-      else if((i3->second > 0) 
-	  && (std::find(parcouru.begin(), parcouru.end(), i3->first) == parcouru.end())
-	  && (i3->second < couts.at(tmp_somm) ))
-      {
-	tmp_somm=i3->first;
-      }
-    }
-    //std::cout << "coucou2" << std::endl;
-    tmp_vois = m_sommets.at(tmp_somm)->getVois();
-    if(couts.at(idCible) != -1)
-    {
-      end = true;
-      for (std::unordered_map<unsigned int, float>::iterator i4 = couts.begin(); i4 != couts.end() ; i4++)
-      {
-	if(std::find(parcouru.begin(), parcouru.end(), i4->first) == parcouru.end()
-	  && i4->second != -1
-	  && i4->second < couts.at(idCible))
-	{
-	  end = false;
-	}
-      }
-    }
-  }
-  unsigned int sommet_cour = antec.at(idCible);
-  chemin.push_back(idCible);
-  while(sommet_cour != id)
-  {
-    chemin.push_back(sommet_cour);
-    sommet_cour = antec.at(sommet_cour);
-  }
-  chemin.push_back(id);
-  std::reverse(chemin.begin(), chemin.end());
-  for(std::vector<unsigned int>::iterator i = chemin.begin(); i != chemin.end(); i++)
-  {
-    std::cout << *i << std::endl;
-  }
-  return chemin;
-}
-
+// Fonction pour trouver un chemin vers une case cible pour un agent avec l'algorithme de Dijkstra adapté pour l'algorithme génétique
 const std::vector<std::pair<bool,bool>> Map::dijkstra_GA(unsigned int id, unsigned int idCible, const Unite* unite)
 {
-  std::vector<std::pair<bool,bool>> chemin;
-  if (m_sommets.at(idCible)->isObstacle())
+  std::vector<std::pair<bool,bool>> chemin; // Vecteur de pair de bool représentant le chemin de déplacement de l'agent pour aller de id à idCible
+  if (m_sommets.at(idCible)->isObstacle()) // Si la case cible est un obstacle
   {
-    return chemin;
+    return chemin; // On retourne un chemin vide
   }
-  bool end = false;
-  unsigned int somm_act;
-  std::unordered_map<unsigned int, float> couts;
-  std::unordered_map<unsigned int, int> antec;
-  for(std::map<int, Case*>::iterator i = m_sommets.begin(); i!= m_sommets.end(); i++){
-    couts.insert(std::pair<unsigned int,float>((unsigned int)(i->first), -1));
-    antec.insert(std::pair<unsigned int,int>((unsigned int)(i->first), -1));
+  bool end = false; // Booléen représentant la fin de recherche de l'algorithme
+  unsigned int tmp_somm; // Unsigned int représentant le sommet sur lequel on est en train de réfléchir
+  unsigned int somm_act; // Unsigned int représentant le sommet sur lequel on vient de réfléchir
+  std::unordered_map<unsigned int, float> couts; // Vecteur de pair représentant pour un sommet (unsigned int) le plus petit coûts (float) trouvé pour l'atteindre à un moment donné
+  std::unordered_map<unsigned int, int> antec; // Vecteur de pair représentant, pour un sommet_1, son sommet_2 prédecesseur (sommet_2 prédecesseur pour le chemin le plus court pour atteindre sommet_1)
+  std::vector<unsigned int> parcouru; // Vecteur contenant les sommets qu'on a déjà étudié
+  std::vector<Case*> tmp_vois; // Vecteur de Case* contenant tous les sommets voisins du sommet sur lequel on est en train de réfléchir
+  for(std::map<int, Case*>::iterator i = m_sommets.begin(); i!= m_sommets.end(); i++){ // Initialisation des vecteur couts et antec
+    couts.insert(std::pair<unsigned int,float>((unsigned int)(i->first), -1)); // On initialise le vecteur couts à -1 pour tous les sommets
+    antec.insert(std::pair<unsigned int,int>((unsigned int)(i->first), -1)); // On initialise le vecteur antec à -1 pour tous les sommets
   }
-  couts.at(id) = 0;
-  std::vector<unsigned int> parcouru;
+  tmp_somm = id; // On initialise le sommet sur lequel réfléchir à la case d'origine
+  couts.at(id) = 0; // On place le cout du sommet d'origine à 0
+  tmp_vois = m_sommets.at(id)->getVois(); // On récupère les voisins de la case d'origine
   
-  std::vector<Case*> tmp_vois = m_sommets.at(id)->getVois();
-  unsigned int tmp_somm = id;
-  
-  while(!end){
-    for(std::vector<Case*>::iterator i1 = tmp_vois.begin(); i1 != tmp_vois.end(); i1++){
-      if(std::find(parcouru.begin(), parcouru.end(), (*i1)->get_sommet()) == parcouru.end()){
-	if((*i1)->isObstacle()){
-	   couts.at((*i1)->get_sommet()) = -1;
-	   parcouru.push_back((*i1)->get_sommet());
+  while(!end){ // Tant que l'on a pas fini :
+    for(std::vector<Case*>::iterator i1 = tmp_vois.begin(); i1 != tmp_vois.end(); i1++){ // On parcours tous les voisins de tmp_somm
+      if(std::find(parcouru.begin(), parcouru.end(), (*i1)->get_sommet()) == parcouru.end()){ // Si le voisin n'a pas déjà été étudié :
+	if((*i1)->isObstacle()){ // On regarde s'il s'agit d'un obstacle
+	   couts.at((*i1)->get_sommet()) = -1; // Si oui, on met directement son coûts à -1 et...
+	   parcouru.push_back((*i1)->get_sommet()); // On le push ("à tord") dans les sommets parcourus pour ne pas y revenir
 	}
-	else{
-	  if(couts.at((*i1)->get_sommet()) == -1){
-	    couts.at((*i1)->get_sommet()) = couts.at(tmp_somm) + unite->getVitesse(m_sommets.at(tmp_somm)->getTerrain());
-	    antec.at((*i1)->get_sommet()) = tmp_somm;
+	else{ // Si non :
+	  if(couts.at((*i1)->get_sommet()) == -1){ // Si on ne l'a encore jamais parcouru
+	    couts.at((*i1)->get_sommet()) = couts.at(tmp_somm) + unite->getVitesse(m_sommets.at(tmp_somm)->getTerrain()); // On met à jour son coûts
+	    antec.at((*i1)->get_sommet()) = tmp_somm; // On met le sommet actuel comme étant son prédecesseur
 	  }else{
-	    int tmp_cout = couts.at(tmp_somm) + unite->getVitesse(m_sommets.at(tmp_somm)->getTerrain());
-	    if(tmp_cout < couts.at((*i1)->get_sommet())){
-	      couts.at((*i1)->get_sommet()) = tmp_cout;
-	      antec.at((*i1)->get_sommet()) = tmp_somm;
+	    int tmp_cout = couts.at(tmp_somm) + unite->getVitesse(m_sommets.at(tmp_somm)->getTerrain()); // Si non, on calcul le coût potentiel de tmp_som jusqu'à ce sommet
+	    if(tmp_cout < couts.at((*i1)->get_sommet())){ // Si ce nouveau coûts est plus faible que le précedent calculé
+	      couts.at((*i1)->get_sommet()) = tmp_cout; // On met à jour le coût
+	      antec.at((*i1)->get_sommet()) = tmp_somm; // On met à jour le prédecesseur
 	    }
 	  }
 	}
       }
-      //std::cout << couts.at((*i1)->get_sommet()) << std::endl;
     }
-    parcouru.push_back(tmp_somm);
+    parcouru.push_back(tmp_somm); // On met tmp_somm dans les sommets parcourus
     somm_act = tmp_somm;
-    //std::cout << "coucou1" << std::endl;
-    for(std::unordered_map<unsigned int, float>::iterator i3 = couts.begin(); i3 != couts.end(); i3++)
+    for(std::unordered_map<unsigned int, float>::iterator i3 = couts.begin(); i3 != couts.end(); i3++) // On parcours le vecteur coûts à la recherche de la case non parcouru ayant le plus faible coût
     {
-      if ((tmp_somm == somm_act)
-	  && (i3->second > 0)
-	  && (std::find(parcouru.begin(), parcouru.end(), i3->first) == parcouru.end()))
+      if ((tmp_somm == somm_act) // Si le sommets actuel n'a pas encore été changé et...
+	  && (i3->second > 0) // Le coût du sommet est supérieur à 0 et...
+	  && (std::find(parcouru.begin(), parcouru.end(), i3->first) == parcouru.end())) // Que l'on a pas encore parcouru
       {
-	tmp_somm=i3->first;
+	tmp_somm=i3->first; // On change tmp_somm
       }
-      else if((i3->second > 0) 
-	  && (std::find(parcouru.begin(), parcouru.end(), i3->first) == parcouru.end())
-	  && (i3->second < couts.at(tmp_somm) ))
+      else if((i3->second > 0)  // Si non, si le coût du sommet est supérieur à 0 et...
+	  && (std::find(parcouru.begin(), parcouru.end(), i3->first) == parcouru.end()) // La case n'a pas déjà été étudiée
+	  && (i3->second < couts.at(tmp_somm) )) // Le coût de ce sommet est plus petit que celui de tmp_somm
       {
-	tmp_somm=i3->first;
+	tmp_somm=i3->first; // On change tmp_somm
       }
     }
-    //std::cout << "coucou2" << std::endl;
-    tmp_vois = m_sommets.at(tmp_somm)->getVois();
-    if(couts.at(idCible) != -1)
+    tmp_vois = m_sommets.at(tmp_somm)->getVois(); // On met à jour tmp_vois
+    if(couts.at(idCible) != -1) // On test si la case cible à déjà été atteinte
     {
-      end = true;
-      for (std::unordered_map<unsigned int, float>::iterator i4 = couts.begin(); i4 != couts.end() ; i4++)
+      end = true; // On met end à true
+      for (std::unordered_map<unsigned int, float>::iterator i4 = couts.begin(); i4 != couts.end() ; i4++) // Pour tous les sommets, on regarde s'il existe un sommet au coût inférieur à celui de idCible
       {
-	if(std::find(parcouru.begin(), parcouru.end(), i4->first) == parcouru.end()
-	  && i4->second != -1
-	  && i4->second < couts.at(idCible))
+	if(std::find(parcouru.begin(), parcouru.end(), i4->first) == parcouru.end() // S'il n'a pas déjà été parcouru et...
+	  && i4->second != -1 // On lui a déjà calculé au moins un coût et...
+	  && i4->second < couts.at(idCible)) // ce coût est inférieur à celui de idCible
 	{
-	  end = false;
+	  end = false; // On met à jour end
 	}
       }
     }
   }
-  int sommet_cour = antec.at(idCible);
-  unsigned int sommet_cible = idCible;
-  int diff=0;
-  while(sommet_cour != -1)
+  int sommet_cour = antec.at(idCible); // On récupère le prédecesseur de idCible
+  unsigned int sommet_cible = idCible; // On récupère le sommet actuel en traitement (initialisation à idCible)
+  int diff=0; // int récupérant le différence entre sommet_cible et sommet_cour
+  while(sommet_cour != -1) // Tant que sommet_cour n'est pas -1 (donc que sommet_cible n'est pas la case d'origine id)
   {
-    diff = sommet_cible - sommet_cour;
-    if (diff == 1){
+    diff = sommet_cible - sommet_cour; // On calcule diff
+    if (diff == 1){ // Cas où sommet_cible est au dessus de sommet_cour
       chemin.push_back(std::pair<bool,bool>(0,0));
     }
-    else if (diff == -1){
+    else if (diff == -1){ // Cas où sommet_cible est au dessous de sommet_cour
       chemin.push_back(std::pair<bool,bool>(1,0));
     }
-    else if (diff == m_h){
+    else if (diff == m_h){ // Cas où sommet_cible est à droite de sommet_cour
       chemin.push_back(std::pair<bool,bool>(0,1));
     }
-    else if (diff == -m_h){
+    else if (diff == -m_h){ // Cas où sommet_cible est à gauche de sommet_cour
       chemin.push_back(std::pair<bool,bool>(1,1));
     }
-    sommet_cible = sommet_cour;
-    sommet_cour = antec.at(sommet_cour);
+    sommet_cible = sommet_cour; // On met à jour sommet_cible...
+    sommet_cour = antec.at(sommet_cour); // et sommet_cour
   }
-  return chemin;
+  return chemin; // On retourne le chemin
 }
 
-const std::vector< unsigned int > Map::A_star(unsigned int id, unsigned int idCible, const Unite* unite)
-{
-  unsigned int x1 = m_sommets.at(idCible)->getX();
-  unsigned int y1 = m_sommets.at(idCible)->getY();
-  unsigned int x2;
-  unsigned int y2;
-  std::vector<unsigned int> list_ouv;
-  std::vector<unsigned int> list_ferm;
-  std::unordered_map<unsigned int, float> couts;
-  std::unordered_map<unsigned int, int> antec;
-  std::vector<unsigned int> chemin;
-    if (m_sommets.at(idCible)->isObstacle())
-  {
-    return chemin;
-  }
-  bool end = false;
-  float distance;
-  float couts_act;
-  for(std::map<int, Case*>::iterator i = m_sommets.begin(); i!= m_sommets.end(); i++){
-    couts.insert(std::pair<unsigned int,float>((unsigned int)(i->first), -1));
-    antec.insert(std::pair<unsigned int,int>((unsigned int)(i->first), -1));
-  }
-  couts.at(id) = 0;
-  std::vector<Case*> tmp_vois = m_sommets.at(id)->getVois();
-  unsigned int tmp_somm = id;
-  list_ouv.push_back(tmp_somm);
-  while(!end){
-    for(std::vector<Case*>::iterator i1 = tmp_vois.begin(); i1 != tmp_vois.end(); i1++){
-      if(std::find(list_ferm.begin(), list_ferm.end(), (*i1)->get_sommet()) == list_ferm.end()){
-	if((*i1)->isObstacle()){
-	   couts.at((*i1)->get_sommet()) = -1;
-	   list_ferm.push_back((*i1)->get_sommet());
-	}
-	else{
-	  x2 = (*i1)->getX();
-	  y2 = (*i1)->getY();
-	  if(couts.at((*i1)->get_sommet()) == -1){
-	    couts.at((*i1)->get_sommet()) = couts.at(tmp_somm) + unite->getVitesse(m_sommets.at(tmp_somm)->getTerrain()) + std::sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-	    antec.at((*i1)->get_sommet()) = tmp_somm;
-	    list_ouv.push_back((*i1)->get_sommet());
-	  }else{
-	    distance = couts.at(tmp_somm) + unite->getVitesse(m_sommets.at(tmp_somm)->getTerrain()) + std::sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-	    if(distance < couts.at((*i1)->get_sommet())){
-	      couts.at((*i1)->get_sommet()) = distance;
-	      antec.at((*i1)->get_sommet()) = tmp_somm;
-	      list_ouv.push_back((*i1)->get_sommet());
-	    }
-	  }
-	}
-      }
-    }
-    list_ouv.erase(std::find(list_ouv.begin(), list_ouv.end(), tmp_somm));
-    if (list_ouv.empty())
-    {
-      return chemin;
-    }
-    else
-    {
-      list_ferm.push_back(tmp_somm);
-      tmp_somm = list_ouv.at(0);
-      couts_act = couts.at(tmp_somm);
-      unsigned int i3=1;
-      for(;i3 < list_ouv.size(); i3++)
-      {
-	if (couts.at(list_ouv.at(i3)) < couts_act)
-	{
-	  tmp_somm = list_ouv.at(i3);
-	  couts_act = couts.at(list_ouv.at(i3));
-	}
-      }
-    }
-    tmp_vois = m_sommets.at(tmp_somm)->getVois();
-    if(std::find(list_ferm.begin(), list_ferm.end(), idCible) < list_ferm.end())
-    {
-      end = true;
-      end = true;
-    }
-    }
-  unsigned int sommet_cour = antec.at(idCible);
-  chemin.push_back(idCible);
-  while(sommet_cour != id)
-  {
-    chemin.push_back(sommet_cour);
-    sommet_cour = antec.at(sommet_cour);
-  }
-  chemin.push_back(id);
-  std::reverse(chemin.begin(), chemin.end());
-  std::cout << "astar size: " << chemin.size() << std::endl;
-  for(std::vector<unsigned int>::iterator i = chemin.begin(); i != chemin.end(); i++)
-  {
-    std::cout << *i << std::endl;
-  }
-  return chemin;
-}
-
+// Fonction pour trouver un chemin vers une case cible pour un agent avec l'algorithme A* adapté pour l'algorithme génétique
 const std::vector< std::pair< bool, bool > > Map::A_star_GA(unsigned int id, unsigned int idCible, const Unite* unite)
 {
-  unsigned int x1 = m_sommets.at(idCible)->getX();
-  unsigned int y1 = m_sommets.at(idCible)->getY();
-  unsigned int x2;
-  unsigned int y2;
-  std::vector<unsigned int> list_ouv;
-  std::vector<unsigned int> list_ferm;
-  std::unordered_map<unsigned int, float> couts;
-  std::unordered_map<unsigned int, int> antec;
-  std::vector<std::pair<bool,bool> > chemin_ga;
-  std::vector<unsigned int> chemin;
-  if (m_sommets.at(idCible)->isObstacle())
+  std::vector<std::pair<bool,bool>> chemin; // Vecteur de pair de bool représentant le chemin de déplacement de l'agent pour aller de id à idCible
+  if (m_sommets.at(idCible)->isObstacle()) // Si la case cible est un obstacle
   {
-    return chemin_ga;
+    return chemin; // On retourne un chemin vide
   }
-  bool end = false;
-  float distance;
-  float couts_act;
-  for(std::map<int, Case*>::iterator i = m_sommets.begin(); i!= m_sommets.end(); i++){
-    couts.insert(std::pair<unsigned int,float>((unsigned int)(i->first), -1));
-    antec.insert(std::pair<unsigned int,int>((unsigned int)(i->first), -1));
+  unsigned int tmp_somm; // Unsigned int représentant le sommet sur lequel on est en train de réfléchir
+  unsigned int x1 = m_sommets.at(idCible)->getX(); // On récupère la coordonnée x de idCible
+  unsigned int y1 = m_sommets.at(idCible)->getY(); // On récupère la coordonnée y de idCible
+  unsigned int x2; // coordonnée x de la case en traitement
+  unsigned int y2; // coordonnée y de la case en traitment
+  std::vector<unsigned int> list_ouv; // vecteur de sommets représentant la liste ouverte (liste des sommets à étudier)
+  std::vector<unsigned int> list_ferm; // vecteur des sommets représentant la liste fermé (liste des sommets déjà traiter ou qui ne présente plus d'intérêts à être étudié)
+  std::unordered_map<unsigned int, float> couts; // Vecteur de pair représentant pour un sommet (unsigned int) le plus petit coûts (float) trouvé pour l'atteindre à un moment donné
+  std::unordered_map<unsigned int, int> antec; // Vecteur de pair représentant, pour un sommet_1, son sommet_2 prédecesseur (sommet_2 prédecesseur pour le chemin le plus court pour atteindre sommet_1)
+  std::vector<Case*> tmp_vois;
+  bool end = false; // Booléen représentant la fin de recherche de l'algorithme
+  float distance; // float représentant la distance euclidienne entre la case en traitement et la case cible idCible  
+  float couts_act; // float représentant le plus petit coûts des sommets de la liste ouverte
+  for(std::map<int, Case*>::iterator i = m_sommets.begin(); i!= m_sommets.end(); i++){ // Initialisation des vecteur couts et antec
+    couts.insert(std::pair<unsigned int,float>((unsigned int)(i->first), -1)); // On initialise le vecteur couts à -1 pour tous les sommets
+    antec.insert(std::pair<unsigned int,int>((unsigned int)(i->first), -1)); // On initialise le vecteur antec à -1 pour tous les sommets
   }
-  couts.at(id) = 0;
-  std::vector<Case*> tmp_vois = m_sommets.at(id)->getVois();
-  unsigned int tmp_somm = id;
-  list_ouv.push_back(tmp_somm);
-  while(!end){
-    for(std::vector<Case*>::iterator i1 = tmp_vois.begin(); i1 != tmp_vois.end(); i1++){
-      if(std::find(list_ferm.begin(), list_ferm.end(), (*i1)->get_sommet()) == list_ferm.end()){
-	if((*i1)->isObstacle()){
-	   couts.at((*i1)->get_sommet()) = -1;
-	   list_ferm.push_back((*i1)->get_sommet());
+  tmp_somm = id; // On initialise le sommet sur lequel réfléchir à la case d'origine
+  couts.at(id) = 0; // On place le cout du sommet d'origine à 0
+  tmp_vois = m_sommets.at(id)->getVois(); // On récupère les voisins de la case d'origine
+  list_ouv.push_back(tmp_somm); // On met le sommet d'origine dans la liste ouverte
+  while(!end){ // Tant que l'on a pas fini :
+    for(std::vector<Case*>::iterator i1 = tmp_vois.begin(); i1 != tmp_vois.end(); i1++){ // On parcours tous les voisins de tmp_somm
+      if(std::find(list_ferm.begin(), list_ferm.end(), (*i1)->get_sommet()) == list_ferm.end()){ // Si le voisin ne fait pas parti de la liste fermée
+	if((*i1)->isObstacle()){ // S'il s'agit s'agit d'un obstacle
+	   couts.at((*i1)->get_sommet()) = -1; // On met le coûts du sommet à -1 et...
+	   list_ferm.push_back((*i1)->get_sommet()); // On l'insère dans la liste fermée pour ne plus le traiter
 	}
-	else{
-	  x2 = (*i1)->getX();
-	  y2 = (*i1)->getY();
-	  if(couts.at((*i1)->get_sommet()) == -1){
-	    couts.at((*i1)->get_sommet()) = couts.at(tmp_somm) + unite->getVitesse(m_sommets.at(tmp_somm)->getTerrain()) + std::sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-	    antec.at((*i1)->get_sommet()) = tmp_somm;
-	    list_ouv.push_back((*i1)->get_sommet());
-	  }else{
-	    distance = couts.at(tmp_somm) + unite->getVitesse(m_sommets.at(tmp_somm)->getTerrain()) + std::sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-	    if(distance < couts.at((*i1)->get_sommet())){
-	      couts.at((*i1)->get_sommet()) = distance;
-	      antec.at((*i1)->get_sommet()) = tmp_somm;
-	      list_ouv.push_back((*i1)->get_sommet());
+	else{ // Sinon...
+	  x2 = (*i1)->getX(); // On récupère la coordonée x de la case
+	  y2 = (*i1)->getY(); // On récupère la coordonée y de la case
+	  if(couts.at((*i1)->get_sommet()) == -1){ // Si on a jamais étudié le coût de la case
+	    couts.at((*i1)->get_sommet()) = couts.at(tmp_somm) + unite->getVitesse(m_sommets.at(tmp_somm)->getTerrain()) + std::sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)); // On met à jour le coût de la case (même calcul que Dijkstra mais on rajoute la distance euclidienne au sommet d'arrivé)
+	    antec.at((*i1)->get_sommet()) = tmp_somm; // On met à jour le prédecesseur
+	    list_ouv.push_back((*i1)->get_sommet()); // On rajoute le sommet dans la liste ouverte
+	  }else{ /// Sinon...
+	    distance = couts.at(tmp_somm) + unite->getVitesse(m_sommets.at(tmp_somm)->getTerrain()) + std::sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)); // On calcule la nouvelle distance (même calcule que Dijkstra mais on rajoute la distance enclidienne au sommet d'arrivé)
+	    if(distance < couts.at((*i1)->get_sommet())){ // Si ce coût est inférieur au précédent calculé
+	      couts.at((*i1)->get_sommet()) = distance; // On met le coût à jour
+	      antec.at((*i1)->get_sommet()) = tmp_somm; // On met le prédecesseur à jour
+	      list_ouv.push_back((*i1)->get_sommet()); // On met ce sommet dans la liste ouverte 
 	    }
 	  }
 	}
       }
     }
-    list_ouv.erase(std::find(list_ouv.begin(), list_ouv.end(), tmp_somm));
-    if (list_ouv.empty())
+    list_ouv.erase(std::find(list_ouv.begin(), list_ouv.end(), tmp_somm)); // On enlève le sommet que l'on traitait de la liste ouverte (le sommet dont on étudiait les voisins)
+    if (list_ouv.empty()) // Si dès lors la liste ouverte est vide :
     {
-      return chemin_ga;
+      return chemin; // Alors il n'existe aucun chemin entre id et idCible
     }
-    else
+    else // Sinon...
     {
-      list_ferm.push_back(tmp_somm);
-      tmp_somm = list_ouv.at(0);
-      couts_act = couts.at(tmp_somm);
+      list_ferm.push_back(tmp_somm); // On rajoute tmp_somm à la liste fermée
+      tmp_somm = list_ouv.at(0); // On récupère le premier élément de la liste ouverte
+      couts_act = couts.at(tmp_somm); // On récupère le coût de cette élément
       unsigned int i3=1;
-      for(;i3 < list_ouv.size(); i3++)
+      for(;i3 < list_ouv.size(); i3++) // Pour tous les autres éléments de la liste ouverte :
       {
-	if (couts.at(list_ouv.at(i3)) < couts_act)
+	if (couts.at(list_ouv.at(i3)) < couts_act) // Si son coût est inférieur à couts_act
 	{
-	  tmp_somm = list_ouv.at(i3);
-	  couts_act = couts.at(list_ouv.at(i3));
+	  tmp_somm = list_ouv.at(i3); // On met à jour tmp_somm
+	  couts_act = couts.at(list_ouv.at(i3)); // Ainsi que couts_act
 	}
       }
     }
-    tmp_vois = m_sommets.at(tmp_somm)->getVois();
-    if(std::find(list_ferm.begin(), list_ferm.end(), idCible) < list_ferm.end())
+    tmp_vois = m_sommets.at(tmp_somm)->getVois(); // On récupère les voisins du nouveau tmp_somm
+    if(std::find(list_ferm.begin(), list_ferm.end(), idCible) < list_ferm.end()) // Si on trouve idCible dans la liste fermée
     {
-      end = true;
-      end = true;
+      end = true; // Alors on a trouvé un chemin entre id et idCible
     }
     }
-  unsigned int sommet_cour = antec.at(idCible);
-
-  unsigned int sommet_cible = idCible;
-  int diff=0;
-  while(sommet_cour != -1)
+  int sommet_cour = antec.at(idCible); // On récupère le prédecesseur de idCible
+  unsigned int sommet_cible = idCible; // On récupère le sommet actuel en traitement (initialisation à idCible)
+  int diff=0; // int récupérant le différence entre sommet_cible et sommet_cour
+  while(sommet_cour != -1) // Tant que sommet_cour n'est pas -1 (donc que sommet_cible n'est pas la case d'origine id)
   {
-    diff = sommet_cible - sommet_cour;
-    if (diff == 1){
-      chemin_ga.push_back(std::pair<bool,bool>(0,0));
+    diff = sommet_cible - sommet_cour; // On calcule diff
+    if (diff == 1){ // Cas où sommet_cible est au dessus de sommet_cour
+      chemin.push_back(std::pair<bool,bool>(0,0));
     }
-    else if (diff == -1){
-      chemin_ga.push_back(std::pair<bool,bool>(1,0));
+    else if (diff == -1){ // Cas où sommet_cible est au dessous de sommet_cour
+      chemin.push_back(std::pair<bool,bool>(1,0));
     }
-    else if (diff == m_h){
-      chemin_ga.push_back(std::pair<bool,bool>(0,1));
+    else if (diff == m_h){ // Cas où sommet_cible est à droite de sommet_cour
+      chemin.push_back(std::pair<bool,bool>(0,1));
     }
-    else if (diff == -m_h){
-      chemin_ga.push_back(std::pair<bool,bool>(1,1));
+    else if (diff == -m_h){ // Cas où sommet_cible est à gauche de sommet_cour
+      chemin.push_back(std::pair<bool,bool>(1,1));
     }
-    sommet_cible = sommet_cour;
-    sommet_cour = antec.at(sommet_cour);
+    sommet_cible = sommet_cour; // On met à jour sommet_cible...
+    sommet_cour = antec.at(sommet_cour); // et sommet_cour
   }
-  std::reverse(chemin_ga.begin(), chemin_ga.end());
-  std::cout << "size astar ga = " << chemin_ga.size() << std::endl;
-  for(std::vector<std::pair<bool,bool> >::iterator i = chemin_ga.begin(); i != chemin_ga.end(); i++)
-  {
-    std::cout << (*i).first << ", " << (*i).second << std::endl;
-  }
-  return chemin_ga;
+  return chemin; // On retourne le chemin
 }
 
+// Fonction pour trouver un chemin vers une case cible pour un agent avec un algorithme génétique
 void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* unite)
 {
 	unsigned int popsize=50;

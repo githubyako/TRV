@@ -42,11 +42,13 @@ public:
   // Fonction permettant la création ou la suppression d'un obstacle à la case de coordonnées x,y
   void setObstacle(int x, int y, bool obs);
   
-  // Fonction demande une recherche de chemin par pathfind à l'Agent d'identificateur id à la case de coordonnées x,y
+  // Fonction demandant une recherche de chemin par pathfinding Dijkstra à l'Agent d'identificateur id à la case de coordonnées x,y
   void demande_chemin(int id, int x, int y);
   
+  // Fonction demandant une recherche de chemin par pathfinding A* à l'Agent d'identificateur id à la case de coordonnées x,y
   void demande_chemin_A_star(int id, int x, int y);
   
+  // Fonction demandant une recherche de chemin par pathfinding génétique à l'Agent d'identificateur id à la case de coordonnées x,y
   void demande_chemin_algogen(int id, int x, int y);
   
   // Fonction de parsing du fichier regle.xml représentant les règles de leur jeu (description de toutes les unités, contraintes et terrains différents)

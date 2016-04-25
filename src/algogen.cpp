@@ -119,16 +119,20 @@ void Algogen::mutatePop()
 void Algogen::evaluate(Minion* _minion)
 {
 	float fitness=0.0;
-	std::vector< std::pair< bool, bool > > const & genome = _minion->getGenome();
+	std::vector< std::pair< bool, bool > > genome = _minion->getGenome();
+	std::pair<bool,bool> error;
 	int newx = (int)(m_orig->getX());
 	int newy = (int)(m_orig->getY());
 	bool defect = false;
 	std::vector<int> vec;
 	int sommet = (newx*m_mapH) + newy;
 	vec.push_back(sommet);
-	for(std::vector< std::pair< bool, bool > >::const_iterator cit = genome.begin(); cit != genome.end(); ++cit){ // parcours du chemin pour détection d'obstacle
+	for(std::vector< std::pair< bool, bool > >::iterator cit = genome.begin(); cit != genome.end(); ++cit){ // parcours du chemin pour détection d'obstacle
 	  newx += (*cit).second*(1-(2*(*cit).first));
-	  newy += (1 - (*cit).first) * (1-(2*(*cit).second));/*
+	  newy += (1 - (*cit).first) * (1-(2*(*cit).second));
+	  sommet = (newx*m_mapH) + newy;
+// 	  std::cout << newx << " " << newy << " " << sommet;
+	  /* 
 	  if((*cit).first == 0 && (*cit).second == 0){
 	    newy++;
 	  }else if((*cit).first == 0 && (*cit).second == 1){
@@ -138,14 +142,26 @@ void Algogen::evaluate(Minion* _minion)
 	  }else if((*cit).first == 1 && (*cit).second == 1){
 	    newx--;
 	  }*/
-	  
-	  if(newx < 0 || newx > m_mapW-1 || newy < 0 || newy > m_mapH-1 || 
-	    m_sommets->at(sommet)->isObstacle() || (std::find(vec.begin(), vec.end(), (newx*m_mapH) + newy) != vec.end())){
+	  if (newx < 0 || newx > m_mapW-1 || newy < 0 || newy > m_mapH-1){
+// 	   std::cout << " lol";
+	    genome.erase(cit-1, genome.end());
+	    break;
+	  }
+	  else if(m_sommets->at(sommet)->isObstacle()){
 		  defect = true;
 		  break;
-	  }else if((newx*m_mapH)+newy == m_cible->get_sommet()){
+	  }
+	  /*else if ((std::find(vec.begin(), vec.end(), sommet) != vec.end()))
+	  {
+	    std::cout << sommet << std::endl;
+	    int pos = (std::find(vec.begin(), vec.end(), sommet))-vec.begin();
+	    vec.erase(vec.begin()+pos, vec.begin()+(cit-genome.begin()-1));
+	    genome.erase(genome.begin()+pos, cit-1);
+	  }*/
+	  else if(sommet == m_cible->get_sommet()){
 	    std::cout << "CHEMIN VERS LA CIBLE TROUVE !!!1§§11§1§" << std::endl;
 	  }
+// 	  std::cout << std::endl;
 	}
 	if(!defect){
 // 	  std::cout << newx << " " << newy << std::endl;

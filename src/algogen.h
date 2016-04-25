@@ -5,6 +5,9 @@
 #include <algorithm>
 #include <iostream>
 #include <set>
+#include <ctime>
+#include <cstdlib>
+#include <math.h>
 
 #include "minion.h"
 #include "str_exception.h"

@@ -581,9 +581,9 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 {
 	unsigned int popsize=50;
 	float manhattan = 0.7;
-	float mutaRatio = 0.1;
-	float popToMutate = 0.1;
-	float ratioAjouts = 0.1;
+	float mutaRatio = 0.2;
+	float popToMutate = 0.2;
+	float ratioAjouts = 0.2;
 	float ratioSupprs = 0.05;
 	float ratioModifs = 0.05;
 	float ratioElitism = 0.2;
@@ -593,6 +593,6 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 	Algogen algg(m_w,m_h,& m_sommets,popsize,manhattan,mutaRatio,popToMutate,ratioAjouts,ratioSupprs,ratioModifs,ratioElitism,cullRatio,nbkids);
 	int idsource = m_agents.at(id)->getCase()->get_sommet();
 	algg.initPop(idsource,idCible);
-	for (int i=0; i<50; i++)
+	for (int i=0; i<200; i++)
 	  algg.iterate();
 }

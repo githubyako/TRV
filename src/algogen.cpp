@@ -120,60 +120,40 @@ void Algogen::evaluate(Minion* _minion)
 {
 	float fitness=0.0;
 	std::vector< std::pair< bool, bool > > genome = _minion->getGenome();
-	std::pair<bool,bool> error;
-	unsigned int newx = (int)(m_orig->getX());
-	unsigned int newy = (int)(m_orig->getY());
+	int newx = (int)(m_orig->getX());
+	int newy = (int)(m_orig->getY());
 	bool defect = false;
 	std::vector<int> vec;
 	unsigned int sommet = (newx*m_mapH) + newy;
 	for(std::vector< std::pair< bool, bool > >::iterator cit = genome.begin(); cit != genome.end(); ++cit){ // parcours du chemin pour détection d'obstacle
-	  newx += (*cit).second*(1-(2*(*cit).first));
-	  newy += (1 - (*cit).first) * (1-(2*(*cit).second));
+	  newx += ((*cit).second*(1-(2*(*cit).first)));
+	  newy += (((*cit).second -1) * (1-(2*(*cit).first)));
 	  sommet = (newx*m_mapH) + newy;
-// 	  std::cout << newx << " " << newy << " " << sommet;
-	  /* 
-	  if((*cit).first == 0 && (*cit).second == 0){
-	    newy++;
-	  }else if((*cit).first == 0 && (*cit).second == 1){
-	    newx++;
-	  }else if((*cit).first == 1 && (*cit).second == 0){
-	    newy--;
-	  }else if((*cit).first == 1 && (*cit).second == 1){
-	    newx--;
-	  }*/
-	  if (newx < 0 || newx > m_mapW-1 || newy < 0 || newy > m_mapH-1){
-	    newx -= (*cit).second*(1-(2*(*cit).first));
-	    newy -= (1 - (*cit).first) * (1-(2*(*cit).second));
+	  if (newx < 0 || newx > m_mapW-1 || newy < 0 || newy > m_mapH-1 || m_sommets->at(sommet)->isObstacle()){
+	    newx -= ((*cit).second*(1-(2*(*cit).first)));
+	    newy -= (((*cit).second -1) * (1-(2*(*cit).first)));
 	    cit=genome.erase(cit);
 	    sommet = (newx*m_mapH) + newy;
 	    cit--;
 	  }
-	  else if(m_sommets->at(sommet)->isObstacle()){
-		  defect = true;
-		  break;
-	  }
-	  else if ((std::find(vec.begin(), vec.end(), sommet) != vec.end()))
-	  {
-	    std::cout << sommet << std::endl;
-	    int pos = std::distance(vec.begin(),std::find(vec.begin(), vec.end(), sommet));
-	    vec.erase(vec.begin()+pos, vec.begin()+(cit-genome.begin())-1);
-	    cit=genome.erase(genome.begin()+pos, cit-1);
-	    cit--;
-	  }
-	  else if(sommet == m_cible->get_sommet()){
-	    std::cout << "CHEMIN VERS LA CIBLE TROUVE !!!1§§11§1§" << std::endl;
-	  }
-// 	  std::cout << std::endl;
-	}
-	if(!defect){
-// 	  std::cout << newx << " " << newy << std::endl;
-	  int manhattan = abs((m_cible->getX() - m_sommets->at(sommet)->getX())) + abs((m_cible->getY() - m_sommets->at(sommet)->getY()));
-// 	  std::cout << manhattan << std::endl;
-	  fitness = 1 - ((((float)manhattan / (m_mapW + m_mapH)) * m_manhattanImportance) + (((float)genome.size() / (m_mapH * m_mapW )) * (1-m_manhattanImportance)));
-// 	  std::cout << fitness << std::endl;
-	  vec.push_back(sommet);
-	}
-	std::cout << " | " << _minion->getGenomeSize() << " | ";
+	    else { 
+ 	      if ((std::find(vec.begin(), vec.end(), sommet) != vec.end())) {
+ 		int pos = std::distance(vec.begin(),std::find(vec.begin(), vec.end(), sommet));
+ 		vec.erase(vec.begin()+pos, vec.begin()+std::distance(genome.begin(),cit));
+ 		cit=genome.erase(genome.begin()+pos, cit-1);
+ 		cit--;
+ 	      }
+	      else {
+		if(sommet == m_cible->get_sommet()){
+		  std::cout << "CHEMIN VERS LA CIBLE TROUVE !!!1§§11§1§" << std::endl;
+		}
+		vec.push_back(sommet);
+	     }
+	   }
+	 }
+	int manhattan = abs((m_cible->getX() - m_sommets->at(sommet)->getX())) + abs((m_cible->getY() - m_sommets->at(sommet)->getY()));
+	fitness = 1 - ((((float)manhattan / (m_mapW + m_mapH)) * m_manhattanImportance) + (((float)genome.size() / (m_mapH * m_mapW )) * (1-m_manhattanImportance)));
+
 	_minion->setFitness(fitness);
 }
 

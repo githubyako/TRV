@@ -126,7 +126,6 @@ void Algogen::evaluate(Minion* _minion)
 	bool defect = false;
 	std::vector<int> vec;
 	unsigned int sommet = (newx*m_mapH) + newy;
-	vec.push_back(sommet);
 	for(std::vector< std::pair< bool, bool > >::iterator cit = genome.begin(); cit != genome.end(); ++cit){ // parcours du chemin pour détection d'obstacle
 	  newx += (*cit).second*(1-(2*(*cit).first));
 	  newy += (1 - (*cit).first) * (1-(2*(*cit).second));
@@ -145,20 +144,22 @@ void Algogen::evaluate(Minion* _minion)
 	  if (newx < 0 || newx > m_mapW-1 || newy < 0 || newy > m_mapH-1){
 	    newx -= (*cit).second*(1-(2*(*cit).first));
 	    newy -= (1 - (*cit).first) * (1-(2*(*cit).second));
-	    genome.erase(cit);
+	    cit=genome.erase(cit);
 	    sommet = (newx*m_mapH) + newy;
+	    cit--;
 	  }
 	  else if(m_sommets->at(sommet)->isObstacle()){
 		  defect = true;
 		  break;
 	  }
-	  /*else if ((std::find(vec.begin(), vec.end(), sommet) != vec.end()))
+	  else if ((std::find(vec.begin(), vec.end(), sommet) != vec.end()))
 	  {
 	    std::cout << sommet << std::endl;
-	    int pos = (std::find(vec.begin(), vec.end(), sommet))-vec.begin();
-	    vec.erase(vec.begin()+pos, vec.begin()+(cit-genome.begin()-1));
-	    genome.erase(genome.begin()+pos, cit-1);
-	  }*/
+	    int pos = std::distance(vec.begin(),std::find(vec.begin(), vec.end(), sommet));
+	    vec.erase(vec.begin()+pos, vec.begin()+(cit-genome.begin())-1);
+	    cit=genome.erase(genome.begin()+pos, cit-1);
+	    cit--;
+	  }
 	  else if(sommet == m_cible->get_sommet()){
 	    std::cout << "CHEMIN VERS LA CIBLE TROUVE !!!1§§11§1§" << std::endl;
 	  }
@@ -172,6 +173,7 @@ void Algogen::evaluate(Minion* _minion)
 // 	  std::cout << fitness << std::endl;
 	  vec.push_back(sommet);
 	}
+	std::cout << " | " << _minion->getGenomeSize() << " | ";
 	_minion->setFitness(fitness);
 }
 
@@ -206,8 +208,8 @@ void Algogen::iterate()
 	if(rand()%m_pop.size() < (unsigned int)(((1/(pow(2,rank))) * (float)m_pop.size()))){
 // 	  std::cout << "rentré dans le if " << std::endl;
 	  if(m1==nullptr) {m1=m_pop.at(i);
-	  }else if(m2==nullptr) {m2=m_pop.at(i);
-	  }else {m3=m_pop.at(i);
+	  }else if(m2==nullptr && m_pop.at(i)!=m1) {m2=m_pop.at(i);
+	  }else if(m_pop.at(i)!=m1 && m_pop.at(i)!=m2){m3=m_pop.at(i);
 	    break;
 	  }
 	}

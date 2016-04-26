@@ -121,11 +121,11 @@ void Algogen::evaluate(Minion* _minion)
 	float fitness=0.0;
 	std::vector< std::pair< bool, bool > > genome = _minion->getGenome();
 	std::pair<bool,bool> error;
-	int newx = (int)(m_orig->getX());
-	int newy = (int)(m_orig->getY());
+	unsigned int newx = (int)(m_orig->getX());
+	unsigned int newy = (int)(m_orig->getY());
 	bool defect = false;
 	std::vector<int> vec;
-	int sommet = (newx*m_mapH) + newy;
+	unsigned int sommet = (newx*m_mapH) + newy;
 	vec.push_back(sommet);
 	for(std::vector< std::pair< bool, bool > >::iterator cit = genome.begin(); cit != genome.end(); ++cit){ // parcours du chemin pour détection d'obstacle
 	  newx += (*cit).second*(1-(2*(*cit).first));
@@ -143,9 +143,10 @@ void Algogen::evaluate(Minion* _minion)
 	    newx--;
 	  }*/
 	  if (newx < 0 || newx > m_mapW-1 || newy < 0 || newy > m_mapH-1){
-// 	   std::cout << " lol";
-	    genome.erase(cit-1, genome.end());
-	    break;
+	    newx -= (*cit).second*(1-(2*(*cit).first));
+	    newy -= (1 - (*cit).first) * (1-(2*(*cit).second));
+	    genome.erase(cit);
+	    sommet = (newx*m_mapH) + newy;
 	  }
 	  else if(m_sommets->at(sommet)->isObstacle()){
 		  defect = true;

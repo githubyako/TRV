@@ -11,8 +11,8 @@
 
 #include "minion.h"
 #include "str_exception.h"
+#include "map.h"
 class Algogen{
-
 private:
 	int m_mapW, m_mapH;
 	std::map<int, Case*> const * m_sommets;
@@ -44,6 +44,7 @@ public:
 	void cull();
 	void evaluate(Minion* _minion);
 	unsigned int get_nb_goodResults();
+	
 };
 
 

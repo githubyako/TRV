@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <vector>
 #include <math.h>
+#include <ctime>
 
 #include "case.h"
 #include "terrain.h"
@@ -26,7 +27,7 @@ private:
   // Constructeurs :
   Map();
   Map(Map const & _map);
- 
+  friend class Algogen;
 public:
   
   // On ne veut pas donner accès au constructeur de Controller car on ne souhaite qu'une instance de Controller à la fois

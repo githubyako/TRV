@@ -31,12 +31,63 @@ void Algogen::initPop(int _caseSource, int _caseCible)
   m_cible=m_sommets->at(_caseCible);
   unsigned int originX = m_orig->getX();
   unsigned int originY = m_orig->getY();
+  unsigned int cibleX = m_cible->getX();
+  unsigned int cibleY = m_cible->getY();
+  int distanceX = cibleX- originX;
+  int distanceY = cibleY -originY;
+  bool Astar = ((std::abs(distanceY)>10) || (std::abs(distanceY)>5 && std::abs(distanceX)>5) || (std::abs(distanceX)>=10));
+  
     for(unsigned int i=0;i<8;i++){																// creation pop initiale
       std::vector<std::pair<bool,bool> > genome;			// ALEATOIRE ET COURT, A AMELIORER VIA ASTAR_GA
-      for(int j=0;j<5;++j){
-	bool bool1 = rand() % 2;
-	bool bool2 = rand() % 2;
-	genome.push_back(std::pair<bool,bool>(bool1,bool2));
+      if(i<3 && Astar){
+	if( distanceX > 0 && distanceY > 0){
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, originX*m_mapH+(originY+6), nullptr)));
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+3)*m_mapH+(originY+3), nullptr)));
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+6)*m_mapH+originY, nullptr)));
+	} else if ( distanceX > 0 && distanceY == 0 ){
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+3)*m_mapH+(originY+3), nullptr)));
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+6)*m_mapH+originY, nullptr)));
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+3)*m_mapH+(originY-3), nullptr)));
+	} else if ( distanceX > 0 && distanceY < 0 ){
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+6)*m_mapH+originY, nullptr)));
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+3)*m_mapH+(originY-3), nullptr)));
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, originX*m_mapH+(originY-6), nullptr)));
+	} else if ( distanceX == 0 && distanceY > 0 ){
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, originX*m_mapH+(originY+6), nullptr)));
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX-3)*m_mapH+(originY+3), nullptr)));
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+3)*m_mapH+(originY+3), nullptr)));
+	} else if ( distanceX == 0 && distanceY < 0 ){
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, originX*m_mapH+(originY-6), nullptr)));
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+3)*m_mapH+(originY-3), nullptr)));
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+3)*m_mapH+(originY-3), nullptr)));
+	} else if ( distanceX < 0 && distanceY > 0 ){
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, originX*m_mapH+(originY+6), nullptr)));
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+3)*m_mapH+(originY+3), nullptr)));
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX-6)*m_mapH+originY, nullptr)));
+	} else if ( distanceX < 0 && distanceY == 0 ){
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX-3)*m_mapH+(originY-3), nullptr)));
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX-3)*m_mapH+(originY+3), nullptr)));
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX-6)*m_mapH+originY, nullptr)));
+	} else if ( distanceX < 0 && distanceY < 0){
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, originX*m_mapH+(originY-6), nullptr)));
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX-3)*m_mapH+(originY-3), nullptr)));
+	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX-6)*m_mapH+originY, nullptr)));
+	}
+	i += 3;
+	if ( distanceX == 0 && distanceY == 0){
+	  Astar = false;
+	  i = i - 3;
+	}
+	
+      }
+      else{
+      }
+      if(!Astar || i>=3){
+	for(int j=0;j<6;++j){
+	  bool bool1 = rand() % 2;
+	  bool bool2 = rand() % 2;
+	  genome.push_back(std::pair<bool,bool>(bool1,bool2));
+	}
       }
       m_pop.push_back(new Minion(genome));
     }
@@ -125,33 +176,37 @@ void Algogen::evaluate(Minion* _minion)
 	bool defect = false;
 	std::vector<int> vec;
 	unsigned int sommet = (newx*m_mapH) + newy;
+	vec.push_back(sommet);
 	for(std::vector< std::pair< bool, bool > >::iterator cit = genome.begin(); cit != genome.end(); ++cit){ // parcours du chemin pour détection d'obstacle
 	  newx += ((*cit).second*(1-(2*(*cit).first)));
-	  newy += (((*cit).second -1) * (1-(2*(*cit).first)));
+	  newy += (((*cit).second -1) * ((2*(*cit).first)-1));
 	  sommet = (newx*m_mapH) + newy;
 	  if (newx < 0 || newx > m_mapW-1 || newy < 0 || newy > m_mapH-1 || m_sommets->at(sommet)->isObstacle()){
 	    newx -= ((*cit).second*(1-(2*(*cit).first)));
-	    newy -= (((*cit).second -1) * (1-(2*(*cit).first)));
+	    newy -= (((*cit).second -1) * ((2*(*cit).first)-1));
 	    cit=genome.erase(cit);
 	    sommet = (newx*m_mapH) + newy;
 	    cit--;
 	  } else { 
-	    int pos = std::distance(vec.begin(),std::find(vec.begin(), vec.end(), sommet));
+	   int pos = std::distance(vec.begin(),std::find(vec.begin(), vec.end(), sommet));
 	    if ((std::find(vec.begin(), vec.end(), sommet) != vec.end())) {
-	      vec.erase(vec.begin()+pos, vec.begin()+std::distance(genome.begin(),cit));
-	      cit=genome.erase(genome.begin()+pos, cit-1);
+	      int pos = std::distance(vec.begin(),std::find(vec.begin(), vec.end(), sommet));
+	      vec.erase(vec.begin()+pos+1, vec.end());
+	      cit=genome.erase(genome.begin()+pos, cit+1);
+	      
 	      cit--;
 	    }else {
 	      if(sommet == m_cible->get_sommet()){
 		genome.erase(cit,genome.end());
 		vec.erase(vec.begin()+pos, vec.end());
 		_minion->setVaChemin(true);
-// 		std::cout << "CHEMIN VERS LA CIBLE TROUVE !!!1§§11§1§" << std::endl;
+ 		std::cout << "CHEMIN VERS LA CIBLE TROUVE !!!1§§11§1§" << std::endl;
 		break;
 	      }
 	      vec.push_back(sommet);
 	    }
 	   }
+	   
 	 }
 	int manhattan = abs((m_cible->getX() - m_sommets->at(sommet)->getX())) + abs((m_cible->getY() - m_sommets->at(sommet)->getY()));
 	fitness = 1 - ((((float)manhattan / (m_mapW + m_mapH)) * m_manhattanImportance) + (((float)genome.size() / (m_mapH * m_mapW )) * (1-m_manhattanImportance)));
@@ -166,7 +221,7 @@ void Algogen::iterate()
       evaluate(*it);																		// evaluation fitness
       totalfitness+=(*it)->getFitness();
     }
-//     std::cout << "Fitness moyenne avant itération: " << totalfitness / m_pop.size() << std::endl;
+    std::cout << "Fitness moyenne avant itération: " << totalfitness / m_pop.size() << std::endl;
     m_generationTotalFitness.push_back(totalfitness / m_pop.size());						// ajout au tableau de la fitness générale
     if(m_generationTotalFitness.back() > m_generationTotalFitness.back() - 1){				// Si la fitness générale s'améliore, diminution du taux de mutation
       m_ratioSupprs = m_ratioSupprs * 0.99;

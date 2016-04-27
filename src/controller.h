@@ -33,7 +33,10 @@ public:
   // Fonction de création d'un agent, créé un instance de la classe Agent lorsque le jeu génère une nouvelle unité
   void creer_agent(int x, int y, const std::string type, int id);
   
-  // Fonction de suppression d'agent, supprime l'instance d'Agent à l'identificateur id
+  /**
+   * Fonction de suppression d'agent, supprime l'instance d'Agent à l'identificateur id
+   * @param id identifiant de l'agent
+   */
   void supprimer_agent(int id);
   
   // Fonction de déplacement d'agent, déplace l'Agent d'identificateur id à la case de coordonnées x,y

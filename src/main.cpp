@@ -1,35 +1,33 @@
 #include <iostream>
 #include "controller.h"
 
+using namespace std;
+
 int main(int argc, char **argv) {
-    std::cout << "TRV" << std::endl;
+    cout << "TRV" << endl;
     Controller* controller = Controller::create();
     try{
       controller->initiateRules("../regle.xml");
       controller->initiateMap("../map.txt");
-      controller->creer_agent(3,0,"Cavalier",0);
-      controller->creer_agent(3,0,"Cavalier",1);
-      controller->creer_agent(4,0,"Cavalier",0);
-      controller->creer_agent(2,1,"Artillerie",2);
-      controller->creer_agent(14,6,"Infanterie",3);
+      controller->creer_agent(0,0,"Cavalier",0);
       controller->test();
-      controller->supprimer_agent(1);
       //controller->test();
-     controller->deplacement_agent(0, 4, 1);
      // controller->test();
-//      std::cout << "Déplacement cavalerie Dijkstra : 4,1 jusqu'à : 12,8 " << std::endl;
+//      cout << "Déplacement cavalerie Dijkstra : 4,1 jusqu'à : 12,8 " << endl;
 //      controller->demande_chemin(0,99,88);
-     std::cout << "Déplacement cavalerie A* : 4,1 jusqu'à : 5,2 " << std::endl;
-     controller->demande_chemin_A_star(0,10,10);
-	 controller->demande_chemin_algogen(0,1500,2500);
+     cout << "Déplacement cavalerie A* : 4,1 jusqu'à : 5,2 " << endl;
+     controller->demande_chemin_A_star(0,0,3);
+	 controller->demande_chemin_algogen(0,50,50);
     } catch(str_exception& e){
     
-      std::cout << "str_exception" << e.what() << std::endl;
+      cout << "str_exception" << e.what() << endl;
     }
-    catch(std::exception& e1)
+    catch(exception& e1)
     {
-      std::cout << e1.what() << std::endl;
+      cout << e1.what() << endl;
     }
+    
+   
     
     return 0;
 }

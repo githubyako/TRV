@@ -19,6 +19,7 @@ private:
 	std::map<int, Case*> const * m_sommets;
 	Case *m_orig, * m_cible;
 	std::vector<Minion*> m_pop;
+	const Unite* m_unite;
 	unsigned int m_popsize;
 	unsigned int m_nbkids;
 	unsigned int m_lowestElite;
@@ -32,7 +33,7 @@ private:
 	float m_cullRatio; // ratio d'individus éliminés en dehors des élites par génération
 	std::vector<float> m_generationTotalFitness;
 public:
-	Algogen(int map_w, int map_h,std::map<int, Case*> const * _sommets, unsigned int _popsize, float _manhattanImportance, float _mutationRatio, 
+	Algogen(const Unite * _typeAgent,int map_w, int map_h,std::map<int, Case*> const * _sommets, unsigned int _popsize, float _manhattanImportance, float _mutationRatio, 
 		  float _popToMutate, unsigned int _nbAjouts, float _ratioSupprs,float _ratioModifs, float _ratioElitism, float _cullRatio, unsigned int _nbkids);
 	~Algogen();
 

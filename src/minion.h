@@ -1,6 +1,7 @@
 #ifndef MINION_H
 #define MINION_H
 #include <vector>
+#include <iostream>
 #include "case.h"
 class Minion{
 private:
@@ -11,7 +12,7 @@ private:
 public:
   Minion(std::vector<std::pair<bool,bool> > const & _genome);
   void mutate(unsigned int _nbAjouts, float _ratioSupprs,float _ratioModifs);
-  void mutateElite(unsigned int _nbAjouts);
+  void mutateElite(unsigned int _nbAjouts,float _ratioModifs);
   
   unsigned int getManhattan() const;
   bool getVaChemin() const;

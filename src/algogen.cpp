@@ -1,6 +1,6 @@
 #include "algogen.h"
 
-Algogen::Algogen(int map_w, int map_h, const std::map< int, Case* >* _sommets, unsigned int _popsize, float _manhattanImportance, float _mutationRatio, float _popToMutate, unsigned int _nbAjouts, float _ratioSupprs, float _ratioModifs, float _ratioElitism, float _cullRatio, unsigned int _nbkids):
+Algogen::Algogen(const Unite* _typeAgent, int map_w, int map_h, const std::map< int, Case* >* _sommets, unsigned int _popsize, float _manhattanImportance, float _mutationRatio, float _popToMutate, unsigned int _nbAjouts, float _ratioSupprs, float _ratioModifs, float _ratioElitism, float _cullRatio, unsigned int _nbkids):
 m_ratioElitism(_ratioElitism)
 {
   std::srand(std::time(0));
@@ -22,6 +22,7 @@ m_ratioElitism(_ratioElitism)
 	  m_cullRatio=_cullRatio;
 	  m_nbkids=_nbkids;
   }
+  m_unite = _typeAgent;
   m_nbkidstotal=0;
   m_nbIterations=0;
 }
@@ -116,7 +117,7 @@ void Algogen::cull()
     while(supprs<totalSupprs){
 	    for (std::vector<Minion*>::iterator it = m_pop.begin(); it !=  m_pop.end() - finRange;) {
 		    ded = rand() % 2;
-		    if(ded && supprs < totalSupprs){
+		    if(ded && supprs < totalSupprs && (*it)->getVaChemin()==false){
 			    delete *it;
 			    std::swap(*it, m_pop.back());
 			    m_pop.pop_back();
@@ -135,22 +136,25 @@ void Algogen::mutatePop()
 		unsigned int MinionToMutate = rand() % m_pop.size();
 		elite = (MinionToMutate > m_lowestElite);
 		if(elite){
-			m_pop.at(MinionToMutate)->mutateElite(m_nbAjouts);
+			m_pop.at(MinionToMutate)->mutateElite(m_nbAjouts,m_ratioModifs);
 		}else{
 			m_pop.at(MinionToMutate)->mutate(m_nbAjouts, m_ratioSupprs,m_ratioModifs);
 		}
-    }
+	}
 }
 
 void Algogen::evaluate(Minion* _minion)
 {
-	float fitness=0.0;
+	float fitness=0.0,cout=0.0;
 	std::vector< std::pair< bool, bool > > genome = _minion->getGenome();
 	int newx = (int)(m_orig->getX());
 	int newy = (int)(m_orig->getY());
-	std::vector<int> vec;
+	std::vector< int > vec;
+	std::vector<float> couts;
 	unsigned int sommet = (newx*m_mapH) + newy;
 	vec.push_back(sommet);
+	couts.push_back(0.0);
+	bool _vaChemin=false;
 	for(std::vector< std::pair< bool, bool > >::iterator cit = genome.begin(); cit != genome.end(); ++cit){ // parcours du chemin pour détection d'obstacle
 	  newx += ((*cit).second*(1-(2*(*cit).first)));
 	  newy += (((*cit).second -1) * ((2*(*cit).first)-1));
@@ -160,7 +164,6 @@ void Algogen::evaluate(Minion* _minion)
 	    newx -= ((*cit).second*(1-(2*(*cit).first)));
 	    newy -= (((*cit).second -1) * ((2*(*cit).first)-1));
 	    cit=genome.erase(cit);
-// 	    std::cout << newx << " " << newy << std::endl;
 	    sommet = (newx*m_mapH) + newy;
 	    cit--;
 	  } else {
@@ -168,26 +171,33 @@ void Algogen::evaluate(Minion* _minion)
 	    if ((std::find(vec.begin(), vec.end(), sommet) != vec.end())) {
 	      int pos = std::distance(vec.begin(),std::find(vec.begin(), vec.end(), sommet));
 	      vec.erase(vec.begin()+pos+1, vec.end());
+	      couts.erase(couts.begin()+pos+1,couts.end());
+	      cout=*(couts.begin()+pos);
 	      cit=genome.erase(genome.begin()+pos, cit+1);
-	      
 	      cit--;
 	    }else {
 	      if(sommet == m_cible->get_sommet()){
-		genome.erase(cit,genome.end());
+		genome.erase(cit+1,genome.end());
 		vec.erase(vec.begin()+pos, vec.end());
-		_minion->setVaChemin(true);
+		couts.erase(couts.begin()+pos,couts.end());
+		cout=couts.back();
+		_vaChemin=true;
+// 		std::cout << "chemin trouvé" << std::endl;
 		break;
 	      }
 	      vec.push_back(sommet);
+	      cout+=m_unite->getVitesse(m_sommets->at(sommet)->getTerrain());
+	      couts.push_back(cout);
 	    }
 	   }
 	 }
-// 	 std::cout << sommet << std::endl;
+	_minion->setVaChemin(_vaChemin);
 	int manhattan = abs(m_cible->getX() - m_sommets->at(vec.back())->getX()) + abs(m_cible->getY() - m_sommets->at(vec.back())->getY());
-	fitness = 1 - ((((float)manhattan / (m_mapW + m_mapH)) * m_manhattanImportance) + (((float)genome.size() / (m_mapH * m_mapW )) * (1-m_manhattanImportance)));
+	int coutdistance = (((float)genome.size()*cout / ((m_mapH * m_mapW )*(m_unite->getVitesseMax()))) * (1-m_manhattanImportance));
+	
+	fitness = 1 - ((((float)manhattan / (m_mapW + m_mapH)) * m_manhattanImportance) + coutdistance);
 	_minion->setFitness(fitness);
 	_minion->setManhattan(manhattan);
-// 	std::cout << manhattan << std::endl;
 	_minion->setGenome(genome);
 }
 
@@ -252,8 +262,8 @@ void Algogen::show() const
   
   for(unsigned int i=0;i<m_pop.size();++i){
     if(m_pop.at(i)->getVaChemin()){
-    std::cout << "Genome ayant trouvé le chemin: " << std::endl;
       std::vector< std::pair< bool, bool > > genome = m_pop.at(i)->getGenome();
+      std::cout << "Genome ayant trouvé le chemin (" << genome.size() << " éléments, fitness = " << m_pop.at(i)->getFitness() << ") : " << std::endl;
       int newx = (int)(m_orig->getX());
       int newy = (int)(m_orig->getY());
 //       unsigned int sommet = (newx*m_mapH) + newy;

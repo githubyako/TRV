@@ -8,7 +8,11 @@ Unite::Unite(const std::string& _type, std::vector< std::pair< Terrain*, float >
 	     std::vector< std::pair< Contrainte*, float > > _consoContraintes)
 :m_type(_type),m_vitesse_d(_vitesse_d),m_consoContraintes(_consoContraintes)
 {
-
+  float vitessemax=0.0;
+  for(unsigned int i=0;i<m_vitesse_d.size();i++){
+    vitessemax = std::max(vitessemax,m_vitesse_d.at(i).second);
+  }
+  m_vitesseMax = vitessemax;
 }
 
 Unite::Unite()
@@ -64,3 +68,9 @@ float Unite::getVitesse(const Terrain& _terrain) const
   }
   return result;
 }
+
+float Unite::getVitesseMax() const
+{
+  return m_vitesseMax;
+}
+

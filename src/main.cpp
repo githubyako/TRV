@@ -14,18 +14,16 @@ int main(int argc, char **argv) {
       controller->creer_agent(4,0,"Cavalier",0);
       controller->creer_agent(2,1,"Artillerie",2);
       controller->creer_agent(14,6,"Infanterie",3);
-      std::cout << "crations ok" << std::endl;
+      std::cout << "créations ok" << std::endl;
       controller->test();
       controller->supprimer_agent(1);
-      //controller->test();
      controller->deplacement_agent(0, 5, 5);
      // controller->test();
 //      std::cout << "Déplacement cavalerie Dijkstra : 4,1 jusqu'à : 12,8 " << std::endl;
 //      controller->demande_chemin(0,99,88);
-     std::cout << "Déplacement cavalerie A* : 4,1 jusqu'à : 5,2 " << std::endl;
 //      controller->demande_chemin_A_star(0,450,450);
 //      std::cout << "astar ok" << std::endl;
-	 controller->demande_chemin_algogen(0,100,100);
+	 controller->demande_chemin_algogen(0,50,50);
     } catch(str_exception& e){
     
       std::cout << "str_exception" << e.what() << std::endl;

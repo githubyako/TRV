@@ -619,6 +619,7 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 	float cullRatio = 0.05;
 	unsigned int  nbkids=3;
 	int idsource = m_agents.at(id)->getCase()->get_sommet();
+	const Unite * typeAgent = m_agents.at(id)->getUnite();
 // 	int test=1;
 // 	int i=1,j=1;
 // 	for(unsigned int popsize=100;popsize<=500;popsize+=200){
@@ -635,11 +636,11 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 // 		      for(float ratioElitism = 0.05;ratioElitism<0.3;ratioElitism+=0.1){
 // 			for(float cullRatio = 0.05;cullRatio<=0.2;cullRatio+=0.05){
 // 			  for(unsigned int nbkids=3;nbkids<=5;nbkids+=2){
-			      Algogen algg(m_w,m_h,& m_sommets,popsize,manhattan,mutaRatio,popToMutate,nbAjouts,ratioSupprs,ratioModifs,ratioElitism,cullRatio,nbkids);
+			      Algogen algg(typeAgent, m_w,m_h,& m_sommets,popsize,manhattan,mutaRatio,popToMutate,nbAjouts,ratioSupprs,ratioModifs,ratioElitism,cullRatio,nbkids);
 			      algg.initPop(idsource,idCible);
 			      int k=0;
 // 			      std::cout << "initpop ok, iterating" << std::endl;
-			      while(algg.get_nb_goodResults()==0 && k<1000){
+			      while(k<1000){
 				k++;
 				algg.iterate();
 				if(k%100 == 0){
@@ -647,10 +648,7 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 				}
 // 				algg.show();
 			      }
-			      if(algg.get_nb_goodResults()!=0){
-			      
 			      algg.show();
-			      }
 // 			      if(test%1000==0){
 // 				std::cout << "test n°" << test << " fini." << std::endl;
 // 			      }

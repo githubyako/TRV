@@ -28,17 +28,23 @@ void Algogen::initPop(int _caseSource, int _caseCible)
 {
   m_orig=m_sommets->at(_caseSource);
   m_cible=m_sommets->at(_caseCible);
-  unsigned int originX = m_orig->getX();
-  unsigned int originY = m_orig->getY();
+//   unsigned int originX = m_orig->getX();
+//   unsigned int originY = m_orig->getY();
   for(unsigned int i=0;i<8;i++){					// creation pop initiale
     std::vector<std::pair<bool,bool> > genome;			// ALEATOIRE ET COURT, A AMELIORER VIA ASTAR_GA
-    for(int j=0;j<5;++j){
+    for(unsigned int j=0;j<m_nbAjouts;++j){
       bool bool1 = rand() % 2;
       bool bool2 = rand() % 2;
       genome.push_back(std::pair<bool,bool>(bool1,bool2));
     }
     m_pop.push_back(new Minion(genome));
   }
+  float totalfitness=0.0;
+  for (std::vector<Minion*>::iterator it = m_pop.begin(); it !=  m_pop.end(); ++it) {
+    evaluate(*it);						// evaluation fitness
+    totalfitness+=(*it)->getFitness();
+  }
+  m_generationTotalFitness.push_back(totalfitness / m_pop.size());						// ajout au tableau de la fitness générale
 }
 
 Algogen::~Algogen()
@@ -52,22 +58,21 @@ void Algogen::crossover(Minion* _parent0, Minion* _parent1, Minion* _parent2)
 {
   unsigned int nbchrs=std::max(std::max(_parent0->getGenomeSize(),_parent1->getGenomeSize()),_parent2->getGenomeSize());
   unsigned int parent;
-  for(unsigned int i=0;i<m_nbkids;){
+  std::vector<Minion*> parents{_parent0,_parent1,_parent2};
+  for(unsigned int i=0;i<m_nbkids;i++){
     std::vector<std::pair<bool,bool> > kidgenome;
-    for(unsigned int j=0;j<nbchrs;++j){
-      parent = rand()%3;
-      if(parent==0 && _parent0->getChromosome(j)!=nullptr){
-	kidgenome.push_back(*(_parent0->getChromosome(j)));
-      }else if(parent==1 && _parent1->getChromosome(j)!=nullptr){
-	kidgenome.push_back(*(_parent1->getChromosome(j)));
-      }else if(_parent2->getChromosome(j)!=nullptr){
-	kidgenome.push_back(*(_parent2->getChromosome(j)));
-      }
+    for(unsigned int j=0;j<nbchrs;){
+      parent = rand()%(parents.size());
+      if(j >= parents.at(parent)->getGenomeSize()){
+	parents.erase(parents.begin() + parent);
+	continue;
+      }else{
+	kidgenome.push_back(*(parents.at(parent)->getChromosome(j)));
+	++j;
+      } 
     }
-    if(kidgenome.size()!=0){
-      m_pop.push_back(new Minion(kidgenome));
-      ++i;
-    }
+    m_pop.push_back(new Minion(kidgenome));
+//     std::cout << "taille du genome de l'enfant: " << kidgenome.size() << std::endl;
   }
 }
 
@@ -118,7 +123,6 @@ void Algogen::evaluate(Minion* _minion)
 	std::vector< std::pair< bool, bool > > genome = _minion->getGenome();
 	int newx = (int)(m_orig->getX());
 	int newy = (int)(m_orig->getY());
-	bool defect = false;
 	std::vector<int> vec;
 	unsigned int sommet = (newx*m_mapH) + newy;
 	vec.push_back(sommet);
@@ -126,13 +130,15 @@ void Algogen::evaluate(Minion* _minion)
 	  newx += ((*cit).second*(1-(2*(*cit).first)));
 	  newy += (((*cit).second -1) * ((2*(*cit).first)-1));
 	  sommet = (newx*m_mapH) + newy;
+	  
 	  if (newx < 0 || newx > m_mapW-1 || newy < 0 || newy > m_mapH-1 || m_sommets->at(sommet)->isObstacle()){
 	    newx -= ((*cit).second*(1-(2*(*cit).first)));
 	    newy -= (((*cit).second -1) * ((2*(*cit).first)-1));
 	    cit=genome.erase(cit);
+// 	    std::cout << newx << " " << newy << std::endl;
 	    sommet = (newx*m_mapH) + newy;
 	    cit--;
-	  } else { 
+	  } else {
 	   int pos = std::distance(vec.begin(),std::find(vec.begin(), vec.end(), sommet));
 	    if ((std::find(vec.begin(), vec.end(), sommet) != vec.end())) {
 	      int pos = std::distance(vec.begin(),std::find(vec.begin(), vec.end(), sommet));
@@ -150,73 +156,54 @@ void Algogen::evaluate(Minion* _minion)
 	      vec.push_back(sommet);
 	    }
 	   }
-	   
 	 }
-	int manhattan = abs((m_cible->getX() - m_sommets->at(sommet)->getX())) + abs((m_cible->getY() - m_sommets->at(sommet)->getY()));
+// 	 std::cout << sommet << std::endl;
+	int manhattan = abs(m_cible->getX() - m_sommets->at(vec.back())->getX()) + abs(m_cible->getY() - m_sommets->at(vec.back())->getY());
 	fitness = 1 - ((((float)manhattan / (m_mapW + m_mapH)) * m_manhattanImportance) + (((float)genome.size() / (m_mapH * m_mapW )) * (1-m_manhattanImportance)));
 	_minion->setFitness(fitness);
+	_minion->setManhattan(manhattan);
+// 	std::cout << manhattan << std::endl;
 	_minion->setGenome(genome);
 }
 
 
 void Algogen::iterate()
 {
+
     mutatePop();
-    float totalfitness=0.0;
-    for (std::vector<Minion*>::iterator it = m_pop.begin(); it !=  m_pop.end(); ++it) {
-      evaluate(*it);																		// evaluation fitness
-      totalfitness+=(*it)->getFitness();
-    }
-//     std::cout << "Fitness moyenne avant itération: " << totalfitness / m_pop.size() << std::endl;
-    m_generationTotalFitness.push_back(totalfitness / m_pop.size());						// ajout au tableau de la fitness générale
     if(m_generationTotalFitness.back() > m_generationTotalFitness.back() - 1){				// Si la fitness générale s'améliore, diminution du taux de mutation
-//       m_ratioSupprs = m_ratioSupprs * 0.99;
-//       m_ratioModifs = m_ratioModifs * 0.99;
-  // 		m_ratioAjouts = m_ratioAjouts * 0.99; ?? bonne ou mauvaise idée?
+      m_ratioSupprs = m_ratioSupprs * 0.99;
+      m_ratioModifs = m_ratioModifs * 0.99;
     }
-    
     std::sort (m_pop.begin(), m_pop.end()); 												// tri
-//     std::cout << "tri ok, nettoyage" << std::endl;																				// nettoyage
-//     std::cout << "nettoyage ok, crossover" << std::endl;
     m_lowestElite = (unsigned int)(m_pop.size() * (1 - m_ratioElitism));
     Minion *m1=nullptr, *m2=nullptr, *m3=nullptr;
-//     std::cout << "lol 1" << std::endl;
-    while(m_pop.size()<m_popsize){															// reproduction par rank selection exponentielle tant que la population n'a pas atteint m_popsize
+    while(m_pop.size()<m_popsize){		// reproduction par rank selection exponentielle tant que la population n'a pas atteint m_popsize
       if(m_pop.size() < 3){
 	initPop(m_orig->get_sommet(),m_cible->get_sommet());
       }
-//       std::cout << "lol 2" << std::endl;
-//       unsigned int rank = 1;																// création d'un couple:
-      for (int i = m_pop.size()-1;i>=0;i--){										// probabilité de sélection: 1/2 pour le meilleur individu, 1/4, pour le suivant, 1/8 pour le 3me...
-// 	std::cout << "lol 2.5 " << m_pop.size() << " " << (unsigned int)(((1/(pow(2,rank))) * (float)m_pop.size())) << std::endl;
+      for (int i = m_pop.size()-1;i>=0;i--){					// probabilité de sélection: 1/2 pour le meilleur individu, 1/4, pour le suivant, 1/8 pour le 3me...
 	if(rand()%m_pop.size() > ((1/(i+1)) *  m_pop.size())){
-// 	  std::cout << "rentré dans le if " << std::endl;
 	  if(m1==nullptr) {m1=m_pop.at(i);
 	  }else if(m2==nullptr && m_pop.at(i)!=m1) {m2=m_pop.at(i);
 	  }else if(m_pop.at(i)!=m1 && m_pop.at(i)!=m2){m3=m_pop.at(i);
 	    break;
 	  }
 	}
-// 	rank++;
       }
-//       std::cout << "lol 3" << std::endl;
       if(m1!=nullptr && m2!=nullptr && m3 !=nullptr){
-	      crossover(m1,m2,m3);
-	      m1=nullptr;
-	      m2=nullptr;
-	      m3=nullptr;
+	  crossover(m1,m2,m3);
+	  m1=nullptr;
+	  m2=nullptr;
+	  m3=nullptr;
       }
     }
-//     std::cout << "popsize = " << m_pop.size() << std::endl;
-    cull();	
-    totalfitness=0.0;
+    float totalfitness=0.0;
     for (std::vector<Minion*>::iterator it = m_pop.begin(); it !=  m_pop.end(); ++it) {
 	    evaluate(*it);																		// evaluation fitness
 	    totalfitness+=(*it)->getFitness();
     }
-//     std::cout << "eval ok, iteration finie" << std::endl;
-//     std::cout << "Fitness moyenne après itération: " << totalfitness / m_pop.size() << std::endl;
-//     std::cout << "population = " << m_pop.size() << std::endl;
+    cull();
 }
 
 unsigned int Algogen::get_nb_goodResults()
@@ -230,23 +217,29 @@ unsigned int Algogen::get_nb_goodResults()
   return result;
 }
 
-std::string& Algogen::show() const
+std::string Algogen::show() const
 {
   std::cout << "popsize = " << m_pop.size() << std::endl;
   std::string result = "Population: " + std::to_string(m_pop.size()) + ", manhattan du meilleur individu: " + std::to_string(m_pop.back()->getManhattan())
   + ", genome size = " + std::to_string(m_pop.back()->getGenomeSize());
   std::cout << result << std::endl;
-  std::cout << "Genome du meilleur individu: " << std::endl;
-  std::vector< std::pair< bool, bool > > genome = m_pop.back()->getGenome();
-  int newx = (int)(m_orig->getX());
-  int newy = (int)(m_orig->getY());
-  unsigned int sommet = (newx*m_mapH) + newy;
-  for(std::vector< std::pair< bool, bool > >::iterator cit = genome.begin(); cit != genome.end(); ++cit){ // parcours du chemin pour détection d'obstacle
-    newx += ((*cit).second*(1-(2*(*cit).first)));
-    newy += (((*cit).second -1) * ((2*(*cit).first)-1));
-    sommet = (newx*m_mapH) + newy;
-    std::cout << newx << " " << newy << " " << sommet << " | ";
+  
+  for(unsigned int i=0;i<m_pop.size();++i){
+
+    if(m_pop.at(i)->getVaChemin()){
+    std::cout << "Genome ayant trouvé le chemin: " << std::endl;
+      std::vector< std::pair< bool, bool > > genome = m_pop.at(i)->getGenome();
+      int newx = (int)(m_orig->getX());
+      int newy = (int)(m_orig->getY());
+      unsigned int sommet = (newx*m_mapH) + newy;
+      for(std::vector< std::pair< bool, bool > >::iterator cit = genome.begin(); cit != genome.end(); ++cit){
+	newx += ((*cit).second*(1-(2*(*cit).first)));
+	newy += (((*cit).second -1) * ((2*(*cit).first)-1));
+	sommet = (newx*m_mapH) + newy;
+	std::cout << newx << " " << newy << " " << sommet << " | ";
+      }
+      std::cout << std::endl;
+    }
   }
-  std::cout << std::endl;
   return result;
 }

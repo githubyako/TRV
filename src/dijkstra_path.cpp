@@ -22,7 +22,7 @@ std::vector< int > const& Dijkstra_path::findPath(int _idAgent, int _caseCible)
   std::cout << "test1" << std::endl;
   m_casecible = m_map->get_Case(_caseCible);
   std::cout << "test2" << std::endl;
-  Agent * ag = m_map->get_Agent(_idAgent);
+//   Agent * ag = m_map->get_Agent(_idAgent);
   std::cout << "testlol" << std::endl;
   Case const * caseDepart= (m_map->get_Agent(_idAgent))->getCase(); 	// récupération pointeur case départ
   Case const * next;
@@ -67,4 +67,8 @@ Case* Dijkstra_path::recurse(int _idAgent, Case const* _case)
       } else return recurse(_idAgent, bestc);
     }
   }
+  /*
+   *		RETURN INUTILISE CI DESSOUS: 
+   */
+  return bestc;
 }

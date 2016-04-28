@@ -475,10 +475,6 @@ const std::vector<std::pair<bool,bool>> Map::dijkstra_GA(unsigned int id, unsign
 // Fonction pour trouver un chemin vers une case cible pour un agent avec l'algorithme A* adapté pour l'algorithme génétique
 const std::vector< std::pair< bool, bool > > Map::A_star_GA(unsigned int id, unsigned int idCible, const Unite* unite)
 {
-  if(unite == nullptr){
-    unite = m_unites.at(0);
-  }
-  int start = std::clock();
   std::vector<std::pair<bool,bool>> chemin; // Vecteur de pair de bool représentant le chemin de déplacement de l'agent pour aller de id à idCible
   if (m_sommets.at(idCible)->isObstacle()) // Si la case cible est un obstacle
   {
@@ -506,10 +502,6 @@ const std::vector< std::pair< bool, bool > > Map::A_star_GA(unsigned int id, uns
   tmp_vois = m_sommets.at(id)->getVois(); // On récupère les voisins de la case d'origine
   list_ouv.push_back(tmp_somm); // On met le sommet d'origine dans la liste ouverte
   while(!end){ // Tant que l'on a pas fini :
-    int exectime = (std::clock()-start)/double(CLOCKS_PER_SEC)*1000;
-    if (exectime >= 200){
-      return chemin;
-    }
     for(std::vector<Case*>::iterator i1 = tmp_vois.begin(); i1 != tmp_vois.end(); i1++){ // On parcours tous les voisins de tmp_somm
       if(std::find(list_ferm.begin(), list_ferm.end(), (*i1)->get_sommet()) == list_ferm.end()){ // Si le voisin ne fait pas parti de la liste fermée
 	if((*i1)->isObstacle()){ // S'il s'agit s'agit d'un obstacle
@@ -587,45 +579,56 @@ const std::vector< std::pair< bool, bool > > Map::A_star_GA(unsigned int id, uns
 // Fonction pour trouver un chemin vers une case cible pour un agent avec un algorithme génétique
 void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* unite)
 {
-	unsigned int popsize=50;
-	float manhattan = 0.7;
-	float mutaRatio = 0.2;
-	float popToMutate = 0.2;
-	unsigned int nbAjouts = 4;
-	float ratioSupprs = 0.05;
-	float ratioModifs = 0.05;
-	float ratioElitism = 0.2;
-	float cullRatio = 0.3;
+ 	unsigned int popsize=100;
+	float manhattan = 0.1;
+	float mutaRatio = 0.05;
+	float popToMutate = 1;
+ 	unsigned int nbAjouts = 10;
+	float ratioSupprs = 0.1;
+	float ratioModifs = 0.1;
+	float ratioElitism = 0.05;
+	float cullRatio = 0.15;
 	unsigned int  nbkids=3;
-// 	int i=1,j=1,test=1;
 	int idsource = m_agents.at(id)->getCase()->get_sommet();
-// 	for(unsigned int popsize=50;popsize<=500;popsize+=100){
+// 	int test=1;
+// 	int i=1,j=1;
+// 	for(unsigned int popsize=100;popsize<=500;popsize+=200){
 // 	  std::cout << "Passe " << i << " sur 10." << std::endl;
-// 	  for(float manhattan = 0.5;manhattan < 1;manhattan+=0.2){
+	
+	// 100, 0, 0.05, 1, 9, 0.09, 0.1, 0.05, 0.15, 3
+// 	  for(float manhattan = 0;manhattan <= 1;manhattan+=0.3){
 // 	    std::cout << "Passe " << i << "." << j << std::endl;
 // 	    for(float mutaRatio = 0.05;mutaRatio<0.5;mutaRatio+=0.2){
-// 	      for(float popToMutate=0.2;popToMutate<1;popToMutate+=0.2){
+// 	      for(float popToMutate=0.2;popToMutate<=1;popToMutate+=0.4){
 // 		for(unsigned int nbAjouts = 1;nbAjouts<=10;nbAjouts+=2){
-// 		  for(float ratioSupprs=0.05;ratioSupprs<0.5;ratioSupprs+=0.2){
-// 		    for(float ratioModifs=0.05;ratioModifs<0.5;ratioModifs+=0.2){
-// 		      for(float ratioElitism = 0.05;ratioElitism<0.5;ratioElitism+=0.2){
-// 			for(float cullRatio = 0.1;cullRatio<0.5;cullRatio+=0.2){
-// 			  for(unsigned int nbkids=1;nbkids<5;nbkids+=2){
+// 		  for(float ratioSupprs=0.05;ratioSupprs<0.1;ratioSupprs+=0.02){
+// 		    for(float ratioModifs=0.1;ratioModifs<=0.2;ratioModifs+=0.05){
+// 		      for(float ratioElitism = 0.05;ratioElitism<0.3;ratioElitism+=0.1){
+// 			for(float cullRatio = 0.05;cullRatio<=0.2;cullRatio+=0.05){
+// 			  for(unsigned int nbkids=3;nbkids<=5;nbkids+=2){
 			      Algogen algg(m_w,m_h,& m_sommets,popsize,manhattan,mutaRatio,popToMutate,nbAjouts,ratioSupprs,ratioModifs,ratioElitism,cullRatio,nbkids);
 			      algg.initPop(idsource,idCible);
 			      int k=0;
-			     while(algg.get_nb_goodResults()==0 && k<50){
-				std::cout << "iteration " << k << std::endl;
-				algg.iterate();
+// 			      std::cout << "initpop ok, iterating" << std::endl;
+			      while(algg.get_nb_goodResults()==0 && k<5000){
 				k++;
-				
+				algg.iterate();
+				if(k%100 == 0){
+				  std::cout << "iteration " << k << std::endl;
+				}
+// 				algg.show();
 			      }
-// 			      if(algg.get_nb_goodResults()>0){
-// 				std::cout << algg.get_nb_goodResults() << " bons chemins trouvés en " << k << "itérations pour les paramètres " << 
-// 				  popsize << ", " << manhattan << ", " << mutaRatio << ", " << popToMutate << ", " <<
-// 				  nbAjouts << ", " << ratioSupprs << ", " << ratioModifs << ", " << ratioElitism << ", " << cullRatio << ", " << nbkids << std::endl;
+			      if(algg.get_nb_goodResults()!=0){
+			      
+			      algg.show();
+				std::cout << algg.get_nb_goodResults() << " bons chemins trouvés en " << k << "itérations pour les paramètres " << 
+				  popsize << ", " << manhattan << ", " << mutaRatio << ", " << popToMutate << ", " <<
+				  nbAjouts << ", " << ratioSupprs << ", " << ratioModifs << ", " << ratioElitism << ", " << cullRatio << ", " << nbkids << std::endl;
+			      
+			      }
+// 			      if(test%1000==0){
+// 				std::cout << "test n°" << test << " fini." << std::endl;
 // 			      }
-// 			      std::cout << "test n°" << test << " fini." << std::endl;
 // 			      test++;
 // 			  }
 // 			}
@@ -635,9 +638,9 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 // 		}
 // 	      }
 // 	    }
-// 	    ++j;
+// 	    j++;
 // 	  }
-// 	  ++i;
+// 	  i++;
 // 	}
 	
 

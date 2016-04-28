@@ -43,7 +43,7 @@ public:
 	void mutatePop();
 	void cull();
 	void evaluate(Minion* _minion);
-	std::string & show() const;
+	std::string show() const;
 	unsigned int get_nb_goodResults();
 };
 

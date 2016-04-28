@@ -66,20 +66,22 @@ void Minion::setGenome(const std::vector< std::pair< bool, bool > >& _genome)
 void Minion::mutate(unsigned int _nbAjouts, float _ratioSupprs, float _ratioModifs)
 {
   if(!m_vaChemin){
-	unsigned int nbsupprs = (unsigned int)(m_genome.size() * _ratioSupprs);
-	for(unsigned int i=0;i<nbsupprs;++i){													// suppressions
-		std::swap(m_genome.at(i),m_genome.back());
-		m_genome.pop_back();
-	}
-	
-	unsigned int nbmodifs = (unsigned int)(m_genome.size() * _ratioModifs);
-	for(unsigned int i=0;i<nbmodifs;++i){													// modifications
-		m_genome.at(rand() % m_genome.size()) = std::pair<bool,bool>(rand()%2,rand()%2);
-	}
+    unsigned int nbsupprs = (unsigned int)(m_genome.size() * _ratioSupprs);
+    for(unsigned int i=0;i<nbsupprs;++i){													// suppressions
+	    std::swap(m_genome.at(i),m_genome.back());
+	    m_genome.pop_back();
+    }
+    
+    unsigned int nbmodifs = (unsigned int)(m_genome.size() * _ratioModifs);
+    for(unsigned int i=0;i<nbmodifs;++i){													// modifications
+	    m_genome.at(rand() % m_genome.size()) = std::pair<bool,bool>(rand()%2,rand()%2);
+    }
 
-	for(unsigned int i=0;i<_nbAjouts;++i){													// modifications
-		m_genome.push_back(std::pair<bool,bool>(rand()%2,rand()%2));
-	}
+    for(unsigned int i=0;i<_nbAjouts;++i){													// modifications
+	    m_genome.push_back(std::pair<bool,bool>(rand()%2,rand()%2));
+    }
+  }else{
+    
   }
 }
 

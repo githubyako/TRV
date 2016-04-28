@@ -130,6 +130,11 @@ void Map::addUnite(const std::string& _type, std::vector< std::pair< std::string
 // Fonction d'ajout d'un agent à la map
 void Map::addAgent(int _iden, int _x, int _y, std::string const & _unite)
 {
+  
+  if(_iden < (int)m_agents.size() && m_agents.at(_iden) != nullptr){
+    suppr_agent(_iden);
+  }
+  
   // On aggrandit le vector m_agents s'il n'y a pas assez de place
   unsigned int id = (unsigned int) _iden;
   if(m_agents.size()<=id){
@@ -153,6 +158,7 @@ void Map::addAgent(int _iden, int _x, int _y, std::string const & _unite)
     // Si oui, on créer et rajoute le nouvelle agent
     m_agents.at(id)=new Agent(id,caseptr,uniteptr);
   }
+  
 }
 
 // Fonction d'ajout d'une Contrainte à la map
@@ -197,12 +203,13 @@ void Map::suppr_agent(int id)
 {
   unsigned int id2 = (unsigned int) id;
         // On regarde si l'unité existe encore 
-	if (m_agents[id2]==NULL)
-		// Si non, on lève une exception
-		throw new str_exception("Cette unité n'existe plus");
+	if (m_agents[id2]==nullptr)
+	  // Si non, on lève une exception
+	  throw new str_exception("Cette unité n'existe plus");
 	else
 		// Si oui, on mets le pointeur à NULL
-		m_agents[id2]=NULL;
+	  delete m_agents[id2];
+	  m_agents[id2]=nullptr;
 }
 
 // ********
@@ -618,7 +625,7 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 			      algg.initPop(idsource,idCible);
 			      int k=0;
 // 			      std::cout << "initpop ok, iterating" << std::endl;
-			      while(algg.get_nb_goodResults()==0 && k<5000){
+			      while(algg.get_nb_goodResults()==0 && k<10){
 				k++;
 				algg.iterate();
 				if(k%100 == 0){

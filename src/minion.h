@@ -7,12 +7,13 @@ private:
   std::vector<std::pair<bool,bool> > m_genome;
   float m_fitness;
   bool m_vaChemin;
+  unsigned int m_manhattan;
 public:
   Minion(std::vector<std::pair<bool,bool> > const & _genome);
   void mutate(unsigned int _nbAjouts, float _ratioSupprs,float _ratioModifs);
   void mutateElite(unsigned int _nbAjouts);
   
-  
+  unsigned int getManhattan() const;
   bool getVaChemin() const;
   float const & getFitness() const;
   std::vector<std::pair<bool,bool> > const & getGenome() const;
@@ -23,7 +24,8 @@ public:
 
   void setFitness(float _fitness);
   void setVaChemin(bool _vaChemin);
-  
+  void setManhattan(unsigned int _manhattan);
+  void setGenome( std::vector<std::pair<bool,bool> > const & _genome);
 };
 
 #endif

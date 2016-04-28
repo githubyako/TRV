@@ -39,11 +39,26 @@ bool Minion::getVaChemin() const
   return m_vaChemin;
 }
 
+unsigned int Minion::getManhattan() const
+{
+  return m_manhattan;
+}
+
+
 void Minion::setVaChemin(bool _vaChemin)
 {
   m_vaChemin = _vaChemin;
 }
 
+void Minion::setManhattan(unsigned int _manhattan)
+{
+  m_manhattan = _manhattan;
+}
+
+void Minion::setGenome(const std::vector< std::pair< bool, bool > >& _genome)
+{
+  m_genome = _genome;
+}
 
 
 // 					METHODES

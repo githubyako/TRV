@@ -22,7 +22,6 @@ m_ratioElitism(_ratioElitism)
 	  m_cullRatio=_cullRatio;
 	  m_nbkids=_nbkids;
   }
-//   std::cout << "constructeur OK" << std::endl;
 }
 
 void Algogen::initPop(int _caseSource, int _caseCible)
@@ -31,67 +30,15 @@ void Algogen::initPop(int _caseSource, int _caseCible)
   m_cible=m_sommets->at(_caseCible);
   unsigned int originX = m_orig->getX();
   unsigned int originY = m_orig->getY();
-  unsigned int cibleX = m_cible->getX();
-  unsigned int cibleY = m_cible->getY();
-  int distanceX = cibleX- originX;
-  int distanceY = cibleY -originY;
-  bool Astar = ((std::abs(distanceY)>10) || (std::abs(distanceY)>5 && std::abs(distanceX)>5) || (std::abs(distanceX)>=10));
-  
-    for(unsigned int i=0;i<8;i++){																// creation pop initiale
-      std::vector<std::pair<bool,bool> > genome;			// ALEATOIRE ET COURT, A AMELIORER VIA ASTAR_GA
-      if(i<3 && Astar){
-	if( distanceX > 0 && distanceY > 0){
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, originX*m_mapH+(originY+6), nullptr)));
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+3)*m_mapH+(originY+3), nullptr)));
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+6)*m_mapH+originY, nullptr)));
-	} else if ( distanceX > 0 && distanceY == 0 ){
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+3)*m_mapH+(originY+3), nullptr)));
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+6)*m_mapH+originY, nullptr)));
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+3)*m_mapH+(originY-3), nullptr)));
-	} else if ( distanceX > 0 && distanceY < 0 ){
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+6)*m_mapH+originY, nullptr)));
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+3)*m_mapH+(originY-3), nullptr)));
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, originX*m_mapH+(originY-6), nullptr)));
-	} else if ( distanceX == 0 && distanceY > 0 ){
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, originX*m_mapH+(originY+6), nullptr)));
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX-3)*m_mapH+(originY+3), nullptr)));
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+3)*m_mapH+(originY+3), nullptr)));
-	} else if ( distanceX == 0 && distanceY < 0 ){
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, originX*m_mapH+(originY-6), nullptr)));
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+3)*m_mapH+(originY-3), nullptr)));
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+3)*m_mapH+(originY-3), nullptr)));
-	} else if ( distanceX < 0 && distanceY > 0 ){
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, originX*m_mapH+(originY+6), nullptr)));
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX+3)*m_mapH+(originY+3), nullptr)));
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX-6)*m_mapH+originY, nullptr)));
-	} else if ( distanceX < 0 && distanceY == 0 ){
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX-3)*m_mapH+(originY-3), nullptr)));
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX-3)*m_mapH+(originY+3), nullptr)));
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX-6)*m_mapH+originY, nullptr)));
-	} else if ( distanceX < 0 && distanceY < 0){
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, originX*m_mapH+(originY-6), nullptr)));
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX-3)*m_mapH+(originY-3), nullptr)));
-	  m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, (originX-6)*m_mapH+originY, nullptr)));
-	}
-	i += 3;
-	if ( distanceX == 0 && distanceY == 0){
-	  Astar = false;
-	  i = i - 3;
-	}
-	
-      }
-      else{
-      }
-      if(!Astar || i>=3){
-	for(int j=0;j<6;++j){
-	  bool bool1 = rand() % 2;
-	  bool bool2 = rand() % 2;
-	  genome.push_back(std::pair<bool,bool>(bool1,bool2));
-	}
-      }
-      m_pop.push_back(new Minion(genome));
+  for(unsigned int i=0;i<8;i++){					// creation pop initiale
+    std::vector<std::pair<bool,bool> > genome;			// ALEATOIRE ET COURT, A AMELIORER VIA ASTAR_GA
+    for(int j=0;j<5;++j){
+      bool bool1 = rand() % 2;
+      bool bool2 = rand() % 2;
+      genome.push_back(std::pair<bool,bool>(bool1,bool2));
     }
-//   std::cout << "initpop OK" << std::endl;
+    m_pop.push_back(new Minion(genome));
+  }
 }
 
 Algogen::~Algogen()
@@ -107,7 +54,6 @@ void Algogen::crossover(Minion* _parent0, Minion* _parent1, Minion* _parent2)
   unsigned int parent;
   for(unsigned int i=0;i<m_nbkids;){
     std::vector<std::pair<bool,bool> > kidgenome;
-//     std::cout << "debut du for" << std::endl;
     for(unsigned int j=0;j<nbchrs;++j){
       parent = rand()%3;
       if(parent==0 && _parent0->getChromosome(j)!=nullptr){
@@ -122,13 +68,12 @@ void Algogen::crossover(Minion* _parent0, Minion* _parent1, Minion* _parent2)
       m_pop.push_back(new Minion(kidgenome));
       ++i;
     }
-//     std::cout << "fin du for" << std::endl;
   }
 }
 
 void Algogen::cull()
 {
-    for (std::vector<Minion*>::iterator it = m_pop.begin(); it !=  m_pop.end();) { // suppression des individus rencontrant un obstacle
+    for (std::vector<Minion*>::iterator it = m_pop.begin(); it !=  m_pop.end();) {
 		if ((*it)->getFitness() == 0.0){
 			std::swap(*it, m_pop.back());
 			m_pop.pop_back();
@@ -200,7 +145,6 @@ void Algogen::evaluate(Minion* _minion)
 		genome.erase(cit,genome.end());
 		vec.erase(vec.begin()+pos, vec.end());
 		_minion->setVaChemin(true);
- 		std::cout << "CHEMIN VERS LA CIBLE TROUVE !!!1§§11§1§" << std::endl;
 		break;
 	      }
 	      vec.push_back(sommet);
@@ -211,37 +155,41 @@ void Algogen::evaluate(Minion* _minion)
 	int manhattan = abs((m_cible->getX() - m_sommets->at(sommet)->getX())) + abs((m_cible->getY() - m_sommets->at(sommet)->getY()));
 	fitness = 1 - ((((float)manhattan / (m_mapW + m_mapH)) * m_manhattanImportance) + (((float)genome.size() / (m_mapH * m_mapW )) * (1-m_manhattanImportance)));
 	_minion->setFitness(fitness);
+	_minion->setGenome(genome);
 }
 
 
 void Algogen::iterate()
 {
+    mutatePop();
     float totalfitness=0.0;
     for (std::vector<Minion*>::iterator it = m_pop.begin(); it !=  m_pop.end(); ++it) {
       evaluate(*it);																		// evaluation fitness
       totalfitness+=(*it)->getFitness();
     }
-    std::cout << "Fitness moyenne avant itération: " << totalfitness / m_pop.size() << std::endl;
+//     std::cout << "Fitness moyenne avant itération: " << totalfitness / m_pop.size() << std::endl;
     m_generationTotalFitness.push_back(totalfitness / m_pop.size());						// ajout au tableau de la fitness générale
     if(m_generationTotalFitness.back() > m_generationTotalFitness.back() - 1){				// Si la fitness générale s'améliore, diminution du taux de mutation
-      m_ratioSupprs = m_ratioSupprs * 0.99;
-      m_ratioModifs = m_ratioModifs * 0.99;
+//       m_ratioSupprs = m_ratioSupprs * 0.99;
+//       m_ratioModifs = m_ratioModifs * 0.99;
   // 		m_ratioAjouts = m_ratioAjouts * 0.99; ?? bonne ou mauvaise idée?
     }
     
     std::sort (m_pop.begin(), m_pop.end()); 												// tri
-//     std::cout << "tri ok, nettoyage" << std::endl;
-    cull();																					// nettoyage
+//     std::cout << "tri ok, nettoyage" << std::endl;																				// nettoyage
 //     std::cout << "nettoyage ok, crossover" << std::endl;
     m_lowestElite = (unsigned int)(m_pop.size() * (1 - m_ratioElitism));
     Minion *m1=nullptr, *m2=nullptr, *m3=nullptr;
 //     std::cout << "lol 1" << std::endl;
     while(m_pop.size()<m_popsize){															// reproduction par rank selection exponentielle tant que la population n'a pas atteint m_popsize
+      if(m_pop.size() < 3){
+	initPop(m_orig->get_sommet(),m_cible->get_sommet());
+      }
 //       std::cout << "lol 2" << std::endl;
-      unsigned int rank = 1;																// création d'un couple:
+//       unsigned int rank = 1;																// création d'un couple:
       for (int i = m_pop.size()-1;i>=0;i--){										// probabilité de sélection: 1/2 pour le meilleur individu, 1/4, pour le suivant, 1/8 pour le 3me...
 // 	std::cout << "lol 2.5 " << m_pop.size() << " " << (unsigned int)(((1/(pow(2,rank))) * (float)m_pop.size())) << std::endl;
-	if(rand()%m_pop.size() < (unsigned int)(((1/(pow(2,rank))) * (float)m_pop.size()))){
+	if(rand()%m_pop.size() > ((1/(i+1)) *  m_pop.size())){
 // 	  std::cout << "rentré dans le if " << std::endl;
 	  if(m1==nullptr) {m1=m_pop.at(i);
 	  }else if(m2==nullptr && m_pop.at(i)!=m1) {m2=m_pop.at(i);
@@ -249,7 +197,7 @@ void Algogen::iterate()
 	    break;
 	  }
 	}
-	rank++;
+// 	rank++;
       }
 //       std::cout << "lol 3" << std::endl;
       if(m1!=nullptr && m2!=nullptr && m3 !=nullptr){
@@ -258,15 +206,15 @@ void Algogen::iterate()
 	      m2=nullptr;
 	      m3=nullptr;
       }
-    } 
-//     std::cout << "crossover ok, mutation" << std::endl;
-    mutatePop();
+    }
+//     std::cout << "popsize = " << m_pop.size() << std::endl;
+    cull();	
     totalfitness=0.0;
     for (std::vector<Minion*>::iterator it = m_pop.begin(); it !=  m_pop.end(); ++it) {
 	    evaluate(*it);																		// evaluation fitness
 	    totalfitness+=(*it)->getFitness();
     }
-//     std::cout << "mutation ok" << std::endl;
+//     std::cout << "eval ok, iteration finie" << std::endl;
 //     std::cout << "Fitness moyenne après itération: " << totalfitness / m_pop.size() << std::endl;
 //     std::cout << "population = " << m_pop.size() << std::endl;
 }
@@ -279,5 +227,26 @@ unsigned int Algogen::get_nb_goodResults()
       result++;
     }
   }
+  return result;
+}
+
+std::string& Algogen::show() const
+{
+  std::cout << "popsize = " << m_pop.size() << std::endl;
+  std::string result = "Population: " + std::to_string(m_pop.size()) + ", manhattan du meilleur individu: " + std::to_string(m_pop.back()->getManhattan())
+  + ", genome size = " + std::to_string(m_pop.back()->getGenomeSize());
+  std::cout << result << std::endl;
+  std::cout << "Genome du meilleur individu: " << std::endl;
+  std::vector< std::pair< bool, bool > > genome = m_pop.back()->getGenome();
+  int newx = (int)(m_orig->getX());
+  int newy = (int)(m_orig->getY());
+  unsigned int sommet = (newx*m_mapH) + newy;
+  for(std::vector< std::pair< bool, bool > >::iterator cit = genome.begin(); cit != genome.end(); ++cit){ // parcours du chemin pour détection d'obstacle
+    newx += ((*cit).second*(1-(2*(*cit).first)));
+    newy += (((*cit).second -1) * ((2*(*cit).first)-1));
+    sommet = (newx*m_mapH) + newy;
+    std::cout << newx << " " << newy << " " << sommet << " | ";
+  }
+  std::cout << std::endl;
   return result;
 }

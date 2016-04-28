@@ -238,15 +238,14 @@ unsigned int Algogen::get_nb_goodResults()
   return result;
 }
 
-std::string Algogen::show() const
+void Algogen::show() const
 {
-  std::cout << "popsize = " << m_pop.size() << std::endl;
-  std::string result = "Population: " + std::to_string(m_pop.size()) + ", manhattan du meilleur individu: " + std::to_string(m_pop.back()->getManhattan())
-  + ", genome size = " + std::to_string(m_pop.back()->getGenomeSize());
-  std::cout << result << std::endl;
+  std::cout << std::endl << "*******************************************************" << std::endl;
+  std::cout << "Stats: " << std::endl;
+  std::cout << m_nbkidstotal << " enfants créés." << std::endl;
+  std::cout << m_nbIterations << " iterations." << std::endl;
   
   for(unsigned int i=0;i<m_pop.size();++i){
-
     if(m_pop.at(i)->getVaChemin()){
     std::cout << "Genome ayant trouvé le chemin: " << std::endl;
       std::vector< std::pair< bool, bool > > genome = m_pop.at(i)->getGenome();
@@ -256,11 +255,9 @@ std::string Algogen::show() const
       for(std::vector< std::pair< bool, bool > >::iterator cit = genome.begin(); cit != genome.end(); ++cit){
 	newx += ((*cit).second*(1-(2*(*cit).first)));
 	newy += (((*cit).second -1) * ((2*(*cit).first)-1));
-	sommet = (newx*m_mapH) + newy;
-	std::cout << newx << " " << newy << " " << sommet << " | ";
+	std::cout << "X= " << newx << ", Y= " << newy << " | ";
       }
       std::cout << std::endl;
     }
   }
-  return result;
 }

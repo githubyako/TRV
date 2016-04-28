@@ -8,8 +8,8 @@
 #include <ctime>
 #include <cstdlib>
 #include <math.h>
-#include "map.h"
 
+#include "map.h"
 #include "minion.h"
 #include "str_exception.h"
 class Algogen{

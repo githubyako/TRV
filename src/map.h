@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <vector>
 #include <math.h>
+#include <ctime>
 
 #include "case.h"
 #include "terrain.h"

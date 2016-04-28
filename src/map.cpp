@@ -475,6 +475,10 @@ const std::vector<std::pair<bool,bool>> Map::dijkstra_GA(unsigned int id, unsign
 // Fonction pour trouver un chemin vers une case cible pour un agent avec l'algorithme A* adapté pour l'algorithme génétique
 const std::vector< std::pair< bool, bool > > Map::A_star_GA(unsigned int id, unsigned int idCible, const Unite* unite)
 {
+  if(unite == nullptr){
+    unite = m_unites.at(0);
+  }
+  int start = std::clock();
   std::vector<std::pair<bool,bool>> chemin; // Vecteur de pair de bool représentant le chemin de déplacement de l'agent pour aller de id à idCible
   if (m_sommets.at(idCible)->isObstacle()) // Si la case cible est un obstacle
   {
@@ -502,6 +506,10 @@ const std::vector< std::pair< bool, bool > > Map::A_star_GA(unsigned int id, uns
   tmp_vois = m_sommets.at(id)->getVois(); // On récupère les voisins de la case d'origine
   list_ouv.push_back(tmp_somm); // On met le sommet d'origine dans la liste ouverte
   while(!end){ // Tant que l'on a pas fini :
+    int exectime = (std::clock()-start)/double(CLOCKS_PER_SEC)*1000;
+    if (exectime >= 200){
+      return chemin;
+    }
     for(std::vector<Case*>::iterator i1 = tmp_vois.begin(); i1 != tmp_vois.end(); i1++){ // On parcours tous les voisins de tmp_somm
       if(std::find(list_ferm.begin(), list_ferm.end(), (*i1)->get_sommet()) == list_ferm.end()){ // Si le voisin ne fait pas parti de la liste fermée
 	if((*i1)->isObstacle()){ // S'il s'agit s'agit d'un obstacle

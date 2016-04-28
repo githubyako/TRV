@@ -41,8 +41,8 @@ void Algogen::initPop(int _caseSource, int _caseCible)
   bool e = cibleY == originY;
   bool f = 1-d-e;
   bool Astar = ((std::abs(distanceY)>6) || (std::abs(distanceY)>3 && std::abs(distanceX)>3) || (std::abs(distanceX)>=6));
-    for(unsigned int i=0;i<8;i++){																// creation pop initiale
-      std::vector<std::pair<bool,bool> > genome;			// ALEATOIRE ET COURT, A AMELIORER VIA ASTAR_GA
+    for(unsigned int i=0;i<8;i++){							// creation pop initiale::endl;
+      std::vector<std::pair<bool,bool> > genome;
       if(i<3 && Astar){
 	 m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, ((originX+3*(b-e+2*(c-f)))*m_mapH+(originY+3*(e-b+2*(f-a)))), nullptr)));
 	 m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, ((originX+3*((a-c)*(1-e)+2*(c-a)))*m_mapH+(originY+3*((d-f)*(1-b)+2*(e-a-b-c+2*f)))), nullptr)));

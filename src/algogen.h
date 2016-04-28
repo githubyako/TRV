@@ -9,9 +9,9 @@
 #include <cstdlib>
 #include <math.h>
 
-#include "map.h"
 #include "minion.h"
 #include "str_exception.h"
+#include "map.h"
 class Algogen{
 
 private:
@@ -22,6 +22,7 @@ private:
 	unsigned int m_popsize;
 	unsigned int m_nbkids;
 	unsigned int m_lowestElite;
+	unsigned int m_nbkidstotal, m_nbIterations;
 	float m_manhattanImportance; // importance relative de la distance de manhattan 
 	float m_mutationRatio; // ratio de mutation par individu et par génération
 	float m_popToMutate; // ratio de population sujette à mutation à chaque génération

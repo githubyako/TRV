@@ -21,7 +21,21 @@ Map::Map(const Map& _map)
 
 Map::~Map()
 {
-
+  for(std::map<int, Case*>::iterator it = m_sommets.begin();it!=m_sommets.end();it++){
+    delete it->second;
+  }
+  for(std::vector<Terrain*>::iterator it = m_terrains.begin();it!=m_terrains.end();it++){
+    delete *it;
+  }
+  for(std::vector<Agent*>::iterator it = m_agents.begin();it!=m_agents.end();it++){
+    delete *it;
+  }
+  for(std::vector<Unite*>::iterator it = m_unites.begin();it!=m_unites.end();it++){
+    delete *it;
+  }
+  for(std::vector<Contrainte*>::iterator it = m_contraintes.begin();it!=m_contraintes.end();it++){
+    delete *it;
+  }
 }
 
 // On ne veut pas donner accès au constructeur de Controller car on ne souhaite qu'une instance de Controller à la fois
@@ -602,7 +616,7 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 	float ratioSupprs = 0.1;
 	float ratioModifs = 0.1;
 	float ratioElitism = 0.05;
-	float cullRatio = 0.15;
+	float cullRatio = 0.05;
 	unsigned int  nbkids=3;
 	int idsource = m_agents.at(id)->getCase()->get_sommet();
 // 	int test=1;
@@ -625,7 +639,7 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 			      algg.initPop(idsource,idCible);
 			      int k=0;
 // 			      std::cout << "initpop ok, iterating" << std::endl;
-			      while(algg.get_nb_goodResults()==0 && k<10){
+			      while(algg.get_nb_goodResults()==0 && k<1000){
 				k++;
 				algg.iterate();
 				if(k%100 == 0){
@@ -636,10 +650,6 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 			      if(algg.get_nb_goodResults()!=0){
 			      
 			      algg.show();
-				std::cout << algg.get_nb_goodResults() << " bons chemins trouvés en " << k << "itérations pour les paramètres " << 
-				  popsize << ", " << manhattan << ", " << mutaRatio << ", " << popToMutate << ", " <<
-				  nbAjouts << ", " << ratioSupprs << ", " << ratioModifs << ", " << ratioElitism << ", " << cullRatio << ", " << nbkids << std::endl;
-			      
 			      }
 // 			      if(test%1000==0){
 // 				std::cout << "test n°" << test << " fini." << std::endl;

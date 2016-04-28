@@ -323,5 +323,11 @@ void Controller::test()
 
 Controller::~Controller()
 {
-
+  delete map;
 }
+
+void Controller::delete_controller()
+{
+  delete s_controller;
+}
+

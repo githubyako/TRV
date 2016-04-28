@@ -22,6 +22,8 @@ m_ratioElitism(_ratioElitism)
 	  m_cullRatio=_cullRatio;
 	  m_nbkids=_nbkids;
   }
+  m_nbkidstotal=0;
+  m_nbIterations=0;
 }
 
 void Algogen::initPop(int _caseSource, int _caseCible)
@@ -41,12 +43,13 @@ void Algogen::initPop(int _caseSource, int _caseCible)
   bool e = cibleY == originY;
   bool f = 1-d-e;
   bool Astar = ((std::abs(distanceY)>6) || (std::abs(distanceY)>3 && std::abs(distanceX)>3) || (std::abs(distanceX)>=6));
-    for(unsigned int i=0;i<8;i++){							// creation pop initiale::endl;
-      std::vector<std::pair<bool,bool> > genome;
+  std::cout << "lol3" << std::endl;
+    for(unsigned int i=0;i<8;i++){					// creation pop initiale
+      std::vector<std::pair<bool,bool> > genome;			// ALEATOIRE ET COURT, A AMELIORER VIA ASTAR_GA
       if(i<3 && Astar){
-	 m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, ((originX+3*(b-e+2*(c-f)))*m_mapH+(originY+3*(e-b+2*(f-a)))), nullptr)));
-	 m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, ((originX+3*((a-c)*(1-e)+2*(c-a)))*m_mapH+(originY+3*((d-f)*(1-b)+2*(e-a-b-c+2*f)))), nullptr)));
-	 m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, ((originX+3*(e-b+2*(f-a)))*m_mapH+(originY+3*(e-b+2*(f-c)))), nullptr)));
+	m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, ((originX+3*(b-e+2*(c-f)))*m_mapH+(originY+3*(e-b+2*(f-a)))), nullptr)));
+	m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, ((originX+3*((a-c)*(1-e)+2*(c-a)))*m_mapH+(originY+3*((d-f)*(1-b)+2*(e-a-b-c+2*f)))), nullptr)));
+	m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, ((originX+3*(e-b+2*(f-a)))*m_mapH+(originY+3*(e-b+2*(f-c)))), nullptr)));
 	i += 3;
       }
       else{
@@ -88,12 +91,12 @@ void Algogen::crossover(Minion* _parent0, Minion* _parent1, Minion* _parent2)
 	parents.erase(parents.begin() + parent);
 	continue;
       }else{
-	kidgenome.push_back(*(parents.at(parent)->getChromosome(j)));
+	kidgenome.push_back(parents.at(parent)->getChromosome(j));
 	++j;
       } 
     }
     m_pop.push_back(new Minion(kidgenome));
-//     std::cout << "taille du genome de l'enfant: " << kidgenome.size() << std::endl;
+    m_nbkidstotal++;
   }
 }
 
@@ -114,6 +117,7 @@ void Algogen::cull()
 	    for (std::vector<Minion*>::iterator it = m_pop.begin(); it !=  m_pop.end() - finRange;) {
 		    ded = rand() % 2;
 		    if(ded && supprs < totalSupprs){
+			    delete *it;
 			    std::swap(*it, m_pop.back());
 			    m_pop.pop_back();
 			    supprs++;
@@ -225,6 +229,7 @@ void Algogen::iterate()
 	    totalfitness+=(*it)->getFitness();
     }
     cull();
+    m_nbIterations++;
 }
 
 unsigned int Algogen::get_nb_goodResults()
@@ -251,7 +256,7 @@ void Algogen::show() const
       std::vector< std::pair< bool, bool > > genome = m_pop.at(i)->getGenome();
       int newx = (int)(m_orig->getX());
       int newy = (int)(m_orig->getY());
-      unsigned int sommet = (newx*m_mapH) + newy;
+//       unsigned int sommet = (newx*m_mapH) + newy;
       for(std::vector< std::pair< bool, bool > >::iterator cit = genome.begin(); cit != genome.end(); ++cit){
 	newx += ((*cit).second*(1-(2*(*cit).first)));
 	newy += (((*cit).second -1) * ((2*(*cit).first)-1));

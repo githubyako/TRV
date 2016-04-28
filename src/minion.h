@@ -18,7 +18,7 @@ public:
   float const & getFitness() const;
   std::vector<std::pair<bool,bool> > const & getGenome() const;
   unsigned int getGenomeSize() const;
-    std::pair< bool, bool >* getChromosome(unsigned int _pairNumber) const;
+    std::pair< bool, bool >& getChromosome(unsigned int _pairNumber);
   
   inline bool operator< (const Minion& _m2){ return m_fitness<_m2.getFitness();}
 

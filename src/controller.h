@@ -29,6 +29,7 @@ public:
   
   // On ne veut pas donner accès au constructeur de Controller car on ne souhaite qu'une instance de Controller à la fois
   static Controller * create();
+  static void delete_controller();
   
   // Fonction de création d'un agent, créé un instance de la classe Agent lorsque le jeu génère une nouvelle unité
   void creer_agent(int x, int y, const std::string type, int id);

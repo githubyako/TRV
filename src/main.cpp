@@ -25,15 +25,15 @@ int main(int argc, char **argv) {
      std::cout << "Déplacement cavalerie A* : 4,1 jusqu'à : 5,2 " << std::endl;
 //      controller->demande_chemin_A_star(0,450,450);
 //      std::cout << "astar ok" << std::endl;
-	 controller->demande_chemin_algogen(0,50,50);
-    } catch(str_exception* e){
+	 controller->demande_chemin_algogen(0,100,100);
+    } catch(str_exception& e){
     
-      std::cout << "str_exception" << e->what() << std::endl;
+      std::cout << "str_exception" << e.what() << std::endl;
     }
     catch(std::exception& e1)
     {
       std::cout << e1.what() << std::endl;
     }
-    
+    Controller::delete_controller();
     return 0;
 }

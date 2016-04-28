@@ -27,11 +27,9 @@ unsigned int Minion::getGenomeSize() const
 	return m_genome.size();
 }
 
-std::pair< bool, bool >* Minion::getChromosome(unsigned int _pairNumber) const
+std::pair< bool, bool > & Minion::getChromosome(unsigned int _pairNumber)
 {
-	if(m_genome.size() > _pairNumber){
-		return new std::pair<bool,bool>(m_genome.at(_pairNumber));
-	}else return nullptr;
+	return m_genome.at(_pairNumber);
 }
 
 bool Minion::getVaChemin() const

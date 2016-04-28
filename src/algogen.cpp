@@ -28,17 +28,38 @@ void Algogen::initPop(int _caseSource, int _caseCible)
 {
   m_orig=m_sommets->at(_caseSource);
   m_cible=m_sommets->at(_caseCible);
-//   unsigned int originX = m_orig->getX();
-//   unsigned int originY = m_orig->getY();
-  for(unsigned int i=0;i<8;i++){					// creation pop initiale
-    std::vector<std::pair<bool,bool> > genome;			// ALEATOIRE ET COURT, A AMELIORER VIA ASTAR_GA
-    for(unsigned int j=0;j<m_nbAjouts;++j){
-      bool bool1 = rand() % 2;
-      bool bool2 = rand() % 2;
-      genome.push_back(std::pair<bool,bool>(bool1,bool2));
+  unsigned int originX = m_orig->getX();
+  unsigned int originY = m_orig->getY();
+  unsigned int cibleX = m_cible->getX();
+  unsigned int cibleY = m_cible->getY();
+  int distanceX = originX - cibleX;
+  int distanceY = originY - cibleY;
+  bool a = cibleX < originX;
+  bool b = cibleX == originX;
+  bool c = 1-a-b;
+  bool d = cibleY < originY;
+  bool e = cibleY == originY;
+  bool f = 1-d-e;
+  bool Astar = ((std::abs(distanceY)>6) || (std::abs(distanceY)>3 && std::abs(distanceX)>3) || (std::abs(distanceX)>=6));
+    for(unsigned int i=0;i<8;i++){																// creation pop initiale
+      std::vector<std::pair<bool,bool> > genome;			// ALEATOIRE ET COURT, A AMELIORER VIA ASTAR_GA
+      if(i<3 && Astar){
+	 m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, ((originX+3*(b-e+2*(c-f)))*m_mapH+(originY+3*(e-b+2*(f-a)))), nullptr)));
+	 m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, ((originX+3*((a-c)*(1-e)+2*(c-a)))*m_mapH+(originY+3*((d-f)*(1-b)+2*(e-a-b-c+2*f)))), nullptr)));
+	 m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, ((originX+3*(e-b+2*(f-a)))*m_mapH+(originY+3*(e-b+2*(f-c)))), nullptr)));
+	i += 3;
+      }
+      else{
+      }
+      if(!Astar){
+	for(int j=0;j<5;++j){
+	  bool bool1 = rand() % 2;
+	  bool bool2 = rand() % 2;
+	  genome.push_back(std::pair<bool,bool>(bool1,bool2));
+	}
+      }
+      m_pop.push_back(new Minion(genome));
     }
-    m_pop.push_back(new Minion(genome));
-  }
   float totalfitness=0.0;
   for (std::vector<Minion*>::iterator it = m_pop.begin(); it !=  m_pop.end(); ++it) {
     evaluate(*it);						// evaluation fitness

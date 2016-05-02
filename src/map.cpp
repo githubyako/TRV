@@ -608,15 +608,15 @@ const std::vector< std::pair< bool, bool > > Map::A_star_GA(unsigned int id, uns
 // Fonction pour trouver un chemin vers une case cible pour un agent avec un algorithme génétique
 void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* unite)
 {
- 	unsigned int popsize=100;
-	float manhattan = 0.1;
+ 	unsigned int popsize=50;
+	float manhattan = 0.8;
 	float mutaRatio = 0.05;
 	float popToMutate = 1;
  	unsigned int nbAjouts = 10;
 	float ratioSupprs = 0.1;
-	float ratioModifs = 0.1;
+	float ratioModifs = 0.2;
 	float ratioElitism = 0.05;
-	float cullRatio = 0.05;
+	float cullRatio = 0.1;
 	unsigned int  nbkids=3;
 	int idsource = m_agents.at(id)->getCase()->get_sommet();
 	const Unite * typeAgent = m_agents.at(id)->getUnite();
@@ -640,7 +640,7 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 			      algg.initPop(idsource,idCible);
 			      int k=0;
 // 			      std::cout << "initpop ok, iterating" << std::endl;
-			      while(k<1000){
+			      while(k<1500){
 				k++;
 				algg.iterate();
 				if(k%100 == 0){

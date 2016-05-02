@@ -1,8 +1,11 @@
 #include "minion.h"
+unsigned int Minion::m_incrID=0;
 
 Minion::Minion(const std::vector< std::pair< bool, bool > >& _genome):m_genome(_genome)
 {
   m_vaChemin=false;
+  m_id=m_incrID++;
+//   std::cout << "minion n°" << m_id << " créé." << std::endl;
 }
 
 //					GETTERS/SETTERS
@@ -42,6 +45,17 @@ unsigned int Minion::getManhattan() const
   return m_manhattan;
 }
 
+unsigned int Minion::getID() const
+{
+  return m_id;
+}
+
+unsigned int Minion::getSF() const
+{
+  return m_sommetfinal;
+}
+
+
 
 void Minion::setVaChemin(bool _vaChemin)
 {
@@ -58,10 +72,15 @@ void Minion::setGenome(const std::vector< std::pair< bool, bool > >& _genome)
   m_genome = _genome;
 }
 
+void Minion::setSommetFinal(unsigned int _sommet)
+{
+  m_sommetfinal=_sommet;
+}
+
 
 // 					METHODES
 
-void Minion::mutate(unsigned int _nbAjouts, float _ratioSupprs, float _ratioModifs)
+void Minion::mutate(Case* _cible, unsigned int _nbAjouts, float _ratioSupprs, float _ratioModifs)
 {
   if(!m_vaChemin){
     unsigned int nbsupprs = (unsigned int)(m_genome.size() * _ratioSupprs);
@@ -78,9 +97,22 @@ void Minion::mutate(unsigned int _nbAjouts, float _ratioSupprs, float _ratioModi
     for(unsigned int i=0;i<_nbAjouts;++i){													// modifications
 	    m_genome.push_back(std::pair<bool,bool>(rand()%2,rand()%2));
     }
+/*    
+    unsigned int originX = m_sommetfinal->getX();
+    unsigned int originY = m_sommetfinal->getY();
+    unsigned int cibleX = _cible->getX();
+    unsigned int cibleY = _cible->getY();
+    bool a = cibleX < originX;
+    bool b = cibleX == originX;
+    bool c = 1-a-b;
+    bool d = cibleY < originY;
+    bool e = cibleY == originY;
+    bool f = 1-d-e;
+    std::vector<std::pair<bool, bool> > ajout_astar = Map::m_map->A_star_GA(m_sommetfinal, ((originX+3*((a-c)*(1-e)+2*(c-a)))*Map::get_m_h()+(originY+3*((d-f)*(1-b)+2*(e-a-b-c+2*f)))), nullptr);
+    m_genome.insert(m_genome.begin(), ajout_astar.begin(), ajout_astar.end());*/
   }else{
-    std::cout << "vachemin modifié" << std::endl;
-    if(1/((rand()%9)+1)>=_ratioModifs){
+//     std::cout << "vachemin modifié" << std::endl;
+//     if(1/((rand()%9)+1)>=_ratioModifs){
 	
       unsigned int pos1=rand()%m_genome.size(),pos2=rand()%m_genome.size();
       std::vector<std::pair<bool,bool> >::iterator it = m_genome.begin();
@@ -97,20 +129,20 @@ void Minion::mutate(unsigned int _nbAjouts, float _ratioSupprs, float _ratioModi
       }else{
 	std::iter_swap(m_genome.begin()+pos3,m_genome.begin()+pos4);
       }
-    }
+//     }
   }
 }
 
-void Minion::mutateElite(unsigned int _nbAjouts, float _ratioModifs)
+void Minion::mutateElite(Case* _cible, unsigned int _nbAjouts, float _ratioModifs)
 {
   if(!m_vaChemin){
 	for(unsigned int i=0;i<_nbAjouts;++i){													// modifications
 		m_genome.push_back(std::pair<bool,bool>(rand()%2,rand()%2));
 	}
-  }else{
-    if(1/((rand()%9)+1)>=_ratioModifs){
+  }
+//     if(1/((rand()%9)+1)>=_ratioModifs){
 
-      std::cout << "vachemin modifié" << std::endl;
+//       std::cout << "vachemin modifié" << std::endl;
       unsigned int pos1=rand()%m_genome.size(),pos2=rand()%m_genome.size();
       std::vector<std::pair<bool,bool> >::iterator it = m_genome.begin();
       bool firstbool=rand()%2,secondbool=rand()%2;
@@ -126,6 +158,5 @@ void Minion::mutateElite(unsigned int _nbAjouts, float _ratioModifs)
       }else{
 	std::iter_swap(m_genome.begin()+pos3,m_genome.begin()+pos4);
       }
-    }
-  }
+//     }
 }

@@ -25,6 +25,7 @@ m_ratioElitism(_ratioElitism)
   m_unite = _typeAgent;
   m_nbkidstotal=0;
   m_nbIterations=0;
+  m_president=nullptr;
 }
 
 void Algogen::initPop(int _caseSource, int _caseCible)
@@ -44,7 +45,7 @@ void Algogen::initPop(int _caseSource, int _caseCible)
   bool e = cibleY == originY;
   bool f = 1-d-e;
   bool Astar = ((std::abs(distanceY)>6) || (std::abs(distanceY)>3 && std::abs(distanceX)>3) || (std::abs(distanceX)>=6));
-  std::cout << "lol3" << std::endl;
+//   std::cout << "/*lol3*/" << std::endl;
     for(unsigned int i=0;i<8;i++){					// creation pop initiale
       std::vector<std::pair<bool,bool> > genome;			// ALEATOIRE ET COURT, A AMELIORER VIA ASTAR_GA
       if(i<3 && Astar){
@@ -111,13 +112,13 @@ void Algogen::cull()
 
     }
     unsigned int finRange = (unsigned int)(m_pop.size()/5);
-    unsigned int totalSupprs = (unsigned int)(finRange * m_cullRatio);
-    unsigned int supprs=0;
+    float totalSupprs = (float)(finRange * m_cullRatio);
+    float supprs=0.0;
     bool ded;
     while(supprs<totalSupprs){
 	    for (std::vector<Minion*>::iterator it = m_pop.begin(); it !=  m_pop.end() - finRange;) {
 		    ded = rand() % 2;
-		    if(ded && supprs < totalSupprs && (*it)->getVaChemin()==false){
+		    if(ded && supprs < totalSupprs && (*it)->getVaChemin()==false && (*it)->getID()!=m_president->getID()){
 			    delete *it;
 			    std::swap(*it, m_pop.back());
 			    m_pop.pop_back();
@@ -135,10 +136,12 @@ void Algogen::mutatePop()
 	for (int i=0;i<size;i++) {
 		unsigned int MinionToMutate = rand() % m_pop.size();
 		elite = (MinionToMutate > m_lowestElite);
-		if(elite){
-			m_pop.at(MinionToMutate)->mutateElite(m_nbAjouts,m_ratioModifs);
-		}else{
-			m_pop.at(MinionToMutate)->mutate(m_nbAjouts, m_ratioSupprs,m_ratioModifs);
+		if((m_president!=nullptr && m_pop.at(MinionToMutate)->getID()!=m_president->getID()) || m_president==nullptr){
+		  if(elite){
+			  m_pop.at(MinionToMutate)->mutateElite(m_cible, m_nbAjouts,m_ratioModifs);
+		  }else{
+			  m_pop.at(MinionToMutate)->mutate(m_cible, m_nbAjouts, m_ratioSupprs,m_ratioModifs);
+		  }
 		}
 	}
 }
@@ -191,14 +194,33 @@ void Algogen::evaluate(Minion* _minion)
 	    }
 	   }
 	 }
+	_minion->setSommetFinal(sommet);
+	m_taillemax = std::max(m_taillemax,(unsigned int)genome.size());
 	_minion->setVaChemin(_vaChemin);
-	int manhattan = abs(m_cible->getX() - m_sommets->at(vec.back())->getX()) + abs(m_cible->getY() - m_sommets->at(vec.back())->getY());
-	int coutdistance = (((float)genome.size()*cout / ((m_mapH * m_mapW )*(m_unite->getVitesseMax()))) * (1-m_manhattanImportance));
 	
-	fitness = 1 - ((((float)manhattan / (m_mapW + m_mapH)) * m_manhattanImportance) + coutdistance);
+	int manhattan = 0.0;
+	if(_vaChemin){
+	  fitness = (float)((float)cout + (float)genome.size());	  
+	  if(m_president==nullptr || m_president->getFitness()>fitness){
+	    m_president=_minion;
+	  }
+	}else{
+	  // si on fait ça, un chemin sera trouvé plus vite mais il sera de qualité moindre
+	  int manhattan = abs(m_cible->getX() - m_sommets->at(vec.back())->getX()) + abs(m_cible->getY() - m_sommets->at(vec.back())->getY());
+	  fitness = ((float)manhattan*m_manhattanImportance);
+	  
+	// si on y ajoute le coût, un chemin sera trouvé moins vite
+//	  int manhattan = abs(m_cible->getX() - m_sommets->at(vec.back())->getX()) + abs(m_cible->getY() - m_sommets->at(vec.back())->getY());
+//	  fitness = ((float)manhattan*m_manhattanImportance) + (float)((float)cout / (float)genome.size());
+	  
+	  if(m_president==nullptr || (!m_president->getVaChemin() && fitness < m_president->getFitness())){
+	      m_president=_minion;
+	  }
+	}
 	_minion->setFitness(fitness);
 	_minion->setManhattan(manhattan);
 	_minion->setGenome(genome);
+
 }
 
 
@@ -211,7 +233,6 @@ void Algogen::iterate()
       m_ratioModifs = m_ratioModifs * 0.99;
     }
     std::sort (m_pop.begin(), m_pop.end()); 												// tri
-    m_lowestElite = (unsigned int)(m_pop.size() * (1 - m_ratioElitism));
     Minion *m1=nullptr, *m2=nullptr, *m3=nullptr;
     while(m_pop.size()<m_popsize){		// reproduction par rank selection exponentielle tant que la population n'a pas atteint m_popsize
       if(m_pop.size() < 3){
@@ -263,7 +284,7 @@ void Algogen::show() const
   for(unsigned int i=0;i<m_pop.size();++i){
     if(m_pop.at(i)->getVaChemin()){
       std::vector< std::pair< bool, bool > > genome = m_pop.at(i)->getGenome();
-      std::cout << "Genome ayant trouvé le chemin (" << genome.size() << " éléments, fitness = " << m_pop.at(i)->getFitness() << ") : " << std::endl;
+      std::cout << "Genome ayant trouvé le chemin (id=" << m_pop.at(i)->getID() << ", " << genome.size() << " éléments, fitness = " << m_pop.at(i)->getFitness() << ") : " << std::endl;
       int newx = (int)(m_orig->getX());
       int newy = (int)(m_orig->getY());
 //       unsigned int sommet = (newx*m_mapH) + newy;
@@ -274,5 +295,18 @@ void Algogen::show() const
       }
       std::cout << std::endl;
     }
+  }
+  std::cout << "_______________________" << std::endl << "Fitness des minions" << std::endl;
+  for(unsigned int i=0;i<m_pop.size();++i){
+    std::cout << "ID " << m_pop.at(i)->getID() << ", fitness =" << m_pop.at(i)->getFitness() << ", taille genome = " << m_pop.at(i)->getGenomeSize() << std::endl; 
+  }
+  std::vector<std::pair<bool, bool> > const & presgen = m_president->getGenome();
+  std::cout << "_______________________" << std::endl << "Président (id=" << m_president->getID() << ", " << presgen.size() << "déplacements):" << std::endl;
+  int newx = (int)(m_orig->getX());
+  int newy = (int)(m_orig->getY());
+  for(std::vector< std::pair< bool, bool > >::const_iterator cit = presgen.begin(); cit != presgen.end(); ++cit){
+    newx += ((*cit).second*(1-(2*(*cit).first)));
+    newy += (((*cit).second -1) * ((2*(*cit).first)-1));
+    std::cout << "X= " << newx << ", Y= " << newy << " | ";
   }
 }

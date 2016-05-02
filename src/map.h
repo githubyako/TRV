@@ -14,6 +14,7 @@
 #include "agent.h"
 #include "unite.h"
 #include "algogen.h"
+// #include "minion.h"
 
 class Map{
 private:
@@ -28,6 +29,7 @@ private:
   Map();
   Map(Map const & _map);
  friend class Algogen;
+//  friend class Minion;
 public:
   
   // On ne veut pas donner accès au constructeur de Controller car on ne souhaite qu'une instance de Controller à la fois
@@ -76,6 +78,7 @@ public:
   Agent* get_Agent(int id) const;
   Terrain* get_Terrain(std::string const & _terrName) const;
   Contrainte * get_Contrainte(std::string const & _contrName) const;
+  
   
   // Setteurs :
   

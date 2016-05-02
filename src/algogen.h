@@ -12,6 +12,7 @@
 #include "minion.h"
 #include "str_exception.h"
 #include "map.h"
+
 class Algogen{
 
 private:
@@ -20,7 +21,8 @@ private:
 	Case *m_orig, * m_cible;
 	std::vector<Minion*> m_pop;
 	const Unite* m_unite;
-	unsigned int m_popsize;
+	Minion* m_president;
+	unsigned int m_popsize, m_taillemax;
 	unsigned int m_nbkids;
 	unsigned int m_lowestElite;
 	unsigned int m_nbkidstotal, m_nbIterations;

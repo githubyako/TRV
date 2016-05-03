@@ -98,28 +98,31 @@ Algogen::~Algogen()
     }
 }
 
-void Algogen::crossover(Minion* _parent0, Minion* _parent1, Minion* _parent2)
+void Algogen::crossover(SurMinion* _parent0, SurMinion* _parent1, SurMinion* _parent2)
 {
-  unsigned int nbchrs=std::max(std::max(_parent0->getGenomeSize(),_parent1->getGenomeSize()),_parent2->getGenomeSize());
-  unsigned int parent;
-  std::vector<Minion*> parents{_parent0,_parent1,_parent2};
-  for(unsigned int i=0;i<m_nbkids;i++){
-    std::vector<std::pair<bool,bool> > kidgenome;
-    for(unsigned int j=0;j<nbchrs;){
-      parent = rand()%(parents.size());
-      if(j >= parents.at(parent)->getGenomeSize()){
-	parents.erase(parents.begin() + parent);
-	continue;
-      }else{
-	kidgenome.push_back(parents.at(parent)->getChromosome(j));
-	++j;
-      } 
+  unsigned int iterations = _parent0->getMinions().size();
+  for(unsigned int i=0;i<iterations;++i){
+    std::vector<std::pair<bool,bool> > g0 = _parent0->getMinion(i),g1 = _parent1->getMinion(i),g2=_parent2->getMinion(i);
+    unsigned int nbchrs=std::max(std::max(g0->getGenomeSize(),g1->getGenomeSize()),g2->getGenomeSize());
+    unsigned int parent;
+    std::vector<Minion*> parents{g0,g1,g2};
+    for(unsigned int i=0;i<m_nbkids;i++){
+      std::vector<std::pair<bool,bool> > kidgenome;
+      for(unsigned int j=0;j<nbchrs;){
+	parent = rand()%(parents.size());
+	if(j >= parents.at(parent)->getGenomeSize()){
+	  parents.erase(parents.begin() + parent);
+	  continue;
+	}else{
+	  kidgenome.push_back(parents.at(parent)->getChromosome(j));
+	  ++j;
+	} 
+      }
+      m_pop.push_back(new SurMinion(std::vector<Minion*>(new Minion(kidgenome))));
+      m_nbkidstotal++;
     }
-    m_pop.push_back(new Minion(kidgenome));
-    m_nbkidstotal++;
   }
 }
-
 void Algogen::cull()
 {
     unsigned int finRange = (unsigned int)(m_pop.size()/5);

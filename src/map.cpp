@@ -638,10 +638,8 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 // 		      for(float ratioElitism = 0.05;ratioElitism<0.3;ratioElitism+=0.1){
 // 			for(float cullRatio = 0.05;cullRatio<=0.2;cullRatio+=0.05){
 // 			  for(unsigned int nbkids=3;nbkids<=5;nbkids+=2){
-			  for (unsigned int i=1; i<iteration; i++)
-			  {
-			      Algogen algg(typeAgent, m_w,m_h,& m_sommets,popsize,manhattan,mutaRatio,popToMutate,nbAjouts,ratioSupprs,ratioModifs,ratioElitism,cullRatio,nbkids);
-			      algg.initPop(idsource,idCible);
+			      Algogen algg(m_w,m_h,& m_sommets,popsize,manhattan,mutaRatio,popToMutate,nbAjouts,ratioSupprs,ratioModifs,ratioElitism,cullRatio,nbkids);
+			      algg.initPop(idsource,idCible,typeAgent);
 			      int k=0;
 // 			      std::cout << "initpop ok, iterating" << std::endl;
 			      while(k<1500){
@@ -669,8 +667,6 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 // 	  }
 // 	  i++;
 // 	}
-	total+=algg.get_pres_nbdeplace();
-	std::cout << "iteration : " << i << " | moyenne : " << total/i << std::endl;
-	}
+
 
 }

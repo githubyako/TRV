@@ -9,23 +9,21 @@
 class SurMinion{
 private:
   static unsigned int m_incrID;
-  std::vector<Minion*> m_genome;
+  std::vector<Minion*> m_minions;
   float m_fitness;
   bool m_vaChemin;
   unsigned int m_id;
 public:
-  Minion(std::vector<Minion*> const & _genome);
+  SurMinion(std::vector<Minion*> const & _minions);
   void mutate(int numMinion, unsigned int _nbAjouts, float _ratioSupprs,float _ratioModifs);
-  void mutateElite(Case * _cible, unsigned int _nbAjouts,float _ratioModifs);
-  
-  unsigned int getManhattan() const;
+  void mutateElite(int numMinion, unsigned int _nbAjouts,float _ratioModifs);
+  void addMinion(Minion* _minion);
   bool getVaChemin() const;
   float const & getFitness() const;
-  std::vector<std::pair<bool,bool>> const & getGenome() const;
-  unsigned int getGenomeSize() const;
-  std::pair< bool, bool>& getChromosome(unsigned int _pairNumber);
+  std::vector<Minion*> const & getMinions() const;
+  unsigned int getNumberMinions() const;
+  Minion* getMinion(unsigned int _pairNumber);
   unsigned int getID() const;
-  unsigned int getSF() const;
   
   inline bool operator< (const Minion& _m2){ 
     if((m_vaChemin && _m2.getVaChemin()) || (!m_vaChemin && !_m2.getVaChemin())){
@@ -39,9 +37,7 @@ public:
 
   void setFitness(float _fitness);
   void setVaChemin(bool _vaChemin);
-  void setManhattan(unsigned int _manhattan);
-  void setGenome( std::vector<std::pair<bool,bool>> const & _genome);
-  void setSommetFinal(unsigned int _sommet);
+  void setMinions( std::vector<Minion*> const & _minions);
 };
 
 #endif

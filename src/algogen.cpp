@@ -122,19 +122,12 @@ void Algogen::crossover(Minion* _parent0, Minion* _parent1, Minion* _parent2)
 
 void Algogen::cull()
 {
-    for (std::vector<Minion*>::iterator it = m_pop.begin(); it !=  m_pop.end();) {
-		if ((*it)->getFitness() == 0.0){
-			std::swap(*it, m_pop.back());
-			m_pop.pop_back();
-		}else  ++it;
-
-    }
     unsigned int finRange = (unsigned int)(m_pop.size()/5);
     float totalSupprs = (float)(finRange * m_cullRatio);
     float supprs=0.0;
     bool ded;
     while(supprs<totalSupprs){
-	    for (std::vector<Minion*>::iterator it = m_pop.begin(); it !=  m_pop.end() - finRange;) {
+	    for (std::vector<SurMinion*>::iterator it = m_pop.begin(); it !=  m_pop.end() - finRange;) {
 		    ded = rand() % 2;
 		    if(ded && supprs < totalSupprs && (*it)->getVaChemin()==false && (*it)->getID()!=m_president->getID()){
 			    delete *it;

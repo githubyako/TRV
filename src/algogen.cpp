@@ -28,14 +28,15 @@ m_ratioElitism(_ratioElitism)
   m_president=nullptr;
 }
 
-void Algogen::initPop(int _caseSource, int _caseCible)
+void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent)
 {
-  m_orig=m_sommets->at(_caseSource);
-  m_cible=m_sommets->at(_caseCible);
-  unsigned int originX = m_orig->getX();
-  unsigned int originY = m_orig->getY();
-  unsigned int cibleX = m_cible->getX();
-  unsigned int cibleY = m_cible->getY();
+  m_unite.push_back(_typeAgent);
+  m_orig.push_back(m_sommets->at(_caseSource));
+  m_cible.push_back(m_sommets->at(_caseCible));
+  unsigned int originX = m_orig[0]->getX();
+  unsigned int originY = m_orig[0]->getY();
+  unsigned int cibleX = m_cible[0]->getX();
+  unsigned int cibleY = m_cible[0]->getY();
   int distanceX = originX - cibleX;
   int distanceY = originY - cibleY;
   bool a = cibleX < originX;
@@ -45,25 +46,28 @@ void Algogen::initPop(int _caseSource, int _caseCible)
   bool e = cibleY == originY;
   bool f = 1-d-e;
   bool Astar = ((std::abs(distanceY)>6) || (std::abs(distanceY)>3 && std::abs(distanceX)>3) || (std::abs(distanceX)>=6));
-//   std::cout << "/*lol3*/" << std::endl;
-    for(unsigned int i=0;i<8;i++){					// creation pop initiale
-      std::vector<std::pair<bool,bool> > genome;			// ALEATOIRE ET COURT, A AMELIORER VIA ASTAR_GA
+  std::vector<std::pair<bool,bool> > genome;
+  std::vector<Minion*> lol;
+    for(unsigned int i=0;i<8;i++){			// creation pop initiale
       if(i<3 && Astar){
 	if (!(genome=Map::m_map->A_star_GA(_caseSource, ((originX+3*(b-e+2*(c-f)))*m_mapH+(originY+3*(e-b+2*(f-a)))), nullptr)).empty())
 	{
-	  m_pop.push_back(new Minion(genome));
+	  m_pop.push_back(new SurMinion(lol));
+	  m_pop.at(i)->addMinion(new Minion(genome));
 	  i++;
 	  genome.clear();
 	}
 	if (!(genome=Map::m_map->A_star_GA(_caseSource, ((originX+3*((a-c)*(1-e)+2*(c-a)))*m_mapH+(originY+3*((d-f)*(1-b)+2*(e-a-b-c+2*f)))), nullptr)).empty())
 	{
-	  m_pop.push_back(new Minion(genome));
+	  m_pop.push_back(new SurMinion(lol));
+	  m_pop.at(i)->addMinion(new Minion(genome));
 	  i++;
 	  genome.clear();
 	}
 	if (!(genome=Map::m_map->A_star_GA(_caseSource, ((originX+3*(b-e+2*(c-f)))*m_mapH+(originY+3*(e-b+2*(f-a)))), nullptr)).empty())
 	{
-	  m_pop.push_back(new Minion(genome));
+	  m_pop.push_back(new SurMinion(lol));
+	  m_pop.at(i)->addMinion(new Minion(genome));
 	  i++;
 	  genome.clear();
 	}
@@ -76,11 +80,12 @@ void Algogen::initPop(int _caseSource, int _caseCible)
 	  genome.push_back(std::pair<bool,bool>(bool1,bool2));
 	}
       }
-      m_pop.push_back(new Minion(genome));
+      m_pop.push_back(new SurMinion(lol));
+      m_pop.at(i)->addMinion(new Minion(genome));
       genome.clear();
     }
   float totalfitness=0.0;
-  for (std::vector<Minion*>::iterator it = m_pop.begin(); it !=  m_pop.end(); ++it) {
+  for (std::vector<SurMinion*>::iterator it = m_pop.begin(); it !=  m_pop.end(); ++it) {
     evaluate(*it);						// evaluation fitness
     totalfitness+=(*it)->getFitness();
   }

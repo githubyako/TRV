@@ -1,6 +1,6 @@
 #include "algogen.h"
 
-Algogen::Algogen(const Unite* _typeAgent, int map_w, int map_h, const std::map< int, Case* >* _sommets, unsigned int _popsize, float _manhattanImportance, float _mutationRatio, float _popToMutate, unsigned int _nbAjouts, float _ratioSupprs, float _ratioModifs, float _ratioElitism, float _cullRatio, unsigned int _nbkids):
+Algogen::Algogen(int map_w, int map_h, const std::map< int, Case* >* _sommets, unsigned int _popsize, float _manhattanImportance, float _mutationRatio, float _popToMutate, unsigned int _nbAjouts, float _ratioSupprs, float _ratioModifs, float _ratioElitism, float _cullRatio, unsigned int _nbkids):
 m_ratioElitism(_ratioElitism)
 {
   std::srand(std::time(0));
@@ -22,7 +22,6 @@ m_ratioElitism(_ratioElitism)
 	  m_cullRatio=_cullRatio;
 	  m_nbkids=_nbkids;
   }
-  m_unite = _typeAgent;
   m_nbkidstotal=0;
   m_nbIterations=0;
   m_president=nullptr;

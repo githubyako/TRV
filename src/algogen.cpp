@@ -148,13 +148,23 @@ void Algogen::mutatePop()
 	m_lowestElite = (unsigned int)(m_pop.size() * (1 - m_ratioElitism));
 	bool elite;
 	for (int i=0;i<size;i++) {
-		unsigned int MinionToMutate = rand() % m_pop.size();
-		elite = (MinionToMutate > m_lowestElite);
-		if((m_president!=nullptr && m_pop.at(MinionToMutate)->getID()!=m_president->getID()) || m_president==nullptr){
-		  if(elite){
-			  m_pop.at(MinionToMutate)->mutateElite(m_cible, m_nbAjouts,m_ratioModifs);
-		  }else{
-			  m_pop.at(MinionToMutate)->mutate(m_cible, m_nbAjouts, m_ratioSupprs,m_ratioModifs);
+		unsigned int SurMinionToMutate = rand() % m_pop.size();
+		elite = (SurMinionToMutate > m_lowestElite);
+		SurMinion* SM = m_pop.at(SurMinionToMutate);
+		if((m_president!=nullptr && SM->getID()!=m_president->getID()) || m_president==nullptr){
+		  unsigned int nbrMinionsToMutate = SM->getNumberMinions() * m_mutationRatio;
+		  std::vector<Minion*> minions = SM->getMinions();
+		  for(unsigned int i = 0; i < nbrMinionsToMutate; i++){
+		    unsigned int minionToMutate = rand % (minions.size());
+		    if(elite){
+		      minions.swap(minions.begin()+minionToMutate,minions.back());
+		      minions.pop_back();
+		      SM->mutateElite(minionToMutate, m_nbAjouts,m_ratioModifs);
+		    }else{
+		      minions.swap(minions.begin()+minionToMutate,minions.back());
+		      minions.pop_back();
+		      SM->mutate(minionToMutate, m_nbAjouts,m_ratioModifs);
+		    }
 		  }
 		}
 	}

@@ -49,21 +49,35 @@ void Algogen::initPop(int _caseSource, int _caseCible)
     for(unsigned int i=0;i<8;i++){					// creation pop initiale
       std::vector<std::pair<bool,bool> > genome;			// ALEATOIRE ET COURT, A AMELIORER VIA ASTAR_GA
       if(i<3 && Astar){
-	m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, ((originX+3*(b-e+2*(c-f)))*m_mapH+(originY+3*(e-b+2*(f-a)))), nullptr)));
-	m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, ((originX+3*((a-c)*(1-e)+2*(c-a)))*m_mapH+(originY+3*((d-f)*(1-b)+2*(e-a-b-c+2*f)))), nullptr)));
-	m_pop.push_back(new Minion(Map::m_map->A_star_GA(_caseSource, ((originX+3*(e-b+2*(f-a)))*m_mapH+(originY+3*(e-b+2*(f-c)))), nullptr)));
-	i += 3;
+	if (!(genome=Map::m_map->A_star_GA(_caseSource, ((originX+3*(b-e+2*(c-f)))*m_mapH+(originY+3*(e-b+2*(f-a)))), nullptr)).empty())
+	{
+	  m_pop.push_back(new Minion(genome));
+	  i++;
+	  genome.clear();
+	}
+	if (!(genome=Map::m_map->A_star_GA(_caseSource, ((originX+3*((a-c)*(1-e)+2*(c-a)))*m_mapH+(originY+3*((d-f)*(1-b)+2*(e-a-b-c+2*f)))), nullptr)).empty())
+	{
+	  m_pop.push_back(new Minion(genome));
+	  i++;
+	  genome.clear();
+	}
+	if (!(genome=Map::m_map->A_star_GA(_caseSource, ((originX+3*(b-e+2*(c-f)))*m_mapH+(originY+3*(e-b+2*(f-a)))), nullptr)).empty())
+	{
+	  m_pop.push_back(new Minion(genome));
+	  i++;
+	  genome.clear();
+	}
       }
-      else{
-      }
+      Astar=false;
       if(!Astar){
-	for(int j=0;j<5;++j){
+	for(int j=0;j<6;++j){
 	  bool bool1 = rand() % 2;
 	  bool bool2 = rand() % 2;
 	  genome.push_back(std::pair<bool,bool>(bool1,bool2));
 	}
       }
       m_pop.push_back(new Minion(genome));
+      genome.clear();
     }
   float totalfitness=0.0;
   for (std::vector<Minion*>::iterator it = m_pop.begin(); it !=  m_pop.end(); ++it) {
@@ -201,7 +215,7 @@ void Algogen::evaluate(Minion* _minion)
 	int manhattan = 0.0;
 	if(_vaChemin){
 	  fitness = (float)((float)cout + (float)genome.size());	  
-	  if(m_president==nullptr || m_president->getFitness()>fitness){
+	  if(m_president==nullptr || !(m_president->getVaChemin()) || m_president->getFitness()>fitness){
 	    m_president=_minion;
 	  }
 	}else{
@@ -213,7 +227,7 @@ void Algogen::evaluate(Minion* _minion)
 //	  int manhattan = abs(m_cible->getX() - m_sommets->at(vec.back())->getX()) + abs(m_cible->getY() - m_sommets->at(vec.back())->getY());
 //	  fitness = ((float)manhattan*m_manhattanImportance) + (float)((float)cout / (float)genome.size());
 	  
-	  if(m_president==nullptr || (!m_president->getVaChemin() && fitness < m_president->getFitness())){
+	  if(m_president==nullptr || (((!m_president->getVaChemin())) && (fitness < m_president->getFitness()))){
 	      m_president=_minion;
 	  }
 	}
@@ -310,3 +324,9 @@ void Algogen::show() const
     std::cout << "X= " << newx << ", Y= " << newy << " | ";
   }
 }
+
+unsigned int Algogen::get_pres_nbdeplace()
+{
+  return m_president->getGenomeSize();
+}
+

@@ -50,6 +50,7 @@ public:
 	void evaluate(Minion* _minion);
 	void show() const;
 	unsigned int get_nb_goodResults();
+	unsigned int get_pres_nbdeplace();
 };
 
 

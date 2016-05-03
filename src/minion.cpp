@@ -114,19 +114,20 @@ void Minion::mutate(Case* _cible, unsigned int _nbAjouts, float _ratioSupprs, fl
 //     std::cout << "vachemin modifié" << std::endl;
 //     if(1/((rand()%9)+1)>=_ratioModifs){
 	
-      unsigned int pos1=rand()%m_genome.size(),pos2=rand()%m_genome.size();
-      std::vector<std::pair<bool,bool> >::iterator it = m_genome.begin();
+      unsigned int pos1=rand()%(m_genome.size()),pos2=rand()%(m_genome.size());
       bool firstbool=rand()%2,secondbool=rand()%2;
 	// 1: introduction de 2 déplacements de direction opposées
-  //     m_genome.insert(it+pos1,std::pair<bool,bool>(firstbool,secondbool));
-  //     m_genome.insert(it+pos2,std::pair<bool,bool>(!firstbool,secondbool));
-  //     
+       m_genome.insert(m_genome.begin()+pos1,std::pair<bool,bool>(firstbool,secondbool));
+       m_genome.insert(m_genome.begin()+pos2,std::pair<bool,bool>(!firstbool,secondbool));
+      
       // 3: permutation de 2 déplacements aléatoires, suppression si elles sont opposées
       unsigned int pos3=rand()%m_genome.size(),pos4=(rand()%(m_genome.size()-1))+1;
-      if(m_genome.at(pos3).first!=m_genome.at(pos4).first && m_genome.at(pos3).second==m_genome.at(pos4).second){
+      if(m_genome.at(pos3).first!=m_genome.at(pos4).first && m_genome.at(pos3).second==m_genome.at(pos4).second)
+      {
 	m_genome.erase(m_genome.begin()+pos3);
 	m_genome.erase(m_genome.begin()+pos4-1);
-      }else{
+      }
+      else{
 	std::iter_swap(m_genome.begin()+pos3,m_genome.begin()+pos4);
       }
 //     }
@@ -140,23 +141,29 @@ void Minion::mutateElite(Case* _cible, unsigned int _nbAjouts, float _ratioModif
 		m_genome.push_back(std::pair<bool,bool>(rand()%2,rand()%2));
 	}
   }
-//     if(1/((rand()%9)+1)>=_ratioModifs){
+  else {
 
-//       std::cout << "vachemin modifié" << std::endl;
       unsigned int pos1=rand()%m_genome.size(),pos2=rand()%m_genome.size();
-      std::vector<std::pair<bool,bool> >::iterator it = m_genome.begin();
       bool firstbool=rand()%2,secondbool=rand()%2;
 	// 1: introduction de 2 déplacements de direction opposées
-  //     m_genome.insert(it+pos1,std::pair<bool,bool>(firstbool,secondbool));
-  //     m_genome.insert(it+pos2,std::pair<bool,bool>(!firstbool,secondbool));
-  //     
+       m_genome.insert(m_genome.begin()+pos1,std::pair<bool,bool>(firstbool,secondbool));
+       m_genome.insert(m_genome.begin()+pos2,std::pair<bool,bool>(!firstbool,secondbool));
+      
       // 3: permutation de 2 déplacements aléatoires, suppression si elles sont opposées
       unsigned int pos3=rand()%m_genome.size(),pos4=(rand()%(m_genome.size()-1))+1;
       if(m_genome.at(pos3).first!=m_genome.at(pos4).first && m_genome.at(pos3).second==m_genome.at(pos4).second){
-	m_genome.erase(m_genome.begin()+pos3);
-	m_genome.erase(m_genome.begin()+pos4-1);
+	if (pos3 < pos4)
+	{
+	  m_genome.erase(m_genome.begin()+pos3);
+	  m_genome.erase(m_genome.begin()+pos4-1);
+	}
+	else
+	{
+	  m_genome.erase(m_genome.begin()+pos4);
+	  m_genome.erase(m_genome.begin()+pos3-1);
+	}
       }else{
 	std::iter_swap(m_genome.begin()+pos3,m_genome.begin()+pos4);
       }
-//     }
+    }
 }

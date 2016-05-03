@@ -608,6 +608,8 @@ const std::vector< std::pair< bool, bool > > Map::A_star_GA(unsigned int id, uns
 // Fonction pour trouver un chemin vers une case cible pour un agent avec un algorithme génétique
 void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* unite)
 {
+	float total=0;
+	unsigned int iteration=1500;
  	unsigned int popsize=50;
 	float manhattan = 0.8;
 	float mutaRatio = 0.05;
@@ -636,19 +638,21 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 // 		      for(float ratioElitism = 0.05;ratioElitism<0.3;ratioElitism+=0.1){
 // 			for(float cullRatio = 0.05;cullRatio<=0.2;cullRatio+=0.05){
 // 			  for(unsigned int nbkids=3;nbkids<=5;nbkids+=2){
+			  for (unsigned int i=1; i<iteration; i++)
+			  {
 			      Algogen algg(typeAgent, m_w,m_h,& m_sommets,popsize,manhattan,mutaRatio,popToMutate,nbAjouts,ratioSupprs,ratioModifs,ratioElitism,cullRatio,nbkids);
 			      algg.initPop(idsource,idCible);
 			      int k=0;
 // 			      std::cout << "initpop ok, iterating" << std::endl;
 			      while(k<1500){
 				k++;
-				algg.iterate();
+				algg.iterate();/*
 				if(k%100 == 0){
 				  std::cout << "iteration " << k << std::endl;
-				}
+				}*/
 // 				algg.show();
 			      }
-			      algg.show();
+			      //algg.show();
 // 			      if(test%1000==0){
 // 				std::cout << "test n°" << test << " fini." << std::endl;
 // 			      }
@@ -665,6 +669,8 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 // 	  }
 // 	  i++;
 // 	}
-	
+	total+=algg.get_pres_nbdeplace();
+	std::cout << "iteration : " << i << " | moyenne : " << total/i << std::endl;
+	}
 
 }

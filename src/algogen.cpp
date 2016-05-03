@@ -144,7 +144,7 @@ void Algogen::cull()
 
 void Algogen::mutatePop()
 {
-	int size = (int)(m_pop.size() * m_popToMutate);
+		int size = (int)(m_pop.size() * m_popToMutate);
 	m_lowestElite = (unsigned int)(m_pop.size() * (1 - m_ratioElitism));
 	bool elite;
 	for (int i=0;i<size;i++) {
@@ -155,13 +155,13 @@ void Algogen::mutatePop()
 	    unsigned int nbrMinionsToMutate = SM->getNumberMinions() * m_mutationRatio;
 	    std::vector<Minion*> minions = SM->getMinions();
 	    for(unsigned int i = 0; i < nbrMinionsToMutate; i++){
-	      unsigned int minionToMutate = rand % (minions.size());
+	      unsigned int minionToMutate = rand()%(minions.size());
 	      if(elite){
-		minions.swap(minions.begin()+minionToMutate,minions.back());
+		std::swap(*(minions.begin()+minionToMutate),minions.back());
 		minions.pop_back();
 		SM->mutateElite(minionToMutate, m_nbAjouts,m_ratioModifs);
 	      }else{
-		minions.swap(*(minions.begin()+minionToMutate),minions.back());
+		std::swap(*(minions.begin()+minionToMutate),minions.back());
 		minions.pop_back();
 		SM->mutate(minionToMutate, m_nbAjouts, m_ratioSupprs,m_ratioModifs);
 	      }

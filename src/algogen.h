@@ -9,7 +9,7 @@
 #include <cstdlib>
 #include <math.h>
 
-#include "minion.h"
+#include "surminion.h"
 #include "str_exception.h"
 #include "map.h"
 
@@ -18,10 +18,10 @@ class Algogen{
 private:
 	int m_mapW, m_mapH;
 	std::map<int, Case*> const * m_sommets;
-	Case *m_orig, * m_cible;
-	std::vector<Minion*> m_pop;
-	const Unite* m_unite;
-	Minion* m_president;
+	std::vector<Case *>m_orig,m_cible;
+	std::vector<SurMinion*> m_pop;
+	std::vector<const Unite*> m_unite;
+	SurMinion* m_president;
 	unsigned int m_popsize, m_taillemax;
 	unsigned int m_nbkids;
 	unsigned int m_lowestElite;
@@ -35,19 +35,19 @@ private:
 	float m_cullRatio; // ratio d'individus éliminés en dehors des élites par génération
 	std::vector<float> m_generationTotalFitness;
 public:
-	Algogen(const Unite * _typeAgent,int map_w, int map_h,std::map<int, Case*> const * _sommets, unsigned int _popsize, float _manhattanImportance, float _mutationRatio, 
+	Algogen(int map_w, int map_h,std::map<int, Case*> const * _sommets, unsigned int _popsize, float _manhattanImportance, float _mutationRatio, 
 		  float _popToMutate, unsigned int _nbAjouts, float _ratioSupprs,float _ratioModifs, float _ratioElitism, float _cullRatio, unsigned int _nbkids);
 	~Algogen();
 
 
-	void initPop(int _caseSource, int _caseCible);
-
+	void initPop(int _caseSource, int _caseCible,const Unite * _typeAgent);
+	void addDeplacement(int _caseSource, int _caseCible);
 	void iterate();
 
-	void crossover(Minion* _parent0, Minion* _parent1, Minion* _parent2);
+	void crossover(SurMinion* _parent0, SurMinion* _parent1, SurMinion* _parent2);
 	void mutatePop();
 	void cull();
-	void evaluate(Minion* _minion);
+	void evaluate(SurMinion* _minion);
 	void show() const;
 	unsigned int get_nb_goodResults();
 	unsigned int get_pres_nbdeplace();

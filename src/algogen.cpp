@@ -160,81 +160,88 @@ void Algogen::mutatePop()
 	}
 }
 
-void Algogen::evaluate(Minion* _minion)
+void Algogen::evaluate(SurMinion* _surminion)
 {
-	float fitness=0.0,cout=0.0;
-	std::vector< std::pair< bool, bool > > genome = _minion->getGenome();
-	int newx = (int)(m_orig->getX());
-	int newy = (int)(m_orig->getY());
-	std::vector< int > vec;
+	float fitnessSM=0.0, fitnessM,cout;
+	bool _vaCheminSM = true;
+	Minion* minion;
+	unsigned int numAgent;
+	int newx;
+	int newy;
+	std::vector<int> vec;
 	std::vector<float> couts;
-	unsigned int sommet = (newx*m_mapH) + newy;
-	vec.push_back(sommet);
-	couts.push_back(0.0);
-	bool _vaChemin=false;
-	for(std::vector< std::pair< bool, bool > >::iterator cit = genome.begin(); cit != genome.end(); ++cit){ // parcours du chemin pour détection d'obstacle
-	  newx += ((*cit).second*(1-(2*(*cit).first)));
-	  newy += (((*cit).second -1) * ((2*(*cit).first)-1));
-	  sommet = (newx*m_mapH) + newy;
-	  
-	  if (newx < 0 || newx > m_mapW-1 || newy < 0 || newy > m_mapH-1 || m_sommets->at(sommet)->isObstacle()){
-	    newx -= ((*cit).second*(1-(2*(*cit).first)));
-	    newy -= (((*cit).second -1) * ((2*(*cit).first)-1));
-	    cit=genome.erase(cit);
+	bool _vaChemin;
+	for (std::vector<Minion*>::iterator it = _surminion->getMinions().begin(); it < _surminion->getMinions().end(); it++)
+	{
+	  vec.clear();
+	  couts.clear();
+	  fitnessM = 0;
+	  cout = 0.0;
+	  numAgent=0;
+	  std::vector<std::pair<bool,bool>> genome = _surminion->getMinions().at(numAgent)->getGenome();
+	  for(std::vector< std::pair< bool, bool > >::iterator cit = genome.begin(); cit != genome.end(); ++cit){ // parcours du chemin pour détection d'obstacle
+	    newx = (int)(m_orig.at(numAgent)->getX());
+	    newy = (int)(m_orig.at(numAgent)->getY());
+	    unsigned int sommet = (newx*m_mapH) + newy;
+	    vec.push_back(sommet);
+	    couts.push_back(0.0);
+	    _vaChemin=false;
+	    newx += ((*cit).second*(1-(2*(*cit).first)));
+	    newy += (((*cit).second -1) * ((2*(*cit).first)-1));
 	    sommet = (newx*m_mapH) + newy;
-	    cit--;
-	  } else {
-	   int pos = std::distance(vec.begin(),std::find(vec.begin(), vec.end(), sommet));
-	    if ((std::find(vec.begin(), vec.end(), sommet) != vec.end())) {
-	      int pos = std::distance(vec.begin(),std::find(vec.begin(), vec.end(), sommet));
-	      vec.erase(vec.begin()+pos+1, vec.end());
-	      couts.erase(couts.begin()+pos+1,couts.end());
-	      cout=*(couts.begin()+pos);
-	      cit=genome.erase(genome.begin()+pos, cit+1);
+	    if (newx < 0 || newx > m_mapW-1 || newy < 0 || newy > m_mapH-1 || m_sommets->at(sommet)->isObstacle()){
+	      newx -= ((*cit).second*(1-(2*(*cit).first)));
+	      newy -= (((*cit).second -1) * ((2*(*cit).first)-1));
+	      cit=genome.erase(cit);
+	      sommet = (newx*m_mapH) + newy;
 	      cit--;
-	    }else {
-	      if(sommet == m_cible->get_sommet()){
-		genome.erase(cit+1,genome.end());
-		vec.erase(vec.begin()+pos, vec.end());
-		couts.erase(couts.begin()+pos,couts.end());
-		cout=couts.back();
-		_vaChemin=true;
-// 		std::cout << "chemin trouvé" << std::endl;
-		break;
+	    } else {
+	    int pos = std::distance(vec.begin(),std::find(vec.begin(), vec.end(), sommet));
+	      if ((std::find(vec.begin(), vec.end(), sommet) != vec.end())) {
+		int pos = std::distance(vec.begin(),std::find(vec.begin(), vec.end(), sommet));
+		vec.erase(vec.begin()+pos+1, vec.end());
+		couts.erase(couts.begin()+pos+1,couts.end());
+		cout=*(couts.begin()+pos);
+		cit=genome.erase(genome.begin()+pos, cit+1);
+		cit--;
+	      }else {
+		if(sommet == m_cible.at(numAgent)->get_sommet()){
+		  genome.erase(cit+1,genome.end());
+		  vec.erase(vec.begin()+pos, vec.end());
+		  couts.erase(couts.begin()+pos,couts.end());
+		  cout=couts.back();
+		  _vaChemin=true;
+		  break;}
+		vec.push_back(sommet);
+		cout+=m_unite.at(numAgent)->getVitesse(m_sommets->at(sommet)->getTerrain());
+		couts.push_back(cout);
 	      }
-	      vec.push_back(sommet);
-	      cout+=m_unite->getVitesse(m_sommets->at(sommet)->getTerrain());
-	      couts.push_back(cout);
 	    }
-	   }
-	 }
-	_minion->setSommetFinal(sommet);
-	m_taillemax = std::max(m_taillemax,(unsigned int)genome.size());
-	_minion->setVaChemin(_vaChemin);
-	
-	int manhattan = 0.0;
-	if(_vaChemin){
-	  fitness = (float)((float)cout + (float)genome.size());	  
-	  if(m_president==nullptr || !(m_president->getVaChemin()) || m_president->getFitness()>fitness){
-	    m_president=_minion;
 	  }
-	}else{
-	  // si on fait ça, un chemin sera trouvé plus vite mais il sera de qualité moindre
-	  int manhattan = abs(m_cible->getX() - m_sommets->at(vec.back())->getX()) + abs(m_cible->getY() - m_sommets->at(vec.back())->getY());
-	  fitness = ((float)manhattan*m_manhattanImportance);
-	  
-	// si on y ajoute le coût, un chemin sera trouvé moins vite
-//	  int manhattan = abs(m_cible->getX() - m_sommets->at(vec.back())->getX()) + abs(m_cible->getY() - m_sommets->at(vec.back())->getY());
-//	  fitness = ((float)manhattan*m_manhattanImportance) + (float)((float)cout / (float)genome.size());
-	  
-	  if(m_president==nullptr || (((!m_president->getVaChemin())) && (fitness < m_president->getFitness()))){
-	      m_president=_minion;
+	  (*it)->setSommetFinal(vec.back());
+	  m_taillemax = std::max(m_taillemax,(unsigned int)genome.size());
+	  (*it)->setVaChemin(_vaChemin);
+	  if (_vaChemin == false)
+	    _vaCheminSM = false;
+	  int manhattan = 0.0;
+	  if(_vaChemin){
+	    fitnessM = (float)((float)cout + (float)genome.size());
+	  }else{
+	    int manhattan = abs(m_cible.at(numAgent)->getX() - m_sommets->at(vec.back())->getX()) + abs(m_cible.at(numAgent)->getY() - m_sommets->at(vec.back())->getY());
+	    fitnessM = ((float)manhattan*m_manhattanImportance);
 	  }
+	  (*it)->setFitness(fitnessM);
+	  (*it)->setManhattan(manhattan);
+	  (*it)->setGenome(genome);
+	  fitnessSM+=fitnessM;
 	}
-	_minion->setFitness(fitness);
-	_minion->setManhattan(manhattan);
-	_minion->setGenome(genome);
-
+      fitnessSM = (float)(fitnessM / (float) _surminion->getMinions().size());
+      _surminion->setFitness(fitnessSM);
+      _surminion->setVaChemin(_vaCheminSM);
+      if (_vaCheminSM && (m_president==nullptr || !(m_president->getVaChemin()) || m_president->getFitness()>fitnessSM))
+	 m_president=_surminion;
+      else if ( !_vaCheminSM && (m_president==nullptr || (((!m_president->getVaChemin())) && (fitnessSM < m_president->getFitness()))))
+	m_president=_surminion;
 }
 
 

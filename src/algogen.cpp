@@ -53,7 +53,7 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent)
 	{
 	  m_pop.push_back(new SurMinion(lol));
 	  m_pop.at(i)->addMinion(new Minion(genome));
-	  m_zones.push_back(m_sommets->at(_caseSource)->getVois());
+	  m_zones.push_back(std::pair<std::vector<Case*>,Case*>{m_sommets->at(_caseSource)->getVois(), _caseSource});
 	  i++;
 	  genome.clear();
 	}
@@ -61,7 +61,7 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent)
 	{
 	  m_pop.push_back(new SurMinion(lol));
 	  m_pop.at(i)->addMinion(new Minion(genome));
-	  m_zones.push_back(m_sommets->at(_caseSource)->getVois());
+	  m_zones.push_back(std::pair<std::vector<Case*>,Case*>{m_sommets->at(_caseSource)->getVois(), _caseSource});
 	  i++;
 	  genome.clear();
 	}
@@ -69,7 +69,7 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent)
 	{
 	  m_pop.push_back(new SurMinion(lol));
 	  m_pop.at(i)->addMinion(new Minion(genome));
-	  m_zones.push_back(m_sommets->at(_caseSource)->getVois());
+	  m_zones.push_back(std::pair<std::vector<Case*>,Case*>{m_sommets->at(_caseSource)->getVois(), _caseSource});
 	  i++;
 	  genome.clear();
 	}
@@ -84,7 +84,7 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent)
       }
       m_pop.push_back(new SurMinion(lol));
       m_pop.at(i)->addMinion(new Minion(genome));
-      m_zones.push_back(m_sommets->at(_caseSource)->getVois());
+      m_zones.push_back(std::pair<std::vector<Case*>,Case*>{m_sommets->at(_caseSource)->getVois(), _caseSource});
       genome.clear();
     }
   float totalfitness=0.0;
@@ -98,7 +98,10 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent)
 Algogen::~Algogen()
 {
     for (std::vector<SurMinion*>::iterator it = m_pop.begin(); it !=  m_pop.end(); ++it) {
-        delete *it;
+      delete *it;
+    }
+    for (std::vector<SousMinion*>::iterator it = m_sousMinions.begin(); it!= m_sousMinions.end(); ++it){
+      delete *it;
     }
 }
 
@@ -442,15 +445,25 @@ void Algogen::iterate()
 void Algogen::addDeplacement(int _idAgent, int _caseSource, int _caseCible, const Unite* _typeAgent)
 {
   // vérification des zones etc
-  for(unsigned int i=0;i<m_zones.size();i++){
-    for(unsigned int j=0;j<m_zones.at(i).size();){
+  unsigned int originX = m_sommets->at(_caseSource).second->getX();
+  unsigned int originY = m_sommets->at(_caseSource).second->getY();
+
+  bool newleader=true;
+  // TO DO 
+  
+/*  for(unsigned int i=0;i<m_zones.size();i++){
+    for(unsigned int j=0;j<m_zones.at(i).first.size();){
+      unsigned int cibleX = m_sommets->at(m_zones.at(i).).second->getX(); // zones i second x
+      unsigned int cibleY = m_sommets->at(m_zones.at(i).first).second->getY(); // zones i second x
       if(m_zones.at(i).at(j)->get_sommet() == _caseSource){ // si la case source du nouveau déplacement est trouvée dans une des zones...
-							    // alors on ajoute
+	newleader=false;
+	m_sousMinions.push_back(new SousMinion(_idAgent,std::vector<std::pair<bool,bool> *>(originX>=cibleX && originY>=cibleY, cibleY>=originY && cibleX>originX)));
+// 	m_zones.at(i).
 	// blabiblob gestion du rattrapage du chemin du minion en question (+gestion conflits? a voir)
-      }else{
-	// création d'un nouveau minion dans chaque surminion
-	j=0;
       }
     }
+  }
+  if(n*/ewleader){
+    initPop(_caseSource, _caseCible, _typeAgent);
   }
 }

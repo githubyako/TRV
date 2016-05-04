@@ -12,6 +12,7 @@
  Si c'est le cas, on envoie cette unité derrière l'autre et elle suivra le même chemin que le leader, juste derrière.
  On étend ensuite la listes des cases adjacentes à celles du leader + celle de cette unité, et on boucle.
  S'il reste des unités après ça, elles feront partie d'un groupe séparé: élection d'un nouveau leader etc...
+-Gestion de la fin du chemin (éviter l'allongement infini du génome avec l'ajouts de déplacements vides)
 
 
 ***********************************************************************************

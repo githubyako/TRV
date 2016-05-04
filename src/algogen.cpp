@@ -53,7 +53,7 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent)
 	{
 	  m_pop.push_back(new SurMinion(lol));
 	  m_pop.at(i)->addMinion(new Minion(genome));
-	  m_zones.push_back(std::pair<std::vector<Case*>,Case*>{m_sommets->at(_caseSource)->getVois(), _caseSource});
+	  m_zones.push_back(std::pair<std::vector<Case*>,Case*>{m_sommets->at(_caseSource)->getVois(), m_sommets->at(_caseSource)});
 	  i++;
 	  genome.clear();
 	}
@@ -61,7 +61,7 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent)
 	{
 	  m_pop.push_back(new SurMinion(lol));
 	  m_pop.at(i)->addMinion(new Minion(genome));
-	  m_zones.push_back(std::pair<std::vector<Case*>,Case*>{m_sommets->at(_caseSource)->getVois(), _caseSource});
+	  m_zones.push_back(std::pair<std::vector<Case*>,Case*>{m_sommets->at(_caseSource)->getVois(), m_sommets->at(_caseSource)});
 	  i++;
 	  genome.clear();
 	}
@@ -69,7 +69,7 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent)
 	{
 	  m_pop.push_back(new SurMinion(lol));
 	  m_pop.at(i)->addMinion(new Minion(genome));
-	  m_zones.push_back(std::pair<std::vector<Case*>,Case*>{m_sommets->at(_caseSource)->getVois(), _caseSource});
+	  m_zones.push_back(std::pair<std::vector<Case*>,Case*>{m_sommets->at(_caseSource)->getVois(), m_sommets->at(_caseSource)});
 	  i++;
 	  genome.clear();
 	}
@@ -84,7 +84,7 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent)
       }
       m_pop.push_back(new SurMinion(lol));
       m_pop.at(i)->addMinion(new Minion(genome));
-      m_zones.push_back(std::pair<std::vector<Case*>,Case*>{m_sommets->at(_caseSource)->getVois(), _caseSource});
+      m_zones.push_back(std::pair<std::vector<Case*>,Case*>{m_sommets->at(_caseSource)->getVois(), m_sommets->at(_caseSource)});
       genome.clear();
     }
   float totalfitness=0.0;
@@ -445,10 +445,10 @@ void Algogen::iterate()
 void Algogen::addDeplacement(int _idAgent, int _caseSource, int _caseCible, const Unite* _typeAgent)
 {
   // vérification des zones etc
-  unsigned int originX = m_sommets->at(_caseSource).second->getX();
-  unsigned int originY = m_sommets->at(_caseSource).second->getY();
-
-  bool newleader=true;
+//   unsigned int originX = m_sommets->at(_caseSource).second->getX();
+//   unsigned int originY = m_sommets->at(_caseSource).second->getY();
+// 
+//   bool newleader=true;
   // TO DO 
   
 /*  for(unsigned int i=0;i<m_zones.size();i++){
@@ -463,7 +463,8 @@ void Algogen::addDeplacement(int _idAgent, int _caseSource, int _caseCible, cons
       }
     }
   }
-  if(n*/ewleader){
+  if(newleader){
     initPop(_caseSource, _caseCible, _typeAgent);
   }
+  */
 }

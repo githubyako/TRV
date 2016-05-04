@@ -639,7 +639,7 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 // 			for(float cullRatio = 0.05;cullRatio<=0.2;cullRatio+=0.05){
 // 			  for(unsigned int nbkids=3;nbkids<=5;nbkids+=2){
 			      Algogen algg(m_w,m_h,& m_sommets,popsize,manhattan,mutaRatio,popToMutate,nbAjouts,ratioSupprs,ratioModifs,ratioElitism,cullRatio,nbkids);
-			      algg.initPop(idsource,idCible,typeAgent);
+			      algg.addDeplacement(id, idsource,idCible,typeAgent);
 			      int k=0;
 // 			      std::cout << "initpop ok, iterating" << std::endl;
 			      while(k<1500){

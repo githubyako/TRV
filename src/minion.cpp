@@ -135,15 +135,15 @@ void Minion::mutate(unsigned int _nbAjouts, float _ratioSupprs, float _ratioModi
       {
 	if (pos3 < pos4)
 	{
-	  delete m_genome.at(m_genome.begin()+pos3);
-	  delete m_genome.at(m_genome.begin()+pos4-1);
+	  delete *(m_genome.begin()+pos3);
+	  delete *(m_genome.begin()+pos4-1);
 	  m_genome.erase(m_genome.begin()+pos3);
 	  m_genome.erase(m_genome.begin()+pos4-1);
 	}
 	else
 	{
-	  delete m_genome.at(m_genome.begin()+pos4);
-	  delete m_genome.at(m_genome.begin()+pos3-1);
+	  delete *(m_genome.begin()+pos4);
+	  delete *(m_genome.begin()+pos3-1);
 	  m_genome.erase(m_genome.begin()+pos4);
 	  m_genome.erase(m_genome.begin()+pos3-1);
 	}
@@ -175,15 +175,15 @@ void Minion::mutateElite(unsigned int _nbAjouts, float _ratioModifs)
       if(m_genome.at(pos3)->first!=m_genome.at(pos4)->first && m_genome.at(pos3)->second==m_genome.at(pos4)->second){
 	if (pos3 < pos4)
 	{
-	  delete m_genome.at(m_genome.begin()+pos3);
-	  delete m_genome.at(m_genome.begin()+pos4-1);
+	  delete *(m_genome.begin()+pos3);
+	  delete *(m_genome.begin()+pos4-1);
 	  m_genome.erase(m_genome.begin()+pos3);
 	  m_genome.erase(m_genome.begin()+pos4-1);
 	}
 	else
 	{
-	  delete m_genome.at(m_genome.begin()+pos4);
-	  delete m_genome.at(m_genome.begin()+pos3-1);
+	  delete *(m_genome.begin()+pos4);
+	  delete *(m_genome.begin()+pos3-1);
 	  m_genome.erase(m_genome.begin()+pos4);
 	  m_genome.erase(m_genome.begin()+pos3-1);
 	}

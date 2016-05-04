@@ -58,7 +58,7 @@ void Controller::demande_chemin(int id, int x, int y)
   if (x >= map->get_m_w() || y >= map->get_m_h()) // On test si la case de destination est bien compris dans la map
     throw new str_exception("Cette case n'existe pas"); // Si non, on lève une exception
   else // Si oui, on lance l'algorithme de Dijkstra
-    std::vector<std::pair<bool,bool>> vec = map->dijkstra_GA(map->get_Agent(id)->getCase()->get_sommet(), map->get_Case(x,y)->get_sommet(), map->get_Agent(id)->getUnite()); 
+    std::vector<std::pair<bool,bool>*> vec = map->dijkstra_GA(map->get_Agent(id)->getCase()->get_sommet(), map->get_Case(x,y)->get_sommet(), map->get_Agent(id)->getUnite()); 
 }
 
 // Fonction demandant une recherche de chemin par pathfinding A* à l'Agent d'identificateur id à la case de coordonnées x,y
@@ -67,7 +67,7 @@ void Controller::demande_chemin_A_star(int id, int x, int y)
   if (x >= map->get_m_w() || y >= map->get_m_h()) // On test si la case de destination est bien compris dans la map
     throw new str_exception("Cette case n'existe pas"); // Si non, on lève une exception
   else // Si oui, on lance l'algorithme A*
-	std::vector<std::pair<bool, bool> > vec2 = map->A_star_GA(map->get_Agent(id)->getCase()->get_sommet(), map->get_Case(x,y)->get_sommet(), map->get_Agent(id)->getUnite());
+	std::vector<std::pair<bool, bool>*> vec2 = map->A_star_GA(map->get_Agent(id)->getCase()->get_sommet(), map->get_Case(x,y)->get_sommet(), map->get_Agent(id)->getUnite());
 }
 
 // Fonction demandant une recherche de chemin par pathfinding génétique à l'Agent d'identificateur id à la case de coordonnées x,y

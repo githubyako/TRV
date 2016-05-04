@@ -396,7 +396,7 @@ void Map::test()
 // Fonction pour trouver un chemin vers une case cible pour un agent avec l'algorithme de Dijkstra adapté pour l'algorithme génétique
 const std::vector<std::pair<bool,bool>*> Map::dijkstra_GA(unsigned int id, unsigned int idCible, const Unite* unite)
 {
-  std::vector<std::pair<bool,bool>> chemin; // Vecteur de pair de bool représentant le chemin de déplacement de l'agent pour aller de id à idCible
+  std::vector<std::pair<bool,bool>*> chemin; // Vecteur de pair de bool représentant le chemin de déplacement de l'agent pour aller de id à idCible
   if (m_sommets.at(idCible)->isObstacle()) // Si la case cible est un obstacle
   {
     return chemin; // On retourne un chemin vide
@@ -500,7 +500,7 @@ const std::vector< std::pair< bool,bool>*> Map::A_star_GA(unsigned int id, unsig
     unite = m_unites.at(0);
   }
   int start = std::clock();
-  std::vector<std::pair<bool,bool>> chemin; // Vecteur de pair de bool représentant le chemin de déplacement de l'agent pour aller de id à idCible
+  std::vector<std::pair<bool,bool>*> chemin; // Vecteur de pair de bool représentant le chemin de déplacement de l'agent pour aller de id à idCible
   if (m_sommets.at(idCible)->isObstacle()) // Si la case cible est un obstacle
   {
     return chemin; // On retourne un chemin vide

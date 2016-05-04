@@ -262,7 +262,7 @@ void Algogen::iterate()
 {
 
     mutatePop();
-    if(m_generationTotalFitness.size()>2 && m_generationTotalFitness.back() > *(m_generationTotalFitness.end()-1)){				// Si la fitness générale s'améliore, diminution du taux de mutation
+    if(m_generationTotalFitness.size()>2 && m_generationTotalFitness.back() > *(m_generationTotalFitness.end()-1)){	// Si la fitness générale s'améliore, diminution du taux de mutation
       m_ratioSupprs = m_ratioSupprs * 0.99;
       m_ratioModifs = m_ratioModifs * 0.99;
     }else{
@@ -275,15 +275,19 @@ void Algogen::iterate()
 //       if(m_pop.size() < 3){
 // 	initPop(m_orig[0]->get_sommet(),m_cible[0]->get_sommet());
 //       }
-      std::vector<Minion*> superman = m_pop.front()->getMinions();		// création du superminion
-      for(unsigned int i = 1;i<m_pop.size();i++){
-	for(unsigned int j=0;j<superman.size();j++){
-	  if(m_pop.at(i)->getMinion(j)->getFitness() < superman.at(j)->getFitness()){
-	    superman.at(i) = m_pop.at(i)->getMinion(j);
+      
+      if(m_pop.back()->getFitness() < m_superman.getFitness()){
+	std::vector<Minion*> superman = m_pop.front()->getMinions();		// création du superman (supersurminion)
+	for(unsigned int i = 1;i<m_pop.size();i++){
+	  for(unsigned int j=0;j<superman.size();j++){
+	    if(m_pop.at(i)->getMinion(j)->getFitness() < superman.at(j)->getFitness()){
+	      superman.at(i) = m_pop.at(i)->getMinion(j);
+	    }
 	  }
 	}
+	m_pop.push_back(new SurMinion(superman));			// supersurminion ajouté à la pop
       }
-      m_pop.push_back(new SurMinion(superman));			// superminion ajouté à la pop
+      
       for (int i = m_pop.size()-1;i>=0;i--){			// probabilité de sélection: 1/2 pour le meilleur individu, 1/4, pour le suivant, 1/8 pour le 3me...
 	if(rand()%m_pop.size() > ((1/(i+1)) *  m_pop.size())){
 	  if(sm1==nullptr) {sm1=m_pop.at(i);

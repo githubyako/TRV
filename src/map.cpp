@@ -394,7 +394,7 @@ void Map::test()
 }
 
 // Fonction pour trouver un chemin vers une case cible pour un agent avec l'algorithme de Dijkstra adapté pour l'algorithme génétique
-const std::vector<std::pair<bool,bool>> Map::dijkstra_GA(unsigned int id, unsigned int idCible, const Unite* unite)
+const std::vector<std::pair<bool,bool>*> Map::dijkstra_GA(unsigned int id, unsigned int idCible, const Unite* unite)
 {
   std::vector<std::pair<bool,bool>> chemin; // Vecteur de pair de bool représentant le chemin de déplacement de l'agent pour aller de id à idCible
   if (m_sommets.at(idCible)->isObstacle()) // Si la case cible est un obstacle
@@ -476,16 +476,16 @@ const std::vector<std::pair<bool,bool>> Map::dijkstra_GA(unsigned int id, unsign
   {
     diff = sommet_cible - sommet_cour; // On calcule diff
     if (diff == 1){ // Cas où sommet_cible est au dessus de sommet_cour
-      chemin.push_back(std::pair<bool,bool>(0,0));
+      chemin.push_back(new std::pair<bool,bool>(0,0));
     }
     else if (diff == -1){ // Cas où sommet_cible est au dessous de sommet_cour
-      chemin.push_back(std::pair<bool,bool>(1,0));
+      chemin.push_back(new std::pair<bool,bool>(1,0));
     }
     else if (diff == m_h){ // Cas où sommet_cible est à droite de sommet_cour
-      chemin.push_back(std::pair<bool,bool>(0,1));
+      chemin.push_back(new std::pair<bool,bool>(0,1));
     }
     else if (diff == -m_h){ // Cas où sommet_cible est à gauche de sommet_cour
-      chemin.push_back(std::pair<bool,bool>(1,1));
+      chemin.push_back(new std::pair<bool,bool>(1,1));
     }
     sommet_cible = sommet_cour; // On met à jour sommet_cible...
     sommet_cour = antec.at(sommet_cour); // et sommet_cour
@@ -494,7 +494,7 @@ const std::vector<std::pair<bool,bool>> Map::dijkstra_GA(unsigned int id, unsign
 }
 
 // Fonction pour trouver un chemin vers une case cible pour un agent avec l'algorithme A* adapté pour l'algorithme génétique
-const std::vector< std::pair< bool, bool > > Map::A_star_GA(unsigned int id, unsigned int idCible, const Unite* unite)
+const std::vector< std::pair< bool,bool>*> Map::A_star_GA(unsigned int id, unsigned int idCible, const Unite* unite)
 {
   if(unite == nullptr){
     unite = m_unites.at(0);
@@ -588,16 +588,16 @@ const std::vector< std::pair< bool, bool > > Map::A_star_GA(unsigned int id, uns
   {
     diff = sommet_cible - sommet_cour; // On calcule diff
     if (diff == 1){ // Cas où sommet_cible est au dessus de sommet_cour
-      chemin.push_back(std::pair<bool,bool>(0,0));
+      chemin.push_back(new std::pair<bool,bool>(0,0));
     }
     else if (diff == -1){ // Cas où sommet_cible est au dessous de sommet_cour
-      chemin.push_back(std::pair<bool,bool>(1,0));
+      chemin.push_back(new std::pair<bool,bool>(1,0));
     }
     else if (diff == m_h){ // Cas où sommet_cible est à droite de sommet_cour
-      chemin.push_back(std::pair<bool,bool>(0,1));
+      chemin.push_back(new std::pair<bool,bool>(0,1));
     }
     else if (diff == -m_h){ // Cas où sommet_cible est à gauche de sommet_cour
-      chemin.push_back(std::pair<bool,bool>(1,1));
+      chemin.push_back(new std::pair<bool,bool>(1,1));
     }
     sommet_cible = sommet_cour; // On met à jour sommet_cible...
     sommet_cour = antec.at(sommet_cour); // et sommet_cour

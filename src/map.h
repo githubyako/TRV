@@ -62,10 +62,10 @@ public:
   void suppr_agent(int id);
   
   // Fonction pour trouver un chemin vers une case cible pour un agent avec l'algorithme de Dijkstra adapté pour l'algorithme génétique
-  const std::vector<std::pair<bool,bool>> dijkstra_GA(unsigned int id, unsigned int idCible, const Unite* unite);
+  const std::vector<std::pair<bool,bool>*> dijkstra_GA(unsigned int id, unsigned int idCible, const Unite* unite);
   
   // Fonction pour trouver un chemin vers une case cible pour un agent avec l'algorithme A* adapté pour l'algorithme génétique
-  const std::vector<std::pair<bool,bool>> A_star_GA(unsigned int id, unsigned int idCible, const Unite* unite);
+  const std::vector<std::pair<bool,bool>*> A_star_GA(unsigned int id, unsigned int idCible, const Unite* unite);
   
   // Fonction pour trouver un chemin vers une case cible pour un agent avec un algorithme génétique
   void create_algogen(unsigned int id, unsigned int idCible, const Unite* unite);

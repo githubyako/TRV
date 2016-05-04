@@ -48,9 +48,9 @@ public:
 	void mutatePop();
 	void cull();
 	void evaluate(SurMinion* _minion);
-	void show() const;
-	unsigned int get_nb_goodResults();
-	unsigned int get_pres_nbdeplace();
+// 	void show() const;
+// 	unsigned int get_nb_goodResults();
+// 	unsigned int get_pres_nbdeplace();
 };
 
 

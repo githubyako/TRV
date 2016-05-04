@@ -107,7 +107,7 @@ void Algogen::crossover(SurMinion* _parent0, SurMinion* _parent1, SurMinion* _pa
     unsigned int parent;
     std::vector<Minion*> parents{g0,g1,g2};
     for(unsigned int i=0;i<m_nbkids;i++){
-      std::vector<std::pair<bool,bool> > kidgenome;
+      std::vector<std::pair<bool,bool>*> kidgenome;
       for(unsigned int j=0;j<nbchrs;){
 	parent = rand()%(parents.size());
 	if(j >= parents.at(parent)->getGenomeSize()){

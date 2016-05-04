@@ -57,13 +57,13 @@ void SurMinion::setVaChemin(bool _vaChemin)
 {
   m_vaChemin=_vaChemin;
 }
+
 void SurMinion::mutate(int numMinion, unsigned int _nbAjouts, float _ratioSupprs, float _ratioModifs)
 {
-  
+  m_minions.at(numMinion)->mutate(_nbAjouts,_ratioSupprs,_ratioModifs);
 }
 
 void SurMinion::mutateElite(int numMinion, unsigned int _nbAjouts, float _ratioModifs)
 {
-
+  m_minions.at(numMinion)->mutateElite(_nbAjouts,_ratioModifs);
 }
-

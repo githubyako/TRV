@@ -222,6 +222,11 @@ void Algogen::evaluate(SurMinion* _surminion)
 		cout=*(couts.begin()+pos);
 		cit=genome.erase(genome.begin()+pos, cit+1);
 		cit--;
+		while (vec_conf.back().first != sommet)
+		{
+		  vec_conf.pop_back();
+		  tmps--;
+		}
 	      }else {
 		if(sommet == m_cible.at(numAgent)->get_sommet()){
 		  genome.erase(cit+1,genome.end());

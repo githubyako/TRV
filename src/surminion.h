@@ -20,7 +20,7 @@ public:
   void addMinion(Minion* _minion);
   bool getVaChemin() const;
   float const & getFitness() const;
-  std::vector<Minion*> const & getMinions() const;
+  std::vector<Minion*> & getMinions();
   unsigned int getNumberMinions() const;
   Minion* getMinion(unsigned int _pairNumber);
   unsigned int getID() const;

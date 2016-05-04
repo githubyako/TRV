@@ -18,7 +18,7 @@ const float& SurMinion::getFitness() const
   return m_fitness;
 }
 
-std::vector<Minion*> const & SurMinion::getMinions() const
+std::vector< Minion* >& SurMinion::getMinions()
 {
   return m_minions;
 }

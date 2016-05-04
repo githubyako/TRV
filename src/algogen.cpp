@@ -176,15 +176,14 @@ void Algogen::mutatePop()
 
 void Algogen::evaluate(SurMinion* _surminion)
 {
-	float fitnessSM=0.0, fitnessM,cout;
+	float fitnessSM=0.0, fitnessM=0.0,cout;
 	bool _vaCheminSM = true;
-	Minion* minion;
 	unsigned int numAgent;
 	int newx;
 	int newy;
 	std::vector<int> vec;
 	std::vector<float> couts;
-	bool _vaChemin;
+	bool _vaChemin = false;
 	for (std::vector<Minion*>::iterator it = _surminion->getMinions().begin(); it < _surminion->getMinions().end(); it++)
 	{
 	  vec.clear();
@@ -363,4 +362,3 @@ void Algogen::iterate()
 // {
 //   return m_president->getGenomeSize();
 // }
-

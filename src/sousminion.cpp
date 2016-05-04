@@ -42,7 +42,7 @@ void SousMinion::setGenome(const std::vector< std::pair< bool, bool >* >& _genom
   m_genome = _genome;
 }
 
-unsigned int SousMinion::getID() const
+int SousMinion::getID() const
 {
   return m_idAgent;
 }

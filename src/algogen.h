@@ -23,7 +23,7 @@ private:
 	std::vector<SurMinion*> m_pop;
 	std::vector<SousMinion*> m_sousMinions;
 	std::vector<const Unite*> m_unite;
-	std::vector<std::vector<Case*> > m_zones;
+	std::vector<std::pair<std::vector<Case*>,Case*> >m_zones;
 	SurMinion* m_president, *m_superman;
 	unsigned int m_popsize, m_taillemax;
 	unsigned int m_nbkids;
@@ -37,6 +37,7 @@ private:
 	float m_ratioElitism; // ratio de meilleurs individus dont le génome n'est ni modifié ni amputé de chromosomes
 	float m_cullRatio; // ratio d'individus éliminés en dehors des élites par génération
 	std::vector<float> m_generationTotalFitness;
+	std::vector<std::pair<unsigned int,unsigned int>> m_conf_pres;
 	
 	void initPop(int _caseSource, int _caseCible,const Unite * _typeAgent);
 	
@@ -55,6 +56,7 @@ public:
 	void mutatePop();
 	void cull();
 	void evaluate(SurMinion* _minion);
+	void evaluateSSM();
 // 	void show() const;
 // 	unsigned int get_nb_goodResults();
 // 	unsigned int get_pres_nbdeplace();

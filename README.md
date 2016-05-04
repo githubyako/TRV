@@ -33,4 +33,4 @@
 - Écriture des mono pathfinding à coût variable (dijkstra, A*)
 - Se renseigner sur les différentes méthodes stochastiques (Algorithme de Monte-Carlo et algorithme génétique).
 - Écriture d'un algorithme génétique pour pathfinding mono agent
-- -Gestion des conflits via un vecteur de <sommet, temps>
+- Gestion des conflits via un vecteur de sommet et temps

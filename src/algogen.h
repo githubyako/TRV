@@ -21,7 +21,7 @@ private:
 	std::vector<Case *>m_orig,m_cible;
 	std::vector<SurMinion*> m_pop;
 	std::vector<const Unite*> m_unite;
-	SurMinion* m_president, m_superman;
+	SurMinion* m_president, *m_superman;
 	unsigned int m_popsize, m_taillemax;
 	unsigned int m_nbkids;
 	unsigned int m_lowestElite;

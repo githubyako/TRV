@@ -1,7 +1,7 @@
 #include "algogen.h"
 
 Algogen::Algogen(int map_w, int map_h, const std::map< int, Case* >* _sommets, unsigned int _popsize, float _manhattanImportance, float _mutationRatio, float _popToMutate, unsigned int _nbAjouts, float _ratioSupprs, float _ratioModifs, float _ratioElitism, float _cullRatio, unsigned int _nbkids):
-m_ratioElitism(_ratioElitism)
+m_president(nullptr),m_superman(nullptr),m_ratioElitism(_ratioElitism)
 {
   std::srand(std::time(0));
   if(0>_manhattanImportance || 0>_mutationRatio || 0>_popToMutate || 0>_nbAjouts || 0>_ratioSupprs || 0>_ratioModifs || 0>_cullRatio
@@ -24,7 +24,6 @@ m_ratioElitism(_ratioElitism)
   }
   m_nbkidstotal=0;
   m_nbIterations=0;
-  m_president=nullptr;
 }
 
 void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent)
@@ -276,7 +275,7 @@ void Algogen::iterate()
 // 	initPop(m_orig[0]->get_sommet(),m_cible[0]->get_sommet());
 //       }
       
-      if(m_pop.back()->getFitness() < m_superman.getFitness()){
+      if(m_superman!=nullptr && m_pop.back()->getFitness() < m_superman->getFitness()){
 	std::vector<Minion*> superman = m_pop.front()->getMinions();		// création du superman (supersurminion)
 	for(unsigned int i = 1;i<m_pop.size();i++){
 	  for(unsigned int j=0;j<superman.size();j++){

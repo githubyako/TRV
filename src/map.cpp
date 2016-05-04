@@ -608,8 +608,8 @@ const std::vector< std::pair< bool, bool > > Map::A_star_GA(unsigned int id, uns
 // Fonction pour trouver un chemin vers une case cible pour un agent avec un algorithme génétique
 void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* unite)
 {
-	float total=0;
-	unsigned int iteration=1500;
+// 	float total=0;
+// 	unsigned int iteration=1500;
  	unsigned int popsize=50;
 	float manhattan = 0.8;
 	float mutaRatio = 0.05;

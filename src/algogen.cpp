@@ -177,33 +177,39 @@ void Algogen::evaluate(SurMinion* _surminion)
 {
 	float fitnessSM=0.0, fitnessM=0.0,cout;
 	bool _vaCheminSM = true;
-	unsigned int numAgent;
+	unsigned int numAgent=0;
 	int newx;
 	int newy;
+	unsigned int sommet;
 	std::vector<int> vec;
 	std::vector<float> couts;
+	std::vector<std::pair<unsigned int, unsigned int>> vec_conf;
+	unsigned int tmps;
 	bool _vaChemin = false;
-	for (std::vector<Minion*>::iterator it = _surminion->getMinions().begin(); it < _surminion->getMinions().end(); it++)
+	bool ajout = false;
+	for (std::vector<Minion*>::iterator it = _surminion->getMinions().begin(); it < _surminion->getMinions().end(); it++,numAgent++)
 	{
 	  vec.clear();
 	  couts.clear();
+	  vec_conf.clear();
 	  fitnessM = 0;
 	  cout = 0.0;
-	  numAgent=0;
-	  std::vector<std::pair<bool,bool>> genome = _surminion->getMinions().at(numAgent)->getGenome();
-	  for(std::vector< std::pair< bool, bool > >::iterator cit = genome.begin(); cit != genome.end(); ++cit){ // parcours du chemin pour détection d'obstacle
-	    newx = (int)(m_orig.at(numAgent)->getX());
-	    newy = (int)(m_orig.at(numAgent)->getY());
-	    unsigned int sommet = (newx*m_mapH) + newy;
-	    vec.push_back(sommet);
-	    couts.push_back(0.0);
-	    _vaChemin=false;
-	    newx += ((*cit).second*(1-(2*(*cit).first)));
-	    newy += (((*cit).second -1) * ((2*(*cit).first)-1));
+	  tmps=0;
+	  newx = (int)(m_orig.at(numAgent)->getX());
+	  newy = (int)(m_orig.at(numAgent)->getY());
+	  sommet = (newx*m_mapH) + newy;
+	  vec.push_back(sommet);
+	  couts.push_back(0.0);
+	  _vaChemin=false;
+	  vec_conf.push_back(std::pair<unsigned int, unsigned int>(sommet, tmps));
+	  std::vector<std::pair<bool,bool>*> genome = _surminion->getMinions().at(numAgent)->getGenome();
+	  for(std::vector<std::pair< bool, bool >* >::iterator cit = genome.begin(); cit != genome.end(); ++cit, tmps++){ // parcours du chemin pour détection d'obstacle
+	    newx += ((*cit)->second*(1-(2*(*cit)->first)));
+	    newy += (((*cit)->second -1) * ((2*(*cit)->first)-1));
 	    sommet = (newx*m_mapH) + newy;
 	    if (newx < 0 || newx > m_mapW-1 || newy < 0 || newy > m_mapH-1 || m_sommets->at(sommet)->isObstacle()){
-	      newx -= ((*cit).second*(1-(2*(*cit).first)));
-	      newy -= (((*cit).second -1) * ((2*(*cit).first)-1));
+	      newx -= ((*cit)->second*(1-(2*(*cit)->first)));
+	      newy -= (((*cit)->second -1) * ((2*(*cit)->first)-1));
 	      cit=genome.erase(cit);
 	      sommet = (newx*m_mapH) + newy;
 	      cit--;
@@ -227,6 +233,19 @@ void Algogen::evaluate(SurMinion* _surminion)
 		vec.push_back(sommet);
 		cout+=m_unite.at(numAgent)->getVitesse(m_sommets->at(sommet)->getTerrain());
 		couts.push_back(cout);
+		while(!ajout)
+		{
+		  if ((std::find(vec_conf.begin(), vec_conf.end(), std::pair<unsigned int, unsigned int>(sommet, tmps)) == vec_conf.end()))
+		  {
+		    vec_conf.push_back(std::pair<unsigned int, unsigned int>(sommet,tmps));
+		    ajout = true;
+		  }
+		  else
+		  {
+		    genome.insert(++cit,nullptr);
+		    tmps++;
+		  }
+		}
 	      }
 	    }
 	  }

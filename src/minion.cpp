@@ -6,6 +6,9 @@ Minion::Minion(const std::vector< std::pair< bool, bool > *>& _genome):m_genome(
   m_vaChemin=false;
   m_id=m_incrID++;
 //   std::cout << "minion n°" << m_id << " créé." << std::endl;
+  
+  
+  
 }
 
 Minion::~Minion()

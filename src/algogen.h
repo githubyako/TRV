@@ -21,6 +21,7 @@ private:
 	std::vector<Case *>m_orig,m_cible;
 	std::vector<SurMinion*> m_pop;
 	std::vector<const Unite*> m_unite;
+	std::vector<std::vector<Case*> > m_zones;
 	SurMinion* m_president, *m_superman;
 	unsigned int m_popsize, m_taillemax;
 	unsigned int m_nbkids;
@@ -34,14 +35,18 @@ private:
 	float m_ratioElitism; // ratio de meilleurs individus dont le génome n'est ni modifié ni amputé de chromosomes
 	float m_cullRatio; // ratio d'individus éliminés en dehors des élites par génération
 	std::vector<float> m_generationTotalFitness;
+	
+	void initPop(int _caseSource, int _caseCible,const Unite * _typeAgent);
+	
+	
 public:
 	Algogen(int map_w, int map_h,std::map<int, Case*> const * _sommets, unsigned int _popsize, float _manhattanImportance, float _mutationRatio, 
 		  float _popToMutate, unsigned int _nbAjouts, float _ratioSupprs,float _ratioModifs, float _ratioElitism, float _cullRatio, unsigned int _nbkids);
 	~Algogen();
 
 
-	void initPop(int _caseSource, int _caseCible,const Unite * _typeAgent);
-	void addDeplacement(int _caseSource, int _caseCible);
+	
+	void addDeplacement(int _idAgent, int _caseSource, int _caseCible, const Unite * _typeAgent);
 	void iterate();
 
 	void crossover(SurMinion* _parent0, SurMinion* _parent1, SurMinion* _parent2);

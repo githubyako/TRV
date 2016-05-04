@@ -53,6 +53,7 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent)
 	{
 	  m_pop.push_back(new SurMinion(lol));
 	  m_pop.at(i)->addMinion(new Minion(genome));
+	  m_zones.push_back(m_sommets->at(_caseSource)->getVois());
 	  i++;
 	  genome.clear();
 	}
@@ -60,6 +61,7 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent)
 	{
 	  m_pop.push_back(new SurMinion(lol));
 	  m_pop.at(i)->addMinion(new Minion(genome));
+	  m_zones.push_back(m_sommets->at(_caseSource)->getVois());
 	  i++;
 	  genome.clear();
 	}
@@ -67,6 +69,7 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent)
 	{
 	  m_pop.push_back(new SurMinion(lol));
 	  m_pop.at(i)->addMinion(new Minion(genome));
+	  m_zones.push_back(m_sommets->at(_caseSource)->getVois());
 	  i++;
 	  genome.clear();
 	}
@@ -81,6 +84,7 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent)
       }
       m_pop.push_back(new SurMinion(lol));
       m_pop.at(i)->addMinion(new Minion(genome));
+      m_zones.push_back(m_sommets->at(_caseSource)->getVois());
       genome.clear();
     }
   float totalfitness=0.0;
@@ -384,3 +388,17 @@ void Algogen::iterate()
 // {
 //   return m_president->getGenomeSize();
 // }
+
+void Algogen::addDeplacement(int _idAgent, int _caseSource, int _caseCible, const Unite* _typeAgent)
+{
+  // vérification des zones etc
+  for(unsigned int i=0;i<m_zones.size();i++){
+    for(unsigned int j=0;j<m_zones.at(i).size();j++){
+      if(m_zones.at(i).at(j)->get_sommet() == _idAgent){
+	// blabiblob gestion du rattrapage du chemin du minion en question (+gestion conflits? a voir)
+      }else{
+	// création d'un nouveau minion dans chaque surminion
+      }
+    }
+  }
+}

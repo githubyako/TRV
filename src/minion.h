@@ -13,6 +13,7 @@ private:
   float m_fitness;
   bool m_vaChemin;
   unsigned int m_manhattan, m_id,m_sommetfinal;
+  
 public:
   Minion(std::vector<std::pair<bool,bool> *> const & _genome);
   ~Minion();

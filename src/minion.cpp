@@ -80,7 +80,7 @@ void Minion::setSommetFinal(unsigned int _sommet)
 
 // 					METHODES
 
-void Minion::mutate(Case* _cible, unsigned int _nbAjouts, float _ratioSupprs, float _ratioModifs)
+void Minion::mutate(unsigned int _nbAjouts, float _ratioSupprs, float _ratioModifs)
 {
   if(!m_vaChemin){
     unsigned int nbsupprs = (unsigned int)(m_genome.size() * _ratioSupprs);
@@ -134,7 +134,7 @@ void Minion::mutate(Case* _cible, unsigned int _nbAjouts, float _ratioSupprs, fl
   }
 }
 
-void Minion::mutateElite(Case* _cible, unsigned int _nbAjouts, float _ratioModifs)
+void Minion::mutateElite(unsigned int _nbAjouts, float _ratioModifs)
 {
   if(!m_vaChemin){
 	for(unsigned int i=0;i<_nbAjouts;++i){													// modifications

@@ -15,8 +15,8 @@ private:
   unsigned int m_manhattan, m_id,m_sommetfinal;
 public:
   Minion(std::vector<std::pair<bool,bool> > const & _genome);
-  void mutate(Case * _cible, unsigned int _nbAjouts, float _ratioSupprs,float _ratioModifs);
-  void mutateElite(Case * _cible, unsigned int _nbAjouts,float _ratioModifs);
+  void mutate(unsigned int _nbAjouts, float _ratioSupprs,float _ratioModifs);
+  void mutateElite(unsigned int _nbAjouts,float _ratioModifs);
   
   unsigned int getManhattan() const;
   bool getVaChemin() const;

@@ -25,6 +25,7 @@ private:
 	std::vector<const Unite*> m_unite;
 	std::vector<std::vector<Case*> > m_zones;
 	SurMinion* m_president, *m_superman;
+	std::vector<std::pair<unsigned int,unsigned int>> m_conf_pres;
 	unsigned int m_popsize, m_taillemax;
 	unsigned int m_nbkids;
 	unsigned int m_lowestElite;
@@ -55,6 +56,7 @@ public:
 	void mutatePop();
 	void cull();
 	void evaluate(SurMinion* _minion);
+	void evaluateSSM();
 // 	void show() const;
 // 	unsigned int get_nb_goodResults();
 // 	unsigned int get_pres_nbdeplace();

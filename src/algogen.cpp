@@ -218,72 +218,117 @@ void Algogen::evaluate(SurMinion* _surminion)
 	      sommet = (newx*m_mapH) + newy;
 	      cit--;
 	    } else {
-	    int pos = std::distance(vec.begin(),std::find(vec.begin(), vec.end(), sommet));
-	      if ((std::find(vec.begin(), vec.end(), sommet) != vec.end())) {
-		int pos = std::distance(vec.begin(),std::find(vec.begin(), vec.end(), sommet));
-		vec.erase(vec.begin()+pos+1, vec.end());
-		couts.erase(couts.begin()+pos+1,couts.end());
-		cout=*(couts.begin()+pos);
-		cit=genome.erase(genome.begin()+pos, cit+1);
-		cit--;
-		while (vec_conf.back().first != sommet)
-		{
-		  vec_conf.pop_back();
-		  tmps--;
-		}
-	      }else {
-		if(sommet == m_cible.at(numAgent)->get_sommet()){
-		  genome.erase(cit+1,genome.end());
-		  vec.erase(vec.begin()+pos, vec.end());
-		  couts.erase(couts.begin()+pos,couts.end());
-		  cout=couts.back();
-		  _vaChemin=true;
-		  break;}
-		vec.push_back(sommet);
-		cout+=m_unite.at(numAgent)->getVitesse(m_sommets->at(sommet)->getTerrain());
-		couts.push_back(cout);
-		while(!ajout)
-		{
-		  if ((std::find(vec_conf.begin(), vec_conf.end(), std::pair<unsigned int, unsigned int>(sommet, tmps)) == vec_conf.end()))
+	      int pos = std::distance(vec.begin(),std::find(vec.begin(), vec.end(), sommet));
+		if ((std::find(vec.begin(), vec.end(), sommet) != vec.end())) {
+		  int pos = std::distance(vec.begin(),std::find(vec.begin(), vec.end(), sommet));
+		  vec.erase(vec.begin()+pos+1, vec.end());
+		  couts.erase(couts.begin()+pos+1,couts.end());
+		  cout=*(couts.begin()+pos);
+		  cit=genome.erase(genome.begin()+pos, cit+1);
+		  cit--;
+		  while (vec_conf.back().first != sommet)
 		  {
-		    vec_conf.push_back(std::pair<unsigned int, unsigned int>(sommet,tmps));
-		    ajout = true;
+		    vec_conf.pop_back();
+		    tmps--;
 		  }
-		  else
+		}else {
+		  if(sommet == m_cible.at(numAgent)->get_sommet()){
+		    genome.erase(cit+1,genome.end());
+		    vec.erase(vec.begin()+pos, vec.end());
+		    couts.erase(couts.begin()+pos,couts.end());
+		    cout=couts.back();
+		    _vaChemin=true;
+		    break;}
+		  vec.push_back(sommet);
+		  cout+=m_unite.at(numAgent)->getVitesse(m_sommets->at(sommet)->getTerrain());
+		  couts.push_back(cout);
+		  while(!ajout)
 		  {
-		    genome.insert(++cit,nullptr);
-		    tmps++;
+		    if ((std::find(vec_conf.begin(), vec_conf.end(), std::pair<unsigned int, unsigned int>(sommet, tmps)) == vec_conf.end()))
+		    {
+		      vec_conf.push_back(std::pair<unsigned int, unsigned int>(sommet,tmps));
+		      ajout = true;
+		    }
+		    else
+		    {
+		      genome.insert(++cit,nullptr);
+		      tmps++;
+		    }
 		  }
 		}
 	      }
 	    }
-	  }
-	  (*it)->setSommetFinal(vec.back());
-	  m_taillemax = std::max(m_taillemax,(unsigned int)genome.size());
-	  (*it)->setVaChemin(_vaChemin);
-	  if (_vaChemin == false)
-	    _vaCheminSM = false;
-	  int manhattan = 0.0;
-	  if(_vaChemin){
-	    fitnessM = (float)((float)cout + (float)genome.size());
-	  }else{
-	    int manhattan = abs(m_cible.at(numAgent)->getX() - m_sommets->at(vec.back())->getX()) + abs(m_cible.at(numAgent)->getY() - m_sommets->at(vec.back())->getY());
-	    fitnessM = ((float)manhattan*m_manhattanImportance);
-	  }
-	  (*it)->setFitness(fitnessM);
-	  (*it)->setManhattan(manhattan);
-	  (*it)->setGenome(genome);
-	  fitnessSM+=fitnessM;
+	    (*it)->setSommetFinal(vec.back());
+	    m_taillemax = std::max(m_taillemax,(unsigned int)genome.size());
+	    (*it)->setVaChemin(_vaChemin);
+	    if (_vaChemin == false)
+	      _vaCheminSM = false;
+	    int manhattan = 0.0;
+	    if(_vaChemin){
+	      fitnessM = (float)((float)cout + (float)genome.size());
+	    }else{
+	      int manhattan = abs(m_cible.at(numAgent)->getX() - m_sommets->at(vec.back())->getX()) + abs(m_cible.at(numAgent)->getY() - m_sommets->at(vec.back())->getY());
+	      fitnessM = ((float)manhattan*m_manhattanImportance);
+	    }
+	    (*it)->setFitness(fitnessM);
+	    (*it)->setManhattan(manhattan);
+	    (*it)->setGenome(genome);
+	    fitnessSM+=fitnessM;
 	}
-      fitnessSM = (float)(fitnessM / (float) _surminion->getMinions().size());
-      _surminion->setFitness(fitnessSM);
-      _surminion->setVaChemin(_vaCheminSM);
-      if (_vaCheminSM && (m_president==nullptr || !(m_president->getVaChemin()) || m_president->getFitness()>fitnessSM))
-	 m_president=_surminion;
-      else if ( !_vaCheminSM && (m_president==nullptr || (((!m_president->getVaChemin())) && (fitnessSM < m_president->getFitness()))))
-	m_president=_surminion;
+	fitnessSM = (float)(fitnessSM / (float) _surminion->getMinions().size());
+	_surminion->setFitness(fitnessSM);
+	_surminion->setVaChemin(_vaCheminSM);
+	if (_vaCheminSM && (m_president==nullptr || !(m_president->getVaChemin()) || m_president->getFitness()>fitnessSM))
+	{
+	  m_president=_surminion;
+	  m_conf_pres = vec_conf;
+	}
+	else if ( !_vaCheminSM && (m_president==nullptr || (((!m_president->getVaChemin())) && (fitnessSM < m_president->getFitness()))))
+	{
+	  m_president=_surminion;
+	  m_conf_pres = vec_conf;
+	}
 }
 
+void Algogen::evaluateSSM()
+{
+  std::vector<std::pair<unsigned int, unsigned int>> vec_conf;
+  vec_conf = m_conf_pres;
+  int numAgent=0;
+  bool ajout;
+  int newx;
+  int newy;
+  unsigned int sommet;
+  unsigned int tmps =0;
+  for (std::vector<SousMinion*>::iterator it = m_sousMinions.begin(); it < m_sousMinions.end(); it++, numAgent++)
+  {
+    ajout = false;
+    tmps=0;
+    newx = (int)(m_orig.at(numAgent)->getX());
+    newy = (int)(m_orig.at(numAgent)->getY());
+    sommet = (newx*m_mapH) + newy;
+    std::vector<std::pair<bool,bool>*> genome = m_sousMinions.at(numAgent)->getGenome();
+    for (std::vector<std::pair<bool,bool>*>::iterator cit = genome.begin(); cit < genome.end(); cit++)
+    {
+      newx += ((*cit)->second*(1-(2*(*cit)->first)));
+      newy += (((*cit)->second -1) * ((2*(*cit)->first)-1));
+      sommet = (newx*m_mapH) + newy;
+      while(!ajout)
+	{
+	  if ((std::find(vec_conf.begin(), vec_conf.end(), std::pair<unsigned int, unsigned int>(sommet, tmps)) == vec_conf.end()))
+	  {
+	    vec_conf.push_back(std::pair<unsigned int, unsigned int>(sommet,tmps));
+	    ajout = true;
+	  }
+	  else
+	  {
+	    genome.insert(++cit,nullptr);
+	    tmps++;
+	  }
+	}
+    }
+  }
+}
 
 void Algogen::iterate()
 {

@@ -12,7 +12,6 @@
  Si c'est le cas, on envoie cette unité derrière l'autre et elle suivra le même chemin que le leader, juste derrière.
  On étend ensuite la listes des cases adjacentes à celles du leader + celle de cette unité, et on boucle.
  S'il reste des unités après ça, elles feront partie d'un groupe séparé: élection d'un nouveau leader etc...
--Gestion des conflits via un vecteur de <sommet, temps>
 
 
 ***********************************************************************************
@@ -34,3 +33,4 @@
 - Écriture des mono pathfinding à coût variable (dijkstra, A*)
 - Se renseigner sur les différentes méthodes stochastiques (Algorithme de Monte-Carlo et algorithme génétique).
 - Écriture d'un algorithme génétique pour pathfinding mono agent
+- -Gestion des conflits via un vecteur de <sommet, temps>

@@ -8,9 +8,11 @@
 - Amélioration de l'algorithme génétique mono agent pour pathfinding multi agent
 - Rédaction du compte rendu de stage
 - Election du leader, idée : Demande de déplacement d'un groupe d'unités, on parcourt le vecteur pour connaitre l'unité
- avec la plus petite distance de Manhattan -> Le leader, à chaque autre unité du vecteur, on regarde les cases adjacentes pour voir 
-si le leader y est, si il n'y est pas on regarde si une unité suivant le leader y est, sinon une unité suivant une unité etc...
-Et on fait un A Star sur l'unité jusqu'à l'unité qu'elle doit suivre jusqu'au but
+ avec la plus petite distance de Manhattan -> Le leader, à chaque autre unité du vecteur, on regarde les cases adjacentes au leader pour voir si une de ces autres unités y est.
+ Si c'est le cas, on envoie cette unité derrière l'autre et elle suivra le même chemin que le leader, juste derrière.
+ On étend ensuite la listes des cases adjacentes à celles du leader + celle de cette unité, et on boucle.
+ S'il reste des unités après ça, elles feront partie d'un groupe séparé: élection d'un nouveau leader etc...
+-Gestion des conflits via un vecteur de <sommet, temps>
 
 
 ***********************************************************************************

@@ -26,6 +26,16 @@ unsigned int SousMinion::getGenomeSize() const
   return m_genome.size();
 }
 
+const Minion* SousMinion::getLeader() const
+{
+  return m_leader;
+}
+
+void SousMinion::setLeader(Minion* _leader)
+{
+  m_leader = _leader;
+}
+
 
 void SousMinion::setGenome(const std::vector< std::pair< bool, bool >* >& _genome)
 {

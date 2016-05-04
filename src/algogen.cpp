@@ -398,11 +398,13 @@ void Algogen::addDeplacement(int _idAgent, int _caseSource, int _caseCible, cons
 {
   // vérification des zones etc
   for(unsigned int i=0;i<m_zones.size();i++){
-    for(unsigned int j=0;j<m_zones.at(i).size();j++){
-      if(m_zones.at(i).at(j)->get_sommet() == _idAgent){
+    for(unsigned int j=0;j<m_zones.at(i).size();){
+      if(m_zones.at(i).at(j)->get_sommet() == _caseSource){ // si la case source du nouveau déplacement est trouvée dans une des zones...
+							    // alors on ajoute
 	// blabiblob gestion du rattrapage du chemin du minion en question (+gestion conflits? a voir)
       }else{
 	// création d'un nouveau minion dans chaque surminion
+	j=0;
       }
     }
   }

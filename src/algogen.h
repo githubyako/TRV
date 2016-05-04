@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <math.h>
 
+#include "sousminion.h"
 #include "surminion.h"
 #include "str_exception.h"
 #include "map.h"
@@ -20,6 +21,7 @@ private:
 	std::map<int, Case*> const * m_sommets;
 	std::vector<Case *>m_orig,m_cible;
 	std::vector<SurMinion*> m_pop;
+	std::vector<SousMinion*> m_sousMinions;
 	std::vector<const Unite*> m_unite;
 	std::vector<std::vector<Case*> > m_zones;
 	SurMinion* m_president, *m_superman;

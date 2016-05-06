@@ -52,8 +52,8 @@ private:
 	void crossover(SurMinion* _parent0, SurMinion* _parent1, SurMinion* _parent2); // Creates new individuals based on the genome of three parents
 	void mutatePop(); // Mutates the population (see .cpp for details)
 	void cull(); // Destroys a number of individuals (see .cpp for details)
-	void evaluate(SurMinion* _minion); // Assigns a fitness to an individual as a whole, and to each of its paths
-	void evaluateSSM(); // 
+	void evaluate(SurMinion* _minion); // Assigns a fitness to an individual as a whole, and to each of its paths. Corrects loops, out of bounds movements, overshootings, and also manages collisions.
+	void evaluateSSM(); // Manages collisions for sub-individuals.
 // 	void show() const; // prints statistics and details about the results
 // 	unsigned int get_nb_goodResults();
 // 	unsigned int get_pres_nbdeplace();

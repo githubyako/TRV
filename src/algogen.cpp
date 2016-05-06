@@ -8,7 +8,7 @@ m_president(nullptr),m_superman(nullptr),m_ratioElitism(_ratioElitism)
 	  || _manhattanImportance>1 || _mutationRatio>1 || _popToMutate>1 || _ratioSupprs>1 || _ratioModifs>1 || _cullRatio>1){
 	  std::cerr << "Erreur: les ratios doivent être compris entre 0 et 1 inclus" << std::endl;
 	  throw str_exception("Erreur: les ratios doivent être compris entre 0 et 1 inclus");
-  }else{
+  }else{  // vérification de la validité des paramètres, et initialisation (todo: factory pour ne pas créer l'objet si paramètres incorrects)
 	  m_mapW = map_w;
 	  m_mapH = map_h;
 	  m_sommets = _sommets;
@@ -26,7 +26,7 @@ m_president(nullptr),m_superman(nullptr),m_ratioElitism(_ratioElitism)
   m_nbIterations=0;
 }
 
-void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent)
+void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent) // 
 {
   m_unite.push_back(_typeAgent);
   m_orig.push_back(m_sommets->at(_caseSource));

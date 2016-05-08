@@ -4,11 +4,11 @@ Algogen::Algogen(int map_w, int map_h, const std::map< int, Case* >* _sommets, u
 m_president(nullptr),m_superman(nullptr),m_ratioElitism(_ratioElitism)
 {
   std::srand(std::time(0));
-  if(0>_manhattanImportance || 0>_mutationRatio || 0>_popToMutate || 0>_nbAjouts || 0>_ratioSupprs || 0>_ratioModifs || 0>_cullRatio
+  if(0>_manhattanImportance || 0>_mutationRatio || 0>_popToMutate || 0>_nbAjouts || 0>_ratioSupprs || 0>_ratioModifs || 0>_cullRatio // Checking if arguments are in valid range (todo: factory)
 	  || _manhattanImportance>1 || _mutationRatio>1 || _popToMutate>1 || _ratioSupprs>1 || _ratioModifs>1 || _cullRatio>1){
 	  std::cerr << "Erreur: les ratios doivent être compris entre 0 et 1 inclus" << std::endl;
 	  throw str_exception("Erreur: les ratios doivent être compris entre 0 et 1 inclus");
-  }else{  // vérification de la validité des paramètres, et initialisation (todo: factory pour ne pas créer l'objet si paramètres incorrects)
+  }else{
 	  m_mapW = map_w;
 	  m_mapH = map_h;
 	  m_sommets = _sommets;
@@ -26,12 +26,12 @@ m_president(nullptr),m_superman(nullptr),m_ratioElitism(_ratioElitism)
   m_nbIterations=0;
 }
 
-void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent) // 
+void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent) // Creation of a new sub-population in each individual, at the request of demandeDéplacement()
 {
-  m_unite.push_back(_typeAgent);
-  m_orig.push_back(m_sommets->at(_caseSource));
-  m_cible.push_back(m_sommets->at(_caseCible));
-  unsigned int originX = m_orig[0]->getX();
+  m_unite.push_back(_typeAgent);	// adding unit type to the relevant container
+  m_orig.push_back(m_sommets->at(_caseSource)); // adding new path beginning to the relevant container
+  m_cible.push_back(m_sommets->at(_caseCible)); // adding new path ending to the relevant container
+  unsigned int originX = m_orig[0]->getX(); // gathering coordinates of those cells
   unsigned int originY = m_orig[0]->getY();
   unsigned int cibleX = m_cible[0]->getX();
   unsigned int cibleY = m_cible[0]->getY();
@@ -46,20 +46,19 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent) 
   bool Astar = ((std::abs(distanceY)>6) || (std::abs(distanceY)>3 && std::abs(distanceX)>3) || (std::abs(distanceX)>=6));
   std::vector<std::pair<bool,bool> *> genome;
   std::vector<Minion*> lol;
-    for(unsigned int i=0;i<8;i++){			// creation pop initiale
-      	// ALEATOIRE ET COURT, A AMELIORER VIA ASTAR_GA
-      if(i<3 && Astar){
-	if (!(genome=Map::m_map->A_star_GA(_caseSource, ((originX+3*(b-e+2*(c-f)))*m_mapH+(originY+3*(e-b+2*(f-a)))), nullptr)).empty())
+    for(unsigned int i=0;i<8;i++){ // base population consists of 8 total individuals
+      if(i<3 && Astar){ // three of them are non-random, and calculated with the A* algorithm at 3 predefined points (one in a straight path, two at 45° angle from the straight path)
+	if (!(genome=Map::m_map->A_star_GA(_caseSource, ((originX+3*(b-e+2*(c-f)))*m_mapH+(originY+3*(e-b+2*(f-a)))), nullptr)).empty()) // if the requested A* path is short enough (not calculated if too long)
 	{
-	  m_pop.push_back(new SurMinion(lol));
-	  m_pop.at(i)->addMinion(new Minion(genome));
-	  m_zones.push_back(std::pair<std::vector<Case*>,Case*>{m_sommets->at(_caseSource)->getVois(), m_sommets->at(_caseSource)});
+	  m_pop.push_back(new SurMinion(lol)); // A new individual is created. This instance regroups all requested paths.
+	  m_pop.at(i)->addMinion(new Minion(genome)); // In this individual, a new path, as defined by A*, is created.
+	  m_zones.push_back(std::pair<std::vector<Case*>,Case*>{m_sommets->at(_caseSource)->getVois(), m_sommets->at(_caseSource)}); // To handle multiple-units single-target movements, neighboring map cells are saved
 	  i++;
 	  genome.clear();
 	}
 	if (!(genome=Map::m_map->A_star_GA(_caseSource, ((originX+3*((a-c)*(1-e)+2*(c-a)))*m_mapH+(originY+3*((d-f)*(1-b)+2*(e-a-b-c+2*f)))), nullptr)).empty())
 	{
-	  m_pop.push_back(new SurMinion(lol));
+	  m_pop.push_back(new SurMinion(lol)); // the above process is repeated for a different A* path
 	  m_pop.at(i)->addMinion(new Minion(genome));
 	  m_zones.push_back(std::pair<std::vector<Case*>,Case*>{m_sommets->at(_caseSource)->getVois(), m_sommets->at(_caseSource)});
 	  i++;
@@ -67,16 +66,16 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent) 
 	}
 	if (!(genome=Map::m_map->A_star_GA(_caseSource, ((originX+3*(b-e+2*(c-f)))*m_mapH+(originY+3*(e-b+2*(f-a)))), nullptr)).empty())
 	{
-	  m_pop.push_back(new SurMinion(lol));
+	  m_pop.push_back(new SurMinion(lol)); // and then another
 	  m_pop.at(i)->addMinion(new Minion(genome));
 	  m_zones.push_back(std::pair<std::vector<Case*>,Case*>{m_sommets->at(_caseSource)->getVois(), m_sommets->at(_caseSource)});
 	  i++;
 	  genome.clear();
 	}
-      }
+      } // Once all three A* path definitions have been attempted...
       Astar=false;
       if(!Astar){
-	for(int j=0;j<6;++j){
+	for(int j=0;j<6;++j){ // We create the rest of the individuals by assigning them 6 random movements
 	  bool bool1 = rand() % 2;
 	  bool bool2 = rand() % 2;
 	  genome.push_back(new std::pair<bool,bool>(bool1,bool2));
@@ -88,14 +87,14 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent) 
       genome.clear();
     }
   float totalfitness=0.0;
-  for (std::vector<SurMinion*>::iterator it = m_pop.begin(); it !=  m_pop.end(); ++it) {
-    evaluate(*it);						// evaluation fitness
+  for (std::vector<SurMinion*>::iterator it = m_pop.begin(); it !=  m_pop.end(); ++it) { // We then run the evaluation function
+    evaluate(*it);
     totalfitness+=(*it)->getFitness();
   }
-  m_generationTotalFitness.push_back(totalfitness / m_pop.size());						// ajout au tableau de la fitness générale
+  m_generationTotalFitness.push_back(totalfitness / m_pop.size()); // An average fitness for this generation is then incorporated into the relevant container, for adaptive purposes
 }
 
-Algogen::~Algogen()
+Algogen::~Algogen() // standard destructor, deleting all objects created in this class ('Minions' are in turn deleted by the Surminion class, which contains the pointers to them)
 {
     for (std::vector<SurMinion*>::iterator it = m_pop.begin(); it !=  m_pop.end(); ++it) {
       delete *it;

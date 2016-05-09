@@ -54,7 +54,7 @@ private:
 	void cull(); // Destroys a number of individuals (see .cpp for details)
 	void evaluate(SurMinion* _minion); // Assigns a fitness to an individual as a whole, and to each of its paths. Corrects loops, out of bounds movements, overshootings, and also manages collisions.
 	void evaluateSSM(); // Manages collisions for sub-individuals.
-// 	void show() const; // prints statistics and details about the results
+	void show() const; // prints statistics and details about the results
 // 	unsigned int get_nb_goodResults();
 // 	unsigned int get_pres_nbdeplace();
 };

@@ -93,20 +93,21 @@ void Minion::setSommetFinal(unsigned int _sommet)
 
 void Minion::mutate(unsigned int _nbAjouts, float _ratioSupprs, float _ratioModifs)
 {
-  if(!m_vaChemin){
+  if(!m_vaChemin){    
     unsigned int nbsupprs = (unsigned int)(m_genome.size() * _ratioSupprs);
-    for(unsigned int i=0;i<nbsupprs;++i){													// suppressions
+//     std::cout << "deleting " << nbsupprs << " elements out of " << m_genome.size() << ", ratiosupprs is " << _ratioSupprs << std::endl;
+    for(unsigned int i=0;i<nbsupprs;++i){  // suppressions
 	    std::swap(m_genome.at(i),m_genome.back());
 	    delete m_genome.back();
 	    m_genome.pop_back();
     }
-    
+//     std::cout << "2" << std::endl;
     unsigned int nbmodifs = (unsigned int)(m_genome.size() * _ratioModifs);
-    for(unsigned int i=0;i<nbmodifs;++i){													// modifications
+    for(unsigned int i=0;i<nbmodifs;++i){ // modifications
 	    m_genome.at(rand() % m_genome.size()) = new std::pair<bool,bool>(rand()%2,rand()%2);
     }
-
-    for(unsigned int i=0;i<_nbAjouts;++i){													// modifications
+//     std::cout << "3" << std::endl;
+    for(unsigned int i=0;i<_nbAjouts;++i){  // modifications
 	    m_genome.push_back(new std::pair<bool,bool>(rand()%2,rand()%2));
     }
 /*    

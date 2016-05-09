@@ -33,7 +33,7 @@ private:
 	float m_mutationRatio; // Mutation ratio per individual and per generation
 	float m_popToMutate; // Population ratio subject to mutations
 	unsigned int m_nbAjouts; // Numbre of added chromosomes per generation (for relevant individuals)
-	float m_ratioSupprs, m_ratioModifs; // Initial ratios of chromosomes deletion and modification (subject to change over time, cf adaptive genetic algorithm)
+	float m_ratioSupprs, m_initratioSupprs, m_ratioModifs, m_initratioModifs; // Initial ratios of chromosomes deletion and modification (subject to change over time, cf adaptive genetic algorithm)
 	float m_ratioElitism; // Ratio of individuals considered "elite" (selection by fitness) 
 	float m_cullRatio; // Ratio of individuals deleted at each iteration
 	std::vector<float> m_generationTotalFitness; // Contains each iteration's global fitness, used to adapt m_ratioSupprs and m_ratioModifs

@@ -644,7 +644,7 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 			      algg.addDeplacement(id, idsource,idCible,typeAgent);
 			      int k=0;
 // 			      std::cout << "initpop ok, iterating" << std::endl;
-			      while(k<150000){
+			      while(k<5){
 				k++;
 				algg.iterate();
 				if(k%100 == 0){

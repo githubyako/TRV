@@ -1,7 +1,7 @@
 #include "sousminion.h"
 
-SousMinion::SousMinion(int _idAgent, const std::vector< std::pair< bool, bool >* >& _genome)
-:m_idAgent(_idAgent),m_genome(_genome)
+SousMinion::SousMinion(int _idAgent, const std::vector< std::pair< bool, bool >* >& _begin, const std::vector< std::pair< bool, bool >* >& _genome)
+:m_idAgent(_idAgent), m_begin(_begin), m_genome(_genome)
 {
   
 }
@@ -26,7 +26,7 @@ unsigned int SousMinion::getGenomeSize() const
   return m_genome.size();
 }
 
-const Minion* SousMinion::getLeader() const
+Minion* SousMinion::getLeader() const
 {
   return m_leader;
 }

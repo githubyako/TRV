@@ -132,7 +132,7 @@ void Algogen::cull()
     float totalSupprs = (float)(finRange * m_cullRatio);
     float supprs=0.0;
     bool ded;
-    while(supprs<totalSupprs){
+    while(supprs<totalSupprs && m_pop.size() > m_popsize/2){
 	    for (std::vector<SurMinion*>::iterator it = m_pop.begin(); it !=  m_pop.end() - finRange;) {
 		    ded = rand() % 2;
 		    if(ded && supprs < totalSupprs && (*it)->getVaChemin()==false && (*it)->getID()!=m_president->getID()){
@@ -156,7 +156,7 @@ void Algogen::mutatePop()
 	  elite = (SurMinionToMutate > m_lowestElite);
 	  SurMinion* SM = m_pop.at(SurMinionToMutate);
 	  if((m_president!=nullptr && SM->getID()!=m_president->getID()) || m_president==nullptr){
-	    unsigned int nbrMinionsToMutate = SM->getNumberMinions() * m_mutationRatio;
+	    unsigned int nbrMinionsToMutate = (unsigned int)(ceil(SM->getNumberMinions() * m_mutationRatio));
 	    std::vector<Minion*> minions = SM->getMinions();
 	    for(unsigned int i = 0; i < nbrMinionsToMutate; i++){
 	      unsigned int minionToMutate = rand()%(minions.size());
@@ -173,6 +173,7 @@ void Algogen::mutatePop()
 	  }
 	}
 }
+
 
 
 void Algogen::evaluate(SurMinion* _surminion)

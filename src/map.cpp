@@ -616,7 +616,7 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 	float popToMutate = 1;
  	unsigned int nbAjouts = 10;
 	float ratioSupprs = 0.1;
-	float ratioModifs = 0.2;
+	float ratioModifs = 0.1;
 	float ratioElitism = 0.05;
 	float cullRatio = 0.1;
 	unsigned int  nbkids=3;
@@ -642,7 +642,7 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 			      algg.addDeplacement(id, idsource,idCible,typeAgent);
 			      int k=0;
 // 			      std::cout << "initpop ok, iterating" << std::endl;
-			      while(k<150){
+			      while(k<150000){
 				k++;
 				algg.iterate();
 				if(k%100 == 0){
@@ -650,7 +650,7 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 				}
 // 				algg.show();
 			      }
-			      //algg.show();
+			      algg.show();
 // 			      if(test%1000==0){
 // 				std::cout << "test n°" << test << " fini." << std::endl;
 // 			      }

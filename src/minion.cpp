@@ -90,7 +90,7 @@ void Minion::setSommetFinal(unsigned int _sommet)
 void Minion::mutate(unsigned int _nbAjouts, float _ratioSupprs, float _ratioModifs)
 {
   if(!m_vaChemin){
-    unsigned int nbsupprs = (unsigned int)(m_genome.size() * _ratioSupprs);
+    unsigned int nbsupprs = (unsigned int)(ceil(_nbAjouts * _ratioSupprs));
     for(unsigned int i=0;i<nbsupprs;++i){													// suppressions
 	    std::swap(m_genome.at(i),m_genome.back());
 	    delete m_genome.back();

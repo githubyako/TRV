@@ -2,9 +2,8 @@
 #define MINION_H
 #include <vector>
 #include <iostream>
-
+#include <math.h>
 #include "case.h"
-// #include "map.h"
 
 class Minion{
 private:

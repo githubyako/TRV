@@ -13,6 +13,7 @@
  On étend ensuite la listes des cases adjacentes à celles du leader + celle de cette unité, et on boucle.
  S'il reste des unités après ça, elles feront partie d'un groupe séparé: élection d'un nouveau leader etc...
 -Gestion de la fin du chemin (éviter l'allongement infini du génome avec l'ajouts de déplacements vides)
+-Règler les put*** de problème d'algorithme génétique multi agents (cf. afficher les id et les génomes des minions avant et après toutes modifications sur un petit nombre d'itérations)
 
 
 ***********************************************************************************

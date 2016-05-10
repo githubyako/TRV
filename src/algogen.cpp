@@ -102,17 +102,12 @@ Algogen::~Algogen() // standard destructor, deleting all objects created in this
 
 void Algogen::crossover(SurMinion* _parent0, SurMinion* _parent1, SurMinion* _parent2) // Creates new individuals based on the genome of three parents
 {
-  std::cout << "crossover appelé" << std::endl;
   unsigned int iterations = _parent0->getMinions().size();
-  std::cout << "avant le for " << iterations << std::endl;
   for(unsigned int i=0;i<iterations;++i){
-    std::cout << "lol1" << std::endl;
     Minion* g0 = _parent0->getMinion(i),*g1 = _parent1->getMinion(i),*g2=_parent2->getMinion(i);
     unsigned int nbchrs=std::max(std::max(g0->getGenomeSize(),g1->getGenomeSize()),g2->getGenomeSize());
     unsigned int parent;
-    std::cout << "lol2" << std::endl;
     std::vector<Minion*> parents{g0,g1,g2};
-    std::cout << "lol3" << std::endl;
     for(unsigned int i=0;i<m_nbkids;i++){
       std::vector<std::pair<bool,bool>*> kidgenome;
       for(unsigned int j=0;j<nbchrs;){
@@ -194,7 +189,6 @@ void Algogen::evaluate(SurMinion* _surminion)
 	unsigned int tmps;
 	bool _vaChemin = false;
 	bool ajout = false;
-	std::cout << "mdr 1" << std::endl;
 	for (std::vector<Minion*>::iterator it = _surminion->getMinions().begin(); it < _surminion->getMinions().end(); it++,numAgent++)
 	{
 	  vec.clear();
@@ -211,24 +205,19 @@ void Algogen::evaluate(SurMinion* _surminion)
 	  _vaChemin=false;
 	  vec_conf.push_back(std::pair<unsigned int, unsigned int>(sommet, tmps));
 	  std::vector<std::pair<bool,bool>*> genome = _surminion->getMinions().at(numAgent)->getGenome();
-	  std::cout << "mdr 2" << std::endl;
 	  for(std::vector<std::pair< bool, bool >* >::iterator cit = genome.begin(); cit != genome.end(); ++cit, tmps++){ // parcours du chemin pour détection d'obstacle
 	    newx += ((*cit)->second*(1-(2*(*cit)->first)));
 	    newy += (((*cit)->second -1) * ((2*(*cit)->first)-1));
 	    sommet = (newx*m_mapH) + newy;
-	    std::cout << "mdr 3" << std::endl;
 	    if (newx < 0 || newx > m_mapW-1 || newy < 0 || newy > m_mapH-1 || m_sommets->at(sommet)->isObstacle()){
-	      std::cout << "mdr 4" << std::endl;
 	      newx -= ((*cit)->second*(1-(2*(*cit)->first)));
 	      newy -= (((*cit)->second -1) * ((2*(*cit)->first)-1));
 	      cit=genome.erase(cit);
 	      sommet = (newx*m_mapH) + newy;
 	      cit--;
 	    } else {
-	      std::cout << "mdr 4" << std::endl;
 	      int pos = std::distance(vec.begin(),std::find(vec.begin(), vec.end(), sommet));
 		if ((std::find(vec.begin(), vec.end(), sommet) != vec.end())) {
-		  std::cout << "mdr 5" << std::endl;
 		  int pos = std::distance(vec.begin(),std::find(vec.begin(), vec.end(), sommet));
 		  vec.erase(vec.begin()+pos+1, vec.end());
 		  couts.erase(couts.begin()+pos+1,couts.end());
@@ -237,14 +226,11 @@ void Algogen::evaluate(SurMinion* _surminion)
 		  cit--;
 		  while (vec_conf.back().first != sommet)
 		  {
-		    std::cout << "mdr 6" << std::endl;
 		    vec_conf.pop_back();
 		    tmps--;
 		  }
 		}else {
-		  std::cout << "mdr 7" << std::endl;
 		  if(sommet == m_cible.at(numAgent)->get_sommet()){
-		    std::cout << "mdr 8" << std::endl;
 		    genome.erase(cit+1,genome.end());
 		    vec.erase(vec.begin()+pos, vec.end());
 		    couts.erase(couts.begin()+pos,couts.end());
@@ -258,16 +244,13 @@ void Algogen::evaluate(SurMinion* _surminion)
 		  ajout=false;
 		  while(!ajout)
 		  {
-		    std::cout << "mdr 9" << std::endl;
 		    if ((std::find(vec_conf.begin(), vec_conf.end(), std::pair<unsigned int, unsigned int>(sommet, tmps)) == vec_conf.end()))
 		    {
-		      std::cout << "mdr 10" << std::endl;
 		      vec_conf.push_back(std::pair<unsigned int, unsigned int>(sommet,tmps));
 		      ajout = true;
 		    }
 		    else
 		    {
-		      std::cout << "mdr 11" << std::endl;
 		      genome.insert(++cit,nullptr);
 		      tmps++;
 		    }
@@ -349,9 +332,7 @@ void Algogen::evaluateSSM()
 
 void Algogen::iterate()
 {
-    std::cout << "début itération" << std::endl;
     mutatePop();
-    std::cout << "adaptation" << std::endl;
     if(m_generationTotalFitness.size()>2 && m_generationTotalFitness.back() > *(m_generationTotalFitness.end()-1)){	// Si la fitness générale s'améliore, diminution du taux de mutation
       m_ratioSupprs = m_ratioSupprs * 0.99;
       m_ratioModifs = m_ratioModifs * 0.99;
@@ -359,21 +340,16 @@ void Algogen::iterate()
       m_ratioSupprs = m_ratioSupprs * 1.01;
       m_ratioModifs = m_ratioModifs * 1.01;
     }
-    std::cout << "tri" << std::endl;
     std::sort (m_pop.begin(), m_pop.end()); 		// tri
     SurMinion *sm1=nullptr, *sm2=nullptr, *sm3=nullptr;
-    std::cout << "crossover" << std::endl;
     while(m_pop.size()<m_popsize){		// reproduction par rank selection exponentielle tant que la population n'a pas atteint m_popsize
 //       if(m_pop.size() < 3){
 // 	initPop(m_orig[0]->get_sommet(),m_cible[0]->get_sommet());
 //       }
-      std::cout << "crossover appelé (iterate)" << std::endl;
       if(m_superman==nullptr || m_pop.front()->getFitness() < m_superman->getFitness()){
 	std::vector<Minion*> superman = m_pop.front()->getMinions();		// création du superman (supersurminion)
 	for(unsigned int i = 1;i<m_pop.size();i++){
-	  std::cout << "popsize = " << m_pop.size() << std::endl;
 	  for(unsigned int j=0;j<superman.size();j++){
-	    std::cout << "superman size = " << superman.size() << std::endl;
 	    if(m_pop.at(i)->getMinion(j)->getFitness() < superman.at(j)->getFitness()){
 	      superman.at(j) = m_pop.at(i)->getMinion(j);
 	    }
@@ -381,7 +357,6 @@ void Algogen::iterate()
 	}
 	m_pop.push_back(new SurMinion(superman));			// supersurminion ajouté à la pop
       }
-      std::cout << "superman ok" << std::endl;
       for (int i = m_pop.size()-1;i>=0;--i){			// probabilité de sélection: 1/2 pour le meilleur individu, 1/4, pour le suivant, 1/8 pour le 3me...
 	if((float)(rand()%m_pop.size()) > (float)((1/(i+1)) *  m_pop.size())){
 	  if(sm1==nullptr) {sm1=m_pop.at(i);
@@ -398,14 +373,12 @@ void Algogen::iterate()
 	  sm3=nullptr;
       }
     }
-    std::cout << "eval" << std::endl;
     float totalfitness=0.0;
     for (std::vector<SurMinion*>::iterator it = m_pop.begin(); it !=  m_pop.end(); ++it) {
 	    evaluate(*it);  // evaluation fitness
 	    totalfitness+=(*it)->getFitness();
     }
     m_generationTotalFitness.push_back(totalfitness);
-    std::cout << "cull" << std::endl;
     cull();
     m_nbIterations++;
 }

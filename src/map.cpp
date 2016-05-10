@@ -608,6 +608,7 @@ const std::vector< std::pair< bool,bool>*> Map::A_star_GA(unsigned int id, unsig
 // Fonction pour trouver un chemin vers une case cible pour un agent avec un algorithme génétique
 void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* unite)
 {
+  try{
 // 	float total=0;
 // 	unsigned int iteration=1500;
  	unsigned int popsize=50;
@@ -638,6 +639,7 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 // 		      for(float ratioElitism = 0.05;ratioElitism<0.3;ratioElitism+=0.1){
 // 			for(float cullRatio = 0.05;cullRatio<=0.2;cullRatio+=0.05){
 // 			  for(unsigned int nbkids=3;nbkids<=5;nbkids+=2){
+
 			      Algogen algg(m_w,m_h,& m_sommets,popsize,manhattan,mutaRatio,popToMutate,nbAjouts,ratioSupprs,ratioModifs,ratioElitism,cullRatio,nbkids);
 			      algg.addDeplacement(id, idsource,idCible,typeAgent);
 			      int k=0;
@@ -667,6 +669,8 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 // 	  }
 // 	  i++;
 // 	}
-
+  }catch(std::exception & e){
+    std::cerr << e.what() << std::endl;
+  }
 
 }

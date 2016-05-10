@@ -143,7 +143,6 @@ void Algogen::cull()
 			    std::swap(*it, m_pop.back());
 			    m_pop.pop_back();
 			    supprs++;
-			    m_nbmort++;
 		}else ++it;
 	    }
     }
@@ -404,7 +403,6 @@ void Algogen::show() const
   std::cout << "Stats: " << std::endl;
   std::cout << m_nbkidstotal << " enfants créés." << std::endl;
   std::cout << m_nbIterations << " iterations." << std::endl;
-  std::cout << m_nbmort << " gens tués." << std::endl;
 
   std::cout << "_______________________" << std::endl << "Fitness des surminions" << std::endl;
   for(unsigned int i=0;i<m_pop.size();++i){

@@ -5,10 +5,6 @@ Minion::Minion(const std::vector< std::pair< bool, bool > *>& _genome):m_genome(
 {
   m_vaChemin=false;
   m_id=m_incrID++;
-//   std::cout << "minion n°" << m_id << " créé." << std::endl;
-  
-  
-  
 }
 
 Minion::~Minion()
@@ -93,21 +89,20 @@ void Minion::setSommetFinal(unsigned int _sommet)
 
 void Minion::mutate(unsigned int _nbAjouts, float _ratioSupprs, float _ratioModifs)
 {
-  if(!m_vaChemin){    
+  if(!m_vaChemin){
     unsigned int nbsupprs = (unsigned int)(m_genome.size() * _ratioSupprs);
-//     std::cout << "deleting " << nbsupprs << " elements out of " << m_genome.size() << ", ratiosupprs is " << _ratioSupprs << std::endl;
-    for(unsigned int i=0;i<nbsupprs;++i){  // suppressions
+    for(unsigned int i=0;i<nbsupprs;++i){													// suppressions
 	    std::swap(m_genome.at(i),m_genome.back());
 	    delete m_genome.back();
 	    m_genome.pop_back();
     }
-//     std::cout << "2" << std::endl;
+    
     unsigned int nbmodifs = (unsigned int)(m_genome.size() * _ratioModifs);
-    for(unsigned int i=0;i<nbmodifs;++i){ // modifications
+    for(unsigned int i=0;i<nbmodifs;++i){													// modifications
 	    m_genome.at(rand() % m_genome.size()) = new std::pair<bool,bool>(rand()%2,rand()%2);
     }
-//     std::cout << "3" << std::endl;
-    for(unsigned int i=0;i<_nbAjouts;++i){  // modifications
+
+    for(unsigned int i=0;i<_nbAjouts;++i){													// modifications
 	    m_genome.push_back(new std::pair<bool,bool>(rand()%2,rand()%2));
     }
 /*    
@@ -139,17 +134,17 @@ void Minion::mutate(unsigned int _nbAjouts, float _ratioSupprs, float _ratioModi
       {
 	if (pos3 < pos4)
 	{
+	  delete *(m_genome.begin()+pos4);
 	  delete *(m_genome.begin()+pos3);
-	  delete *(m_genome.begin()+pos4-1);
+	  m_genome.erase(m_genome.begin()+pos4);
 	  m_genome.erase(m_genome.begin()+pos3);
-	  m_genome.erase(m_genome.begin()+pos4-1);
 	}
 	else
 	{
+	  delete *(m_genome.begin()+pos3);
 	  delete *(m_genome.begin()+pos4);
-	  delete *(m_genome.begin()+pos3-1);
+	  m_genome.erase(m_genome.begin()+pos3);
 	  m_genome.erase(m_genome.begin()+pos4);
-	  m_genome.erase(m_genome.begin()+pos3-1);
 	}
       }
       else{
@@ -176,22 +171,24 @@ void Minion::mutateElite(unsigned int _nbAjouts, float _ratioModifs)
       
       // 3: permutation de 2 déplacements aléatoires, suppression si elles sont opposées
       unsigned int pos3=rand()%m_genome.size(),pos4=(rand()%(m_genome.size()-1))+1;
-      if(m_genome.at(pos3)->first!=m_genome.at(pos4)->first && m_genome.at(pos3)->second==m_genome.at(pos4)->second){
+      if(m_genome.at(pos3)->first!=m_genome.at(pos4)->first && m_genome.at(pos3)->second==m_genome.at(pos4)->second)
+      {
 	if (pos3 < pos4)
 	{
+	  delete *(m_genome.begin()+pos4);
 	  delete *(m_genome.begin()+pos3);
-	  delete *(m_genome.begin()+pos4-1);
+	  m_genome.erase(m_genome.begin()+pos4);
 	  m_genome.erase(m_genome.begin()+pos3);
-	  m_genome.erase(m_genome.begin()+pos4-1);
 	}
 	else
 	{
+	  delete *(m_genome.begin()+pos3);
 	  delete *(m_genome.begin()+pos4);
-	  delete *(m_genome.begin()+pos3-1);
+	  m_genome.erase(m_genome.begin()+pos3);
 	  m_genome.erase(m_genome.begin()+pos4);
-	  m_genome.erase(m_genome.begin()+pos3-1);
 	}
-      }else{
+      }
+      else{
 	std::iter_swap(m_genome.begin()+pos3,m_genome.begin()+pos4);
       }
     }

@@ -23,6 +23,7 @@ m_president(nullptr),m_superman(nullptr),m_ratioElitism(_ratioElitism)
 	  m_ratioModifs=_ratioModifs;
 	  m_cullRatio=_cullRatio;
 	  m_nbkids=_nbkids;
+	  m_nbmort=0;
   }
   m_nbkidstotal=0;
   m_nbIterations=0;
@@ -142,6 +143,7 @@ void Algogen::cull()
 			    std::swap(*it, m_pop.back());
 			    m_pop.pop_back();
 			    supprs++;
+			    m_nbmort++;
 		}else ++it;
 	    }
     }
@@ -263,13 +265,14 @@ void Algogen::evaluate(SurMinion* _surminion)
 	    }
 	    (*it)->setSommetFinal(vec.back());
 	    m_taillemax = std::max(m_taillemax,(unsigned int)genome.size());
-	    int manhattan=0.0;
+	    (*it)->setVaChemin(_vaChemin);
+	    int manhattan = 0.0;
 	    if(_vaChemin){
 	      fitnessM = (float)((float)cout + (float)genome.size());
 	    }else{
-	      _vaCheminSM = false;
-	      manhattan = abs(m_cible.at(numAgent)->getX() - m_sommets->at(vec.back())->getX()) + abs(m_cible.at(numAgent)->getY() - m_sommets->at(vec.back())->getY());
+	      int manhattan = abs(m_cible.at(numAgent)->getX() - m_sommets->at(vec.back())->getX()) + abs(m_cible.at(numAgent)->getY() - m_sommets->at(vec.back())->getY());
 	      fitnessM = ((float)manhattan*m_manhattanImportance);
+	      _vaCheminSM = false;
 	    }
 	    (*it)->setFitness(fitnessM);
 	    (*it)->setManhattan(manhattan);
@@ -333,20 +336,22 @@ void Algogen::evaluateSSM()
 
 void Algogen::iterate()
 {
-  std::cout << "no 1" << std::endl;
     mutatePop();
-    std::cout << "no 2" << std::endl;
+    if(m_generationTotalFitness.size()>2 && m_generationTotalFitness.back() > *(m_generationTotalFitness.end()-1) && m_ratioModifs > (m_initratioModifs/2)){	// Si la fitness générale s'améliore, diminution du taux de mutation
+      m_ratioSupprs = m_ratioSupprs * 0.99;
+      m_ratioModifs = m_ratioModifs * 0.99;
+    }else if(m_ratioModifs < 2*m_initratioModifs){
+      m_ratioSupprs = m_ratioSupprs * 1.01;
+      m_ratioModifs = m_ratioModifs * 1.01;
+    }
     std::sort (m_pop.begin(), m_pop.end()); 		// tri
     SurMinion *sm1=nullptr, *sm2=nullptr, *sm3=nullptr;
-    std::cout << "no 3" << std::endl;
     while(m_pop.size()<m_popsize){		// reproduction par rank selection exponentielle tant que la population n'a pas atteint m_popsize
 //       if(m_pop.size() < 3){
 // 	initPop(m_orig[0]->get_sommet(),m_cible[0]->get_sommet());
 //       }
-      std::vector<Minion*> superman;
-      if(m_superman==nullptr){
-	superman = m_pop.front()->getMinions();
-      }else if(m_pop.front()->getFitness() < m_superman->getFitness()){
+      if(m_superman==nullptr || m_pop.front()->getFitness() < m_superman->getFitness()){
+	std::vector<Minion*> superman = m_pop.front()->getMinions();		// création du superman (supersurminion)
 	for(unsigned int i = 1;i<m_pop.size();i++){
 	  for(unsigned int j=0;j<superman.size();j++){
 	    if(m_pop.at(i)->getMinion(j)->getFitness() < superman.at(j)->getFitness()){
@@ -354,8 +359,8 @@ void Algogen::iterate()
 	    }
 	  }
 	}
+	m_pop.push_back(new SurMinion(superman));			// supersurminion ajouté à la pop
       }
-      m_pop.push_back(new SurMinion(superman));
       for (int i = m_pop.size()-1;i>=0;--i){			// probabilité de sélection: 1/2 pour le meilleur individu, 1/4, pour le suivant, 1/8 pour le 3me...
 	if((float)(rand()%m_pop.size()) > (float)((1/(i+1)) *  m_pop.size())){
 	  if(sm1==nullptr) {sm1=m_pop.at(i);
@@ -372,23 +377,13 @@ void Algogen::iterate()
 	  sm3=nullptr;
       }
     }
-    std::cout << "no 4" << std::endl;
     float totalfitness=0.0;
     for (std::vector<SurMinion*>::iterator it = m_pop.begin(); it !=  m_pop.end(); ++it) {
 	    evaluate(*it);  // evaluation fitness
 	    totalfitness+=(*it)->getFitness();
     }
     m_generationTotalFitness.push_back(totalfitness);
-    if(m_generationTotalFitness.size()>2 && m_generationTotalFitness.back() > *(m_generationTotalFitness.end()-1) && m_ratioModifs > (m_initratioModifs/2)){	// Si la fitness générale s'améliore, diminution du taux de mutation
-      m_ratioSupprs = m_ratioSupprs * 0.99;
-      m_ratioModifs = m_ratioModifs * 0.99;
-    }else if(m_ratioModifs < 2*m_initratioModifs){
-      m_ratioSupprs = m_ratioSupprs * 1.01;
-      m_ratioModifs = m_ratioModifs * 1.01;
-    }
-    std::cout << "no 5" << std::endl;
-    cull();
-    std::cout << "no 6" << std::endl;
+//     cull();
     m_nbIterations++;
 }
 
@@ -409,19 +404,27 @@ void Algogen::show() const
   std::cout << "Stats: " << std::endl;
   std::cout << m_nbkidstotal << " enfants créés." << std::endl;
   std::cout << m_nbIterations << " iterations." << std::endl;
+  std::cout << m_nbmort << " gens tués." << std::endl;
 
   std::cout << "_______________________" << std::endl << "Fitness des surminions" << std::endl;
   for(unsigned int i=0;i<m_pop.size();++i){
     std::cout << "ID " << m_pop.at(i)->getID() << ", fitness =" << m_pop.at(i)->getFitness() << std::endl; 
   }
   
+  std::cout << "_______________________" << std::endl << "Toute la population" << std::endl;
+  
+  for (unsigned int i=0; i<m_pop.size(); ++i)
+  {
+    std::cout << "_****_" << std::endl << "numero : " << i <<  " | id = " << m_pop.at(i)->getID() << " | taille genome = " << m_pop.at(i)->getMinion(0)->getGenomeSize() << std::endl;
+  }
+  
   std::cout << "_______________________" << std::endl << "Président (id=" << m_president->getID() << ")" << std::endl;
   
   for(unsigned int i=0; i<m_president->getNumberMinions();++i){
+//     m_president->getMinion(i);
     std::cout << "Chemin " << i << ": taille genome = " << m_president->getMinion(i)->getGenomeSize() << ", vachemin = " << m_president->getMinion(i)->getVaChemin() << ", genome = " << std::endl;
     int newx = (int)(m_orig.at(i)->getX());
     int newy = (int)(m_orig.at(i)->getY());
-    std::cout << "lol1" << std::endl;
     std::vector< std::pair< bool, bool > *> genome = m_president->getMinion(i)->getGenome();
     for(std::vector< std::pair< bool, bool > *>::iterator cit = genome.begin(); cit != genome.end(); ++cit){
       if(*cit!=nullptr){
@@ -433,6 +436,7 @@ void Algogen::show() const
       }
     }
     std::cout << std::endl;
+    
   }
 }
 // 

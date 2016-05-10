@@ -128,6 +128,33 @@ void Algogen::crossover(SurMinion* _parent0, SurMinion* _parent1, SurMinion* _pa
     }
   }
 }
+/*
+void Algogen::crossover(SurMinion* _parent0, SurMinion* _parent1, SurMinion* _parent2) // Creates new individuals based on the genome of three parents
+{
+for(unsigned int kid=0;kid<m_nbkids;kid++){ // on répète autant qu'on veut créer d'enfants
+  std::vector<std::pair<bool,bool>*> kidgenome;
+  std::vector<Minion*> minions;
+  unsigned int iterations = _parent0->getMinions().size(); // nombre de minions à traiter (identique sur les 3 parents)
+  for(unsigned int minion=0;minion<iterations;++minion){ // for sur chaque minion
+    Minion* g0 = _parent0->getMinion(minion),*g1 = _parent1->getMinion(minion),*g2=_parent2->getMinion(minion); // recuperation des pointeurs de minion venant des 3 parents
+    unsigned int nbchrs=std::max(std::max(g0->getGenomeSize(),g1->getGenomeSize()),g2->getGenomeSize()); // taille genome enfant = max taille genome des 3parents
+    unsigned int parent;
+    std::vector<Minion*> parents{g0,g1,g2};
+    for(unsigned int j=0;j<nbchrs;){
+      parent = rand()%(parents.size());
+      if(j >= parents.at(parent)->getGenomeSize()){
+        parents.erase(parents.begin() + parent);
+      }else{
+	kidgenome.push_back(parents.at(parent)->getChromosome(j));
+	++j;
+      } 
+    }
+    minions.push_back(new Minion(kidgenome);
+  }
+  m_pop.push_back(new SurMinion(minions));
+  m_nbkidstotal++;
+  }
+} */
 
 void Algogen::cull()
 {

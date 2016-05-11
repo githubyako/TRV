@@ -23,7 +23,6 @@ m_president(nullptr),m_superman(nullptr),m_ratioElitism(_ratioElitism)
 	  m_ratioModifs=_ratioModifs;
 	  m_cullRatio=_cullRatio;
 	  m_nbkids=_nbkids;
-	  m_nbmort=0;
   }
   m_nbkidstotal=0;
   m_nbIterations=0;
@@ -48,27 +47,27 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent) 
   bool f = 1-d-e;
   bool Astar = ((std::abs(distanceY)>6) || (std::abs(distanceY)>3 && std::abs(distanceX)>3) || (std::abs(distanceX)>=6));
   std::vector<std::pair<bool,bool> *> genome;
-  std::vector<Minion*> lol;
+  std::vector<Minion*> _minions;
     for(unsigned int i=0;i<8;i++){ // base population consists of 8 total individuals
       if(i<3 && Astar){ // three of them are non-random, and calculated with the A* algorithm at 3 predefined points (one in a straight path, two at 45° angle from the straight path)
 	if (!(genome=Map::m_map->A_star_GA(_caseSource, ((originX+3*(b-e+2*(c-f)))*m_mapH+(originY+3*(e-b+2*(f-a)))), nullptr)).empty()) // if the requested A* path is short enough (not calculated if too long)
 	{
-	  m_pop.push_back(new SurMinion(lol)); // A new individual is created. This instance regroups all requested paths.
-	  m_pop.at(i)->addMinion(new Minion(genome)); // In this individual, a new path, as defined by A*, is created.
+	  m_pop.push_back(new SurMinion(_minions)); // A new individual is created. This instance regroups all requested paths.
+	  m_pop.back()->addMinion(new Minion(genome)); // In this individual, a new path, as defined by A*, is created.
 	  i++;
 	  genome.clear();
 	}
 	if (!(genome=Map::m_map->A_star_GA(_caseSource, ((originX+3*((a-c)*(1-e)+2*(c-a)))*m_mapH+(originY+3*((d-f)*(1-b)+2*(e-a-b-c+2*f)))), nullptr)).empty())
 	{
-	  m_pop.push_back(new SurMinion(lol)); // the above process is repeated for a different A* path
-	  m_pop.at(i)->addMinion(new Minion(genome));
+	  m_pop.push_back(new SurMinion(_minions)); // the above process is repeated for a different A* path
+	  m_pop.back()->addMinion(new Minion(genome));
 	  i++;
 	  genome.clear();
 	}
 	if (!(genome=Map::m_map->A_star_GA(_caseSource, ((originX+3*(b-e+2*(c-f)))*m_mapH+(originY+3*(e-b+2*(f-a)))), nullptr)).empty())
 	{
-	  m_pop.push_back(new SurMinion(lol)); // and then another
-	  m_pop.at(i)->addMinion(new Minion(genome));
+	  m_pop.push_back(new SurMinion(_minions)); // and then another
+	  m_pop.back()->addMinion(new Minion(genome));
 	  i++;
 	  genome.clear();
 	}
@@ -81,8 +80,8 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent) 
 	  genome.push_back(new std::pair<bool,bool>(bool1,bool2));
 	}
       }
-      m_pop.push_back(new SurMinion(lol));
-      m_pop.at(i)->addMinion(new Minion(genome));
+      m_pop.push_back(new SurMinion(_minions));
+      m_pop.back()->addMinion(new Minion(genome));
       genome.clear();
     }
   float totalfitness=0.0;
@@ -105,32 +104,6 @@ Algogen::~Algogen() // standard destructor, deleting all objects created in this
 
 void Algogen::crossover(SurMinion* _parent0, SurMinion* _parent1, SurMinion* _parent2) // Creates new individuals based on the genome of three parents
 {
-  unsigned int iterations = _parent0->getMinions().size();
-  for(unsigned int i=0;i<iterations;++i){
-    Minion* g0 = _parent0->getMinion(i),*g1 = _parent1->getMinion(i),*g2=_parent2->getMinion(i);
-    unsigned int nbchrs=std::max(std::max(g0->getGenomeSize(),g1->getGenomeSize()),g2->getGenomeSize());
-    unsigned int parent;
-    std::vector<Minion*> parents{g0,g1,g2};
-    for(unsigned int i=0;i<m_nbkids;i++){
-      std::vector<std::pair<bool,bool>*> kidgenome;
-      for(unsigned int j=0;j<nbchrs;){
-	parent = rand()%(parents.size());
-	if(j >= parents.at(parent)->getGenomeSize()){
-	  parents.erase(parents.begin() + parent);
-	  continue;
-	}else{
-	  kidgenome.push_back(parents.at(parent)->getChromosome(j));
-	  ++j;
-	} 
-      }
-      m_pop.push_back(new SurMinion(std::vector<Minion*>{new Minion(kidgenome)}));
-      m_nbkidstotal++;
-    }
-  }
-}
-/*
-void Algogen::crossover(SurMinion* _parent0, SurMinion* _parent1, SurMinion* _parent2) // Creates new individuals based on the genome of three parents
-{
 for(unsigned int kid=0;kid<m_nbkids;kid++){ // on répète autant qu'on veut créer d'enfants
   std::vector<std::pair<bool,bool>*> kidgenome;
   std::vector<Minion*> minions;
@@ -149,12 +122,12 @@ for(unsigned int kid=0;kid<m_nbkids;kid++){ // on répète autant qu'on veut cr�
 	++j;
       } 
     }
-    minions.push_back(new Minion(kidgenome);
+    minions.push_back(new Minion(kidgenome));
   }
   m_pop.push_back(new SurMinion(minions));
   m_nbkidstotal++;
   }
-} */
+} 
 
 void Algogen::cull()
 {
@@ -166,7 +139,7 @@ void Algogen::cull()
 	    for (std::vector<SurMinion*>::iterator it = m_pop.begin(); it !=  m_pop.end() - finRange;) {
 		    ded = rand() % 2;
 		    if(ded && supprs < totalSupprs && (*it)->getVaChemin()==false && (*it)->getID()!=m_president->getID()){
-			    delete *it;
+// 			    std::cout << "On supprime le SurMinion d'id : " << (*it)->getID() << " | genome de taille : " << (*it)->getMinion(0)->getGenomeSize() << std::endl;
 			    std::swap(*it, m_pop.back());
 			    m_pop.pop_back();
 			    supprs++;
@@ -370,7 +343,17 @@ void Algogen::iterate()
       m_ratioSupprs = m_ratioSupprs * 1.01;
       m_ratioModifs = m_ratioModifs * 1.01;
     }
-    std::sort (m_pop.begin(), m_pop.end()); 		// tri
+//     std::cout << "m_pop avant tri : " << std::endl;
+//     for (std::vector<SurMinion*>::iterator i=m_pop.begin(); i!=m_pop.end(); i++)
+//     {
+//       std::cout << "SurMinion n°" << (*i)->getID() << " | Fitness : " << (*i)->getFitness() << " | varChemin : " << (*i)->getVaChemin() << std::endl;
+//     }
+    std::sort (m_pop.begin(), m_pop.end(), myfonction); // tri
+//     std::cout << "m_pop après tri : " << std::endl;
+//     for (std::vector<SurMinion*>::iterator i=m_pop.begin(); i!=m_pop.end(); i++)
+//     {
+//       std::cout << "SurMinion n°" << (*i)->getID() << " | Fitness : " << (*i)->getFitness() << " | varChemin : " << (*i)->getVaChemin() << std::endl;
+//     }
     SurMinion *sm1=nullptr, *sm2=nullptr, *sm3=nullptr;
     while(m_pop.size()<m_popsize){		// reproduction par rank selection exponentielle tant que la population n'a pas atteint m_popsize
 //       if(m_pop.size() < 3){
@@ -409,7 +392,7 @@ void Algogen::iterate()
 	    totalfitness+=(*it)->getFitness();
     }
     m_generationTotalFitness.push_back(totalfitness);
-//     cull();
+    cull();
     m_nbIterations++;
 }
 

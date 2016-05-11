@@ -89,9 +89,13 @@ void Minion::setSommetFinal(unsigned int _sommet)
 
 void Minion::mutate(unsigned int _nbAjouts, float _ratioSupprs, float _ratioModifs)
 {
+//   std::cout << "______________________________" << std::endl;
+//   std::cout << "Minion avant mutate | id : " << m_id << " | taille : " << m_genome.size() << std::endl;
+//   std::cout << "*******************" << std::endl;
   if(!m_vaChemin){
     unsigned int nbsupprs = (unsigned int)(ceil(_nbAjouts * _ratioSupprs));
     if(nbsupprs < m_genome.size()){
+//       std::cout << "Taille avant suppression : " << m_genome.size() << std::endl;
       for(unsigned int i=1;i<nbsupprs;++i){													// suppressions
 // 	std::cout << "suppression " << i << "sur " << nbsupprs << ", genome size =  " << m_genome.size() << std::endl;
 	      unsigned int pos = rand() % m_genome.size();
@@ -99,15 +103,20 @@ void Minion::mutate(unsigned int _nbAjouts, float _ratioSupprs, float _ratioModi
 	      m_genome.pop_back();
       }
     }
+//     std::cout << "Taille après suppression : " << m_genome.size() << std::endl;
     unsigned int nbmodifs = (unsigned int)(m_genome.size() * _ratioModifs);
     for(unsigned int i=0;i<nbmodifs;++i){  // modifications
       
       m_genome.at(rand() % m_genome.size()) = new std::pair<bool,bool>(rand()%2,rand()%2);
     }
+//     std::cout << "Taille après modification : " << m_genome.size() << std::endl;
     for(unsigned int i=0;i<_nbAjouts;++i){													// modifications
 	    m_genome.push_back(new std::pair<bool,bool>(rand()%2,rand()%2));
     }
-/*    
+/*    std::cout << "Taille après ajout : " << m_genome.size() << std::endl;
+    std::cout << "*******************" << std::endl;
+    std::cout << "Minion après mutate | id : " << m_id << " | taille : " << m_genome.size() << std::endl;*/
+/*  
     unsigned int originX = m_sommetfinal->getX();
     unsigned int originY = m_sommetfinal->getY();
     unsigned int cibleX = _cible->getX();

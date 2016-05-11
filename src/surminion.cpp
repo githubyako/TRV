@@ -1,8 +1,11 @@
 #include "surminion.h"
 unsigned int SurMinion::m_incrID=0;
 
-SurMinion::SurMinion(std::vector<Minion*> const & _minions):m_minions(_minions)
+SurMinion::SurMinion(std::vector<Minion*> const & _minions)
 {
+  for(unsigned int i =0; i<_minions.size();++i){
+    m_minions.push_back(new Minion(*(_minions.at(i))));
+  }
   m_vaChemin=false;
   m_id=m_incrID++;
 }

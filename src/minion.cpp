@@ -10,6 +10,8 @@ Minion::Minion(const std::vector< std::pair< bool, bool > *>& _genome):m_genome(
 Minion::Minion(const Minion& _minion)
 :m_genome(_minion.getGenome()),m_fitness(_minion.getFitness()),m_vaChemin(_minion.getVaChemin()),m_manhattan(_minion.getManhattan()),m_sommetfinal(_minion.getSF())
 {
+  m_vaChemin=false;
+  m_id=m_incrID++;
 }
 
 

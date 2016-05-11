@@ -644,13 +644,13 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 			      int k=0;
 // 			      std::cout << "initpop ok, iterating" << std::endl;
 			      algg.show();
-			      while(k<10){
+			      while(k<5){
 				k++;
 				algg.iterate();
 				if(k%100 == 0){
 				  std::cout << k << std::endl;
 				}
-				algg.show();
+// 				algg.show();
 			      }
 // 			      if(test%1000==0){
 // 				std::cout << "test n°" << test << " fini." << std::endl;

@@ -214,7 +214,7 @@ void Algogen::evaluate(SurMinion* _surminion)
 	      std::vector<int>::const_iterator debutboucle = std::find(vec.begin(), vec.end(), sommet), debutvec = vec.begin();
 	      int pos = std::distance(debutvec,debutboucle);
 		if (debutboucle != vec.end()) {
-		  std::cout << "Boucle détectée, suppression de " << vec.size() - pos << " chromosomes dans le minion id = " << _surminion->getMinions().at(numAgent)->getID() << std::endl;
+// 		  std::cout << "Boucle détectée, suppression de " << vec.size() - pos << " chromosomes dans le minion id = " << _surminion->getMinions().at(numAgent)->getID() << std::endl;
 		  vec.erase(vec.begin()+pos+1, vec.end());
 		  couts.erase(couts.begin()+pos+1,couts.end());
 		  cout=*(couts.begin()+pos);
@@ -227,7 +227,7 @@ void Algogen::evaluate(SurMinion* _surminion)
 		  }
 		}else {
 		  if(sommet == m_cible.at(numAgent)->get_sommet()){
-		    std::cout << "Fin de parcours détectée, suppression du reste dans le minion id = " << _surminion->getMinions().at(numAgent)->getID() << std::endl;
+// 		    std::cout << "Fin de parcours détectée, suppression du reste dans le minion id = " << _surminion->getMinions().at(numAgent)->getID() << std::endl;
 		    genome.erase(cit+1,genome.end());
 		    vec.erase(vec.begin()+pos, vec.end());
 		    couts.erase(couts.begin()+pos,couts.end());
@@ -328,8 +328,8 @@ void Algogen::evaluateSSM()
 
 void Algogen::iterate()
 {
-    std::cout << "AVANT MUTATE !!!!" << std::endl;
-    this->show();
+//     std::cout << "AVANT MUTATE !!!!" << std::endl;
+//     this->show();
     mutatePop();
     if(m_generationTotalFitness.size()>2 && m_generationTotalFitness.back() > *(m_generationTotalFitness.end()-1) && m_ratioModifs > (m_initratioModifs/2)){	// Si la fitness générale s'améliore, diminution du taux de mutation
       m_ratioSupprs = m_ratioSupprs * 0.99;
@@ -348,9 +348,9 @@ void Algogen::iterate()
 //     {
 //       std::cout << "SurMinion n°" << (*i)->getID() << " | Fitness : " << (*i)->getFitness() << " | varChemin : " << (*i)->getVaChemin() << std::endl;
 //     }
-    std::cout << "APRES MUTATE, AVANT SUPERMAN" << std::endl;
-    this->show();
-    if(m_superman==nullptr || m_pop.front()->getFitness() < m_superman->getFitness()){
+//     std::cout << "APRES MUTATE, AVANT SUPERMAN" << std::endl;
+//     this->show();
+    if((m_superman==nullptr || m_pop.front()->getFitness() < m_superman->getFitness()) && m_nbIterations%10==0){
       std::vector<Minion*> superman = m_pop.front()->getMinions();		// création du superman (supersurminion)
       for(unsigned int i = 1;i<m_pop.size();i++){
 	for(unsigned int j=0;j<superman.size();j++){
@@ -361,9 +361,10 @@ void Algogen::iterate()
 	}
       }
       m_pop.push_back(new SurMinion(superman));			// supersurminion ajouté à la pop
+      m_superman = m_pop.back();
     }
-    std::cout << "APRES SUPERMAN, AVANT CROSSOVER" << std::endl;
-    this->show();
+//     std::cout << "APRES SUPERMAN, AVANT CROSSOVER" << std::endl;
+//     this->show();
     SurMinion *sm1=nullptr, *sm2=nullptr, *sm3=nullptr;
     while(m_pop.size()<m_popsize){		// reproduction par rank selection exponentielle tant que la population n'a pas atteint m_popsize
 //       if(m_pop.size() < 3){
@@ -374,8 +375,7 @@ void Algogen::iterate()
 	if((float)(rand()%m_pop.size()) < (float)((1/(pow(2,i))) *  m_pop.size())){
 	  if(sm1==nullptr) {sm1=m_pop.at(i-1);
 	  }else if(sm2==nullptr && m_pop.at(i-1)!=sm1) {sm2=m_pop.at(i-1);
-	  }else if(m_pop.at(i-1)!=sm1 && m_pop.at(i-1)!=sm2){sm3=m_pop.at(i-1);
-	    break;
+	  }else if(m_pop.at(i-1)!=sm1 && m_pop.at(i-1)!=sm2){sm3=m_pop.at(i-1); break;
 	  }
 	}
       }
@@ -387,19 +387,19 @@ void Algogen::iterate()
       }
     }
     float totalfitness=0.0;
-    std::cout << std::endl << "APRES CROSSOVER, AVANT EVALUATE!!!!!!!" << std::endl;
-    this->show();
+//     std::cout << std::endl << "APRES CROSSOVER, AVANT EVALUATE!!!!!!!" << std::endl;
+//     this->show();
     for (std::vector<SurMinion*>::iterator it = m_pop.begin(); it !=  m_pop.end(); ++it) {
  	    evaluate(*it);  // evaluation fitness
 	    totalfitness+=(*it)->getFitness();
     }
-    std::cout << std::endl << "APRES EVALUATE ET AVANT CULL !!!!!!!" << std::endl;
-    this->show();
+//     std::cout << std::endl << "APRES EVALUATE ET AVANT CULL !!!!!!!" << std::endl;
+//     this->show();
     m_generationTotalFitness.push_back(totalfitness);
     std::sort (m_pop.begin(), m_pop.end(), myfonction); // tri
     cull();
-    std::cout << std::endl << "APRES CULL !!!!!!!" << std::endl;
-    this->show();
+//     std::cout << std::endl << "APRES CULL !!!!!!!" << std::endl;
+//     this->show();
     m_nbIterations++;
 }
 

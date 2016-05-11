@@ -202,3 +202,4 @@ void Minion::mutateElite(unsigned int _nbAjouts, float _ratioModifs)
       }
     }
 }
+

@@ -45,7 +45,7 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent) 
   bool d = cibleY < originY;
   bool e = cibleY == originY;
   bool f = 1-d-e;
-  bool Astar = ((std::abs(distanceY)>6) || (std::abs(distanceY)>3 && std::abs(distanceX)>3) || (std::abs(distanceX)>=6));
+  bool Astar = ((std::abs(distanceY)>=6) || (std::abs(distanceY)>=3 && std::abs(distanceX)>=3) || (std::abs(distanceX)>=6));
   std::vector<std::pair<bool,bool> *> genome;
   std::vector<Minion*> _minions;
     for(unsigned int i=0;i<8;i++){ // base population consists of 8 total individuals
@@ -64,7 +64,7 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent) 
 	  i++;
 	  genome.clear();
 	}
-	if (!(genome=Map::m_map->A_star_GA(_caseSource, ((originX+3*(b-e+2*(c-f)))*m_mapH+(originY+3*(e-b+2*(f-a)))), nullptr)).empty())
+	if (!(genome=Map::m_map->A_star_GA(_caseSource, ((originX+3*(b-e+2*(f-a)))*m_mapH+(originY+3*(e-b+2*(f-c)))), nullptr)).empty())
 	{
 	  m_pop.push_back(new SurMinion(_minions)); // and then another
 	  m_pop.back()->addMinion(new Minion(genome));
@@ -388,7 +388,7 @@ void Algogen::iterate()
     }
     float totalfitness=0.0;
     for (std::vector<SurMinion*>::iterator it = m_pop.begin(); it !=  m_pop.end(); ++it) {
-	    evaluate(*it);  // evaluation fitness
+// 	    evaluate(*it);  // evaluation fitness
 	    totalfitness+=(*it)->getFitness();
     }
     m_generationTotalFitness.push_back(totalfitness);
@@ -416,14 +416,33 @@ void Algogen::show() const
 
   std::cout << "_______________________" << std::endl << "Fitness des surminions" << std::endl;
   for(unsigned int i=0;i<m_pop.size();++i){
-    std::cout << "ID " << m_pop.at(i)->getID() << ", fitness =" << m_pop.at(i)->getFitness() << std::endl; 
+    std::cout << "ID " << m_pop.at(i)->getID() << ", fitness =" << m_pop.at(i)->getFitness() << std::endl;
   }
   
   std::cout << "_______________________" << std::endl << "Toute la population" << std::endl;
   
   for (unsigned int i=0; i<m_pop.size(); ++i)
   {
-    std::cout << "_****_" << std::endl << "numero : " << i <<  " | id = " << m_pop.at(i)->getID() << " | taille genome = " << m_pop.at(i)->getMinion(0)->getGenomeSize() << std::endl;
+    for(unsigned int j=0; j<m_pop.at(i)->getMinions().size(); ++j){
+      std::vector< std::pair< bool, bool > *> genome = m_pop.at(i)->getMinion(j)->getGenome();
+      std::cout << "_****_" << std::endl << "numero : " << j <<  " | id = " << m_pop.at(i)->getMinion(j)->getID() << " | taille genome = " << m_pop.at(i)->getMinion(j)->getGenomeSize() << std::endl;
+      int newx = (int)(m_orig.at(j)->getX());
+      int newy = (int)(m_orig.at(j)->getY());
+      std::cout << "Depart en " << newx << ", " << newy << ", case n° " << newx*m_mapH + newy << std::endl;
+      for(std::vector< std::pair< bool, bool > *>::iterator cit = genome.begin(); cit != genome.end(); ++cit){
+
+	
+	if(*cit!=nullptr){
+	  newx += ((*cit)->second*(1-(2*(*cit)->first)));
+	  newy += (((*cit)->second -1) * ((2*(*cit)->first)-1));
+	  
+	  std::cout << "x = " << newx << ", y = " << newy << ", " << "Case n° " << newx*m_mapH + newy << " | ";
+	}else{
+	  std::cout << "Attente | ";
+	}
+      }
+      std::cout << std::endl;
+    }
   }
   
   std::cout << "_______________________" << std::endl << "Président (id=" << m_president->getID() << ")" << std::endl;

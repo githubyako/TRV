@@ -537,7 +537,7 @@ const std::vector< std::pair< bool,bool>*> Map::A_star_GA(unsigned int id, unsig
 	   couts.at((*i1)->get_sommet()) = -1; // On met le coûts du sommet à -1 et...
 	   list_ferm.push_back((*i1)->get_sommet()); // On l'insère dans la liste fermée pour ne plus le traiter
 	}
-	else{ // Sinon...
+	else{ // Sinon... 
 	  x2 = (*i1)->getX(); // On récupère la coordonée x de la case
 	  y2 = (*i1)->getY(); // On récupère la coordonée y de la case
 	  if(couts.at((*i1)->get_sommet()) == -1){ // Si on a jamais étudié le coût de la case
@@ -602,6 +602,7 @@ const std::vector< std::pair< bool,bool>*> Map::A_star_GA(unsigned int id, unsig
     sommet_cible = sommet_cour; // On met à jour sommet_cible...
     sommet_cour = antec.at(sommet_cour); // et sommet_cour
   }
+  std::reverse(chemin.begin(),chemin.end());
   return chemin; // On retourne le chemin
 }
 

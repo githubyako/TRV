@@ -18,11 +18,11 @@
 inline bool myfonction(SurMinion *_m1, SurMinion *_m2)
 {
       if((_m1->getVaChemin() && _m2->getVaChemin()) || (!_m1->getVaChemin() && !_m2->getVaChemin())){
-      return (_m1->getFitness()>_m2->getFitness());
+      return (_m1->getFitness()<_m2->getFitness());
     }else if(!_m1->getVaChemin()){
-      return 1;
-    }else{
       return 0;
+    }else{
+      return 1;
     }
 }
 

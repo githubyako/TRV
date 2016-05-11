@@ -7,6 +7,12 @@ Minion::Minion(const std::vector< std::pair< bool, bool > *>& _genome):m_genome(
   m_id=m_incrID++;
 }
 
+Minion::Minion(const Minion& _minion)
+:m_genome(_minion.getGenome()),m_fitness(_minion.getFitness()),m_vaChemin(_minion.getVaChemin()),m_manhattan(_minion.getManhattan()),m_sommetfinal(_minion.getSF())
+{
+}
+
+
 Minion::~Minion()
 {
   for(unsigned int i=0;i<m_genome.size();i++){

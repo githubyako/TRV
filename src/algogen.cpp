@@ -131,20 +131,11 @@ for(unsigned int kid=0;kid<m_nbkids;kid++){ // on répète autant qu'on veut cr�
 
 void Algogen::cull()
 {
-    unsigned int finRange = (unsigned int)(m_pop.size()/5);
-    float totalSupprs = (float)(finRange * m_cullRatio);
-    float supprs=0.0;
-    bool ded;
-    while(supprs<totalSupprs && m_pop.size() > m_popsize/2){
-	    for (std::vector<SurMinion*>::iterator it = m_pop.begin(); it !=  m_pop.end() - finRange;) {
-		    ded = rand() % 2;
-		    if(ded && supprs < totalSupprs && (*it)->getVaChemin()==false && (*it)->getID()!=m_president->getID()){
-// 			    std::cout << "On supprime le SurMinion d'id : " << (*it)->getID() << " | genome de taille : " << (*it)->getMinion(0)->getGenomeSize() << std::endl;
-			    std::swap(*it, m_pop.back());
-			    m_pop.pop_back();
-			    supprs++;
-		}else ++it;
-	    }
+    unsigned int debutRange = (unsigned int)(m_pop.size()/5);
+    unsigned int totalSupprs = ceil(m_pop.size() * m_cullRatio);
+    for(unsigned int supprs = 0;supprs<totalSupprs;++supprs){
+      unsigned int pos = rand() % (m_pop.size() - debutRange) + debutRange;
+      m_pop.erase(m_pop.begin()+pos);
     }
 }
 
@@ -348,28 +339,29 @@ void Algogen::iterate()
 //     {
 //       std::cout << "SurMinion n°" << (*i)->getID() << " | Fitness : " << (*i)->getFitness() << " | varChemin : " << (*i)->getVaChemin() << std::endl;
 //     }
-    std::sort (m_pop.begin(), m_pop.end(), myfonction); // tri
 //     std::cout << "m_pop après tri : " << std::endl;
 //     for (std::vector<SurMinion*>::iterator i=m_pop.begin(); i!=m_pop.end(); i++)
 //     {
 //       std::cout << "SurMinion n°" << (*i)->getID() << " | Fitness : " << (*i)->getFitness() << " | varChemin : " << (*i)->getVaChemin() << std::endl;
 //     }
+    if(m_superman==nullptr || m_pop.front()->getFitness() < m_superman->getFitness()){
+      std::vector<Minion*> superman = m_pop.front()->getMinions();		// création du superman (supersurminion)
+      for(unsigned int i = 1;i<m_pop.size();i++){
+	for(unsigned int j=0;j<superman.size();j++){
+	  if(m_pop.at(i)->getMinion(j)->getFitness() < superman.at(j)->getFitness()){
+	    superman.at(j) = new Minion(*m_pop.at(i)->getMinion(j));
+	  }
+	}
+      }
+      m_pop.push_back(new SurMinion(superman));			// supersurminion ajouté à la pop
+    }
+
     SurMinion *sm1=nullptr, *sm2=nullptr, *sm3=nullptr;
     while(m_pop.size()<m_popsize){		// reproduction par rank selection exponentielle tant que la population n'a pas atteint m_popsize
 //       if(m_pop.size() < 3){
 // 	initPop(m_orig[0]->get_sommet(),m_cible[0]->get_sommet());
 //       }
-      if(m_superman==nullptr || m_pop.front()->getFitness() < m_superman->getFitness()){
-	std::vector<Minion*> superman = m_pop.front()->getMinions();		// création du superman (supersurminion)
-	for(unsigned int i = 1;i<m_pop.size();i++){
-	  for(unsigned int j=0;j<superman.size();j++){
-	    if(m_pop.at(i)->getMinion(j)->getFitness() < superman.at(j)->getFitness()){
-	      superman.at(j) = m_pop.at(i)->getMinion(j);
-	    }
-	  }
-	}
-	m_pop.push_back(new SurMinion(superman));			// supersurminion ajouté à la pop
-      }
+
       for (unsigned int i = 1 ;i<m_pop.size();++i){			// probabilité de sélection: 1/2 pour le meilleur individu, 1/4, pour le suivant, 1/8 pour le 3me...
 	if((float)(rand()%m_pop.size()) < (float)((1/(pow(2,i))) *  m_pop.size())){
 	  if(sm1==nullptr) {sm1=m_pop.at(i-1);
@@ -388,10 +380,11 @@ void Algogen::iterate()
     }
     float totalfitness=0.0;
     for (std::vector<SurMinion*>::iterator it = m_pop.begin(); it !=  m_pop.end(); ++it) {
- 	    evaluate(*it);  // evaluation fitness
+//  	    evaluate(*it);  // evaluation fitness
 	    totalfitness+=(*it)->getFitness();
     }
     m_generationTotalFitness.push_back(totalfitness);
+    std::sort (m_pop.begin(), m_pop.end(), myfonction); // tri
     cull();
     m_nbIterations++;
 }
@@ -410,6 +403,7 @@ void Algogen::iterate()
 void Algogen::show() const
 {
   std::cout << std::endl << "*******************************************************" << std::endl;
+  std::cout << "ITERATION NUMERO " << m_nbIterations << std::endl;
   std::cout << "Stats: " << std::endl;
   std::cout << m_nbkidstotal << " enfants créés." << std::endl;
   std::cout << m_nbIterations << " iterations." << std::endl;
@@ -425,17 +419,14 @@ void Algogen::show() const
   {
     for(unsigned int j=0; j<m_pop.at(i)->getMinions().size(); ++j){
       std::vector< std::pair< bool, bool > *> genome = m_pop.at(i)->getMinion(j)->getGenome();
-      std::cout << "_****_" << std::endl << "numero : " << j <<  " | id = " << m_pop.at(i)->getMinion(j)->getID() << " | taille genome = " << m_pop.at(i)->getMinion(j)->getGenomeSize() << std::endl;
+      std::cout << "_****_" << std::endl << "numero : " << j <<  " | id = " << m_pop.at(i)->getMinion(j)->getID() << " | taille genome = " << m_pop.at(i)->getMinion(j)->getGenomeSize() << ", fitness = " << m_pop.at(i)->getMinion(j)->getFitness() << std::endl;
       int newx = (int)(m_orig.at(j)->getX());
       int newy = (int)(m_orig.at(j)->getY());
       std::cout << "Depart en " << newx << ", " << newy << ", case n° " << newx*m_mapH + newy << std::endl;
       for(std::vector< std::pair< bool, bool > *>::iterator cit = genome.begin(); cit != genome.end(); ++cit){
-
-	
 	if(*cit!=nullptr){
 	  newx += ((*cit)->second*(1-(2*(*cit)->first)));
 	  newy += (((*cit)->second -1) * ((2*(*cit)->first)-1));
-	  
 	  std::cout << "x = " << newx << ", y = " << newy << ", " << "Case n° " << newx*m_mapH + newy << " | ";
 	}else{
 	  std::cout << "Attente | ";

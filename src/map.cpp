@@ -619,7 +619,7 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 	float ratioSupprs = 0.1;
 	float ratioModifs = 0.1;
 	float ratioElitism = 0.05;
-	float cullRatio = 0.1;
+	float cullRatio = 0.02;
 	unsigned int  nbkids=3;
 	int idsource = m_agents.at(id)->getCase()->get_sommet();
 	const Unite * typeAgent = m_agents.at(id)->getUnite();

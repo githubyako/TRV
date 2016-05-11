@@ -15,6 +15,7 @@ private:
   
 public:
   Minion(std::vector<std::pair<bool,bool> *> const & _genome);
+  Minion(Minion const & _minion);
   ~Minion();
   
   void mutate(unsigned int _nbAjouts, float _ratioSupprs,float _ratioModifs);

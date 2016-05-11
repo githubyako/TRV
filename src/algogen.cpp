@@ -370,11 +370,11 @@ void Algogen::iterate()
 	}
 	m_pop.push_back(new SurMinion(superman));			// supersurminion ajouté à la pop
       }
-      for (int i = m_pop.size()-1;i>=0;--i){			// probabilité de sélection: 1/2 pour le meilleur individu, 1/4, pour le suivant, 1/8 pour le 3me...
-	if((float)(rand()%m_pop.size()) > (float)((1/(i+1)) *  m_pop.size())){
-	  if(sm1==nullptr) {sm1=m_pop.at(i);
-	  }else if(sm2==nullptr && m_pop.at(i)!=sm1) {sm2=m_pop.at(i);
-	  }else if(m_pop.at(i)!=sm1 && m_pop.at(i)!=sm2){sm3=m_pop.at(i);
+      for (unsigned int i = 1 ;i<m_pop.size();++i){			// probabilité de sélection: 1/2 pour le meilleur individu, 1/4, pour le suivant, 1/8 pour le 3me...
+	if((float)(rand()%m_pop.size()) < (float)((1/(pow(2,i))) *  m_pop.size())){
+	  if(sm1==nullptr) {sm1=m_pop.at(i-1);
+	  }else if(sm2==nullptr && m_pop.at(i-1)!=sm1) {sm2=m_pop.at(i-1);
+	  }else if(m_pop.at(i-1)!=sm1 && m_pop.at(i-1)!=sm2){sm3=m_pop.at(i-1);
 	    break;
 	  }
 	}
@@ -388,7 +388,7 @@ void Algogen::iterate()
     }
     float totalfitness=0.0;
     for (std::vector<SurMinion*>::iterator it = m_pop.begin(); it !=  m_pop.end(); ++it) {
-// 	    evaluate(*it);  // evaluation fitness
+ 	    evaluate(*it);  // evaluation fitness
 	    totalfitness+=(*it)->getFitness();
     }
     m_generationTotalFitness.push_back(totalfitness);

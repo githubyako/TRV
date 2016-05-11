@@ -211,8 +211,9 @@ void Algogen::evaluate(SurMinion* _surminion)
 	      sommet = (newx*m_mapH) + newy;
 	      cit--;
 	    } else {
-	      std::vector<int>::const_iterator debutboucle = std::find(vec.begin(), vec.end(), sommet), debutvec = vec.begin();
-	      int pos = std::distance(debutvec,debutboucle);
+	      std::vector<int>::const_iterator debutboucle = std::find(vec.begin(), vec.end(), sommet), debutvec = vec.begin(), act = vec.begin()+std::distance(genome.begin(),cit);
+	      int mi_boucle = std::distance(debutboucle,act);
+	      int pos = std::distance(debutvec,debutboucle) + ceil(mi_boucle/2);
 		if (debutboucle != vec.end()) {
 // 		  std::cout << "Boucle détectée, suppression de " << vec.size() - pos << " chromosomes dans le minion id = " << _surminion->getMinions().at(numAgent)->getID() << std::endl;
 		  vec.erase(vec.begin()+pos+1, vec.end());

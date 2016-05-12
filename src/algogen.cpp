@@ -343,10 +343,10 @@ void Algogen::iterate()
     if(m_generationTotalFitness.back() > m_generationTotalFitness.back() - 1){  
       m_ratioSupprs = m_ratioSupprs * 0.99;
       m_ratioModifs = m_ratioModifs * 0.99;
-    }/*else if(m_ratioModifs < 2*m_initratioModifs){
+    }else if(m_ratioModifs < 2*m_initratioModifs){
       m_ratioSupprs = m_ratioSupprs * 1.01;
       m_ratioModifs = m_ratioModifs * 1.01;
-    }*/
+    }
 //     std::cout << "m_pop avant tri : " << std::endl;
 //     for (std::vector<SurMinion*>::iterator i=m_pop.begin(); i!=m_pop.end(); i++)
 //     {
@@ -471,7 +471,7 @@ void Algogen::show() const
       if(*cit!=nullptr){
 	newx += ((*cit)->second*(1-(2*(*cit)->first)));
 	newy += (((*cit)->second -1) * ((2*(*cit)->first)-1));
-	std::cout << "Case n° " << newx*m_mapH + newy << " | ";
+	std::cout << "Case n° " << newx*m_mapH + newy << " | de coordonnées : X = " << newx << " Y : " << newy;
       }else{
 	std::cout << "Attente | ";
       }

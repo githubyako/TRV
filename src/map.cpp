@@ -611,7 +611,7 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 {
 // 	float total=0;
 // 	unsigned int iteration=1500;
- 	unsigned int popsize=100;
+ 	unsigned int popsize=50;
 	float manhattan = 0.8;
 	float mutaRatio = 0.05;
 	float popToMutate = 1;
@@ -644,15 +644,15 @@ void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* uni
 			      int k=0;
 // 			      std::cout << "initpop ok, iterating" << std::endl;
 			      algg.show();
-			      while(k<3000){
+			      while(k<600){
 				k++;
 				algg.iterate();
 				if(k%100 == 0){
 				  std::cout << k << std::endl;
 				}
-				if(k==4999){
-				  algg.show();
-				}
+// 				if(k==4999){
+// 				  algg.show();
+// 				}
 			      }
 			      algg.show();
 // 			      if(test%1000==0){

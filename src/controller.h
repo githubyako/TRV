@@ -8,6 +8,8 @@
 #include <iostream>
 #include "str_exception.h"
 #include "map.h"
+#include "algogen.h"
+
 #include <libxml++/libxml++.h>
 
 // Classe représentant le controlleur utile à la communication entre le jeu et la recherche de pathfinding 
@@ -16,7 +18,7 @@ class Controller{
 private:
   static Controller * s_controller; // On ne souhaite qu'il n'y ai qu'une et une seule instance de Controller 
   Map* map; // La map associé au controlleur, c'est sur celle-ci que se déroule le jeu et le pathfinding
-  
+  Algogen* m_algg;
   // Constructeurs :
   Controller();
   Controller(Controller const & _controller);
@@ -49,8 +51,12 @@ public:
   // Fonction demandant une recherche de chemin par pathfinding A* à l'Agent d'identificateur id à la case de coordonnées x,y
   void demande_chemin_A_star(int id, int x, int y);
   
+  void create_algogen();
+  
   // Fonction demandant une recherche de chemin par pathfinding génétique à l'Agent d'identificateur id à la case de coordonnées x,y
   void demande_chemin_algogen(int id, int x, int y);
+  
+  void iterate_algogen(unsigned int _nbIts);
   
   // Fonction de parsing du fichier regle.xml représentant les règles de leur jeu (description de toutes les unités, contraintes et terrains différents)
   void initiateRules(std::string xmlFileName);

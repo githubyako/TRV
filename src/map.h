@@ -13,11 +13,12 @@
 #include "terrain.h"
 #include "agent.h"
 #include "unite.h"
-#include "algogen.h"
+
 // #include "minion.h"
 
 class Map{
 private:
+  friend class Algogen;
   static Map* m_map; // On ne souhaite qu'il n'y ai qu'une et une seule instance de Map
   int m_w,m_h; // Nombre de case en x (m_w) et nombre de case en y (m_h) de la map
   std::map<int, Case*> m_sommets; // Map associant à un indice int, une case Case*
@@ -28,7 +29,7 @@ private:
   // Constructeurs :
   Map();
   Map(Map const & _map);
- friend class Algogen;
+ 
 //  friend class Minion;
 public:
   
@@ -67,9 +68,6 @@ public:
   // Fonction pour trouver un chemin vers une case cible pour un agent avec l'algorithme A* adapté pour l'algorithme génétique
   const std::vector<std::pair<bool,bool>*> A_star_GA(unsigned int id, unsigned int idCible, const Unite* unite);
   
-  // Fonction pour trouver un chemin vers une case cible pour un agent avec un algorithme génétique
-  void create_algogen(unsigned int id, unsigned int idCible, const Unite* unite);
-  
   // Getteurs :
   int get_m_w() const;
   int get_m_h() const;
@@ -78,7 +76,7 @@ public:
   Agent* get_Agent(int id) const;
   Terrain* get_Terrain(std::string const & _terrName) const;
   Contrainte * get_Contrainte(std::string const & _contrName) const;
-  
+  const std::map<int,Case*>*get_sommets() const;
   
   // Setteurs :
   

@@ -2,8 +2,8 @@
 
 unsigned int Zone::m_incrID=0;
 
-Zone::Zone(unsigned int _caseOrig, Minion* _leader, const std::vector< unsigned int > _cases)
-:m_caseOrig(_caseOrig), m_caseFin(_leader->getSF()), m_leader(_leader), m_cases(_cases)
+Zone::Zone(unsigned int _caseOrig, unsigned int _leader, const std::vector< unsigned int > _cases, unsigned int _caseFin)
+:m_caseOrig(_caseOrig), m_caseFin(_caseFin), m_leader(_leader), m_cases(_cases)
 {
   m_numero=m_incrID++;
 }
@@ -18,7 +18,7 @@ unsigned int Zone::get_fin() const
   return m_caseFin;
 }
 
-Minion* Zone::get_leader() const
+unsigned int Zone::get_leader() const
 {
   return m_leader;
 }

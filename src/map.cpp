@@ -6,7 +6,6 @@ Map * Map::m_map;
 
 Map::Map() : m_w(),m_h(),m_sommets(), m_terrains(), m_agents(), m_unites(), m_contraintes()
 {
-
 }
 
 Map::Map(const Map& _map)
@@ -36,6 +35,7 @@ Map::~Map()
   for(std::vector<Contrainte*>::iterator it = m_contraintes.begin();it!=m_contraintes.end();it++){
     delete *it;
   }
+
 }
 
 // On ne veut pas donner accès au constructeur de Controller car on ne souhaite qu'une instance de Controller à la fois
@@ -284,6 +284,12 @@ Contrainte* Map::get_Contrainte(const std::string& _contrName) const
   }
   throw new str_exception("Erreur: la contrainte '" + _contrName + "' n'existe pas.");
 }
+
+const std::map< int, Case* >* Map::get_sommets() const
+{
+  return &m_sommets;
+}
+
 
 // ********
 // Setteurs
@@ -606,71 +612,3 @@ const std::vector< std::pair< bool,bool>*> Map::A_star_GA(unsigned int id, unsig
   return chemin; // On retourne le chemin
 }
 
-// Fonction pour trouver un chemin vers une case cible pour un agent avec un algorithme génétique
-void Map::create_algogen(unsigned int id, unsigned int idCible, const Unite* unite)
-{
-// 	float total=0;
-// 	unsigned int iteration=1500;
- 	unsigned int popsize=50;
-	float manhattan = 0.8;
-	float mutaRatio = 0.05;
-	float popToMutate = 1;
- 	unsigned int nbAjouts = 5;
-	float ratioSupprs = 0.1;
-	float ratioModifs = 0.1;
-	float ratioElitism = 0.05;
-	float cullRatio = 0.02;
-	unsigned int  nbkids=3;
-	int idsource = m_agents.at(id)->getCase()->get_sommet();
-	const Unite * typeAgent = m_agents.at(id)->getUnite();
-// 	int test=1;
-// 	int i=1,j=1;
-// 	for(unsigned int popsize=100;popsize<=500;popsize+=200){
-// 	  std::cout << "Passe " << i << " sur 10." << std::endl;
-	
-	// 100, 0, 0.05, 1, 9, 0.09, 0.1, 0.05, 0.15, 3
-// 	  for(float manhattan = 0;manhattan <= 1;manhattan+=0.3){
-// 	    std::cout << "Passe " << i << "." << j << std::endl;
-// 	    for(float mutaRatio = 0.05;mutaRatio<0.5;mutaRatio+=0.2){
-// 	      for(float popToMutate=0.2;popToMutate<=1;popToMutate+=0.4){
-// 		for(unsigned int nbAjouts = 1;nbAjouts<=10;nbAjouts+=2){
-// 		  for(float ratioSupprs=0.05;ratioSupprs<0.1;ratioSupprs+=0.02){
-// 		    for(float ratioModifs=0.1;ratioModifs<=0.2;ratioModifs+=0.05){
-// 		      for(float ratioElitism = 0.05;ratioElitism<0.3;ratioElitism+=0.1){
-// 			for(float cullRatio = 0.05;cullRatio<=0.2;cullRatio+=0.05){
-// 			  for(unsigned int nbkids=3;nbkids<=5;nbkids+=2){
-			      Algogen algg(m_w,m_h,& m_sommets,popsize,manhattan,mutaRatio,popToMutate,nbAjouts,ratioSupprs,ratioModifs,ratioElitism,cullRatio,nbkids);
-			      algg.addDeplacement(id, idsource,idCible,typeAgent);
-			      int k=0;
-// 			      std::cout << "initpop ok, iterating" << std::endl;
-			      algg.show();
-			      while(k<600){
-				k++;
-				algg.iterate();
-				if(k%100 == 0){
-				  std::cout << k << std::endl;
-				}
-// 				if(k==4999){
-// 				  algg.show();
-// 				}
-			      }
-			      algg.show();
-// 			      if(test%1000==0){
-// 				std::cout << "test n°" << test << " fini." << std::endl;
-// 			      }
-// 			      test++;
-// 			  }
-// 			}
-// 		      }
-// 		    }
-// 		  }
-// 		}
-// 	      }
-// 	    }
-// 	    j++;
-// 	  }
-// 	  i++;
-// 	}
-
-
-}

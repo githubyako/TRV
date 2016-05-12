@@ -41,7 +41,7 @@ Minion* SurMinion::getMinion(unsigned int _pairNumber)
   return m_minions.at(_pairNumber);
 }
 
-bool SurMinion::getVaChemin() const
+unsigned int SurMinion::getVaChemin() const
 {
   return m_vaChemin;
 }
@@ -56,7 +56,7 @@ void SurMinion::setMinions(std::vector<Minion*> const & _minions)
   m_minions=_minions;
 }
 
-void SurMinion::setVaChemin(bool _vaChemin)
+void SurMinion::setVaChemin(unsigned int _vaChemin)
 {
   m_vaChemin=_vaChemin;
 }

@@ -17,9 +17,9 @@
 
 inline bool myfonction(SurMinion *_m1, SurMinion *_m2)
 {
-      if((_m1->getVaChemin() && _m2->getVaChemin()) || (!_m1->getVaChemin() && !_m2->getVaChemin())){
+    if(_m1->getVaChemin() == _m2->getVaChemin()){
       return (_m1->getFitness()<_m2->getFitness());
-    }else if(!_m1->getVaChemin()){
+    }else if(_m1->getVaChemin() < _m2->getVaChemin()){
       return 0;
     }else{
       return 1;
@@ -50,6 +50,7 @@ private:
 	float m_cullRatio; // Ratio of individuals deleted at each iteration
 	std::vector<float> m_generationTotalFitness; // Contains each iteration's global fitness, used to adapt m_ratioSupprs and m_ratioModifs
 	std::vector<std::pair<unsigned int,unsigned int>> m_conf_pres; // Container used for collision detection and subsequent genome modifications
+	unsigned int m_nbChemins;
 	
 	void initPop(int _caseSource, int _caseCible,const Unite * _typeAgent); // Creation of a new sub-population in each individual, at the request of demandeDéplacement()
 	
@@ -60,9 +61,8 @@ private:
 
 	void addDeplacement(int _idAgent, int _caseSource, int _caseCible, const Unite * _typeAgent); // Called by the map: processes a new path request.
 	void iterate(); // Main method, calling all genetic algorithm functions. This method should be called a number of times dependant on the map size.
-
+	void calcSousMinions();
 	void crossover(SurMinion* _parent0, SurMinion* _parent1, SurMinion* _parent2); // Creates new individuals based on the genome of three parents
-	Minion* crossover(Minion* _parent0, Minion* _parent1, Minion* _parent2);
 	void mutatePop(); // Mutates the population (see .cpp for details)
 	void cull(); // Destroys a number of individuals (see .cpp for details)
 	void evaluate(SurMinion* _minion); // Assigns a fitness to an individual as a whole, and to each of its paths. Corrects loops, out of bounds movements, overshootings, and also manages collisions.

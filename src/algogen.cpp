@@ -129,6 +129,14 @@ for(unsigned int kid=0;kid<m_nbkids;kid++){ // on répète autant qu'on veut cr�
   }
 } 
 
+Minion* Algogen::crossover(Minion* _parent0, Minion* _parent1, Minion* _parent2)
+{
+  std::vector<std::pair<bool,bool>*> kidgenome;
+  
+}
+
+
+
 void Algogen::cull()
 {
     unsigned int debutRange = (unsigned int)(m_pop.size()/5);
@@ -211,11 +219,10 @@ void Algogen::evaluate(SurMinion* _surminion)
 	      sommet = (newx*m_mapH) + newy;
 	      cit--;
 	    } else {
-	      std::vector<int>::const_iterator debutboucle = std::find(vec.begin(), vec.end(), sommet), debutvec = vec.begin(), act = vec.begin()+std::distance(genome.begin(),cit);
-	      int mi_boucle = std::distance(debutboucle,act);
-	      int pos = std::distance(debutvec,debutboucle) + ceil(mi_boucle/2);
+	      std::vector<int>::const_iterator debutboucle = std::find(vec.begin(), vec.end(), sommet), debutvec = vec.begin();
+	      int pos = std::distance(debutvec,debutboucle);
 		if (debutboucle != vec.end()) {
-// 		  std::cout << "Boucle détectée, suppression de " << vec.size() - pos << " chromosomes dans le minion id = " << _surminion->getMinions().at(numAgent)->getID() << std::endl;
+		  std::cout << "Boucle détectée, suppression de " << vec.size() - pos << " chromosomes dans le minion id = " << _surminion->getMinions().at(numAgent)->getID() << std::endl;
 		  vec.erase(vec.begin()+pos+1, vec.end());
 		  couts.erase(couts.begin()+pos+1,couts.end());
 		  cout=*(couts.begin()+pos);

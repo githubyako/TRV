@@ -62,6 +62,7 @@ private:
 	void iterate(); // Main method, calling all genetic algorithm functions. This method should be called a number of times dependant on the map size.
 
 	void crossover(SurMinion* _parent0, SurMinion* _parent1, SurMinion* _parent2); // Creates new individuals based on the genome of three parents
+	Minion* crossover(Minion* _parent0, Minion* _parent1, Minion* _parent2);
 	void mutatePop(); // Mutates the population (see .cpp for details)
 	void cull(); // Destroys a number of individuals (see .cpp for details)
 	void evaluate(SurMinion* _minion); // Assigns a fitness to an individual as a whole, and to each of its paths. Corrects loops, out of bounds movements, overshootings, and also manages collisions.

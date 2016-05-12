@@ -222,17 +222,17 @@ void Algogen::evaluate(SurMinion* _surminion)
 	      std::vector<int>::const_iterator debutboucle = std::find(vec.begin(), vec.end(), sommet), debutvec = vec.begin();
 	      int pos = std::distance(debutvec,debutboucle);
 		if (debutboucle != vec.end()) {
-		  std::cout << "Boucle détectée, suppression de " << vec.size() - pos << " chromosomes dans le minion id = " << _surminion->getMinions().at(numAgent)->getID() << std::endl;
+// // 		  std::cout << "Boucle détectée, suppression de " << vec.size() - pos << " chromosomes dans le minion id = " << _surminion->getMinions().at(numAgent)->getID() << std::endl;
 		  vec.erase(vec.begin()+pos+1, vec.end());
 		  couts.erase(couts.begin()+pos+1,couts.end());
 		  cout=*(couts.begin()+pos);
 		  cit=genome.erase(genome.begin()+pos, cit+1);
 		  cit--;
-		  while (vec_conf.back().first != sommet)
-		  {
-		    vec_conf.pop_back();
-		    tmps--;
-		  }
+// 		  while (vec_conf.back().first != sommet)
+// 		  {
+// 		    vec_conf.pop_back();
+// 		    tmps--;
+// 		  }
 		}else {
 		  if(sommet == m_cible.at(numAgent)->get_sommet()){
 // 		    std::cout << "Fin de parcours détectée, suppression du reste dans le minion id = " << _surminion->getMinions().at(numAgent)->getID() << std::endl;
@@ -339,13 +339,14 @@ void Algogen::iterate()
 //     std::cout << "AVANT MUTATE !!!!" << std::endl;
 //     this->show();
     mutatePop();
-    if(m_generationTotalFitness.size()>2 && m_generationTotalFitness.back() > *(m_generationTotalFitness.end()-1) && m_ratioModifs > (m_initratioModifs/2)){	// Si la fitness générale s'améliore, diminution du taux de mutation
+//     if(m_generationTotalFitness.size()>2 && m_generationTotalFitness.back() > *(m_generationTotalFitness.end()-1) && m_ratioModifs > (m_initratioModifs/2)){	// Si la fitness générale s'améliore, diminution du taux de mutation
+    if(m_generationTotalFitness.back() > m_generationTotalFitness.back() - 1){  
       m_ratioSupprs = m_ratioSupprs * 0.99;
       m_ratioModifs = m_ratioModifs * 0.99;
-    }else if(m_ratioModifs < 2*m_initratioModifs){
+    }/*else if(m_ratioModifs < 2*m_initratioModifs){
       m_ratioSupprs = m_ratioSupprs * 1.01;
       m_ratioModifs = m_ratioModifs * 1.01;
-    }
+    }*/
 //     std::cout << "m_pop avant tri : " << std::endl;
 //     for (std::vector<SurMinion*>::iterator i=m_pop.begin(); i!=m_pop.end(); i++)
 //     {

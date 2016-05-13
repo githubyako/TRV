@@ -389,19 +389,6 @@ void Algogen::iterate()
 //     std::cout << "APRES MUTATE, AVANT SUPERMAN" << std::endl;
 //     this->show();
 //     std::cout << "avant superman" << std::endl;
-    if((m_superman==nullptr || m_pop.front()->getFitness() < m_superman->getFitness()) && m_nbIterations%10==0){
-      std::vector<Minion*> superman = m_pop.front()->getMinions();		// création du superman (supersurminion)
-      for(unsigned int i = 1;i<m_pop.size();i++){
-	for(unsigned int j=0;j<superman.size();j++){
-	  if(m_pop.at(i)->getMinion(j)->getFitness() < superman.at(j)->getFitness()){
-	    superman.at(j) = new Minion(*m_pop.at(i)->getMinion(j));
-	    std::cout << "Nouveau minion créé dans nouveau superman, minion id = " << superman.at(j)->getID() << std::endl;
-	  }
-	}
-      }
-      m_pop.push_back(new SurMinion(superman));			// supersurminion ajouté à la pop
-      m_superman = m_pop.back();
-    }
 //     std::cout << "après superman" << std::endl;
 //     std::cout << "APRES SUPERMAN, AVANT CROSSOVER" << std::endl;
 //     this->show();
@@ -442,6 +429,42 @@ void Algogen::iterate()
     m_generationTotalFitness.push_back(totalfitness);
 //     std::cout << "avant tri" << std::endl;
     std::sort (m_pop.begin(), m_pop.end(), myfonction); // tri
+    
+    if(m_nbIterations%10==0)
+    {
+      if(m_superman==nullptr || ((m_pop.front()->getVaChemin()==0 && m_superman->getVaChemin()==0) && (m_pop.front()->getFitness() < m_superman->getFitness()))){
+	std::vector<Minion*> superman = m_pop.front()->getMinions();		// création du superman (supersurminion)
+	for(unsigned int i = 1;i<m_pop.size();i++){
+	  for(unsigned int j=0;j<superman.size();j++){
+	    if(m_pop.at(i)->getMinion(j)->getFitness() < superman.at(j)->getFitness()){
+	      superman.at(j) = new Minion(*m_pop.at(i)->getMinion(j));
+	    }
+	  }
+	}
+	m_pop.push_back(new SurMinion(superman));			// supersurminion ajouté à la pop
+	m_superman = m_pop.back();
+      }
+      else if(m_superman==nullptr || (m_pop.front()->getVaChemin()>0)){
+	std::vector<Minion*> superman = m_pop.front()->getMinions();
+	unsigned int i=1;
+	while (i < m_popsize && m_pop.at(i)->getVaChemin()>0)
+	{
+	  for (unsigned int j=0; j<m_nbChemins; ++j)
+	  {
+	    if (m_pop.at(i)->getMinion(j)->getVaChemin() && !(superman.at(j)->getVaChemin()))
+	    {
+	      superman.at(j) = new Minion(*m_pop.at(i)->getMinion(j));
+	    }
+	    else if ((m_pop.at(i)->getMinion(j)->getVaChemin() && !(superman.at(j)->getVaChemin()))&& (m_pop.at(i)->getMinion(j)->getFitness() < superman.at(j)->getFitness()))
+	    {
+	      superman.at(j) = new Minion(*m_pop.at(i)->getMinion(j));
+	    }
+	  }
+	  i++;
+	}
+	
+      }
+    }
 //     std::cout << "après tri" << std::endl;
 //     std::cout << "avant cull" << std::endl;
     cull();

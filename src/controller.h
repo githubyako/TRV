@@ -52,6 +52,7 @@ public:
   void demande_chemin_A_star(int id, int x, int y);
   
   void create_algogen();
+  void delete_algogen();
   
   // Fonction demandant une recherche de chemin par pathfinding génétique à l'Agent d'identificateur id à la case de coordonnées x,y
   void demande_chemin_algogen(int id, int x, int y);

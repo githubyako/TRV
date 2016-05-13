@@ -97,57 +97,28 @@ void Minion::setSommetFinal(unsigned int _sommet)
 
 void Minion::mutate(unsigned int _nbAjouts, float _ratioSupprs, float _ratioModifs)
 {
-//   std::cout << "______________________________" << std::endl;
-//   std::cout << "Minion avant mutate | id : " << m_id << " | taille : " << m_genome.size() << std::endl;
-//   std::cout << "*******************" << std::endl;
   if(!m_vaChemin){
-//     std::cout << "Il n'est pas vachemin" << std::endl;
     unsigned int nbsupprs = (unsigned int)(ceil(_nbAjouts * _ratioSupprs));
     if(nbsupprs < m_genome.size()){
-//       std::cout << "Taille avant suppression : " << m_genome.size() << std::endl;
-      for(unsigned int i=1;i<nbsupprs;++i){													// suppressions
-// 	std::cout << "suppression " << i << "sur " << nbsupprs << ", genome size =  " << m_genome.size() << std::endl;
+      for(unsigned int i=1;i<nbsupprs;++i){
 	      unsigned int pos = rand() % m_genome.size();
 	      std::swap(m_genome.at(pos),m_genome.back());
 	      m_genome.pop_back();
       }
     }
-//     std::cout << "Taille après suppression : " << m_genome.size() << std::endl;
     unsigned int nbmodifs = (unsigned int)(m_genome.size() * _ratioModifs);
     for(unsigned int i=0;i<nbmodifs;++i){  // modifications
       
       m_genome.at(rand() % m_genome.size()) = new std::pair<bool,bool>(rand()%2,rand()%2);
     }
-//     std::cout << "Taille après modification : " << m_genome.size() << std::endl;
-    for(unsigned int i=0;i<_nbAjouts;++i){													// modifications
-	    m_genome.push_back(new std::pair<bool,bool>(rand()%2,rand()%2));
+    for(unsigned int i=0;i<_nbAjouts;++i){
+      m_genome.push_back(new std::pair<bool,bool>(rand()%2,rand()%2));
     }
-/*    std::cout << "Taille après ajout : " << m_genome.size() << std::endl;
-    std::cout << "*******************" << std::endl;
-    std::cout << "Minion après mutate | id : " << m_id << " | taille : " << m_genome.size() << std::endl;*/
-/*  
-    unsigned int originX = m_sommetfinal->getX();
-    unsigned int originY = m_sommetfinal->getY();
-    unsigned int cibleX = _cible->getX();
-    unsigned int cibleY = _cible->getY();
-    bool a = cibleX < originX;
-    bool b = cibleX == originX;
-    bool c = 1-a-b;
-    bool d = cibleY < originY;
-    bool e = cibleY == originY;
-    bool f = 1-d-e;
-    std::vector<std::pair<bool, bool> > ajout_astar = Map::m_map->A_star_GA(m_sommetfinal, ((originX+3*((a-c)*(1-e)+2*(c-a)))*Map::get_m_h()+(originY+3*((d-f)*(1-b)+2*(e-a-b-c+2*f)))), nullptr);
-    m_genome.insert(m_genome.begin(), ajout_astar.begin(), ajout_astar.end());*/
   }else{
-//     std::cout << "il est vachemin" << std::endl;
-//     std::cout << "vachemin modifié" << std::endl;
-//     if(1/((rand()%9)+1)>=_ratioModifs){
       unsigned int pos1=rand()%(m_genome.size()),pos2=rand()%(m_genome.size());
       bool firstbool=rand()%2,secondbool=rand()%2;
-	// 1: introduction de 2 déplacements de direction opposées
        m_genome.insert(m_genome.begin()+pos1,new std::pair<bool,bool>(firstbool,secondbool));
        m_genome.insert(m_genome.begin()+pos2,new std::pair<bool,bool>(!firstbool,secondbool));
-      // 3: permutation de 2 déplacements aléatoires, suppression si elles sont opposées
       unsigned int pos3=rand()%m_genome.size(),pos4=(rand()%(m_genome.size()-1))+1;
       if((m_genome.at(pos3) != nullptr && m_genome.at(pos4) != nullptr ) && m_genome.at(pos3)->first!=m_genome.at(pos4)->first && m_genome.at(pos3)->second==m_genome.at(pos4)->second)
       {
@@ -176,20 +147,15 @@ void Minion::mutate(unsigned int _nbAjouts, float _ratioSupprs, float _ratioModi
 void Minion::mutateElite(unsigned int _nbAjouts, float _ratioModifs)
 {
   if(!m_vaChemin){
-//     std::cout << "Il n'est pas vachemin élite" << std::endl;
-	for(unsigned int i=0;i<_nbAjouts;++i){													// modifications
+	for(unsigned int i=0;i<_nbAjouts;++i){
 		m_genome.push_back(new std::pair<bool,bool>(rand()%2,rand()%2));
 	}
   }
   else {
-// std::cout << "il est vachemin" << std::endl;
       unsigned int pos1=rand()%m_genome.size(),pos2=rand()%m_genome.size();
       bool firstbool=rand()%2,secondbool=rand()%2;
-	// 1: introduction de 2 déplacements de direction opposées
-       m_genome.insert(m_genome.begin()+pos1,new std::pair<bool,bool>(firstbool,secondbool));
-       m_genome.insert(m_genome.begin()+pos2,new std::pair<bool,bool>(!firstbool,secondbool));
-      
-      // 3: permutation de 2 déplacements aléatoires, suppression si elles sont opposées
+      m_genome.insert(m_genome.begin()+pos1,new std::pair<bool,bool>(firstbool,secondbool));
+      m_genome.insert(m_genome.begin()+pos2,new std::pair<bool,bool>(!firstbool,secondbool));
       unsigned int pos3=rand()%m_genome.size(),pos4=(rand()%(m_genome.size()-1))+1;
       if((m_genome.at(pos3) != nullptr && m_genome.at(pos4) != nullptr ) && m_genome.at(pos3)->first!=m_genome.at(pos4)->first && m_genome.at(pos3)->second==m_genome.at(pos4)->second)
       {

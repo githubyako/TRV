@@ -73,52 +73,32 @@ void Controller::demande_chemin_A_star(int id, int x, int y)
 void Controller::create_algogen()
 {
   if(m_algg==nullptr){
-// 	float total=0;
-// 	unsigned int iteration=1500;
- 	unsigned int popsize=100;
-	float manhattan = 0.8;
-	float mutaRatio = 0.05;
-	float popToMutate = 1;
- 	unsigned int nbAjouts = 5;
-	float ratioSupprs = 0.1;
-	float ratioModifs = 0.1;
-	float ratioElitism = 0.05;
-	float cullRatio = 0.02;
-	unsigned int  nbkids=3;
-
-// 	int test=1;
-// 	int i=1,j=1;
-// 	for(unsigned int popsize=100;popsize<=500;popsize+=200){
-// 	  std::cout << "Passe " << i << " sur 10." << std::endl;
-	
-	// 100, 0, 0.05, 1, 9, 0.09, 0.1, 0.05, 0.15, 3
-// 	  for(float manhattan = 0;manhattan <= 1;manhattan+=0.3){
-// 	    std::cout << "Passe " << i << "." << j << std::endl;
-// 	    for(float mutaRatio = 0.05;mutaRatio<0.5;mutaRatio+=0.2){
-// 	      for(float popToMutate=0.2;popToMutate<=1;popToMutate+=0.4){
-// 		for(unsigned int nbAjouts = 1;nbAjouts<=10;nbAjouts+=2){
-// 		  for(float ratioSupprs=0.05;ratioSupprs<0.1;ratioSupprs+=0.02){
-// 		    for(float ratioModifs=0.1;ratioModifs<=0.2;ratioModifs+=0.05){
-// 		      for(float ratioElitism = 0.05;ratioElitism<0.3;ratioElitism+=0.1){
-// 			for(float cullRatio = 0.05;cullRatio<=0.2;cullRatio+=0.05){
-// 			  for(unsigned int nbkids=3;nbkids<=5;nbkids+=2){
-			      m_algg = new Algogen (map->get_m_w(),map->get_m_h(),map->get_sommets(),popsize,manhattan,mutaRatio,popToMutate,nbAjouts,ratioSupprs,ratioModifs,ratioElitism,cullRatio,nbkids);
-// 			  }
-// 			}
-// 		      }
-// 		    }
-// 		  }
-// 		}
-// 	      }
-// 	    }
-// 	    j++;
-// 	  }
-// 	  i++;
-// 	}
+    unsigned int popsize=rand()%100+100;
+    float manhattan = 1.0;
+    float mutaRatio = (float)((rand()%6 + 1))/ 100;
+    float popToMutate = (float)((rand() % 51 + 50)) / 100;
+    unsigned int nbAjouts = ceil(map->get_m_h()/(rand()%5+1));
+    float ratioSupprs = (float)((rand()%10)+1)/ 100;
+    float ratioModifs = (float)((rand()%10)+1)/ 100;
+    float ratioElitism = (float)((rand()%10)+1)/ 100;
+    float cullRatio = (float)((rand()%10)+1)/ 100;
+    unsigned int  nbkids=rand()%5+1;
+    bool singlePoint = 0;
+//     std::cout << "popsize= "<< popsize << ", mutaratio= " << mutaRatio << ", poptomutate= " << popToMutate << ", nbajouts= " << nbAjouts << ", ratiosupprs =  " << ratioSupprs
+//       << ", ratiomodifs = " << ratioModifs << ", ratioElitism= " << ratioModifs << ", ratioElitism = " << ratioElitism << ", cullRatio= " << cullRatio
+//       << ", nbkids = " << nbkids << ", singlepoint = " << singlePoint << std::endl;
+    m_algg = new Algogen (map->get_m_w(),map->get_m_h(),map->get_sommets(),popsize,manhattan,mutaRatio,popToMutate,nbAjouts,ratioSupprs,ratioModifs,ratioElitism,cullRatio,nbkids, singlePoint);
   }else{
     std::cerr << "Impossible de créer un nouvel algogen: il en existe déjà un" << std::endl;
   }
 }
+
+void Controller::delete_algogen()
+{
+  delete m_algg;
+  m_algg=nullptr;
+}
+
 
 // Fonction demandant une recherche de chemin par pathfinding génétique à l'Agent d'identificateur id à la case de coordonnées x,y
 void Controller::demande_chemin_algogen(int id, int x, int y)
@@ -136,9 +116,9 @@ void Controller::iterate_algogen(unsigned int _nbIts)
 {
   for(unsigned int i=0;i<_nbIts;++i){
     m_algg->iterate();
-    if(i%100 == 0){
-      std::cout << i << std::endl;
-    }
+//     if(i%10 == 0){
+//       std::cout << i << std::endl;
+//     }
   }
   m_algg->calcSousMinions();
   m_algg->show();

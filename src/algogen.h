@@ -51,25 +51,24 @@ private:
 	std::vector<float> m_generationTotalFitness; // Contains each iteration's global fitness, used to adapt m_ratioSupprs and m_ratioModifs
 	std::vector<std::pair<unsigned int,unsigned int>> m_conf_pres; // Container used for collision detection and subsequent genome modifications
 	unsigned int m_nbChemins;
-	bool m_singlepoint;
+	
 	void initPop(int _caseSource, int _caseCible,const Unite * _typeAgent); // Creation of a new sub-population in each individual, at the request of demandeDéplacement()
 	
 	public:
-	Algogen(int map_w, int map_h, const std::map< int, Case* >* _sommets, unsigned int _popsize, float _manhattanImportance, float _mutationRatio, float _popToMutate, unsigned int _nbAjouts, float _ratioSupprs, float _ratioModifs, float _ratioElitism, float _cullRatio, unsigned int _nbkids, bool _singlePoint);
+	Algogen(int map_w, int map_h,std::map<int, Case*> const * _sommets, unsigned int _popsize, float _manhattanImportance, float _mutationRatio, 
+		  float _popToMutate, unsigned int _nbAjouts, float _ratioSupprs,float _ratioModifs, float _ratioElitism, float _cullRatio, unsigned int _nbkids);
 	~Algogen();
 
 	void addDeplacement(int _idAgent, int _caseSource, int _caseCible, const Unite * _typeAgent); // Called by the map: processes a new path request.
 	void iterate(); // Main method, calling all genetic algorithm functions. This method should be called a number of times dependant on the map size.
 	void calcSousMinions();
-	void uniform_crossover(SurMinion* _parent0, SurMinion* _parent1, SurMinion* _parent2); // Creates new individuals based on the genome of three parents
-	void SP_crossover(SurMinion* _parent0, SurMinion* _parent1, SurMinion* _parent2); // signle point crossover
+	void crossover(SurMinion* _parent0, SurMinion* _parent1, SurMinion* _parent2); // Creates new individuals based on the genome of three parents
 	void mutatePop(); // Mutates the population (see .cpp for details)
 	void cull(); // Destroys a number of individuals (see .cpp for details)
 	void evaluate(SurMinion* _minion); // Assigns a fitness to an individual as a whole, and to each of its paths. Corrects loops, out of bounds movements, overshootings, and also manages collisions.
 	void evaluateSSM(); // Manages collisions for sub-individuals.
 	void show() const; // prints statistics and details about the results
 	Zone *calcule_Zone(int _caseSource, int _caseCible);
-
 };
 
 #endif

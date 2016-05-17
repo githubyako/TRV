@@ -73,32 +73,22 @@ void Controller::demande_chemin_A_star(int id, int x, int y)
 void Controller::create_algogen()
 {
   if(m_algg==nullptr){
-    unsigned int popsize=rand()%100+100;
-    float manhattan = 1.0;
-    float mutaRatio = (float)((rand()%6 + 1))/ 100;
-    float popToMutate = (float)((rand() % 51 + 50)) / 100;
-    unsigned int nbAjouts = ceil(map->get_m_h()/(rand()%5+1));
-    float ratioSupprs = (float)((rand()%10)+1)/ 100;
-    float ratioModifs = (float)((rand()%10)+1)/ 100;
-    float ratioElitism = (float)((rand()%10)+1)/ 100;
-    float cullRatio = (float)((rand()%10)+1)/ 100;
-    unsigned int  nbkids=rand()%5+1;
-    bool singlePoint = 0;
-//     std::cout << "popsize= "<< popsize << ", mutaratio= " << mutaRatio << ", poptomutate= " << popToMutate << ", nbajouts= " << nbAjouts << ", ratiosupprs =  " << ratioSupprs
-//       << ", ratiomodifs = " << ratioModifs << ", ratioElitism= " << ratioModifs << ", ratioElitism = " << ratioElitism << ", cullRatio= " << cullRatio
-//       << ", nbkids = " << nbkids << ", singlepoint = " << singlePoint << std::endl;
-    m_algg = new Algogen (map->get_m_w(),map->get_m_h(),map->get_sommets(),popsize,manhattan,mutaRatio,popToMutate,nbAjouts,ratioSupprs,ratioModifs,ratioElitism,cullRatio,nbkids, singlePoint);
+ 	unsigned int popsize=100;
+	float manhattan = 0.8;
+	float mutaRatio = 0.05;
+	float popToMutate = 1;
+ 	unsigned int nbAjouts = 50;
+	float ratioSupprs = 0.1;
+	float ratioModifs = 0.1;
+	float ratioElitism = 0.05;
+	float cullRatio = 0.1;
+	unsigned int  nbkids=3;
+
+	m_algg = new Algogen (map->get_m_w(),map->get_m_h(),map->get_sommets(),popsize,manhattan,mutaRatio,popToMutate,nbAjouts,ratioSupprs,ratioModifs,ratioElitism,cullRatio,nbkids);
   }else{
     std::cerr << "Impossible de créer un nouvel algogen: il en existe déjà un" << std::endl;
   }
 }
-
-void Controller::delete_algogen()
-{
-  delete m_algg;
-  m_algg=nullptr;
-}
-
 
 // Fonction demandant une recherche de chemin par pathfinding génétique à l'Agent d'identificateur id à la case de coordonnées x,y
 void Controller::demande_chemin_algogen(int id, int x, int y)
@@ -116,9 +106,9 @@ void Controller::iterate_algogen(unsigned int _nbIts)
 {
   for(unsigned int i=0;i<_nbIts;++i){
     m_algg->iterate();
-//     if(i%10 == 0){
-//       std::cout << i << std::endl;
-//     }
+    if(i%100 == 0){
+      std::cout << i << std::endl;
+    }
   }
   m_algg->calcSousMinions();
   m_algg->show();

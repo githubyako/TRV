@@ -1,4 +1,4 @@
-100 100
+500 500
 1 8 Plaine avoine:5;ble:7
 2 8 Plaine avoine:4;ble:6
 1 6 Plaine avoine:7;ble:8

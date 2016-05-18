@@ -14,7 +14,7 @@
 #include "str_exception.h"
 #include "map.h"
 #include "zone.h"
-
+#include <unordered_map>
 inline bool myfonction(SurMinion *_m1, SurMinion *_m2)
 {
     if(_m1->getVaChemin() == _m2->getVaChemin()){
@@ -30,6 +30,7 @@ class Algogen{
 
 private:
 	int m_mapW, m_mapH;  // Map width, map height
+	std::unordered_map<int, std::pair<int,int> > m_prochCases;
 	std::map<int, Case*> const * m_sommets; // Pointer to the map's tiles container
 	std::vector<Case *>m_orig,m_cible; // Pointers to the requested beginning/ending tiles
 	std::vector<SurMinion*> m_pop; // Population of individuals, each of them representing every requested paths (see class SurMinion)
@@ -52,7 +53,7 @@ private:
 	std::vector<std::pair<unsigned int,unsigned int>> m_conf_pres; // Container used for collision detection and subsequent genome modifications
 	unsigned int m_nbChemins;
 	
-	void initPop(int _caseSource, int _caseCible,const Unite * _typeAgent); // Creation of a new sub-population in each individual, at the request of demandeDéplacement()
+	void initPop(int _caseSource, int _caseCible,const Unite * _typeAgent, int _idAgent); // Creation of a new sub-population in each individual, at the request of demandeDéplacement()
 	
 	public:
 	Algogen(int map_w, int map_h,std::map<int, Case*> const * _sommets, unsigned int _popsize, float _manhattanImportance, float _mutationRatio, 
@@ -69,6 +70,8 @@ private:
 	void evaluateSSM(); // Manages collisions for sub-individuals.
 	void show() const; // prints statistics and details about the results
 	Zone *calcule_Zone(int _caseSource, int _caseCible);
+	
+	std::pair<int,int> getProchCase(int _agentID) const;
 };
 
 #endif

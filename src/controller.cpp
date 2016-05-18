@@ -6,7 +6,7 @@ Controller* Controller::s_controller;
 // Constructeurs
 // *************
 
-Controller::Controller()
+Controller::Controller():m_algg(nullptr), m_run(false)
 {
 
 }
@@ -70,24 +70,41 @@ void Controller::demande_chemin_A_star(int id, int x, int y)
 	std::vector<std::pair<bool, bool>*> vec2 = map->A_star_GA(map->get_Agent(id)->getCase()->get_sommet(), map->get_Case(x,y)->get_sommet(), map->get_Agent(id)->getUnite());
 }
 
+void Controller::tic()
+{
+  m_algothread = std::thread(&Controller::iterate_algogen,s_controller);
+}
+
+void Controller::toc()
+{
+  m_run=false;
+  m_algothread.join();
+  m_algg->calcSousMinions();
+}
+
+std::pair< int, int > Controller::proch_case(int _idAgent)
+{
+  return m_algg->getProchCase(_idAgent);
+}
+
 void Controller::create_algogen()
 {
   if(m_algg==nullptr){
  	unsigned int popsize=100;
 	float manhattan = 0.8;
 	float mutaRatio = 0.05;
-	float popToMutate = 1;
- 	unsigned int nbAjouts = 50;
-	float ratioSupprs = 0.1;
+	float popToMutate = 0.75;
+ 	unsigned int nbAjouts = map->get_m_h()/5;
+	float ratioSupprs = 0.01;
 	float ratioModifs = 0.1;
 	float ratioElitism = 0.05;
 	float cullRatio = 0.1;
-	unsigned int  nbkids=3;
-
+	unsigned int  nbkids=1;
 	m_algg = new Algogen (map->get_m_w(),map->get_m_h(),map->get_sommets(),popsize,manhattan,mutaRatio,popToMutate,nbAjouts,ratioSupprs,ratioModifs,ratioElitism,cullRatio,nbkids);
   }else{
     std::cerr << "Impossible de créer un nouvel algogen: il en existe déjà un" << std::endl;
   }
+  std::cout << "oui" << std::endl;
 }
 
 // Fonction demandant une recherche de chemin par pathfinding génétique à l'Agent d'identificateur id à la case de coordonnées x,y
@@ -102,16 +119,11 @@ void Controller::demande_chemin_algogen(int id, int x, int y)
   }
 }
 
-void Controller::iterate_algogen(unsigned int _nbIts)
+void Controller::iterate_algogen()
 {
-  for(unsigned int i=0;i<_nbIts;++i){
-    m_algg->iterate();
-    if(i%100 == 0){
-      std::cout << i << std::endl;
-    }
+  while(m_run){
+      m_algg->iterate();
   }
-  m_algg->calcSousMinions();
-  m_algg->show();
 }
 
 
@@ -355,6 +367,10 @@ void Controller::test()
 
 Controller::~Controller()
 {
+  m_run=false;
+  if(m_algothread.joinable()){
+    m_algothread.join();
+  }
   delete map;
   delete m_algg;
 }

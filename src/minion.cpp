@@ -1,7 +1,7 @@
 #include "minion.h"
 unsigned int Minion::m_incrID=0;
 
-Minion::Minion(const std::vector< std::pair< bool, bool > *>& _genome):m_genome(_genome)
+Minion::Minion(const std::vector< std::pair< bool, bool >* >& _genome, int _idAgent):m_idAgent(_idAgent), m_genome(_genome)
 {
   m_vaChemin=false;
   m_id=m_incrID++;
@@ -70,6 +70,10 @@ unsigned int Minion::getSF() const
   return m_sommetfinal;
 }
 
+int Minion::getIDAgent() const
+{
+  return m_idAgent;
+}
 
 
 void Minion::setVaChemin(bool _vaChemin)

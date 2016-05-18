@@ -22,7 +22,9 @@ private:
   // Constructeurs :
   Controller();
   Controller(Controller const & _controller);
-  
+  std::thread m_algothread;
+  bool m_run;
+  void iterate_algogen();
   
 public:
 
@@ -56,7 +58,11 @@ public:
   // Fonction demandant une recherche de chemin par pathfinding génétique à l'Agent d'identificateur id à la case de coordonnées x,y
   void demande_chemin_algogen(int id, int x, int y);
   
-  void iterate_algogen(unsigned int _nbIts);
+  void tic();
+  
+  void toc();
+  
+  std::pair<int,int> proch_case(int _idAgent);
   
   // Fonction de parsing du fichier regle.xml représentant les règles de leur jeu (description de toutes les unités, contraintes et terrains différents)
   void initiateRules(std::string xmlFileName);

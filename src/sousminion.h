@@ -9,7 +9,8 @@
 class SousMinion{
 private:
   int m_idAgent;
-  std::vector<std::pair<bool,bool> *> m_genome;
+  std::vector<std::pair<bool,bool> *> m_genomeDebut;
+  std::vector<std::pair<bool,bool> *> m_genomeLeader;
   unsigned int m_leader;
   int m_caseSource;
   
@@ -17,16 +18,20 @@ public:
   SousMinion(int _idAgent, const std::vector< std::pair< bool, bool >* >& _genome);
   ~SousMinion();
   
-  std::vector<std::pair<bool,bool> *> const & getGenome() const;
+  std::vector<std::pair<bool,bool> *> const & getGenomeDebut() const;
+  std::vector<std::pair<bool,bool> *> const & getGenomeLeader() const;
   unsigned int getGenomeSize() const;
   std::pair< bool, bool > * getChromosome(unsigned int _pairNumber);
   int getID() const;
   unsigned int getLeader() const;
   int getCaseSource() const;
   
-  void setGenome( std::vector<std::pair<bool,bool> *> const & _genome);
+  void setGenomeDebut( std::vector<std::pair<bool,bool> *> const & _genome);
+  void setGenomeLeader( std::vector<std::pair<bool,bool> *> const & _genome);
+  
   void setLeader( unsigned int _leader);
   void setCaseSource(int _sommet);
+  void popfront();
 };
 
 #endif

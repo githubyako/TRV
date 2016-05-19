@@ -25,6 +25,9 @@ int main(int argc, char **argv) {
       controller->demande_chemin_algogen(2,4,4); // 300,300 -> 4,4
       controller->tic();
       controller->toc();
+      controller->deplacement_agent(0,controller->proch_case(0).first,controller->proch_case(0).second);
+      controller->tic();
+      controller->toc();
       std::cout << controller->proch_case(0).first << " " << controller->proch_case(0).second << std::endl;
     } catch(str_exception& e){
     

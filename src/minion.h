@@ -37,6 +37,7 @@ public:
   void setManhattan(unsigned int _manhattan);
   void setGenome( std::vector<std::pair<bool,bool> *> const & _genome);
   void setSommetFinal(unsigned int _sommet);
+  void popfront();
 };
 
 #endif

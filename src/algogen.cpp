@@ -124,11 +124,9 @@ for(unsigned int kid=0;kid<m_nbkids;kid++){ // on répète autant qu'on veut cr�
 	{
 	  kidgenome.push_back(new std::pair<bool,bool>(parents.at(parent)->getChromosome(j)->first,parents.at(parent)->getChromosome(j)->second));
 	  ++j;
-	} 
-	else
-	{
-	    kidgenome.push_back(nullptr);
-	    ++j;
+	}else{
+	  kidgenome.push_back(nullptr);
+	  ++j;
 	}
       }
     }
@@ -137,7 +135,7 @@ for(unsigned int kid=0;kid<m_nbkids;kid++){ // on répète autant qu'on veut cr�
   m_pop.push_back(new SurMinion(minions));
   m_nbkidstotal++;
   }
-} 
+}
 
 
 
@@ -302,7 +300,7 @@ void Algogen::evaluate(SurMinion* _surminion)
 	}
 }
 
-void Algogen::evaluateSSM()
+void Algogen::evaluateSSM() // A MODIFIER POUR QUE CA FASSE EN DEUX PARTIES: SUR LE GENOME DEBUT PUIS SUR LE GENOME LEADER
 {
   std::vector<std::pair<unsigned int, unsigned int>> vec_conf;
   vec_conf = m_conf_pres;
@@ -322,27 +320,48 @@ void Algogen::evaluateSSM()
     newx = (int)(m_orig.at((*it)->getLeader())->getX());
     newy = (int)(m_orig.at((*it)->getLeader())->getY());
     sommet = (newx*m_mapH) + newy;
-    std::vector<std::pair<bool,bool>*> genome = m_sousMinions.at(numAgent)->getGenome();
+    std::vector<std::pair<bool,bool>*> genome = m_sousMinions.at(numAgent)->getGenomeDebut();
     for (std::vector<std::pair<bool,bool>*>::iterator cit = genome.begin(); cit < genome.end(); cit++)
     {
       newx += ((*cit)->second*(1-(2*(*cit)->first)));
       newy += (((*cit)->second -1) * ((2*(*cit)->first)-1));
       sommet = (newx*m_mapH) + newy;
       while(!ajout)
+      {
+	if ((std::find(vec_conf.begin(), vec_conf.end(), std::pair<unsigned int, unsigned int>(sommet, tmps)) == vec_conf.end()))
 	{
-	  if ((std::find(vec_conf.begin(), vec_conf.end(), std::pair<unsigned int, unsigned int>(sommet, tmps)) == vec_conf.end()))
-	  {
-	    vec_conf.push_back(std::pair<unsigned int, unsigned int>(sommet,tmps));
-	    ajout = true;
-	  }
-	  else
-	  {
-	    cit=genome.insert(cit,nullptr);
-	    tmps++;
-	  }
+	  vec_conf.push_back(std::pair<unsigned int, unsigned int>(sommet,tmps));
+	  ajout = true;
 	}
+	else
+	{
+	  cit=genome.insert(cit,nullptr);
+	  tmps++;
+	}
+      }
     }
-    m_sousMinions.at(numAgent)->setGenome(genome);
+    m_sousMinions.at(numAgent)->setGenomeDebut(genome);
+    genome = m_sousMinions.at(numAgent)->getGenomeLeader();
+    for (std::vector<std::pair<bool,bool>*>::iterator cit = genome.begin(); cit < genome.end(); cit++)
+    {
+      newx += ((*cit)->second*(1-(2*(*cit)->first)));
+      newy += (((*cit)->second -1) * ((2*(*cit)->first)-1));
+      sommet = (newx*m_mapH) + newy;
+      while(!ajout)
+      {
+	if ((std::find(vec_conf.begin(), vec_conf.end(), std::pair<unsigned int, unsigned int>(sommet, tmps)) == vec_conf.end()))
+	{
+	  vec_conf.push_back(std::pair<unsigned int, unsigned int>(sommet,tmps));
+	  ajout = true;
+	}
+	else
+	{
+	  cit=genome.insert(cit,nullptr);
+	  tmps++;
+	}
+      }
+    }
+    m_sousMinions.at(numAgent)->setGenomeLeader(genome);
   }
 }
 
@@ -638,11 +657,7 @@ Zone* Algogen::calcule_Zone(int _caseSource, int _caseCible)
 void Algogen::calcSousMinions()
 {
   for(unsigned int i =0; i<m_sousMinions.size();++i){
-    std::vector<std::pair<bool,bool>*> smgenome = m_sousMinions.at(i)->getGenome();
-    smgenome.insert(smgenome.end(), 
-		    m_president->getMinion(m_sousMinions.at(i)->getLeader())->getGenome().begin(), 
-		    m_president->getMinion(m_sousMinions.at(i)->getLeader())->getGenome().end());
-    m_sousMinions.at(i)->setGenome(smgenome);
+    m_sousMinions.at(i)->setGenomeLeader(m_president->getMinion(m_sousMinions.at(i)->getLeader())->getGenome());
   }
   evaluateSSM();
   m_prochCases.clear();
@@ -662,3 +677,29 @@ std::pair< int, int > Algogen::getProchCase(int _agentID) const
 {
   return m_prochCases.at(_agentID);
 }
+
+void Algogen::move_agent(int id, int x, int y)
+{
+  bool found=false;
+  unsigned int nbits = m_sousMinions.size();
+  for(unsigned int i=0;i<nbits;++i){
+    if(m_sousMinions.at(i)->getID() == id){
+      m_sousMinions.at(i)->popfront();
+      found=true;
+      
+      break;
+    }
+  }
+  if(!found){
+    nbits = m_president->getNumberMinions();
+    for(unsigned int i=0;i<nbits;++i){
+      if(m_president->getMinion(i)->getIDAgent() == id){
+	m_president->getMinion(i)->popfront();
+	std::pair<bool,bool> const * depl = m_president->getMinion(i)->getChromosome(0);
+	m_orig.at(i) = m_sommets->at((m_orig.at(i)->getX() + depl->second*(1-(2*depl->first)))*m_mapH + m_orig.at(i)->getY() + ((depl->second -1) * ((2*depl->first)-1)));
+	break;
+      }
+    }
+  }
+}
+

@@ -131,6 +131,7 @@ void Controller::iterate_algogen()
 void Controller::deplacement_agent(int id, int x, int y)
 {
 	map->move_agent(id, x, y);
+	m_algg->move_agent(id,x,y);
 }
 
 // Fonction permettant la création ou la suppression d'un obstacle à la case de coordonnées x,y

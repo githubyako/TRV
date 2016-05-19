@@ -72,6 +72,7 @@ private:
 	Zone *calcule_Zone(int _caseSource, int _caseCible);
 	
 	std::pair<int,int> getProchCase(int _agentID) const;
+	void move_agent(int id, int x, int y);
 };
 
 #endif

@@ -6,7 +6,7 @@ Controller* Controller::s_controller;
 // Constructeurs
 // *************
 
-Controller::Controller():m_algg(nullptr), m_run(false)
+Controller::Controller():m_algg(nullptr), m_run(false),m_iteratedone(false),m_rolling(true)
 {
 
 }
@@ -72,13 +72,15 @@ void Controller::demande_chemin_A_star(int id, int x, int y)
 
 void Controller::tic()
 {
-  m_algothread = std::thread(&Controller::iterate_algogen,s_controller);
+  m_run=true;
 }
 
 void Controller::toc()
 {
   m_run=false;
-  m_algothread.join();
+  while(!m_iteratedone){
+    usleep(1000);
+  }
   m_algg->calcSousMinions();
 }
 
@@ -101,6 +103,7 @@ void Controller::create_algogen()
 	float cullRatio = 0.1;
 	unsigned int  nbkids=1;
 	m_algg = new Algogen (map->get_m_w(),map->get_m_h(),map->get_sommets(),popsize,manhattan,mutaRatio,popToMutate,nbAjouts,ratioSupprs,ratioModifs,ratioElitism,cullRatio,nbkids);
+	m_algothread=std::thread(&Controller::iterate_algogen,Controller::s_controller);
   }else{
     std::cerr << "Impossible de créer un nouvel algogen: il en existe déjà un" << std::endl;
   }
@@ -121,8 +124,14 @@ void Controller::demande_chemin_algogen(int id, int x, int y)
 
 void Controller::iterate_algogen()
 {
-  while(m_run){
-      m_algg->iterate();
+  while(m_rolling){
+    if(m_run){
+	m_iteratedone = false;
+	m_algg->iterate();
+	m_iteratedone = true;
+    }else{
+      usleep(1000);
+    }
   }
 }
 
@@ -368,6 +377,7 @@ void Controller::test()
 
 Controller::~Controller()
 {
+  m_rolling=false;
   m_run=false;
   if(m_algothread.joinable()){
     m_algothread.join();

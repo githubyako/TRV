@@ -22,8 +22,8 @@ private:
   // Constructeurs :
   Controller();
   Controller(Controller const & _controller);
+  bool m_run,m_iteratedone,m_rolling;
   std::thread m_algothread;
-  bool m_run;
   void iterate_algogen();
   
 public:

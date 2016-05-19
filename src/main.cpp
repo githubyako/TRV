@@ -16,19 +16,30 @@ int main(int argc, char **argv) {
 //       controller->creer_agent(4,5,"Cavalier",4);
 //       controller->creer_agent(310,310,"Cavalier",5);
 //       controller->creer_agent(400,250,"Infanterie",6);
+      std::cout << "1" <<std::endl;
       controller->create_algogen();
+      std::cout << "2" <<std::endl;
       controller->demande_chemin_algogen(0,400,400); // 5,5 -> 400,400
+      std::cout << "3" <<std::endl;
       controller->tic();
-      sleep(1);
+      std::cout << "4" <<std::endl;
       controller->toc();
-      std::cout << controller->proch_case(0).first << " " << controller->proch_case(0).second << std::endl;
-      controller->demande_chemin_algogen(2,4,4); // 300,300 -> 4,4
+      std::cout << "5" <<std::endl;
+//       std::cout << controller->proch_case(0).first << " " << controller->proch_case(0).second << std::endl;
+//       controller->demande_chemin_algogen(2,4,4); // 300,300 -> 4,4
+      for(unsigned int i=0;i<10;++i){
+	
+	controller->tic();
+	usleep(15000);
+	controller->toc();
+	std::cout << controller->proch_case(0).first << " " << controller->proch_case(0).second << std::endl;
+	controller->deplacement_agent(0,controller->proch_case(0).first,controller->proch_case(0).second);
+	
+      }
+      std::cout << "6" <<std::endl;
       controller->tic();
       controller->toc();
-      controller->deplacement_agent(0,controller->proch_case(0).first,controller->proch_case(0).second);
-      controller->tic();
-      controller->toc();
-      std::cout << controller->proch_case(0).first << " " << controller->proch_case(0).second << std::endl;
+      std::cout << "7" <<std::endl;
     } catch(str_exception& e){
     
       std::cout << "str_exception" << e.what() << std::endl;

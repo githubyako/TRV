@@ -16,6 +16,7 @@
 // Classe réalisée avec le design pattern "singleton"
 class Controller{
 private:
+  static std::mutex s_algomutex1,s_algomutex2;
   static Controller * s_controller; // On ne souhaite qu'il n'y ai qu'une et une seule instance de Controller 
   Map* map; // La map associé au controlleur, c'est sur celle-ci que se déroule le jeu et le pathfinding
   Algogen* m_algg;

@@ -1,5 +1,7 @@
 #include "controller.h"
 
+std::mutex Controller::s_algomutex1, Controller::s_algomutex2;
+
 Controller* Controller::s_controller;
 
 // *************
@@ -70,26 +72,6 @@ void Controller::demande_chemin_A_star(int id, int x, int y)
 	std::vector<std::pair<bool, bool>*> vec2 = map->A_star_GA(map->get_Agent(id)->getCase()->get_sommet(), map->get_Case(x,y)->get_sommet(), map->get_Agent(id)->getUnite());
 }
 
-void Controller::tic()
-{
-  m_run=true;
-}
-
-void Controller::toc()
-{
-  m_run=false;
-  while(!m_iteratedone){
-    usleep(500);
-  }
-  
-  m_algg->calcSousMinions();
-}
-
-std::pair< int, int > Controller::proch_case(int _idAgent)
-{
-  return m_algg->getProchCase(_idAgent);
-}
-
 void Controller::create_algogen()
 {
   if(m_algg==nullptr){
@@ -123,12 +105,32 @@ void Controller::demande_chemin_algogen(int id, int x, int y)
   }
 }
 
+void Controller::tic()
+{
+  m_run=true;
+}
+
+void Controller::toc()
+{
+  m_run=false;
+  while(!m_iteratedone){
+    usleep(500);
+  }
+  m_algg->calcSousMinions();
+}
+
+std::pair< int, int > Controller::proch_case(int _idAgent)
+{
+  return m_algg->getProchCase(_idAgent);
+}
+
+
 void Controller::iterate_algogen()
 {
   while(m_rolling){
     if(m_run){
-	m_iteratedone = false;
-	m_algg->iterate();
+      m_iteratedone = false;
+      m_algg->iterate();
     }else{
       usleep(1000);
     }

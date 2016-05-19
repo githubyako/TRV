@@ -137,6 +137,9 @@ for(unsigned int kid=0;kid<m_nbkids;kid++){ // on répète autant qu'on veut cr�
     kidgenome.clear();
   }
   m_pop.push_back(new SurMinion(minions));
+  for(unsigned int i=0;i<minions.size();++i){
+    delete minions[i];
+  }
   m_nbkidstotal++;
   }
 }
@@ -696,6 +699,7 @@ void Algogen::move_agent(int id, int x, int y)
   unsigned int nbits = m_sousMinions.size();
   for(unsigned int i=0;i<nbits;++i){
     if(m_sousMinions.at(i)->getID() == id){
+      // changer la case source du sousminion ICI
       m_sousMinions.at(i)->popfront();
       found=true;
       break;
@@ -707,7 +711,9 @@ void Algogen::move_agent(int id, int x, int y)
       if(m_president->getMinion(i)->getIDAgent() == id){
 	m_president->getMinion(i)->popfront();
 	std::pair<bool,bool> const * depl = m_president->getMinion(i)->getChromosome(0);
+	std::cout << "case d'origine avant: x=" << m_orig.at(i)->getX() << ", y=" << m_orig.at(i)->getY();
 	m_orig.at(i) = m_sommets->at((m_orig.at(i)->getX() + depl->second*(1-(2*depl->first)))*m_mapH + m_orig.at(i)->getY() + ((depl->second -1) * ((2*depl->first)-1)));
+	std::cout << ", apres: x=" << m_orig.at(i)->getX() << ", y=" << m_orig.at(i)->getY() << std::endl;
 	break;
       }
     }

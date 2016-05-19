@@ -131,6 +131,7 @@ for(unsigned int kid=0;kid<m_nbkids;kid++){ // on répète autant qu'on veut cr�
       }
     }
     minions.push_back(new Minion(kidgenome,g0->getIDAgent()));
+    kidgenome.clear();
   }
   m_pop.push_back(new SurMinion(minions));
   m_nbkidstotal++;

@@ -126,6 +126,7 @@ void Controller::iterate_algogen()
 {
   while(m_rolling){
     if(m_run){
+      std::cout << "run" << std::endl;
 	m_iteratedone = false;
 	m_algg->iterate();
 	m_iteratedone = true;

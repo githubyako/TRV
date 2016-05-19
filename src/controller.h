@@ -72,7 +72,7 @@ public:
   
   // Fonction pour tester l'état de notre map
   void test();
-  
+
   // Fonction spéciale au parsing utile à la décomposition de la chaîne str par le délimiteur delimiter
   std::vector<std::string> split(std::string str, char delimiter);
 };

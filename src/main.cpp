@@ -27,7 +27,8 @@ int main(int argc, char **argv) {
       std::cout << "5" <<std::endl;
 //       std::cout << controller->proch_case(0).first << " " << controller->proch_case(0).second << std::endl;
 //       controller->demande_chemin_algogen(2,4,4); // 300,300 -> 4,4
-      for(unsigned int i=0;i<10;++i){
+      controller->deplacement_agent(0,controller->proch_case(0).first,controller->proch_case(0).second);
+      for(unsigned int i=0;i<50;++i){
 	
 	controller->tic();
 	usleep(15000);

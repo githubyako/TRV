@@ -15,6 +15,7 @@ private:
   unsigned int m_id;
 public:
   SurMinion(std::vector<Minion*> const & _minions);
+  ~SurMinion();
   void mutate(int numMinion, unsigned int _nbAjouts, float _ratioSupprs,float _ratioModifs);
   void mutateElite(int numMinion, unsigned int _nbAjouts,float _ratioModifs);
   void addMinion(Minion* _minion);

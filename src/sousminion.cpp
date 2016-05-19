@@ -8,7 +8,10 @@ SousMinion::SousMinion(int _idAgent, const std::vector< std::pair< bool, bool >*
 
 SousMinion::~SousMinion()
 {
-
+  for (unsigned int i=0; i<m_genomeDebut.size(); ++i)
+  {
+    delete m_genomeDebut.at(i);
+  }
 }
 
 std::pair< bool, bool >* SousMinion::getChromosome(unsigned int _pairNumber)

@@ -102,6 +102,9 @@ Algogen::~Algogen() // standard destructor, deleting all objects created in this
     for (std::vector<SousMinion*>::iterator it = m_sousMinions.begin(); it!= m_sousMinions.end(); ++it){
       delete *it;
     }
+    for (std::vector<Zone*>::iterator it = m_zones.begin(); it!= m_zones.end(); ++it){
+      delete *it;
+    }
 }
 
 void Algogen::crossover(SurMinion* _parent0, SurMinion* _parent1, SurMinion* _parent2) // Creates new individuals based on the genome of three parents
@@ -146,6 +149,7 @@ void Algogen::cull()
     unsigned int totalSupprs = ceil(m_pop.size() * m_cullRatio);
     for(unsigned int supprs = 0;supprs<totalSupprs;++supprs){
       unsigned int pos = rand() % (m_pop.size() - debutRange) + debutRange;
+      delete m_pop.at(pos);
       m_pop.erase(m_pop.begin()+pos);
     }
 }
@@ -219,6 +223,7 @@ void Algogen::evaluate(SurMinion* _surminion)
 	      if (newx < 0 || newx > m_mapW-1 || newy < 0 || newy > m_mapH-1 || m_sommets->at(sommet)->isObstacle()){
 		newx -= ((*cit)->second*(1-(2*(*cit)->first)));
 		newy -= (((*cit)->second -1) * ((2*(*cit)->first)-1));
+		delete *cit;
 		cit=genome.erase(cit);
 		sommet = (newx*m_mapH) + newy;
 		cit--;
@@ -229,6 +234,8 @@ void Algogen::evaluate(SurMinion* _surminion)
 		    vec.erase(vec.begin()+pos+1, vec.end());
 		    couts.erase(couts.begin()+pos+1,couts.end());
 		    cout=*(couts.begin()+pos);
+		    for (std::vector<std::pair<bool,bool>*>::iterator t = genome.begin()+pos; t<cit+1; ++t)
+		      delete *t;
 		    cit=genome.erase(genome.begin()+pos, cit+1);
 		    cit--;
 		    while (vec_conf.back().first != sommet)
@@ -238,6 +245,8 @@ void Algogen::evaluate(SurMinion* _surminion)
 		    }
 		  }else {
 		    if(sommet == m_cible.at(numAgent)->get_sommet()){
+		      for (std::vector<std::pair<bool,bool>*>::iterator t = cit+1; t!=genome.end(); ++t)
+			delete *t;
 		      genome.erase(cit+1,genome.end());
 		      vec.erase(vec.begin()+pos, vec.end());
 		      couts.erase(couts.begin()+pos,couts.end());

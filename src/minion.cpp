@@ -8,8 +8,12 @@ Minion::Minion(const std::vector< std::pair< bool, bool >* >& _genome, int _idAg
 }
 
 Minion::Minion(const Minion& _minion)
-:m_idAgent(_minion.getIDAgent()),m_genome(_minion.getGenome()),m_fitness(_minion.getFitness()),m_vaChemin(_minion.getVaChemin()),m_manhattan(_minion.getManhattan()),m_sommetfinal(_minion.getSF())
+:m_idAgent(_minion.getIDAgent()),m_genome(0),m_fitness(_minion.getFitness()),m_vaChemin(_minion.getVaChemin()),m_manhattan(_minion.getManhattan()),m_sommetfinal(_minion.getSF())
 {
+  for (unsigned int i=0; i<_minion.getGenome().size(); ++i)
+  {
+    m_genome.push_back(new std::pair<bool,bool>(_minion.getChromosome(i)->first, _minion.getChromosome(i)->second));
+  }
   m_vaChemin=false;
   m_id=m_incrID++;
 }
@@ -45,7 +49,7 @@ unsigned int Minion::getGenomeSize() const
 	return m_genome.size();
 }
 
-std::pair< bool, bool > * Minion::getChromosome(unsigned int _pairNumber)
+std::pair< bool, bool > * Minion::getChromosome(unsigned int _pairNumber) const
 {
 	return m_genome.at(_pairNumber);
 }
@@ -107,13 +111,15 @@ void Minion::mutate(unsigned int _nbAjouts, float _ratioSupprs, float _ratioModi
       for(unsigned int i=1;i<nbsupprs;++i){
 	      unsigned int pos = rand() % m_genome.size();
 	      std::swap(m_genome.at(pos),m_genome.back());
+	      delete m_genome.back();
 	      m_genome.pop_back();
       }
     }
     unsigned int nbmodifs = (unsigned int)(m_genome.size() * _ratioModifs);
     for(unsigned int i=0;i<nbmodifs;++i){  // modifications
-      
-      m_genome.at(rand() % m_genome.size()) = new std::pair<bool,bool>(rand()%2,rand()%2);
+      unsigned int _rand = rand() % m_genome.size();
+      delete m_genome.at(_rand);
+      m_genome.at(_rand) = new std::pair<bool,bool>(rand()%2,rand()%2);
     }
     for(unsigned int i=0;i<_nbAjouts;++i){
       m_genome.push_back(new std::pair<bool,bool>(rand()%2,rand()%2));
@@ -186,6 +192,7 @@ void Minion::mutateElite(unsigned int _nbAjouts, float _ratioModifs)
 
 void Minion::popfront()
 {
+  delete m_genome.front();
   m_genome.erase(m_genome.begin());
 }
 

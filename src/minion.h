@@ -27,7 +27,7 @@ public:
   float const & getFitness() const;
   std::vector<std::pair<bool,bool> *> const & getGenome() const;
   unsigned int getGenomeSize() const;
-  std::pair< bool, bool > * getChromosome(unsigned int _pairNumber);
+  std::pair< bool, bool > * getChromosome(unsigned int _pairNumber) const;
   unsigned int getID() const;
   unsigned int getSF() const;
   int getIDAgent() const;

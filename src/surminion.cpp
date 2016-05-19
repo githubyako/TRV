@@ -10,6 +10,13 @@ SurMinion::SurMinion(std::vector<Minion*> const & _minions)
   m_id=m_incrID++;
 }
 
+SurMinion::~SurMinion()
+{
+  for (unsigned int i =0; i<m_minions.size(); ++i)
+    delete m_minions.at(i);
+}
+
+
 void SurMinion::addMinion(Minion* _minion)
 {
   m_minions.push_back(_minion);

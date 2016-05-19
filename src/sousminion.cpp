@@ -16,7 +16,7 @@ std::pair< bool, bool >* SousMinion::getChromosome(unsigned int _pairNumber)
   if(m_genomeDebut.size()>=_pairNumber){
     return m_genomeDebut.at(_pairNumber);
   }else{
-    return m_genomeLeader.at(_pairNumber);
+    return m_genomeLeader.at(_pairNumber-m_genomeDebut.size());
   }
 }
 

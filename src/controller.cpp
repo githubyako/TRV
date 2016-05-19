@@ -79,8 +79,9 @@ void Controller::toc()
 {
   m_run=false;
   while(!m_iteratedone){
-    usleep(1000);
+    usleep(500);
   }
+  
   m_algg->calcSousMinions();
 }
 
@@ -126,13 +127,12 @@ void Controller::iterate_algogen()
 {
   while(m_rolling){
     if(m_run){
-      std::cout << "run" << std::endl;
 	m_iteratedone = false;
 	m_algg->iterate();
-	m_iteratedone = true;
     }else{
       usleep(1000);
     }
+    m_iteratedone = true;
   }
 }
 

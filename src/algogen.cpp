@@ -667,7 +667,8 @@ void Algogen::calcSousMinions()
     std::pair<bool,bool> const * depl = m_president->getMinion(i)->getChromosome(0);
     m_prochCases[m_president->getMinion(i)->getIDAgent()]=std::pair<int,int>(m_orig[i]->getX() + depl->second*(1-(2*depl->first)), m_orig[i]->getY() + ((depl->second -1) * ((2*depl->first)-1)));
   }
-  
+//         newx += ((*cit)->second*(1-(2*(*cit)->first)));
+//       newy += (((*cit)->second -1) * ((2*(*cit)->first)-1));
   for(unsigned int i=0;i<m_sousMinions.size();++i){
     std::pair<bool,bool> const * depl = m_sousMinions[i]->getChromosome(0);
     m_prochCases[m_sousMinions[i]->getID()]=std::pair<int,int>(m_sommets->at(m_sousMinions[i]->getCaseSource())->getX() + depl->second*(1-(2*depl->first)), m_sommets->at(m_sousMinions[i]->getCaseSource())->getY()+ ((depl->second -1) * ((2*depl->first)-1)));

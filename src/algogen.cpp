@@ -152,8 +152,10 @@ void Algogen::cull()
     unsigned int totalSupprs = ceil(m_pop.size() * m_cullRatio);
     for(unsigned int supprs = 0;supprs<totalSupprs;++supprs){
       unsigned int pos = rand() % (m_pop.size() - debutRange) + debutRange;
-      delete m_pop.at(pos);
-      m_pop.erase(m_pop.begin()+pos);
+      if(m_pop.at(pos)->getID() != m_president->getID()){
+	delete m_pop.at(pos);
+	m_pop.erase(m_pop.begin()+pos);
+      }
     }
 }
 
@@ -381,13 +383,13 @@ void Algogen::evaluateSSM() // A MODIFIER POUR QUE CA FASSE EN DEUX PARTIES: SUR
 void Algogen::iterate()
 {
     mutatePop();
-    if(m_nbIterations>2 && m_generationTotalFitness.back() > m_generationTotalFitness.at(m_generationTotalFitness.size()-2) - 1){  
-      m_ratioSupprs = m_ratioSupprs * 0.99;
-      m_ratioModifs = m_ratioModifs * 0.99;
-    }else if(m_ratioModifs < 2*m_initratioModifs){
-      m_ratioSupprs = m_ratioSupprs * 1.01;
-      m_ratioModifs = m_ratioModifs * 1.01;
-    }
+//     if(m_nbIterations>2 && m_generationTotalFitness.back() > m_generationTotalFitness.at(m_generationTotalFitness.size()-2) - 1){  
+//       m_ratioSupprs = m_ratioSupprs * 0.99;
+//       m_ratioModifs = m_ratioModifs * 0.99;
+//     }else if(m_ratioModifs < 2*m_initratioModifs){
+//       m_ratioSupprs = m_ratioSupprs * 1.01;
+//       m_ratioModifs = m_ratioModifs * 1.01;
+//     }
     SurMinion *sm1=nullptr, *sm2=nullptr, *sm3=nullptr;
     while(m_pop.size()<m_popsize){		// reproduction par rank selection exponentielle tant que la population n'a pas atteint m_popsize
       for (unsigned int i = 1 ;i<m_pop.size();++i){			// probabilité de sélection: 1/2 pour le meilleur individu, 1/4, pour le suivant, 1/8 pour le 3me...
@@ -416,12 +418,13 @@ void Algogen::iterate()
     {
       m_superman = m_pop.front();
     }
-    if((m_pop.front()->getVaChemin()==0 && m_superman->getVaChemin()==0)){
+    if(m_pop.front()->getNumberMinions()>0 && m_pop.front()->getVaChemin()==0 && m_superman->getVaChemin()==0){
       std::vector<Minion*> superman = m_pop.front()->getMinions();		// création du superman (supersurminion)
       for(unsigned int i = 1;i<m_pop.size();i++){
 	for(unsigned int j=0;j<superman.size();j++){
 	  if(m_pop.at(i)->getMinion(j)->getFitness() < superman.at(j)->getFitness()){
 	    superman.at(j) = new Minion(*m_pop.at(i)->getMinion(j));
+	    std::cout << "minion id = " << superman.at(j)->getID() << " créé" << std::endl;
 	  }
 	}
       }
@@ -459,115 +462,7 @@ void Algogen::iterate()
 void Algogen::show() const
 
 {
-//   std::cout << std::endl << "*******************************************************" << std::endl;
-//   std::cout << "ITERATION NUMERO " << m_nbIterations << std::endl;
-//   std::cout << "Stats: " << std::endl;
-//   std::cout << m_nbkidstotal << " enfants créés." << std::endl;
-//   std::cout << m_nbIterations << " iterations." << std::endl;
-// 
-//   std::cout << "_______________________" << std::endl << "Fitness des surminions" << std::endl;
-//   for(unsigned int i=0;i<m_pop.size();++i){
-//     std::cout << "ID " << m_pop.at(i)->getID() << ", fitness =" << m_pop.at(i)->getFitness();
-//     for(unsigned int j=0;j<m_pop.at(i)->getMinions().size();++j){
-//       if(m_pop.at(i)->getMinion(j)->getVaChemin()){
-// 	std::cout << ", minion " << j << "vachemin";
-//       }
-//     }
-//     std::cout << std::endl;
-//   }
-//   
-//   std::cout << "_______________________" << std::endl << "Toute la population" << std::endl;
-//   
-//   for (unsigned int i=0; i<m_pop.size(); ++i)
-//   {
-//     std::cout << "Surminion " << i << ":" << std::endl;
-//     for(unsigned int j=0; j<m_pop.at(i)->getMinions().size(); ++j){
-//       std::vector< std::pair< bool, bool > *> genome = m_pop.at(i)->getMinion(j)->getGenome();
-//       std::cout << "_****_" << std::endl << "numero : " << j <<  " | id = " << m_pop.at(i)->getMinion(j)->getID() << " | taille genome = " << m_pop.at(i)->getMinion(j)->getGenomeSize() << ", fitness = " << m_pop.at(i)->getMinion(j)->getFitness() << std::endl;
-//       int newx = (int)(m_orig.at(j)->getX());
-//       int newy = (int)(m_orig.at(j)->getY());
-//       std::cout << "Depart en " << newx << ", " << newy << ", case n° " << newx*m_mapH + newy << std::endl;
-//       for(std::vector< std::pair< bool, bool > *>::iterator cit = genome.begin(); cit != genome.end(); ++cit){
-// 	if(*cit!=nullptr){
-// 	  newx += ((*cit)->second*(1-(2*(*cit)->first)));
-// 	  newy += (((*cit)->second -1) * ((2*(*cit)->first)-1));
-// 	  std::cout << "x = " << newx << ", y = " << newy << ", " << "Case n° " << newx*m_mapH + newy << " | ";
-// 	}else{
-// 	  std::cout << "Attente | ";
-// 	}
-//       }
-//       std::cout << std::endl;
-//     }
-//   }
-//   
-//   std::cout << "_______________________" << std::endl << "Président (id=" << m_president->getID() << ")" << std::endl;
-//   
-//   for(unsigned int i=0; i<m_president->getNumberMinions();++i){
-//     std::cout << "Chemin " << i << ", id minion = " << m_president->getMinion(i)->getID() << ": taille genome = " << m_president->getMinion(i)->getGenomeSize() << ", vachemin = " << m_president->getMinion(i)->getVaChemin() << ", genome = " << std::endl;
-//     int newx = (int)(m_orig.at(i)->getX());
-//     int newy = (int)(m_orig.at(i)->getY());
-//     std::vector< std::pair< bool, bool > *> genome = m_president->getMinion(i)->getGenome();
-//     for(std::vector< std::pair< bool, bool > *>::iterator cit = genome.begin(); cit != genome.end(); ++cit){
-//       if(*cit!=nullptr){
-// 	newx += ((*cit)->second*(1-(2*(*cit)->first)));
-// 	newy += (((*cit)->second -1) * ((2*(*cit)->first)-1));
-// 	std::cout << "Case n° " << newx*m_mapH + newy << " de coordonnées : X = " << newx << " Y : " << newy << " | ";
-//       }else{
-// 	std::cout << "Attente | ";
-//       }
-//     }
-//     std::cout << std::endl << std::endl << std::endl;
-//     
-//   }
-//   
-//   for(unsigned int i=0; i<m_sousMinions.size();++i){
-//     std::cout << "SousMinion correspondant à l'agent id= " << m_sousMinions.at(i)->getID() << ", leader = " << m_president->getMinion(m_sousMinions.at(i)->getLeader())->getID() << ", genome = " << std::endl;
-//     int newx = (int)(m_sommets->at(m_sousMinions.at(i)->getCaseSource())->getX());
-//     int newy = (int)(m_sommets->at(m_sousMinions.at(i)->getCaseSource())->getY());
-//     std::cout << "Case n° " << newx*m_mapH + newy << " de coordonnées : X = " << newx << " Y : " << newy << " | ";
-//     std::vector< std::pair< bool, bool > *> genome = m_sousMinions.at(i)->getGenome();
-//     std::cout << "genome size du sousminion = " << genome.size() << std::endl;
-//     unsigned int h=0;
-//     for(std::vector< std::pair< bool, bool > *>::iterator cit = genome.begin(); cit != genome.end(); ++cit){
-//       h++;
-//       if((*cit)==nullptr){
-// 	std::cout << "Attente | ";
-//       }else{
-// 	newx += ((*cit)->second*(1-(2*(*cit)->first)));
-// 	newy += (((*cit)->second -1) * ((2*(*cit)->first)-1));
-// 	std::cout << "Case n° " << newx*m_mapH + newy << " de coordonnées : X = " << newx << " Y : " << newy << " | ";
-//       }
-//     }
-//     std::cout << std::endl;
-//     std::cout << h << std::endl;
-//   }
-//   std::vector<bool> zogzog(7,false);
-//   for(unsigned int i=0;i<m_pop.size();++i){
-//     for(unsigned int j=0;j<m_pop.front()->getMinions().size();++j){
-//       if(m_pop.at(i)->getMinion(j)->getVaChemin()){
-// 	zogzog.at(j)=true;
-// 	int newx = (int)(m_orig.at(j)->getX());
-// 	int newy = (int)(m_orig.at(j)->getY());
-// 	std::vector< std::pair< bool, bool > *> genome = m_pop.at(i)->getMinion(j)->getGenome();
-// 	for(std::vector< std::pair< bool, bool > *>::iterator cit = genome.begin(); cit != genome.end(); ++cit){
-// 	  if(*cit!=nullptr){
-// 	    newx += ((*cit)->second*(1-(2*(*cit)->first)));
-// 	    newy += (((*cit)->second -1) * ((2*(*cit)->first)-1));
-// 	    std::cout << "Case n° " << newx*m_mapH + newy << " de coordonnées : X = " << newx << " Y : " << newy << " | ";
-// 	  }else{
-// 	    std::cout << "Attente | ";
-// 	  }
-// 	}
-// 	std::cout << std::endl;
-//       }
-//     }
-//   }
-//   for(unsigned int j=0;j<zogzog.size();++j){
-//     if(zogzog.at(j)){
-//       std::cout << "Vachemin trouvé pour l'agent " << j << std::endl;
-//       
-//     }
-//   }
+
 }
 
 void Algogen::addDeplacement(int _idAgent, int _caseSource, int _caseCible, const Unite* _typeAgent)
@@ -597,6 +492,7 @@ void Algogen::addDeplacement(int _idAgent, int _caseSource, int _caseCible, cons
 
 Zone* Algogen::calcule_Zone(int _caseSource, int _caseCible)
 {
+  std::cout << "debut calculzone" << std::endl;
   std::vector<std::pair<unsigned int, unsigned int>> m_coord;
   std::vector<unsigned int> m_cases;
   unsigned int originX = m_sommets->at(_caseSource)->getX();  
@@ -665,6 +561,7 @@ Zone* Algogen::calcule_Zone(int _caseSource, int _caseCible)
     }
   }
   return new Zone(_caseSource, m_nbChemins , m_cases, _caseCible);
+  std::cout << "fin calculzone" << std::endl;
 }
 
 void Algogen::calcSousMinions()
@@ -673,13 +570,11 @@ void Algogen::calcSousMinions()
     m_sousMinions.at(i)->setGenomeLeader(m_president->getMinion(m_sousMinions.at(i)->getLeader())->getGenome());
   }
   evaluateSSM();
-//   m_prochCases.clear();
   unsigned int nbminions=m_president->getNumberMinions();
   for(unsigned int i=0;i<nbminions;++i){
     std::pair<bool,bool> const * depl = m_president->getMinion(i)->getChromosome(0);
     m_prochCases[m_president->getMinion(i)->getIDAgent()]=std::pair<int,int>(m_orig[i]->getX() + depl->second*(1-(2*depl->first)), m_orig[i]->getY() + ((depl->second -1) * ((2*depl->first)-1)));
   }
-
   for(unsigned int i=0;i<m_sousMinions.size();++i){
     std::pair<bool,bool> const * depl = m_sousMinions[i]->getChromosome(0);
     m_prochCases[m_sousMinions[i]->getID()]=std::pair<int,int>(m_sommets->at(m_sousMinions[i]->getCaseSource())->getX() + depl->second*(1-(2*depl->first)), m_sommets->at(m_sousMinions[i]->getCaseSource())->getY()+ ((depl->second -1) * ((2*depl->first)-1)));
@@ -722,6 +617,7 @@ void Algogen::move_agent(int id, int x, int y)
 	  for(unsigned int j=0;j<m_pop.size();++j){
 	    m_pop.at(j)->removeMinion(i);
 	  }
+	  --m_nbChemins;
 	}else{
 	  m_president->getMinion(i)->popfront();
 	  m_orig.at(i) = m_sommets->at(x*m_mapH+y);
@@ -730,5 +626,10 @@ void Algogen::move_agent(int id, int x, int y)
       }
     }
   }
+}
+
+unsigned int Algogen::getNbChemins()
+{
+  return m_nbChemins;
 }
 

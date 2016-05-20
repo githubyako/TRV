@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
 //       controller->creer_agent(310,310,"Cavalier",5);
 //       controller->creer_agent(400,250,"Infanterie",6);
       controller->create_algogen();
-      controller->demande_chemin_algogen(0,400,400); // 5,5 -> 400,400
+      controller->demande_chemin_algogen(0,50,50); // 5,5 -> 400,400
       controller->tic();
       controller->toc();
 //       std::cout << controller->proch_case(0).first << " " << controller->proch_case(0).second << std::endl;
@@ -31,6 +31,7 @@ int main(int argc, char **argv) {
 	controller->deplacement_agent(0,controller->proch_case(0).first,controller->proch_case(0).second);
 	if(i==20){
 	  controller->demande_chemin_algogen(2,320,320);
+	  controller->demande_chemin_algogen(0,50,50); // 5,5 -> 400,400
 	}
 	if(i>20){
 	  std::cout << "Agent 2: " << controller->proch_case(2).first << " " << controller->proch_case(2).second << std::endl;

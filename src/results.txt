@@ -1,2166 +1,901 @@
-TRV
-init map & règles OK
-créations ok
-500 500
-iteration 0
-
-*******************************************************
-ITERATION NUMERO 1
-Stats: 
-92 enfants créés.
-1 iterations.
-_______________________
-Fitness des surminions
-ID 100, fitness =1779.84, minion 3vachemin, minion 4vachemin
-ID 51, fitness =1779.84, minion 3vachemin, minion 4vachemin
-ID 92, fitness =1987.32, minion 3vachemin, minion 4vachemin
-ID 49, fitness =910.04, minion 4vachemin
-ID 98, fitness =1012.28, minion 4vachemin
-ID 77, fitness =1023.96, minion 4vachemin
-ID 73, fitness =319.36
-ID 46, fitness =357.76
-ID 37, fitness =387.84
-ID 96, fitness =396.64
-ID 43, fitness =413.28
-ID 47, fitness =416.96
-ID 86, fitness =420.32
-ID 32, fitness =421.12
-ID 23, fitness =423.2
-ID 95, fitness =423.36
-ID 19, fitness =424.16
-ID 90, fitness =425.12
-ID 79, fitness =425.76
-ID 72, fitness =431.04
-ID 59, fitness =434.4
-ID 87, fitness =436.32
-ID 65, fitness =441.12
-ID 48, fitness =445.6
-ID 64, fitness =448.96
-ID 91, fitness =450.24
-ID 52, fitness =453.6
-ID 53, fitness =454.24
-ID 89, fitness =459.52
-ID 61, fitness =460
-ID 38, fitness =461.12
-ID 75, fitness =464.16
-ID 57, fitness =468.32
-ID 56, fitness =476
-ID 88, fitness =476.64
-ID 34, fitness =477.12
-ID 30, fitness =477.76
-ID 93, fitness =480.64
-ID 28, fitness =481.12
-ID 68, fitness =483.04
-ID 13, fitness =486.88
-ID 94, fitness =487.2
-ID 41, fitness =488.96
-ID 21, fitness =494.88
-ID 84, fitness =497.6
-ID 66, fitness =503.2
-ID 29, fitness =503.84
-ID 76, fitness =508
-ID 50, fitness =514.08
-ID 55, fitness =518.4
-ID 16, fitness =520.96
-ID 82, fitness =521.92
-ID 39, fitness =522.88
-ID 17, fitness =523.84
-ID 18, fitness =524.48
-ID 20, fitness =527.52
-ID 60, fitness =532.48
-ID 74, fitness =533.92
-ID 81, fitness =534.88
-ID 62, fitness =535.36
-ID 24, fitness =536.48
-ID 10, fitness =537.76
-ID 42, fitness =541.76
-ID 11, fitness =543.36
-ID 12, fitness =544.16
-ID 15, fitness =545.12
-ID 45, fitness =551.84
-ID 9, fitness =552.16
-ID 8, fitness =554.56
-ID 44, fitness =556.48
-ID 4, fitness =558.72
-ID 2, fitness =558.72
-ID 7, fitness =559.36
-ID 1, fitness =560.32
-ID 26, fitness =562.88
-ID 14, fitness =563.36
-ID 3, fitness =564.48
-ID 6, fitness =564.8
-ID 0, fitness =566.08
-ID 99, fitness =566.4
-ID 5, fitness =566.72
-ID 69, fitness =567.52
-ID 31, fitness =568.16
-ID 83, fitness =568.8
-ID 78, fitness =569.6
-ID 25, fitness =570.88
-ID 36, fitness =572
-ID 22, fitness =576.48
-ID 85, fitness =578.4
-ID 54, fitness =604.48
-_______________________
-Président (id=51)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-iteration 10
-
-*******************************************************
-ITERATION NUMERO 11
-Stats: 
-192 enfants créés.
-11 iterations.
-_______________________
-Fitness des surminions
-ID 210, fitness =2028.04, minion 3vachemin, minion 4vachemin
-ID 164, fitness =1491.8, minion 3vachemin, minion 4vachemin
-ID 206, fitness =1497.92, minion 3vachemin, minion 4vachemin
-ID 147, fitness =1499.92, minion 3vachemin, minion 4vachemin
-ID 186, fitness =1512.12, minion 3vachemin, minion 4vachemin
-ID 176, fitness =1534.84, minion 3vachemin, minion 4vachemin
-ID 105, fitness =1576.52, minion 3vachemin, minion 4vachemin
-ID 121, fitness =1598.16, minion 3vachemin, minion 4vachemin
-ID 168, fitness =1609.76, minion 3vachemin, minion 4vachemin
-ID 149, fitness =1613.28, minion 3vachemin, minion 4vachemin
-ID 165, fitness =1657.12, minion 3vachemin, minion 4vachemin
-ID 136, fitness =1657.44, minion 3vachemin, minion 4vachemin
-ID 156, fitness =1719.2, minion 3vachemin, minion 4vachemin
-ID 122, fitness =2024.04, minion 3vachemin, minion 4vachemin
-ID 166, fitness =2027.24, minion 3vachemin, minion 4vachemin
-ID 188, fitness =2028.04, minion 3vachemin, minion 4vachemin
-ID 199, fitness =2028.04, minion 3vachemin, minion 4vachemin
-ID 155, fitness =2037.8, minion 3vachemin, minion 4vachemin
-ID 144, fitness =2039.64, minion 3vachemin, minion 4vachemin
-ID 177, fitness =2039.88, minion 3vachemin, minion 4vachemin
-ID 133, fitness =2049.8, minion 3vachemin, minion 4vachemin
-ID 152, fitness =726.2, minion 4vachemin
-ID 174, fitness =757.48, minion 4vachemin
-ID 182, fitness =769, minion 4vachemin
-ID 193, fitness =769.4, minion 4vachemin
-ID 127, fitness =784.2, minion 4vachemin
-ID 158, fitness =784.68, minion 4vachemin
-ID 161, fitness =786.76, minion 4vachemin
-ID 207, fitness =786.84, minion 4vachemin
-ID 183, fitness =790.6, minion 4vachemin
-ID 130, fitness =796.16, minion 4vachemin
-ID 190, fitness =806.84, minion 4vachemin
-ID 143, fitness =807, minion 4vachemin
-ID 184, fitness =808.92, minion 4vachemin
-ID 208, fitness =811.8, minion 4vachemin
-ID 201, fitness =812.12, minion 4vachemin
-ID 209, fitness =812.28, minion 4vachemin
-ID 170, fitness =816.44, minion 4vachemin
-ID 117, fitness =817.56, minion 4vachemin
-ID 196, fitness =818.92, minion 4vachemin
-ID 194, fitness =827.08, minion 4vachemin
-ID 205, fitness =834.12, minion 4vachemin
-ID 179, fitness =852.04, minion 4vachemin
-ID 180, fitness =855.08, minion 4vachemin
-ID 162, fitness =857.24, minion 4vachemin
-ID 185, fitness =861.88, minion 4vachemin
-ID 197, fitness =877.48, minion 4vachemin
-ID 131, fitness =883.48, minion 4vachemin
-ID 153, fitness =899.96, minion 4vachemin
-ID 118, fitness =916.4, minion 4vachemin
-ID 112, fitness =933.96, minion 4vachemin
-ID 198, fitness =934.44, minion 4vachemin
-ID 181, fitness =960.28, minion 4vachemin
-ID 102, fitness =966.56, minion 4vachemin
-ID 107, fitness =983.64, minion 4vachemin
-ID 108, fitness =1009.92, minion 3vachemin
-ID 146, fitness =1032.28, minion 4vachemin
-ID 173, fitness =1052.84, minion 3vachemin
-ID 115, fitness =1081.32, minion 3vachemin
-ID 51, fitness =1204, minion 3vachemin
-ID 187, fitness =260.8
-ID 167, fitness =269.12
-ID 202, fitness =272.32
-ID 135, fitness =288.16
-ID 204, fitness =293.12
-ID 125, fitness =295.36
-ID 109, fitness =319.36
-ID 124, fitness =324.96
-ID 159, fitness =326.88
-ID 171, fitness =334.72
-ID 150, fitness =354.56
-ID 114, fitness =361.76
-ID 73, fitness =368
-ID 129, fitness =368.64
-ID 138, fitness =371.52
-ID 46, fitness =400.32
-ID 19, fitness =460.32
-ID 90, fitness =473.28
-ID 53, fitness =476.48
-ID 89, fitness =480.64
-ID 64, fitness =484.8
-ID 96, fitness =492
-ID 56, fitness =492.96
-ID 95, fitness =499.68
-ID 38, fitness =499.68
-ID 41, fitness =504.64
-ID 57, fitness =507.2
-ID 50, fitness =524.8
-ID 12, fitness =544.32
-ID 6, fitness =569.28
-_______________________
-Président (id=164)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-iteration 20
-
-*******************************************************
-ITERATION NUMERO 21
-Stats: 
-292 enfants créés.
-21 iterations.
-_______________________
-Fitness des surminions
-ID 320, fitness =1896.4, minion 3vachemin, minion 4vachemin
-ID 319, fitness =1356.96, minion 3vachemin, minion 4vachemin
-ID 283, fitness =1357.96, minion 3vachemin, minion 4vachemin
-ID 302, fitness =1371.92, minion 3vachemin, minion 4vachemin
-ID 304, fitness =1378.44, minion 3vachemin, minion 4vachemin
-ID 301, fitness =1382.88, minion 3vachemin, minion 4vachemin
-ID 278, fitness =1445.32, minion 3vachemin, minion 4vachemin
-ID 225, fitness =1465.28, minion 3vachemin, minion 4vachemin
-ID 282, fitness =1584.44, minion 3vachemin, minion 4vachemin
-ID 105, fitness =1591.4, minion 3vachemin, minion 4vachemin
-ID 310, fitness =1643.12, minion 3vachemin, minion 4vachemin
-ID 239, fitness =1643.2, minion 3vachemin, minion 4vachemin
-ID 279, fitness =1652.52, minion 3vachemin, minion 4vachemin
-ID 309, fitness =1907.2, minion 3vachemin, minion 4vachemin
-ID 199, fitness =2036.16, minion 3vachemin, minion 4vachemin
-ID 288, fitness =715.24, minion 4vachemin
-ID 228, fitness =730, minion 4vachemin
-ID 315, fitness =744.04, minion 4vachemin
-ID 152, fitness =745.72, minion 4vachemin
-ID 292, fitness =749.96, minion 4vachemin
-ID 289, fitness =752.84, minion 4vachemin
-ID 299, fitness =754.92, minion 4vachemin
-ID 312, fitness =759.72, minion 4vachemin
-ID 300, fitness =764.2, minion 4vachemin
-ID 318, fitness =766.52, minion 4vachemin
-ID 277, fitness =768, minion 4vachemin
-ID 295, fitness =772.6, minion 4vachemin
-ID 267, fitness =775, minion 4vachemin
-ID 230, fitness =776.6, minion 4vachemin
-ID 290, fitness =777.4, minion 4vachemin
-ID 215, fitness =780.68, minion 4vachemin
-ID 305, fitness =782.76, minion 4vachemin
-ID 281, fitness =789.16, minion 4vachemin
-ID 174, fitness =792.52, minion 4vachemin
-ID 293, fitness =797.56, minion 4vachemin
-ID 268, fitness =800.92, minion 4vachemin
-ID 311, fitness =809.88, minion 4vachemin
-ID 271, fitness =812.52, minion 4vachemin
-ID 317, fitness =816.12, minion 4vachemin
-ID 176, fitness =818.6, minion 4vachemin
-ID 314, fitness =826.84, minion 4vachemin
-ID 306, fitness =829.64, minion 4vachemin
-ID 303, fitness =836.36, minion 4vachemin
-ID 255, fitness =838.52, minion 4vachemin
-ID 244, fitness =840.28, minion 4vachemin
-ID 127, fitness =841.32, minion 4vachemin
-ID 252, fitness =843.32, minion 4vachemin
-ID 161, fitness =853.32, minion 4vachemin
-ID 297, fitness =853.48, minion 4vachemin
-ID 261, fitness =858.52, minion 4vachemin
-ID 270, fitness =859.72, minion 4vachemin
-ID 262, fitness =862.76, minion 4vachemin
-ID 246, fitness =866.12, minion 4vachemin
-ID 260, fitness =876.6, minion 4vachemin
-ID 284, fitness =877, minion 4vachemin
-ID 162, fitness =888.76, minion 4vachemin
-ID 296, fitness =895.64, minion 4vachemin
-ID 205, fitness =911.4, minion 4vachemin
-ID 179, fitness =921.32, minion 4vachemin
-ID 112, fitness =1031.24, minion 4vachemin
-ID 108, fitness =1048.72, minion 3vachemin
-ID 241, fitness =1059.4, minion 3vachemin
-ID 251, fitness =1077.52, minion 3vachemin
-ID 156, fitness =1153.16, minion 3vachemin
-ID 221, fitness =1191.2, minion 3vachemin
-ID 287, fitness =1266.52, minion 3vachemin
-ID 298, fitness =1276.44, minion 3vachemin
-ID 188, fitness =1276.64, minion 3vachemin
-ID 166, fitness =1286.32, minion 3vachemin
-ID 155, fitness =1297.88, minion 3vachemin
-ID 122, fitness =1307.4, minion 3vachemin
-ID 264, fitness =271.68
-ID 307, fitness =279.52
-ID 275, fitness =281.6
-ID 274, fitness =291.2
-ID 232, fitness =306.4
-ID 222, fitness =312.48
-ID 183, fitness =314.08
-ID 237, fitness =316.64
-ID 258, fitness =325.6
-ID 133, fitness =336.48
-ID 167, fitness =341.44
-ID 125, fitness =365.76
-ID 202, fitness =371.2
-ID 187, fitness =373.12
-ID 171, fitness =381.76
-ID 159, fitness =395.36
-ID 138, fitness =415.68
-ID 96, fitness =505.76
-ID 50, fitness =536.32
-_______________________
-Président (id=319)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-iteration 30
-
-*******************************************************
-ITERATION NUMERO 31
-Stats: 
-392 enfants créés.
-31 iterations.
-_______________________
-Fitness des surminions
-ID 430, fitness =2003.2, minion 3vachemin, minion 4vachemin
-ID 396, fitness =1303.12, minion 3vachemin, minion 4vachemin
-ID 400, fitness =1321.68, minion 3vachemin, minion 4vachemin
-ID 355, fitness =1350.84, minion 3vachemin, minion 4vachemin
-ID 334, fitness =1374, minion 3vachemin, minion 4vachemin
-ID 405, fitness =1374.2, minion 3vachemin, minion 4vachemin
-ID 351, fitness =1458.12, minion 3vachemin, minion 4vachemin
-ID 349, fitness =1489, minion 3vachemin, minion 4vachemin
-ID 393, fitness =1505.16, minion 3vachemin, minion 4vachemin
-ID 225, fitness =1509.68, minion 3vachemin, minion 4vachemin
-ID 394, fitness =1546.12, minion 3vachemin, minion 4vachemin
-ID 425, fitness =1640.48, minion 3vachemin, minion 4vachemin
-ID 279, fitness =1659.24, minion 3vachemin, minion 4vachemin
-ID 239, fitness =1660.72, minion 3vachemin, minion 4vachemin
-ID 408, fitness =2003.2, minion 3vachemin, minion 4vachemin
-ID 419, fitness =2003.2, minion 3vachemin, minion 4vachemin
-ID 386, fitness =2022.56, minion 3vachemin, minion 4vachemin
-ID 422, fitness =690.52, minion 4vachemin
-ID 423, fitness =699.32, minion 4vachemin
-ID 380, fitness =700.84, minion 4vachemin
-ID 388, fitness =715.24, minion 4vachemin
-ID 381, fitness =732.12, minion 4vachemin
-ID 369, fitness =733.32, minion 4vachemin
-ID 429, fitness =737, minion 4vachemin
-ID 428, fitness =743.96, minion 4vachemin
-ID 427, fitness =744.36, minion 4vachemin
-ID 409, fitness =749.24, minion 4vachemin
-ID 411, fitness =749.96, minion 4vachemin
-ID 413, fitness =757, minion 4vachemin
-ID 329, fitness =760.76, minion 4vachemin
-ID 348, fitness =761.4, minion 4vachemin
-ID 366, fitness =762.76, minion 4vachemin
-ID 389, fitness =766.12, minion 4vachemin
-ID 385, fitness =770.76, minion 4vachemin
-ID 414, fitness =770.84, minion 4vachemin
-ID 406, fitness =772.92, minion 4vachemin
-ID 416, fitness =785.88, minion 4vachemin
-ID 304, fitness =789.96, minion 4vachemin
-ID 372, fitness =790.52, minion 4vachemin
-ID 373, fitness =791.68, minion 4vachemin
-ID 407, fitness =791.72, minion 4vachemin
-ID 332, fitness =798.76, minion 4vachemin
-ID 410, fitness =799.48, minion 4vachemin
-ID 228, fitness =804.88, minion 4vachemin
-ID 402, fitness =817.32, minion 4vachemin
-ID 345, fitness =818.28, minion 4vachemin
-ID 174, fitness =819.56, minion 4vachemin
-ID 335, fitness =824.24, minion 4vachemin
-ID 362, fitness =826.44, minion 4vachemin
-ID 420, fitness =830.44, minion 4vachemin
-ID 152, fitness =836.6, minion 4vachemin
-ID 176, fitness =839.4, minion 4vachemin
-ID 384, fitness =856.68, minion 3vachemin
-ID 401, fitness =876.4, minion 3vachemin
-ID 390, fitness =876.96, minion 4vachemin
-ID 252, fitness =884.12, minion 4vachemin
-ID 161, fitness =890.28, minion 4vachemin
-ID 162, fitness =923.96, minion 4vachemin
-ID 319, fitness =933.16, minion 3vachemin
-ID 261, fitness =935.64, minion 4vachemin
-ID 379, fitness =952.52, minion 3vachemin
-ID 278, fitness =963.88, minion 3vachemin
-ID 415, fitness =993.16, minion 3vachemin
-ID 374, fitness =1023.64, minion 3vachemin
-ID 199, fitness =1070.68, minion 4vachemin
-ID 241, fitness =1125.32, minion 3vachemin
-ID 309, fitness =1337.16, minion 3vachemin
-ID 392, fitness =270.56
-ID 399, fitness =278.56
-ID 377, fitness =286.88
-ID 375, fitness =304.64
-ID 298, fitness =308.32
-ID 301, fitness =311.68
-ID 307, fitness =317.44
-ID 382, fitness =323.04
-ID 306, fitness =330.4
-ID 378, fitness =333.6
-ID 318, fitness =348
-ID 293, fitness =348.64
-ID 156, fitness =351.52
-ID 302, fitness =352.64
-ID 183, fitness =368.96
-ID 155, fitness =370.24
-ID 222, fitness =376.64
-ID 127, fitness =389.12
-ID 232, fitness =394.72
-ID 112, fitness =403.68
-ID 159, fitness =414.4
-ID 202, fitness =424.32
-ID 50, fitness =546.88
-_______________________
-Président (id=396)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-iteration 40
-
-*******************************************************
-ITERATION NUMERO 41
-Stats: 
-492 enfants créés.
-41 iterations.
-_______________________
-Fitness des surminions
-ID 540, fitness =1744.4, minion 3vachemin, minion 4vachemin
-ID 450, fitness =1197.36, minion 3vachemin, minion 4vachemin
-ID 525, fitness =1312.2, minion 3vachemin, minion 4vachemin
-ID 500, fitness =1312.48, minion 3vachemin, minion 4vachemin
-ID 522, fitness =1329.04, minion 3vachemin, minion 4vachemin
-ID 527, fitness =1341, minion 3vachemin, minion 4vachemin
-ID 467, fitness =1343.8, minion 3vachemin, minion 4vachemin
-ID 489, fitness =1365.16, minion 3vachemin, minion 4vachemin
-ID 457, fitness =1369.28, minion 3vachemin, minion 4vachemin
-ID 497, fitness =1369.96, minion 3vachemin, minion 4vachemin
-ID 475, fitness =1382.72, minion 3vachemin, minion 4vachemin
-ID 434, fitness =1384.8, minion 3vachemin, minion 4vachemin
-ID 499, fitness =1387.08, minion 3vachemin, minion 4vachemin
-ID 355, fitness =1389.48, minion 3vachemin, minion 4vachemin
-ID 468, fitness =1398.48, minion 3vachemin, minion 4vachemin
-ID 334, fitness =1409.92, minion 3vachemin, minion 4vachemin
-ID 526, fitness =1416.36, minion 3vachemin, minion 4vachemin
-ID 458, fitness =1428.2, minion 3vachemin, minion 4vachemin
-ID 351, fitness =1467.8, minion 3vachemin, minion 4vachemin
-ID 487, fitness =1468.68, minion 3vachemin, minion 4vachemin
-ID 442, fitness =1501.52, minion 3vachemin, minion 4vachemin
-ID 425, fitness =1670.28, minion 3vachemin, minion 4vachemin
-ID 279, fitness =1681.16, minion 3vachemin, minion 4vachemin
-ID 529, fitness =1727.6, minion 3vachemin, minion 4vachemin
-ID 518, fitness =1766.08, minion 3vachemin, minion 4vachemin
-ID 496, fitness =2009.76, minion 3vachemin, minion 4vachemin
-ID 492, fitness =653, minion 4vachemin
-ID 534, fitness =681.56, minion 4vachemin
-ID 536, fitness =698.52, minion 4vachemin
-ID 539, fitness =706.68, minion 4vachemin
-ID 478, fitness =717.48, minion 4vachemin
-ID 538, fitness =717.48, minion 4vachemin
-ID 537, fitness =721.32, minion 4vachemin
-ID 535, fitness =722.28, minion 4vachemin
-ID 432, fitness =730.8, minion 4vachemin
-ID 530, fitness =733.56, minion 4vachemin
-ID 519, fitness =736.28, minion 4vachemin
-ID 503, fitness =736.44, minion 4vachemin
-ID 533, fitness =739.48, minion 4vachemin
-ID 514, fitness =742.84, minion 4vachemin
-ID 511, fitness =744.28, minion 4vachemin
-ID 501, fitness =744.92, minion 4vachemin
-ID 506, fitness =748.28, minion 4vachemin
-ID 528, fitness =753.96, minion 4vachemin
-ID 510, fitness =756.44, minion 4vachemin
-ID 484, fitness =765.32, minion 4vachemin
-ID 502, fitness =766.44, minion 4vachemin
-ID 453, fitness =783.64, minion 4vachemin
-ID 482, fitness =785, minion 4vachemin
-ID 515, fitness =795.96, minion 4vachemin
-ID 488, fitness =802.44, minion 4vachemin
-ID 448, fitness =807, minion 4vachemin
-ID 446, fitness =810.12, minion 4vachemin
-ID 225, fitness =819.48, minion 4vachemin
-ID 304, fitness =827.64, minion 4vachemin
-ID 521, fitness =830.44, minion 4vachemin
-ID 470, fitness =831.24, minion 4vachemin
-ID 348, fitness =832.76, minion 4vachemin
-ID 490, fitness =835.32, minion 4vachemin
-ID 410, fitness =837.08, minion 4vachemin
-ID 449, fitness =846.28, minion 4vachemin
-ID 396, fitness =860.88, minion 3vachemin
-ID 477, fitness =865.08, minion 4vachemin
-ID 465, fitness =872.28, minion 4vachemin
-ID 455, fitness =972.44, minion 3vachemin
-ID 516, fitness =992.8, minion 3vachemin
-ID 507, fitness =1002.68, minion 4vachemin
-ID 476, fitness =1028.24, minion 3vachemin
-ID 435, fitness =1031.4, minion 3vachemin
-ID 349, fitness =1037.16, minion 3vachemin
-ID 394, fitness =1051.96, minion 3vachemin
-ID 498, fitness =286.08
-ID 513, fitness =289.6
-ID 466, fitness =297.12
-ID 504, fitness =304.96
-ID 428, fitness =309.44
-ID 400, fitness =314.88
-ID 459, fitness =319.36
-ID 491, fitness =320.64
-ID 374, fitness =331.52
-ID 399, fitness =357.76
-ID 375, fitness =358.24
-ID 427, fitness =364
-ID 183, fitness =367.84
-ID 301, fitness =368.8
-ID 156, fitness =375.84
-ID 302, fitness =392.48
-ID 423, fitness =401.12
-ID 162, fitness =415.36
-ID 50, fitness =534.08
-_______________________
-Président (id=450)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-iteration 50
-
-*******************************************************
-ITERATION NUMERO 51
-Stats: 
-592 enfants créés.
-51 iterations.
-_______________________
-Fitness des surminions
-ID 650, fitness =1617.4, minion 3vachemin, minion 4vachemin
-ID 450, fitness =1197.36, minion 3vachemin, minion 4vachemin
-ID 600, fitness =1222.48, minion 3vachemin, minion 4vachemin
-ID 569, fitness =1241, minion 3vachemin, minion 4vachemin
-ID 645, fitness =1268.28, minion 3vachemin, minion 4vachemin
-ID 610, fitness =1292.32, minion 3vachemin, minion 4vachemin
-ID 565, fitness =1316.2, minion 3vachemin, minion 4vachemin
-ID 500, fitness =1329.2, minion 3vachemin, minion 4vachemin
-ID 581, fitness =1333.16, minion 3vachemin, minion 4vachemin
-ID 592, fitness =1348.28, minion 3vachemin, minion 4vachemin
-ID 525, fitness =1349.64, minion 3vachemin, minion 4vachemin
-ID 522, fitness =1357.04, minion 3vachemin, minion 4vachemin
-ID 568, fitness =1361.44, minion 3vachemin, minion 4vachemin
-ID 457, fitness =1384.24, minion 3vachemin, minion 4vachemin
-ID 475, fitness =1393.6, minion 3vachemin, minion 4vachemin
-ID 566, fitness =1400.32, minion 3vachemin, minion 4vachemin
-ID 434, fitness =1410.72, minion 3vachemin, minion 4vachemin
-ID 334, fitness =1426.24, minion 3vachemin, minion 4vachemin
-ID 639, fitness =1713.8, minion 3vachemin, minion 4vachemin
-ID 628, fitness =1731.16, minion 3vachemin, minion 4vachemin
-ID 603, fitness =678.68, minion 4vachemin
-ID 644, fitness =680.44, minion 4vachemin
-ID 642, fitness =691, minion 4vachemin
-ID 590, fitness =699.24, minion 4vachemin
-ID 636, fitness =703.32, minion 4vachemin
-ID 589, fitness =710.04, minion 4vachemin
-ID 649, fitness =712.68, minion 4vachemin
-ID 646, fitness =713.4, minion 4vachemin
-ID 611, fitness =714.76, minion 4vachemin
-ID 630, fitness =718.44, minion 4vachemin
-ID 622, fitness =722.2, minion 4vachemin
-ID 579, fitness =723.16, minion 4vachemin
-ID 632, fitness =725.48, minion 4vachemin
-ID 549, fitness =726.68, minion 4vachemin
-ID 633, fitness =728.76, minion 4vachemin
-ID 638, fitness =729.48, minion 4vachemin
-ID 613, fitness =737.2, minion 4vachemin
-ID 582, fitness =738.52, minion 4vachemin
-ID 602, fitness =739.96, minion 4vachemin
-ID 619, fitness =741.08, minion 4vachemin
-ID 596, fitness =742.68, minion 4vachemin
-ID 612, fitness =748.28, minion 4vachemin
-ID 554, fitness =748.6, minion 4vachemin
-ID 641, fitness =750.6, minion 4vachemin
-ID 640, fitness =753.88, minion 4vachemin
-ID 634, fitness =755, minion 4vachemin
-ID 577, fitness =761.4, minion 4vachemin
-ID 506, fitness =767.48, minion 4vachemin
-ID 587, fitness =771.16, minion 4vachemin
-ID 580, fitness =771.56, minion 4vachemin
-ID 635, fitness =772.12, minion 4vachemin
-ID 616, fitness =774.92, minion 4vachemin
-ID 511, fitness =775.48, minion 4vachemin
-ID 527, fitness =779.56, minion 4vachemin
-ID 608, fitness =779.8, minion 4vachemin
-ID 510, fitness =781.08, minion 4vachemin
-ID 605, fitness =799.08, minion 4vachemin
-ID 599, fitness =809.24, minion 4vachemin
-ID 528, fitness =814.44, minion 4vachemin
-ID 575, fitness =827, minion 4vachemin
-ID 576, fitness =837.16, minion 4vachemin
-ID 225, fitness =840.6, minion 4vachemin
-ID 614, fitness =846.4, minion 4vachemin
-ID 470, fitness =869.96, minion 4vachemin
-ID 572, fitness =874.16, minion 3vachemin
-ID 490, fitness =876.68, minion 4vachemin
-ID 588, fitness =877.72, minion 4vachemin
-ID 521, fitness =887.24, minion 4vachemin
-ID 627, fitness =918.8, minion 3vachemin
-ID 499, fitness =968.96, minion 3vachemin
-ID 606, fitness =1003.48, minion 4vachemin
-ID 584, fitness =1035.8, minion 4vachemin
-ID 507, fitness =1049.08, minion 4vachemin
-ID 647, fitness =271.04
-ID 648, fitness =275.52
-ID 432, fitness =302.24
-ID 428, fitness =314.08
-ID 513, fitness =327.36
-ID 567, fitness =331.68
-ID 544, fitness =338.24
-ID 516, fitness =345.6
-ID 477, fitness =361.6
-ID 488, fitness =363.52
-ID 448, fitness =364.96
-ID 467, fitness =370.4
-ID 427, fitness =374.56
-ID 459, fitness =400
-ID 399, fitness =425.6
-ID 302, fitness =428.96
-ID 50, fitness =526.4
-_______________________
-Président (id=450)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-iteration 60
-
-*******************************************************
-ITERATION NUMERO 61
-Stats: 
-692 enfants créés.
-61 iterations.
-_______________________
-Fitness des surminions
-ID 760, fitness =1391, minion 3vachemin, minion 4vachemin
-ID 721, fitness =1172.72, minion 3vachemin, minion 4vachemin
-ID 745, fitness =1179.88, minion 3vachemin, minion 4vachemin
-ID 600, fitness =1210.88, minion 3vachemin, minion 4vachemin
-ID 645, fitness =1273.56, minion 3vachemin, minion 4vachemin
-ID 610, fitness =1315.2, minion 3vachemin, minion 4vachemin
-ID 500, fitness =1331.04, minion 3vachemin, minion 4vachemin
-ID 735, fitness =1332.4, minion 3vachemin, minion 4vachemin
-ID 753, fitness =1334.36, minion 3vachemin, minion 4vachemin
-ID 658, fitness =1338.28, minion 3vachemin, minion 4vachemin
-ID 525, fitness =1348.28, minion 3vachemin, minion 4vachemin
-ID 581, fitness =1361.4, minion 3vachemin, minion 4vachemin
-ID 457, fitness =1402.96, minion 3vachemin, minion 4vachemin
-ID 434, fitness =1414.56, minion 3vachemin, minion 4vachemin
-ID 334, fitness =1429.6, minion 3vachemin, minion 4vachemin
-ID 653, fitness =1481.88, minion 3vachemin, minion 4vachemin
-ID 727, fitness =1581.56, minion 3vachemin, minion 4vachemin
-ID 694, fitness =1729.4, minion 3vachemin, minion 4vachemin
-ID 726, fitness =641.08, minion 4vachemin
-ID 756, fitness =645.08, minion 4vachemin
-ID 732, fitness =654.92, minion 4vachemin
-ID 758, fitness =660.92, minion 4vachemin
-ID 736, fitness =662.04, minion 4vachemin
-ID 741, fitness =663.24, minion 4vachemin
-ID 737, fitness =668.6, minion 4vachemin
-ID 742, fitness =671.8, minion 4vachemin
-ID 752, fitness =673.64, minion 4vachemin
-ID 569, fitness =679.96, minion 4vachemin
-ID 725, fitness =682.28, minion 4vachemin
-ID 681, fitness =686.44, minion 4vachemin
-ID 733, fitness =687.4, minion 4vachemin
-ID 759, fitness =702.52, minion 4vachemin
-ID 699, fitness =705.6, minion 4vachemin
-ID 693, fitness =706.92, minion 4vachemin
-ID 757, fitness =708.28, minion 4vachemin
-ID 659, fitness =708.44, minion 4vachemin
-ID 740, fitness =709.8, minion 4vachemin
-ID 748, fitness =714.84, minion 4vachemin
-ID 662, fitness =717.08, minion 4vachemin
-ID 711, fitness =719.96, minion 4vachemin
-ID 708, fitness =729.64, minion 4vachemin
-ID 676, fitness =729.72, minion 4vachemin
-ID 743, fitness =734.84, minion 4vachemin
-ID 744, fitness =736.44, minion 4vachemin
-ID 687, fitness =739, minion 4vachemin
-ID 642, fitness =741.72, minion 4vachemin
-ID 712, fitness =743.48, minion 4vachemin
-ID 730, fitness =753.88, minion 4vachemin
-ID 689, fitness =755.16, minion 4vachemin
-ID 734, fitness =761.72, minion 4vachemin
-ID 656, fitness =762.12, minion 4vachemin
-ID 685, fitness =763.48, minion 4vachemin
-ID 728, fitness =764.96, minion 4vachemin
-ID 686, fitness =775.72, minion 4vachemin
-ID 723, fitness =779, minion 4vachemin
-ID 582, fitness =785.4, minion 4vachemin
-ID 641, fitness =788.04, minion 4vachemin
-ID 703, fitness =788.6, minion 4vachemin
-ID 660, fitness =790.84, minion 4vachemin
-ID 677, fitness =793.56, minion 4vachemin
-ID 580, fitness =800.2, minion 4vachemin
-ID 522, fitness =800.52, minion 4vachemin
-ID 622, fitness =802.52, minion 4vachemin
-ID 684, fitness =805.48, minion 4vachemin
-ID 608, fitness =811, minion 4vachemin
-ID 450, fitness =812.52, minion 3vachemin
-ID 754, fitness =818.12, minion 4vachemin
-ID 599, fitness =822.04, minion 4vachemin
-ID 528, fitness =829.64, minion 4vachemin
-ID 668, fitness =831.56, minion 4vachemin
-ID 635, fitness =844.76, minion 4vachemin
-ID 749, fitness =855.36, minion 3vachemin
-ID 669, fitness =864.36, minion 4vachemin
-ID 470, fitness =889.64, minion 4vachemin
-ID 716, fitness =906.8, minion 3vachemin
-ID 565, fitness =913.12, minion 3vachemin
-ID 521, fitness =918.52, minion 4vachemin
-ID 706, fitness =284.8
-ID 690, fitness =292.32
-ID 714, fitness =293.6
-ID 729, fitness =297.28
-ID 724, fitness =303.68
-ID 584, fitness =327.04
-ID 675, fitness =340.96
-ID 670, fitness =347.84
-ID 649, fitness =356.48
-ID 516, fitness =382.24
-ID 606, fitness =394.56
-ID 467, fitness =396.32
-ID 488, fitness =408.32
-_______________________
-Président (id=721)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-iteration 70
-
-*******************************************************
-ITERATION NUMERO 71
-Stats: 
-792 enfants créés.
-71 iterations.
-_______________________
-Fitness des surminions
-ID 870, fitness =1505.6, minion 3vachemin, minion 4vachemin
-ID 721, fitness =1172.72, minion 3vachemin, minion 4vachemin
-ID 763, fitness =1196.56, minion 3vachemin, minion 4vachemin
-ID 600, fitness =1204.88, minion 3vachemin, minion 4vachemin
-ID 810, fitness =1263.04, minion 3vachemin, minion 4vachemin
-ID 832, fitness =1298.2, minion 3vachemin, minion 4vachemin
-ID 844, fitness =1325.72, minion 3vachemin, minion 4vachemin
-ID 769, fitness =1332, minion 3vachemin, minion 4vachemin
-ID 500, fitness =1334, minion 3vachemin, minion 4vachemin
-ID 610, fitness =1341.64, minion 3vachemin, minion 4vachemin
-ID 658, fitness =1353.72, minion 3vachemin, minion 4vachemin
-ID 525, fitness =1367.8, minion 3vachemin, minion 4vachemin
-ID 826, fitness =1405.52, minion 3vachemin, minion 4vachemin
-ID 813, fitness =1408.44, minion 3vachemin, minion 4vachemin
-ID 457, fitness =1425.84, minion 3vachemin, minion 4vachemin
-ID 848, fitness =1468.2, minion 3vachemin, minion 4vachemin
-ID 859, fitness =1470.2, minion 3vachemin, minion 4vachemin
-ID 837, fitness =1488.28, minion 3vachemin, minion 4vachemin
-ID 653, fitness =1493.24, minion 3vachemin, minion 4vachemin
-ID 804, fitness =1513.88, minion 3vachemin, minion 4vachemin
-ID 782, fitness =1678.36, minion 3vachemin, minion 4vachemin
-ID 785, fitness =648.12, minion 4vachemin
-ID 778, fitness =659.4, minion 4vachemin
-ID 851, fitness =664.6, minion 4vachemin
-ID 841, fitness =674.2, minion 4vachemin
-ID 869, fitness =677.64, minion 4vachemin
-ID 864, fitness =687.72, minion 4vachemin
-ID 817, fitness =693.6, minion 4vachemin
-ID 863, fitness =701, minion 4vachemin
-ID 861, fitness =704.12, minion 4vachemin
-ID 843, fitness =707, minion 4vachemin
-ID 791, fitness =707.16, minion 4vachemin
-ID 829, fitness =709.16, minion 4vachemin
-ID 835, fitness =713.56, minion 4vachemin
-ID 849, fitness =715.8, minion 4vachemin
-ID 784, fitness =720.76, minion 4vachemin
-ID 808, fitness =724.36, minion 4vachemin
-ID 775, fitness =724.44, minion 4vachemin
-ID 846, fitness =725.92, minion 4vachemin
-ID 858, fitness =727.48, minion 4vachemin
-ID 855, fitness =739, minion 4vachemin
-ID 867, fitness =739.8, minion 4vachemin
-ID 828, fitness =743.48, minion 4vachemin
-ID 767, fitness =746.68, minion 4vachemin
-ID 866, fitness =750.76, minion 4vachemin
-ID 860, fitness =753.32, minion 4vachemin
-ID 799, fitness =753.88, minion 4vachemin
-ID 783, fitness =755.4, minion 4vachemin
-ID 676, fitness =758.12, minion 4vachemin
-ID 790, fitness =759.32, minion 4vachemin
-ID 839, fitness =767.16, minion 4vachemin
-ID 825, fitness =767.32, minion 4vachemin
-ID 773, fitness =767.4, minion 4vachemin
-ID 827, fitness =773.16, minion 4vachemin
-ID 699, fitness =774.88, minion 4vachemin
-ID 847, fitness =775.8, minion 4vachemin
-ID 687, fitness =776.12, minion 4vachemin
-ID 819, fitness =776.76, minion 4vachemin
-ID 834, fitness =784.04, minion 4vachemin
-ID 853, fitness =785.56, minion 4vachemin
-ID 862, fitness =788.92, minion 4vachemin
-ID 743, fitness =791.16, minion 4vachemin
-ID 740, fitness =801.16, minion 4vachemin
-ID 798, fitness =803.16, minion 4vachemin
-ID 685, fitness =834.68, minion 4vachemin
-ID 797, fitness =842.68, minion 4vachemin
-ID 795, fitness =843.96, minion 4vachemin
-ID 754, fitness =848.68, minion 4vachemin
-ID 803, fitness =850.68, minion 4vachemin
-ID 684, fitness =859.08, minion 4vachemin
-ID 760, fitness =861.4, minion 4vachemin
-ID 599, fitness =863, minion 4vachemin
-ID 805, fitness =926.16, minion 3vachemin
-ID 434, fitness =946.36, minion 3vachemin
-ID 815, fitness =1025.6, minion 3vachemin
-ID 831, fitness =1038.44, minion 3vachemin
-ID 865, fitness =278.4
-ID 852, fitness =279.84
-ID 807, fitness =289.44
-ID 850, fitness =292.16
-ID 822, fitness =303.2
-ID 845, fitness =317.44
-ID 794, fitness =317.6
-ID 820, fitness =336.16
-ID 744, fitness =339.04
-ID 776, fitness =375.84
-ID 649, fitness =396.48
-ID 670, fitness =402.88
-ID 516, fitness =410.08
-ID 467, fitness =441.6
-_______________________
-Président (id=721)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-iteration 80
-
-*******************************************************
-ITERATION NUMERO 81
-Stats: 
-892 enfants créés.
-81 iterations.
-_______________________
-Fitness des surminions
-ID 980, fitness =1534.2, minion 3vachemin, minion 4vachemin
-ID 721, fitness =1172.72, minion 3vachemin, minion 4vachemin
-ID 970, fitness =1184.96, minion 3vachemin, minion 4vachemin
-ID 882, fitness =1191.2, minion 3vachemin, minion 4vachemin
-ID 600, fitness =1213.68, minion 3vachemin, minion 4vachemin
-ID 890, fitness =1290.88, minion 3vachemin, minion 4vachemin
-ID 962, fitness =1300.68, minion 3vachemin, minion 4vachemin
-ID 810, fitness =1301.92, minion 3vachemin, minion 4vachemin
-ID 897, fitness =1341.52, minion 3vachemin, minion 4vachemin
-ID 844, fitness =1357.64, minion 3vachemin, minion 4vachemin
-ID 525, fitness =1361.8, minion 3vachemin, minion 4vachemin
-ID 769, fitness =1369.6, minion 3vachemin, minion 4vachemin
-ID 500, fitness =1373.84, minion 3vachemin, minion 4vachemin
-ID 914, fitness =1373.88, minion 3vachemin, minion 4vachemin
-ID 658, fitness =1374.88, minion 3vachemin, minion 4vachemin
-ID 826, fitness =1421.92, minion 3vachemin, minion 4vachemin
-ID 457, fitness =1432.88, minion 3vachemin, minion 4vachemin
-ID 958, fitness =1437.76, minion 3vachemin, minion 4vachemin
-ID 969, fitness =1474.8, minion 3vachemin, minion 4vachemin
-ID 954, fitness =644.92, minion 4vachemin
-ID 973, fitness =663.96, minion 4vachemin
-ID 974, fitness =698.36, minion 4vachemin
-ID 945, fitness =703.68, minion 4vachemin
-ID 966, fitness =716.2, minion 4vachemin
-ID 946, fitness =727.48, minion 4vachemin
-ID 934, fitness =728.76, minion 4vachemin
-ID 957, fitness =729.08, minion 4vachemin
-ID 876, fitness =730.68, minion 4vachemin
-ID 977, fitness =732.52, minion 4vachemin
-ID 911, fitness =733.48, minion 4vachemin
-ID 832, fitness =733.56, minion 4vachemin
-ID 841, fitness =734.04, minion 4vachemin
-ID 835, fitness =741.08, minion 4vachemin
-ID 976, fitness =741.56, minion 4vachemin
-ID 972, fitness =744.92, minion 4vachemin
-ID 872, fitness =745.8, minion 4vachemin
-ID 965, fitness =746.2, minion 4vachemin
-ID 941, fitness =747.64, minion 4vachemin
-ID 843, fitness =750.84, minion 4vachemin
-ID 922, fitness =755.64, minion 4vachemin
-ID 955, fitness =756.08, minion 4vachemin
-ID 971, fitness =756.6, minion 4vachemin
-ID 975, fitness =756.92, minion 4vachemin
-ID 919, fitness =764.2, minion 4vachemin
-ID 928, fitness =765.08, minion 4vachemin
-ID 979, fitness =766.04, minion 4vachemin
-ID 817, fitness =766.4, minion 4vachemin
-ID 978, fitness =767.56, minion 4vachemin
-ID 886, fitness =774.52, minion 4vachemin
-ID 923, fitness =777.8, minion 4vachemin
-ID 926, fitness =780.28, minion 4vachemin
-ID 915, fitness =783.48, minion 4vachemin
-ID 899, fitness =784.6, minion 4vachemin
-ID 767, fitness =786.36, minion 4vachemin
-ID 947, fitness =792.12, minion 4vachemin
-ID 699, fitness =799.68, minion 4vachemin
-ID 783, fitness =804.2, minion 4vachemin
-ID 740, fitness =811.24, minion 4vachemin
-ID 819, fitness =815, minion 4vachemin
-ID 804, fitness =821.16, minion 4vachemin
-ID 825, fitness =822.84, minion 4vachemin
-ID 878, fitness =828.76, minion 4vachemin
-ID 763, fitness =830.84, minion 3vachemin
-ID 853, fitness =841.16, minion 4vachemin
-ID 938, fitness =848.12, minion 4vachemin
-ID 927, fitness =852.92, minion 4vachemin
-ID 949, fitness =877.08, minion 3vachemin
-ID 961, fitness =879.04, minion 3vachemin
-ID 906, fitness =964.2, minion 3vachemin
-ID 848, fitness =1014.48, minion 3vachemin
-ID 903, fitness =280.16
-ID 960, fitness =281.44
-ID 893, fitness =281.92
-ID 935, fitness =284.48
-ID 912, fitness =287.36
-ID 932, fitness =290.56
-ID 967, fitness =296
-ID 933, fitness =317.92
-ID 837, fitness =318.56
-ID 852, fitness =322.24
-ID 850, fitness =335.52
-ID 905, fitness =337.12
-ID 891, fitness =338.4
-ID 883, fitness =351.52
-ID 896, fitness =353.28
-ID 847, fitness =357.44
-ID 794, fitness =361.28
-ID 894, fitness =380
-ID 845, fitness =381.92
-ID 805, fitness =382.24
-_______________________
-Président (id=721)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-iteration 90
-
-*******************************************************
-ITERATION NUMERO 91
-Stats: 
-992 enfants créés.
-91 iterations.
-_______________________
-Fitness des surminions
-ID 1090, fitness =1435, minion 3vachemin, minion 4vachemin
-ID 721, fitness =1172.72, minion 3vachemin, minion 4vachemin
-ID 970, fitness =1175.6, minion 3vachemin, minion 4vachemin
-ID 882, fitness =1195.92, minion 3vachemin, minion 4vachemin
-ID 600, fitness =1220.72, minion 3vachemin, minion 4vachemin
-ID 890, fitness =1315.84, minion 3vachemin, minion 4vachemin
-ID 962, fitness =1337.96, minion 3vachemin, minion 4vachemin
-ID 1059, fitness =1345.56, minion 3vachemin, minion 4vachemin
-ID 1064, fitness =1345.56, minion 3vachemin, minion 4vachemin
-ID 897, fitness =1348.4, minion 3vachemin, minion 4vachemin
-ID 1069, fitness =1366.4, minion 3vachemin, minion 4vachemin
-ID 658, fitness =1383.2, minion 3vachemin, minion 4vachemin
-ID 525, fitness =1384.92, minion 3vachemin, minion 4vachemin
-ID 500, fitness =1385.36, minion 3vachemin, minion 4vachemin
-ID 982, fitness =1386.36, minion 3vachemin, minion 4vachemin
-ID 769, fitness =1393.44, minion 3vachemin, minion 4vachemin
-ID 826, fitness =1430.64, minion 3vachemin, minion 4vachemin
-ID 1002, fitness =1431, minion 3vachemin, minion 4vachemin
-ID 1046, fitness =1472.88, minion 3vachemin, minion 4vachemin
-ID 1057, fitness =1474.4, minion 3vachemin, minion 4vachemin
-ID 1068, fitness =1482.6, minion 3vachemin, minion 4vachemin
-ID 848, fitness =1501.44, minion 3vachemin, minion 4vachemin
-ID 1080, fitness =697.88, minion 4vachemin
-ID 1088, fitness =705.24, minion 4vachemin
-ID 1031, fitness =709.24, minion 4vachemin
-ID 945, fitness =713.12, minion 4vachemin
-ID 1056, fitness =720.76, minion 4vachemin
-ID 1044, fitness =726.36, minion 4vachemin
-ID 988, fitness =726.36, minion 4vachemin
-ID 1083, fitness =728.12, minion 4vachemin
-ID 1081, fitness =728.84, minion 4vachemin
-ID 1082, fitness =735.8, minion 4vachemin
-ID 1047, fitness =736.52, minion 4vachemin
-ID 1054, fitness =742.68, minion 4vachemin
-ID 810, fitness =742.76, minion 4vachemin
-ID 1066, fitness =749.32, minion 4vachemin
-ID 1058, fitness =749.72, minion 4vachemin
-ID 1084, fitness =754.04, minion 4vachemin
-ID 1051, fitness =755.32, minion 4vachemin
-ID 1071, fitness =755.8, minion 4vachemin
-ID 841, fitness =756.92, minion 4vachemin
-ID 906, fitness =763.4, minion 4vachemin
-ID 997, fitness =763.56, minion 4vachemin
-ID 1023, fitness =767.56, minion 4vachemin
-ID 1014, fitness =769.44, minion 4vachemin
-ID 832, fitness =775.32, minion 4vachemin
-ID 1050, fitness =781.24, minion 4vachemin
-ID 1076, fitness =784.6, minion 4vachemin
-ID 1089, fitness =791, minion 4vachemin
-ID 922, fitness =795.8, minion 4vachemin
-ID 987, fitness =804.92, minion 4vachemin
-ID 835, fitness =806.6, minion 4vachemin
-ID 457, fitness =807.48, minion 4vachemin
-ID 1085, fitness =819.32, minion 4vachemin
-ID 919, fitness =822.6, minion 4vachemin
-ID 1040, fitness =824.44, minion 4vachemin
-ID 926, fitness =826.52, minion 4vachemin
-ID 1013, fitness =931.12, minion 3vachemin
-ID 958, fitness =957.4, minion 3vachemin
-ID 1035, fitness =1004.16, minion 3vachemin
-ID 1070, fitness =264.48
-ID 1036, fitness =268.16
-ID 1074, fitness =277.76
-ID 1073, fitness =298.08
-ID 1072, fitness =299.68
-ID 1077, fitness =305.28
-ID 1067, fitness =305.44
-ID 1060, fitness =309.12
-ID 1062, fitness =322.88
-ID 1028, fitness =326.4
-ID 903, fitness =328.16
-ID 954, fitness =329.28
-ID 935, fitness =331.68
-ID 1032, fitness =337.44
-ID 1037, fitness =345.92
-ID 986, fitness =345.92
-ID 912, fitness =350.88
-ID 983, fitness =351.2
-ID 1006, fitness =353.76
-ID 852, fitness =375.36
-ID 972, fitness =377.28
-ID 933, fitness =377.76
-ID 975, fitness =384.8
-ID 896, fitness =386.4
-ID 805, fitness =388.16
-ID 847, fitness =389.12
-ID 905, fitness =390.4
-ID 819, fitness =393.12
-ID 979, fitness =398.24
-ID 894, fitness =405.76
-_______________________
-Président (id=721)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-iteration 100
-
-*******************************************************
-ITERATION NUMERO 101
-Stats: 
-1092 enfants créés.
-101 iterations.
-_______________________
-Fitness des surminions
-ID 1200, fitness =1707, minion 3vachemin, minion 4vachemin
-ID 970, fitness =1166.16, minion 3vachemin, minion 4vachemin
-ID 721, fitness =1172.16, minion 3vachemin, minion 4vachemin
-ID 882, fitness =1189.44, minion 3vachemin, minion 4vachemin
-ID 600, fitness =1245.04, minion 3vachemin, minion 4vachemin
-ID 1175, fitness =1327.84, minion 3vachemin, minion 4vachemin
-ID 962, fitness =1343.16, minion 3vachemin, minion 4vachemin
-ID 525, fitness =1382.12, minion 3vachemin, minion 4vachemin
-ID 769, fitness =1397.04, minion 3vachemin, minion 4vachemin
-ID 826, fitness =1424.32, minion 3vachemin, minion 4vachemin
-ID 1119, fitness =1450.92, minion 3vachemin, minion 4vachemin
-ID 1090, fitness =1460.76, minion 3vachemin, minion 4vachemin
-ID 1046, fitness =1497.6, minion 3vachemin, minion 4vachemin
-ID 1151, fitness =1583.32, minion 3vachemin, minion 4vachemin
-ID 1172, fitness =1594.48, minion 3vachemin, minion 4vachemin
-ID 1121, fitness =1605.8, minion 3vachemin, minion 4vachemin
-ID 1178, fitness =1701.4, minion 3vachemin, minion 4vachemin
-ID 1167, fitness =1709.96, minion 3vachemin, minion 4vachemin
-ID 1156, fitness =1714.76, minion 3vachemin, minion 4vachemin
-ID 1189, fitness =1719.4, minion 3vachemin, minion 4vachemin
-ID 1091, fitness =1721.28, minion 3vachemin, minion 4vachemin
-ID 1185, fitness =1732.8, minion 3vachemin, minion 4vachemin
-ID 1145, fitness =1764.6, minion 3vachemin, minion 4vachemin
-ID 1171, fitness =719.48, minion 4vachemin
-ID 1198, fitness =731, minion 4vachemin
-ID 1141, fitness =736.6, minion 4vachemin
-ID 1150, fitness =741.24, minion 4vachemin
-ID 1194, fitness =746.36, minion 4vachemin
-ID 1093, fitness =766.84, minion 4vachemin
-ID 1184, fitness =768.84, minion 4vachemin
-ID 1128, fitness =770.76, minion 4vachemin
-ID 897, fitness =771, minion 4vachemin
-ID 1137, fitness =782.76, minion 4vachemin
-ID 1180, fitness =784.76, minion 4vachemin
-ID 1051, fitness =785.72, minion 4vachemin
-ID 1159, fitness =788.28, minion 4vachemin
-ID 1188, fitness =791, minion 4vachemin
-ID 1157, fitness =792.76, minion 4vachemin
-ID 1144, fitness =794.36, minion 4vachemin
-ID 1195, fitness =795.8, minion 4vachemin
-ID 1190, fitness =795.88, minion 4vachemin
-ID 1084, fitness =796.6, minion 4vachemin
-ID 1114, fitness =796.76, minion 4vachemin
-ID 1196, fitness =798.76, minion 4vachemin
-ID 1182, fitness =800.12, minion 4vachemin
-ID 832, fitness =801.88, minion 4vachemin
-ID 1122, fitness =802.64, minion 4vachemin
-ID 1147, fitness =803.88, minion 4vachemin
-ID 457, fitness =815.8, minion 4vachemin
-ID 1129, fitness =822.12, minion 4vachemin
-ID 1183, fitness =822.2, minion 4vachemin
-ID 1155, fitness =823, minion 4vachemin
-ID 1191, fitness =827.24, minion 4vachemin
-ID 1187, fitness =827.64, minion 4vachemin
-ID 1050, fitness =834.84, minion 4vachemin
-ID 1107, fitness =836.2, minion 4vachemin
-ID 1173, fitness =838.92, minion 4vachemin
-ID 1096, fitness =841.88, minion 4vachemin
-ID 1146, fitness =847.56, minion 4vachemin
-ID 1197, fitness =847.8, minion 4vachemin
-ID 1142, fitness =848.6, minion 4vachemin
-ID 987, fitness =851.8, minion 4vachemin
-ID 1089, fitness =856.44, minion 4vachemin
-ID 1002, fitness =856.44, minion 4vachemin
-ID 1177, fitness =864.12, minion 4vachemin
-ID 1085, fitness =895.56, minion 4vachemin
-ID 1101, fitness =902.04, minion 4vachemin
-ID 1103, fitness =911.24, minion 4vachemin
-ID 1059, fitness =959.72, minion 3vachemin
-ID 1064, fitness =969.44, minion 3vachemin
-ID 1149, fitness =1106.44, minion 3vachemin
-ID 1109, fitness =1198.48, minion 3vachemin
-ID 1192, fitness =277.28
-ID 1170, fitness =287.52
-ID 1106, fitness =309.92
-ID 1163, fitness =311.2
-ID 1169, fitness =311.2
-ID 1133, fitness =327.84
-ID 1116, fitness =328.32
-ID 1092, fitness =331.68
-ID 1083, fitness =340.96
-ID 1098, fitness =347.2
-ID 1062, fitness =349.12
-ID 958, fitness =362.08
-ID 810, fitness =382.24
-ID 890, fitness =383.68
-ID 935, fitness =386.4
-ID 972, fitness =419.04
-ID 805, fitness =427.52
-ID 933, fitness =436.96
-_______________________
-Président (id=970)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-iteration 110
-
-*******************************************************
-ITERATION NUMERO 111
-Stats: 
-1192 enfants créés.
-111 iterations.
-_______________________
-Fitness des surminions
-ID 1310, fitness =1362.4, minion 3vachemin, minion 4vachemin
-ID 1214, fitness =1144.88, minion 3vachemin, minion 4vachemin
-ID 600, fitness =1236.16, minion 3vachemin, minion 4vachemin
-ID 1245, fitness =1302.36, minion 3vachemin, minion 4vachemin
-ID 962, fitness =1341, minion 3vachemin, minion 4vachemin
-ID 1175, fitness =1347.2, minion 3vachemin, minion 4vachemin
-ID 525, fitness =1385, minion 3vachemin, minion 4vachemin
-ID 769, fitness =1389.76, minion 3vachemin, minion 4vachemin
-ID 826, fitness =1415.52, minion 3vachemin, minion 4vachemin
-ID 1288, fitness =1428.56, minion 3vachemin, minion 4vachemin
-ID 1090, fitness =1468.2, minion 3vachemin, minion 4vachemin
-ID 1233, fitness =1474.84, minion 3vachemin, minion 4vachemin
-ID 1266, fitness =1501.52, minion 3vachemin, minion 4vachemin
-ID 1172, fitness =1572.56, minion 3vachemin, minion 4vachemin
-ID 1151, fitness =1595.48, minion 3vachemin, minion 4vachemin
-ID 1121, fitness =1605.8, minion 3vachemin, minion 4vachemin
-ID 1091, fitness =1727.92, minion 3vachemin, minion 4vachemin
-ID 1232, fitness =1796.04, minion 3vachemin, minion 4vachemin
-ID 1304, fitness =660.6, minion 4vachemin
-ID 1308, fitness =667.8, minion 4vachemin
-ID 1307, fitness =672.44, minion 4vachemin
-ID 882, fitness =674.52, minion 4vachemin
-ID 1249, fitness =680.2, minion 4vachemin
-ID 1302, fitness =685.08, minion 4vachemin
-ID 1305, fitness =685.56, minion 4vachemin
-ID 1287, fitness =708.92, minion 4vachemin
-ID 1258, fitness =714.44, minion 4vachemin
-ID 1279, fitness =717.24, minion 4vachemin
-ID 1280, fitness =734.2, minion 4vachemin
-ID 1223, fitness =735.96, minion 4vachemin
-ID 1289, fitness =737.64, minion 4vachemin
-ID 1274, fitness =738.12, minion 4vachemin
-ID 1267, fitness =740.28, minion 4vachemin
-ID 1236, fitness =741.68, minion 4vachemin
-ID 1201, fitness =745.08, minion 4vachemin
-ID 1295, fitness =749, minion 4vachemin
-ID 1290, fitness =751.96, minion 4vachemin
-ID 1285, fitness =764.92, minion 4vachemin
-ID 1278, fitness =777.08, minion 4vachemin
-ID 1306, fitness =781.56, minion 4vachemin
-ID 1141, fitness =783.8, minion 4vachemin
-ID 1128, fitness =798.44, minion 4vachemin
-ID 1296, fitness =800.12, minion 4vachemin
-ID 1119, fitness =805.64, minion 4vachemin
-ID 1300, fitness =809.16, minion 4vachemin
-ID 1227, fitness =811.88, minion 4vachemin
-ID 1291, fitness =815.8, minion 4vachemin
-ID 1299, fitness =818.12, minion 3vachemin
-ID 1246, fitness =822.6, minion 4vachemin
-ID 1203, fitness =823, minion 4vachemin
-ID 1114, fitness =827.72, minion 4vachemin
-ID 1244, fitness =837.96, minion 4vachemin
-ID 1202, fitness =839.32, minion 4vachemin
-ID 1264, fitness =839.56, minion 4vachemin
-ID 1147, fitness =840.68, minion 4vachemin
-ID 1281, fitness =844.04, minion 3vachemin
-ID 1234, fitness =844.44, minion 4vachemin
-ID 1255, fitness =849.16, minion 4vachemin
-ID 970, fitness =850.44, minion 3vachemin
-ID 1251, fitness =852.12, minion 4vachemin
-ID 1173, fitness =885, minion 4vachemin
-ID 1146, fitness =920.04, minion 4vachemin
-ID 1237, fitness =927, minion 4vachemin
-ID 1261, fitness =270.24
-ID 1235, fitness =279.52
-ID 1270, fitness =280.64
-ID 1262, fitness =284.64
-ID 1260, fitness =286.24
-ID 1212, fitness =300.96
-ID 1273, fitness =302.4
-ID 1269, fitness =310.72
-ID 1222, fitness =317.44
-ID 1185, fitness =319.36
-ID 1298, fitness =321.44
-ID 1294, fitness =321.76
-ID 1192, fitness =327.52
-ID 1268, fitness =328.32
-ID 721, fitness =330.4
-ID 1188, fitness =330.88
-ID 1297, fitness =332
-ID 1169, fitness =349.28
-ID 1107, fitness =358.72
-ID 1149, fitness =365.28
-ID 1210, fitness =369.76
-ID 1064, fitness =372.16
-ID 1083, fitness =379.04
-ID 1062, fitness =381.92
-ID 1092, fitness =406.24
-ID 1206, fitness =409.12
-ID 810, fitness =422.4
-_______________________
-Président (id=1214)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-iteration 120
-
-*******************************************************
-ITERATION NUMERO 121
-Stats: 
-1292 enfants créés.
-121 iterations.
-_______________________
-Fitness des surminions
-ID 1420, fitness =1683.2, minion 3vachemin, minion 4vachemin
-ID 1214, fitness =1144.88, minion 3vachemin, minion 4vachemin
-ID 1384, fitness =1232.44, minion 3vachemin, minion 4vachemin
-ID 1354, fitness =1344.8, minion 3vachemin, minion 4vachemin
-ID 962, fitness =1358.56, minion 3vachemin, minion 4vachemin
-ID 1175, fitness =1366.56, minion 3vachemin, minion 4vachemin
-ID 525, fitness =1377.4, minion 3vachemin, minion 4vachemin
-ID 1360, fitness =1381.4, minion 3vachemin, minion 4vachemin
-ID 1392, fitness =1394.68, minion 3vachemin, minion 4vachemin
-ID 826, fitness =1409.44, minion 3vachemin, minion 4vachemin
-ID 1366, fitness =1426.76, minion 3vachemin, minion 4vachemin
-ID 1288, fitness =1446.32, minion 3vachemin, minion 4vachemin
-ID 1233, fitness =1486.84, minion 3vachemin, minion 4vachemin
-ID 1401, fitness =1488.52, minion 3vachemin, minion 4vachemin
-ID 1376, fitness =1515.64, minion 3vachemin, minion 4vachemin
-ID 1266, fitness =1518.64, minion 3vachemin, minion 4vachemin
-ID 1172, fitness =1589.52, minion 3vachemin, minion 4vachemin
-ID 1409, fitness =1601.8, minion 3vachemin, minion 4vachemin
-ID 1398, fitness =1601.8, minion 3vachemin, minion 4vachemin
-ID 1121, fitness =1648.52, minion 3vachemin, minion 4vachemin
-ID 1388, fitness =632.44, minion 4vachemin
-ID 1404, fitness =647.4, minion 4vachemin
-ID 1415, fitness =668.2, minion 4vachemin
-ID 1417, fitness =676.2, minion 4vachemin
-ID 1412, fitness =676.68, minion 4vachemin
-ID 1362, fitness =692.28, minion 4vachemin
-ID 1406, fitness =693.88, minion 4vachemin
-ID 1419, fitness =696.36, minion 4vachemin
-ID 1318, fitness =709, minion 4vachemin
-ID 1403, fitness =713.48, minion 4vachemin
-ID 1305, fitness =715.24, minion 4vachemin
-ID 1418, fitness =717.16, minion 4vachemin
-ID 1396, fitness =720.92, minion 4vachemin
-ID 1405, fitness =722.08, minion 4vachemin
-ID 1380, fitness =732.04, minion 4vachemin
-ID 1302, fitness =736.28, minion 4vachemin
-ID 1379, fitness =739.56, minion 4vachemin
-ID 1311, fitness =742.68, minion 4vachemin
-ID 1382, fitness =744.92, minion 4vachemin
-ID 1314, fitness =747, minion 4vachemin
-ID 1394, fitness =756.6, minion 4vachemin
-ID 1315, fitness =756.68, minion 4vachemin
-ID 1402, fitness =758.2, minion 4vachemin
-ID 1340, fitness =764.2, minion 4vachemin
-ID 1416, fitness =766.36, minion 4vachemin
-ID 1369, fitness =766.44, minion 4vachemin
-ID 1411, fitness =767.64, minion 4vachemin
-ID 1386, fitness =772.84, minion 4vachemin
-ID 1141, fitness =786.04, minion 4vachemin
-ID 1374, fitness =787.8, minion 4vachemin
-ID 1274, fitness =793, minion 4vachemin
-ID 1333, fitness =795.72, minion 4vachemin
-ID 1335, fitness =796.12, minion 4vachemin
-ID 1399, fitness =805.08, minion 4vachemin
-ID 1324, fitness =812.92, minion 4vachemin
-ID 1310, fitness =817.24, minion 4vachemin
-ID 1296, fitness =841.72, minion 4vachemin
-ID 1321, fitness =855.56, minion 3vachemin
-ID 1114, fitness =856.68, minion 4vachemin
-ID 1343, fitness =857.32, minion 3vachemin
-ID 1244, fitness =877.8, minion 4vachemin
-ID 1251, fitness =881.24, minion 4vachemin
-ID 1281, fitness =901, minion 3vachemin
-ID 1365, fitness =977.52, minion 3vachemin
-ID 1091, fitness =1181.16, minion 3vachemin
-ID 1407, fitness =261.28
-ID 1400, fitness =279.52
-ID 1410, fitness =283.52
-ID 1389, fitness =293.28
-ID 1326, fitness =296.16
-ID 1375, fitness =296.8
-ID 1329, fitness =303.2
-ID 1356, fitness =310.88
-ID 1349, fitness =318.4
-ID 1378, fitness =322.56
-ID 1345, fitness =326.88
-ID 1268, fitness =327.2
-ID 1413, fitness =329.12
-ID 1348, fitness =332.64
-ID 1262, fitness =348
-ID 1260, fitness =357.12
-ID 1273, fitness =361.92
-ID 1342, fitness =367.04
-ID 1188, fitness =378.08
-ID 1289, fitness =379.68
-ID 1261, fitness =389.76
-ID 1062, fitness =409.28
-ID 1092, fitness =423.36
-ID 1083, fitness =437.12
-ID 1064, fitness =445.28
-_______________________
-Président (id=1214)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-iteration 130
-
-*******************************************************
-ITERATION NUMERO 131
-Stats: 
-1392 enfants créés.
-131 iterations.
-_______________________
-Fitness des surminions
-ID 1530, fitness =1680.8, minion 3vachemin, minion 4vachemin
-ID 1214, fitness =1144.88, minion 3vachemin, minion 4vachemin
-ID 1520, fitness =1240.64, minion 3vachemin, minion 4vachemin
-ID 962, fitness =1348.32, minion 3vachemin, minion 4vachemin
-ID 1525, fitness =1351.56, minion 3vachemin, minion 4vachemin
-ID 1175, fitness =1368.64, minion 3vachemin, minion 4vachemin
-ID 1496, fitness =1395.72, minion 3vachemin, minion 4vachemin
-ID 826, fitness =1412.96, minion 3vachemin, minion 4vachemin
-ID 1487, fitness =1459.32, minion 3vachemin, minion 4vachemin
-ID 1288, fitness =1475.6, minion 3vachemin, minion 4vachemin
-ID 1233, fitness =1491.16, minion 3vachemin, minion 4vachemin
-ID 1266, fitness =1523.12, minion 3vachemin, minion 4vachemin
-ID 1519, fitness =1548.6, minion 3vachemin, minion 4vachemin
-ID 1172, fitness =1621.36, minion 3vachemin, minion 4vachemin
-ID 1420, fitness =1696.16, minion 3vachemin, minion 4vachemin
-ID 1528, fitness =630.52, minion 4vachemin
-ID 1509, fitness =651.56, minion 4vachemin
-ID 1514, fitness =660.28, minion 4vachemin
-ID 1477, fitness =662.2, minion 4vachemin
-ID 1430, fitness =666.52, minion 4vachemin
-ID 1503, fitness =676.28, minion 4vachemin
-ID 1523, fitness =677.56, minion 4vachemin
-ID 1512, fitness =678.2, minion 4vachemin
-ID 1485, fitness =681.08, minion 4vachemin
-ID 1518, fitness =681.24, minion 4vachemin
-ID 1384, fitness =681.88, minion 4vachemin
-ID 1517, fitness =684.76, minion 4vachemin
-ID 1526, fitness =686.04, minion 4vachemin
-ID 1415, fitness =696.2, minion 4vachemin
-ID 1524, fitness =697.8, minion 4vachemin
-ID 1507, fitness =698.32, minion 4vachemin
-ID 1461, fitness =698.52, minion 4vachemin
-ID 1427, fitness =701.76, minion 4vachemin
-ID 1513, fitness =702.12, minion 4vachemin
-ID 1498, fitness =705.32, minion 4vachemin
-ID 1425, fitness =712.28, minion 4vachemin
-ID 1516, fitness =712.92, minion 4vachemin
-ID 1469, fitness =713.32, minion 4vachemin
-ID 1522, fitness =715.56, minion 4vachemin
-ID 1460, fitness =716.6, minion 4vachemin
-ID 1529, fitness =721.72, minion 4vachemin
-ID 1492, fitness =731.96, minion 4vachemin
-ID 1510, fitness =734.52, minion 4vachemin
-ID 1500, fitness =735.64, minion 4vachemin
-ID 1521, fitness =736.68, minion 4vachemin
-ID 1467, fitness =738.28, minion 4vachemin
-ID 1491, fitness =742.04, minion 4vachemin
-ID 1436, fitness =748.12, minion 4vachemin
-ID 1481, fitness =751.32, minion 4vachemin
-ID 1434, fitness =756.28, minion 4vachemin
-ID 1406, fitness =766.48, minion 4vachemin
-ID 1419, fitness =768.36, minion 4vachemin
-ID 1428, fitness =769.72, minion 4vachemin
-ID 1502, fitness =770.04, minion 4vachemin
-ID 1456, fitness =770.68, minion 4vachemin
-ID 1484, fitness =774.28, minion 4vachemin
-ID 1480, fitness =778.92, minion 4vachemin
-ID 1422, fitness =781.32, minion 4vachemin
-ID 1458, fitness =784.92, minion 4vachemin
-ID 1432, fitness =791.16, minion 4vachemin
-ID 1379, fitness =795.64, minion 4vachemin
-ID 1490, fitness =796.12, minion 4vachemin
-ID 1315, fitness =801.8, minion 4vachemin
-ID 1394, fitness =810.68, minion 4vachemin
-ID 1141, fitness =816.12, minion 4vachemin
-ID 1489, fitness =839.2, minion 3vachemin
-ID 1497, fitness =850.28, minion 4vachemin
-ID 1335, fitness =853.24, minion 4vachemin
-ID 525, fitness =937.28, minion 3vachemin
-ID 1401, fitness =1055.2, minion 3vachemin
-ID 1475, fitness =1093.76, minion 3vachemin
-ID 1442, fitness =1154.04, minion 3vachemin
-ID 1486, fitness =283.52
-ID 1478, fitness =284.48
-ID 1464, fitness =287.84
-ID 1455, fitness =293.12
-ID 1511, fitness =301.6
-ID 1433, fitness =304.64
-ID 1453, fitness =317.76
-ID 1495, fitness =317.76
-ID 1443, fitness =327.36
-ID 1412, fitness =329.6
-ID 1392, fitness =337.6
-ID 1471, fitness =338.4
-ID 1121, fitness =359.68
-ID 1452, fitness =367.68
-ID 1321, fitness =372
-ID 1389, fitness =398.08
-ID 1261, fitness =408
-ID 1342, fitness =420.8
-_______________________
-Président (id=1214)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-iteration 140
-
-*******************************************************
-ITERATION NUMERO 141
-Stats: 
-1492 enfants créés.
-141 iterations.
-_______________________
-Fitness des surminions
-ID 1640, fitness =1525.4, minion 3vachemin, minion 4vachemin
-ID 1214, fitness =1144.88, minion 3vachemin, minion 4vachemin
-ID 1631, fitness =1266.6, minion 3vachemin, minion 4vachemin
-ID 1535, fitness =1320.16, minion 3vachemin, minion 4vachemin
-ID 962, fitness =1339.68, minion 3vachemin, minion 4vachemin
-ID 1560, fitness =1345.44, minion 3vachemin, minion 4vachemin
-ID 1175, fitness =1381.04, minion 3vachemin, minion 4vachemin
-ID 1496, fitness =1425.16, minion 3vachemin, minion 4vachemin
-ID 1487, fitness =1475.8, minion 3vachemin, minion 4vachemin
-ID 1288, fitness =1479.04, minion 3vachemin, minion 4vachemin
-ID 1625, fitness =1487.64, minion 3vachemin, minion 4vachemin
-ID 1534, fitness =1507.64, minion 3vachemin, minion 4vachemin
-ID 1233, fitness =1517.24, minion 3vachemin, minion 4vachemin
-ID 1541, fitness =1607.2, minion 3vachemin, minion 4vachemin
-ID 1552, fitness =1613.6, minion 3vachemin, minion 4vachemin
-ID 1629, fitness =1666.8, minion 3vachemin, minion 4vachemin
-ID 1596, fitness =1679.12, minion 3vachemin, minion 4vachemin
-ID 1607, fitness =1680.32, minion 3vachemin, minion 4vachemin
-ID 1530, fitness =1681.36, minion 3vachemin, minion 4vachemin
-ID 1585, fitness =1684.56, minion 3vachemin, minion 4vachemin
-ID 1574, fitness =1700.56, minion 3vachemin, minion 4vachemin
-ID 1563, fitness =1705.28, minion 3vachemin, minion 4vachemin
-ID 1620, fitness =651.96, minion 4vachemin
-ID 1547, fitness =663.56, minion 4vachemin
-ID 1610, fitness =669.24, minion 4vachemin
-ID 1632, fitness =670.52, minion 4vachemin
-ID 1634, fitness =678.2, minion 4vachemin
-ID 1628, fitness =689.08, minion 4vachemin
-ID 1606, fitness =693.56, minion 4vachemin
-ID 1617, fitness =695.04, minion 4vachemin
-ID 1613, fitness =702.88, minion 4vachemin
-ID 1633, fitness =708.44, minion 4vachemin
-ID 1569, fitness =711.32, minion 4vachemin
-ID 1579, fitness =712.6, minion 4vachemin
-ID 1609, fitness =714.84, minion 4vachemin
-ID 1559, fitness =716.92, minion 4vachemin
-ID 1427, fitness =718.72, minion 4vachemin
-ID 1614, fitness =719.96, minion 4vachemin
-ID 1582, fitness =721.16, minion 4vachemin
-ID 1597, fitness =721.32, minion 4vachemin
-ID 1591, fitness =723.8, minion 4vachemin
-ID 1600, fitness =725.6, minion 4vachemin
-ID 1578, fitness =727.32, minion 4vachemin
-ID 1594, fitness =729.72, minion 4vachemin
-ID 1566, fitness =732.28, minion 4vachemin
-ID 1635, fitness =733.96, minion 4vachemin
-ID 1526, fitness =735.48, minion 4vachemin
-ID 1518, fitness =736.6, minion 4vachemin
-ID 1622, fitness =737.88, minion 4vachemin
-ID 1615, fitness =739.08, minion 4vachemin
-ID 1638, fitness =739.48, minion 4vachemin
-ID 1639, fitness =740.44, minion 4vachemin
-ID 1555, fitness =741.72, minion 4vachemin
-ID 1636, fitness =750.92, minion 4vachemin
-ID 1577, fitness =752.28, minion 4vachemin
-ID 1593, fitness =761.64, minion 4vachemin
-ID 1630, fitness =762.2, minion 4vachemin
-ID 1619, fitness =764.04, minion 4vachemin
-ID 1434, fitness =770.36, minion 4vachemin
-ID 1637, fitness =773, minion 4vachemin
-ID 1510, fitness =775.16, minion 4vachemin
-ID 1548, fitness =777.32, minion 4vachemin
-ID 1522, fitness =787.08, minion 4vachemin
-ID 1521, fitness =788.36, minion 4vachemin
-ID 1436, fitness =789.32, minion 4vachemin
-ID 1491, fitness =795.32, minion 4vachemin
-ID 1419, fitness =798.44, minion 4vachemin
-ID 1570, fitness =804.2, minion 4vachemin
-ID 1554, fitness =806.36, minion 4vachemin
-ID 1406, fitness =807.28, minion 4vachemin
-ID 1529, fitness =817.48, minion 4vachemin
-ID 1544, fitness =826.68, minion 4vachemin
-ID 1490, fitness =830.28, minion 4vachemin
-ID 1141, fitness =841.88, minion 4vachemin
-ID 1572, fitness =851.08, minion 4vachemin
-ID 1420, fitness =853.72, minion 4vachemin
-ID 1624, fitness =971.12, minion 3vachemin
-ID 1590, fitness =279.04
-ID 1612, fitness =289.6
-ID 1608, fitness =292
-ID 1583, fitness =295.36
-ID 1623, fitness =298.88
-ID 1605, fitness =299.04
-ID 1539, fitness =301.28
-ID 1576, fitness =308.32
-ID 1601, fitness =308.96
-ID 1546, fitness =316.16
-ID 1543, fitness =328.16
-ID 1528, fitness =328.48
-ID 1412, fitness =423.52
-_______________________
-Président (id=1214)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-iteration 150
-
-*******************************************************
-ITERATION NUMERO 151
-Stats: 
-1592 enfants créés.
-151 iterations.
-_______________________
-Fitness des surminions
-ID 1750, fitness =1549.2, minion 3vachemin, minion 4vachemin
-ID 1214, fitness =1144.88, minion 3vachemin, minion 4vachemin
-ID 1682, fitness =1212.76, minion 3vachemin, minion 4vachemin
-ID 1631, fitness =1253.48, minion 3vachemin, minion 4vachemin
-ID 1692, fitness =1289.6, minion 3vachemin, minion 4vachemin
-ID 1742, fitness =1294.84, minion 3vachemin, minion 4vachemin
-ID 1713, fitness =1322.64, minion 3vachemin, minion 4vachemin
-ID 1672, fitness =1334.48, minion 3vachemin, minion 4vachemin
-ID 1727, fitness =1344.24, minion 3vachemin, minion 4vachemin
-ID 1175, fitness =1375.76, minion 3vachemin, minion 4vachemin
-ID 1624, fitness =1455.92, minion 3vachemin, minion 4vachemin
-ID 1288, fitness =1486.96, minion 3vachemin, minion 4vachemin
-ID 1233, fitness =1510.2, minion 3vachemin, minion 4vachemin
-ID 1625, fitness =1512.92, minion 3vachemin, minion 4vachemin
-ID 1728, fitness =1531.6, minion 3vachemin, minion 4vachemin
-ID 1717, fitness =1531.6, minion 3vachemin, minion 4vachemin
-ID 1706, fitness =1532.16, minion 3vachemin, minion 4vachemin
-ID 1739, fitness =1549.2, minion 3vachemin, minion 4vachemin
-ID 1629, fitness =1687.68, minion 3vachemin, minion 4vachemin
-ID 1741, fitness =658.04, minion 4vachemin
-ID 1716, fitness =664, minion 4vachemin
-ID 1747, fitness =664.84, minion 4vachemin
-ID 1745, fitness =665.4, minion 4vachemin
-ID 1685, fitness =680.76, minion 4vachemin
-ID 1729, fitness =684.76, minion 4vachemin
-ID 1711, fitness =688.68, minion 4vachemin
-ID 1723, fitness =689.72, minion 4vachemin
-ID 1746, fitness =690.44, minion 4vachemin
-ID 1632, fitness =691, minion 4vachemin
-ID 1722, fitness =710.52, minion 4vachemin
-ID 1715, fitness =711.8, minion 4vachemin
-ID 1726, fitness =712.28, minion 4vachemin
-ID 1696, fitness =713.96, minion 4vachemin
-ID 1748, fitness =718.04, minion 4vachemin
-ID 1699, fitness =723.24, minion 4vachemin
-ID 1669, fitness =726.52, minion 4vachemin
-ID 1749, fitness =727.32, minion 4vachemin
-ID 1743, fitness =732.28, minion 4vachemin
-ID 1649, fitness =732.92, minion 4vachemin
-ID 1675, fitness =734.36, minion 4vachemin
-ID 1733, fitness =737.88, minion 4vachemin
-ID 1734, fitness =745.48, minion 4vachemin
-ID 1660, fitness =746.88, minion 4vachemin
-ID 1434, fitness =748.28, minion 4vachemin
-ID 1578, fitness =757.24, minion 4vachemin
-ID 1613, fitness =759.92, minion 4vachemin
-ID 1614, fitness =760.44, minion 4vachemin
-ID 1740, fitness =760.52, minion 4vachemin
-ID 1730, fitness =761.32, minion 4vachemin
-ID 1652, fitness =761.96, minion 4vachemin
-ID 1639, fitness =763, minion 4vachemin
-ID 1698, fitness =766.68, minion 4vachemin
-ID 1732, fitness =778.28, minion 4vachemin
-ID 1703, fitness =779.24, minion 4vachemin
-ID 1594, fitness =781.64, minion 4vachemin
-ID 1736, fitness =785.88, minion 4vachemin
-ID 1658, fitness =793.88, minion 4vachemin
-ID 1487, fitness =798.36, minion 4vachemin
-ID 1661, fitness =802.68, minion 4vachemin
-ID 1555, fitness =804.28, minion 4vachemin
-ID 1630, fitness =812.76, minion 4vachemin
-ID 1491, fitness =813.56, minion 4vachemin
-ID 1510, fitness =817.72, minion 4vachemin
-ID 1419, fitness =830.44, minion 4vachemin
-ID 1677, fitness =835.08, minion 4vachemin
-ID 1686, fitness =851.88, minion 4vachemin
-ID 1574, fitness =893.16, minion 4vachemin
-ID 1651, fitness =912.64, minion 3vachemin
-ID 1738, fitness =928.08, minion 3vachemin
-ID 1678, fitness =928.8, minion 4vachemin
-ID 1744, fitness =938.64, minion 3vachemin
-ID 1646, fitness =939.88, minion 3vachemin
-ID 1695, fitness =991.84, minion 3vachemin
-ID 1657, fitness =1011.44, minion 3vachemin
-ID 1534, fitness =1030.96, minion 3vachemin
-ID 1708, fitness =269.6
-ID 1659, fitness =270.56
-ID 1702, fitness =289.92
-ID 1731, fitness =292
-ID 1737, fitness =296.16
-ID 1700, fitness =300
-ID 1681, fitness =304.16
-ID 1687, fitness =304.8
-ID 1704, fitness =306.4
-ID 1650, fitness =320.32
-ID 1585, fitness =320.96
-ID 1720, fitness =329.12
-ID 1420, fitness =360.64
-ID 1605, fitness =373.92
-ID 1596, fitness =385.92
-_______________________
-Président (id=1214)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-iteration 160
-
-*******************************************************
-ITERATION NUMERO 161
-Stats: 
-1692 enfants créés.
-161 iterations.
-_______________________
-Fitness des surminions
-ID 1860, fitness =1499.4, minion 3vachemin, minion 4vachemin
-ID 1214, fitness =1144.88, minion 3vachemin, minion 4vachemin
-ID 1682, fitness =1216.28, minion 3vachemin, minion 4vachemin
-ID 1631, fitness =1235.88, minion 3vachemin, minion 4vachemin
-ID 1824, fitness =1286.16, minion 3vachemin, minion 4vachemin
-ID 1844, fitness =1290.76, minion 3vachemin, minion 4vachemin
-ID 1841, fitness =1325.68, minion 3vachemin, minion 4vachemin
-ID 1713, fitness =1332.4, minion 3vachemin, minion 4vachemin
-ID 1798, fitness =1345.68, minion 3vachemin, minion 4vachemin
-ID 1850, fitness =1346.4, minion 3vachemin, minion 4vachemin
-ID 1175, fitness =1387.68, minion 3vachemin, minion 4vachemin
-ID 1822, fitness =1392.96, minion 3vachemin, minion 4vachemin
-ID 1738, fitness =1417.56, minion 3vachemin, minion 4vachemin
-ID 1837, fitness =1436.88, minion 3vachemin, minion 4vachemin
-ID 1794, fitness =1454.88, minion 3vachemin, minion 4vachemin
-ID 1288, fitness =1482.48, minion 3vachemin, minion 4vachemin
-ID 1849, fitness =1497, minion 3vachemin, minion 4vachemin
-ID 1838, fitness =1497, minion 3vachemin, minion 4vachemin
-ID 1827, fitness =1497, minion 3vachemin, minion 4vachemin
-ID 1233, fitness =1507, minion 3vachemin, minion 4vachemin
-ID 1816, fitness =1536.28, minion 3vachemin, minion 4vachemin
-ID 1772, fitness =1543.88, minion 3vachemin, minion 4vachemin
-ID 1629, fitness =1705.28, minion 3vachemin, minion 4vachemin
-ID 1831, fitness =631.32, minion 4vachemin
-ID 1843, fitness =648.68, minion 4vachemin
-ID 1835, fitness =670.36, minion 4vachemin
-ID 1833, fitness =671.08, minion 4vachemin
-ID 1767, fitness =671.96, minion 4vachemin
-ID 1793, fitness =672.92, minion 4vachemin
-ID 1799, fitness =682.4, minion 4vachemin
-ID 1819, fitness =683.8, minion 4vachemin
-ID 1796, fitness =685.72, minion 4vachemin
-ID 1784, fitness =686.36, minion 4vachemin
-ID 1764, fitness =698.76, minion 4vachemin
-ID 1795, fitness =699.96, minion 4vachemin
-ID 1852, fitness =701.56, minion 4vachemin
-ID 1834, fitness =701.72, minion 4vachemin
-ID 1775, fitness =711.36, minion 4vachemin
-ID 1781, fitness =712.04, minion 4vachemin
-ID 1840, fitness =714.44, minion 4vachemin
-ID 1854, fitness =715.8, minion 4vachemin
-ID 1845, fitness =720.52, minion 4vachemin
-ID 1818, fitness =722.24, minion 4vachemin
-ID 1810, fitness =723.32, minion 4vachemin
-ID 1820, fitness =724.12, minion 4vachemin
-ID 1742, fitness =733.64, minion 4vachemin
-ID 1856, fitness =734.2, minion 4vachemin
-ID 1685, fitness =740.92, minion 4vachemin
-ID 1846, fitness =742.6, minion 4vachemin
-ID 1811, fitness =744.6, minion 4vachemin
-ID 1842, fitness =745.72, minion 4vachemin
-ID 1716, fitness =747.92, minion 4vachemin
-ID 1726, fitness =748.76, minion 4vachemin
-ID 1723, fitness =753.4, minion 4vachemin
-ID 1765, fitness =754.04, minion 4vachemin
-ID 1828, fitness =761.48, minion 4vachemin
-ID 1699, fitness =763.56, minion 4vachemin
-ID 1836, fitness =764, minion 4vachemin
-ID 1434, fitness =786.68, minion 4vachemin
-ID 1578, fitness =788.28, minion 4vachemin
-ID 1624, fitness =789.44, minion 4vachemin
-ID 1749, fitness =791, minion 4vachemin
-ID 1812, fitness =792.36, minion 4vachemin
-ID 1858, fitness =794.84, minion 4vachemin
-ID 1491, fitness =819.64, minion 4vachemin
-ID 1805, fitness =820.52, minion 4vachemin
-ID 1625, fitness =828.36, minion 4vachemin
-ID 1419, fitness =850.6, minion 4vachemin
-ID 1686, fitness =876.04, minion 4vachemin
-ID 1651, fitness =958.48, minion 3vachemin
-ID 1783, fitness =989.36, minion 3vachemin
-ID 1750, fitness =1005.32, minion 3vachemin
-ID 1761, fitness =1011.4, minion 3vachemin
-ID 1859, fitness =269.6
-ID 1851, fitness =272.8
-ID 1855, fitness =272.96
-ID 1771, fitness =283.2
-ID 1826, fitness =290.4
-ID 1830, fitness =291.52
-ID 1817, fitness =307.04
-ID 1741, fitness =310.88
-ID 1754, fitness =323.04
-ID 1787, fitness =325.44
-ID 1704, fitness =329.76
-ID 1785, fitness =331.68
-ID 1736, fitness =332.16
-ID 1791, fitness =355.68
-ID 1762, fitness =360.32
-ID 1660, fitness =373.28
-ID 1596, fitness =412.8
-_______________________
-Président (id=1214)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-iteration 170
-
-*******************************************************
-ITERATION NUMERO 171
-Stats: 
-1792 enfants créés.
-171 iterations.
-_______________________
-Fitness des surminions
-ID 1970, fitness =1314.4, minion 3vachemin, minion 4vachemin
-ID 1214, fitness =1144.88, minion 3vachemin, minion 4vachemin
-ID 1880, fitness =1169.6, minion 3vachemin, minion 4vachemin
-ID 1906, fitness =1178.16, minion 3vachemin, minion 4vachemin
-ID 1935, fitness =1234.36, minion 3vachemin, minion 4vachemin
-ID 1925, fitness =1237.2, minion 3vachemin, minion 4vachemin
-ID 1682, fitness =1238.76, minion 3vachemin, minion 4vachemin
-ID 1898, fitness =1257.76, minion 3vachemin, minion 4vachemin
-ID 1929, fitness =1299.72, minion 3vachemin, minion 4vachemin
-ID 1959, fitness =1314.8, minion 3vachemin, minion 4vachemin
-ID 1885, fitness =1330.24, minion 3vachemin, minion 4vachemin
-ID 1955, fitness =1333.04, minion 3vachemin, minion 4vachemin
-ID 1948, fitness =1338.68, minion 3vachemin, minion 4vachemin
-ID 1873, fitness =1348.96, minion 3vachemin, minion 4vachemin
-ID 1920, fitness =1366.48, minion 3vachemin, minion 4vachemin
-ID 1864, fitness =1397.16, minion 3vachemin, minion 4vachemin
-ID 1822, fitness =1408.52, minion 3vachemin, minion 4vachemin
-ID 1916, fitness =1427.92, minion 3vachemin, minion 4vachemin
-ID 1937, fitness =1428.04, minion 3vachemin, minion 4vachemin
-ID 1926, fitness =1435.24, minion 3vachemin, minion 4vachemin
-ID 1965, fitness =1450.88, minion 3vachemin, minion 4vachemin
-ID 1954, fitness =647.72, minion 4vachemin
-ID 1951, fitness =647.8, minion 4vachemin
-ID 1956, fitness =674.76, minion 4vachemin
-ID 1964, fitness =681.32, minion 4vachemin
-ID 1910, fitness =693.08, minion 4vachemin
-ID 1914, fitness =701, minion 4vachemin
-ID 1921, fitness =702.2, minion 4vachemin
-ID 1909, fitness =704.2, minion 4vachemin
-ID 1945, fitness =705.8, minion 4vachemin
-ID 1962, fitness =705.88, minion 4vachemin
-ID 1953, fitness =706.2, minion 4vachemin
-ID 1917, fitness =707, minion 4vachemin
-ID 1961, fitness =711.32, minion 4vachemin
-ID 1967, fitness =713.32, minion 4vachemin
-ID 1936, fitness =713.72, minion 4vachemin
-ID 1844, fitness =719.32, minion 4vachemin
-ID 1893, fitness =719.72, minion 4vachemin
-ID 1866, fitness =722.36, minion 4vachemin
-ID 1865, fitness =722.6, minion 4vachemin
-ID 1882, fitness =725, minion 4vachemin
-ID 1968, fitness =728.12, minion 4vachemin
-ID 1912, fitness =735, minion 4vachemin
-ID 1796, fitness =735.16, minion 4vachemin
-ID 1943, fitness =739.24, minion 4vachemin
-ID 1834, fitness =740.88, minion 4vachemin
-ID 1932, fitness =747, minion 4vachemin
-ID 1902, fitness =751.24, minion 4vachemin
-ID 1960, fitness =751.64, minion 4vachemin
-ID 1966, fitness =754.84, minion 4vachemin
-ID 1923, fitness =755.52, minion 4vachemin
-ID 1811, fitness =759.48, minion 4vachemin
-ID 1837, fitness =767.8, minion 4vachemin
-ID 1795, fitness =768.44, minion 4vachemin
-ID 1875, fitness =768.6, minion 4vachemin
-ID 1892, fitness =777, minion 4vachemin
-ID 1877, fitness =792.36, minion 4vachemin
-ID 1895, fitness =797.88, minion 4vachemin
-ID 1934, fitness =814.2, minion 4vachemin
-ID 1491, fitness =853.24, minion 4vachemin
-ID 1419, fitness =858.6, minion 4vachemin
-ID 1887, fitness =863.4, minion 3vachemin
-ID 1950, fitness =873.32, minion 3vachemin
-ID 1631, fitness =881.28, minion 3vachemin
-ID 1824, fitness =903.24, minion 3vachemin
-ID 1713, fitness =923.6, minion 3vachemin
-ID 1841, fitness =945.56, minion 3vachemin
-ID 1175, fitness =985.8, minion 3vachemin
-ID 1963, fitness =268
-ID 1957, fitness =270.4
-ID 1969, fitness =272
-ID 1944, fitness =282.24
-ID 1947, fitness =285.6
-ID 1928, fitness =292.48
-ID 1952, fitness =298.88
-ID 1958, fitness =305.6
-ID 1827, fitness =309.28
-ID 1826, fitness =317.44
-ID 1771, fitness =317.44
-ID 1889, fitness =322.56
-ID 1905, fitness =323.68
-ID 1907, fitness =333.44
-ID 1761, fitness =339.84
-ID 1805, fitness =342.4
-ID 1817, fitness =349.44
-ID 1764, fitness =356.32
-ID 1736, fitness =360.64
-ID 1830, fitness =376.48
-ID 1831, fitness =391.68
-ID 1660, fitness =419.36
-_______________________
-Président (id=1214)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-iteration 180
-
-*******************************************************
-ITERATION NUMERO 181
-Stats: 
-1892 enfants créés.
-181 iterations.
-_______________________
-Fitness des surminions
-ID 2080, fitness =1387.6, minion 3vachemin, minion 4vachemin
-ID 1214, fitness =1144.88, minion 3vachemin, minion 4vachemin
-ID 1880, fitness =1177.52, minion 3vachemin, minion 4vachemin
-ID 1976, fitness =1218.56, minion 3vachemin, minion 4vachemin
-ID 1935, fitness =1245.32, minion 3vachemin, minion 4vachemin
-ID 1682, fitness =1261.24, minion 3vachemin, minion 4vachemin
-ID 2038, fitness =1262.76, minion 3vachemin, minion 4vachemin
-ID 1898, fitness =1281.76, minion 3vachemin, minion 4vachemin
-ID 1925, fitness =1283.12, minion 3vachemin, minion 4vachemin
-ID 2025, fitness =1301.44, minion 3vachemin, minion 4vachemin
-ID 1998, fitness =1315.08, minion 3vachemin, minion 4vachemin
-ID 2002, fitness =1332.04, minion 3vachemin, minion 4vachemin
-ID 2047, fitness =1333.76, minion 3vachemin, minion 4vachemin
-ID 2061, fitness =1334.76, minion 3vachemin, minion 4vachemin
-ID 2036, fitness =1352.6, minion 3vachemin, minion 4vachemin
-ID 1885, fitness =1357.6, minion 3vachemin, minion 4vachemin
-ID 1948, fitness =1361.32, minion 3vachemin, minion 4vachemin
-ID 1873, fitness =1380.96, minion 3vachemin, minion 4vachemin
-ID 2069, fitness =1387.6, minion 3vachemin, minion 4vachemin
-ID 1920, fitness =1398.64, minion 3vachemin, minion 4vachemin
-ID 1989, fitness =1451.08, minion 3vachemin, minion 4vachemin
-ID 1926, fitness =1456.68, minion 3vachemin, minion 4vachemin
-ID 2058, fitness =1463.2, minion 3vachemin, minion 4vachemin
-ID 1965, fitness =1490, minion 3vachemin, minion 4vachemin
-ID 2068, fitness =641.96, minion 4vachemin
-ID 2075, fitness =645.88, minion 4vachemin
-ID 2060, fitness =657.48, minion 4vachemin
-ID 2054, fitness =658.64, minion 4vachemin
-ID 1906, fitness =668.24, minion 4vachemin
-ID 2059, fitness =670.36, minion 4vachemin
-ID 2031, fitness =671.16, minion 4vachemin
-ID 1993, fitness =679.04, minion 4vachemin
-ID 2041, fitness =689.08, minion 4vachemin
-ID 2003, fitness =689.24, minion 4vachemin
-ID 2062, fitness =693.72, minion 4vachemin
-ID 2070, fitness =694.52, minion 4vachemin
-ID 1929, fitness =697.24, minion 4vachemin
-ID 2078, fitness =698.76, minion 4vachemin
-ID 2049, fitness =702.92, minion 4vachemin
-ID 2016, fitness =706.68, minion 4vachemin
-ID 2074, fitness =708.44, minion 4vachemin
-ID 2067, fitness =713.64, minion 4vachemin
-ID 2072, fitness =714.68, minion 4vachemin
-ID 2073, fitness =717.72, minion 4vachemin
-ID 2014, fitness =718.68, minion 4vachemin
-ID 1978, fitness =719.4, minion 4vachemin
-ID 2019, fitness =719.64, minion 4vachemin
-ID 2076, fitness =720.84, minion 4vachemin
-ID 2042, fitness =724.12, minion 4vachemin
-ID 2039, fitness =728.76, minion 4vachemin
-ID 2028, fitness =734.2, minion 4vachemin
-ID 1955, fitness =735.72, minion 4vachemin
-ID 2052, fitness =742, minion 4vachemin
-ID 2048, fitness =745.24, minion 4vachemin
-ID 1910, fitness =751.64, minion 4vachemin
-ID 1917, fitness =770.84, minion 4vachemin
-ID 1837, fitness =779.8, minion 4vachemin
-ID 1962, fitness =781.56, minion 4vachemin
-ID 1960, fitness =790.08, minion 4vachemin
-ID 1887, fitness =867.32, minion 3vachemin
-ID 1895, fitness =894.44, minion 4vachemin
-ID 1981, fitness =964.36, minion 3vachemin
-ID 1841, fitness =967.56, minion 3vachemin
-ID 2071, fitness =272
-ID 2077, fitness =275.68
-ID 2066, fitness =276.96
-ID 2034, fitness =279.52
-ID 2079, fitness =280.96
-ID 2040, fitness =283.36
-ID 2065, fitness =285.12
-ID 1969, fitness =287.68
-ID 2050, fitness =289.6
-ID 2023, fitness =291.2
-ID 2017, fitness =302.56
-ID 2037, fitness =302.72
-ID 2005, fitness =303.04
-ID 2057, fitness =307.2
-ID 2063, fitness =308.16
-ID 1973, fitness =317.92
-ID 1957, fitness =322.24
-ID 2022, fitness =327.68
-ID 1771, fitness =331.52
-ID 1826, fitness =345.6
-ID 1923, fitness =359.04
-ID 1928, fitness =364
-ID 1986, fitness =366.24
-ID 1889, fitness =374.24
-ID 1905, fitness =378.4
-ID 1805, fitness =395.52
-ID 1831, fitness =411.04
-_______________________
-Président (id=1214)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-iteration 190
-
-*******************************************************
-ITERATION NUMERO 191
-Stats: 
-1992 enfants créés.
-191 iterations.
-_______________________
-Fitness des surminions
-ID 2190, fitness =1477.8, minion 3vachemin, minion 4vachemin
-ID 1214, fitness =1144.88, minion 3vachemin, minion 4vachemin
-ID 1976, fitness =1211.36, minion 3vachemin, minion 4vachemin
-ID 1935, fitness =1252.28, minion 3vachemin, minion 4vachemin
-ID 1682, fitness =1259.08, minion 3vachemin, minion 4vachemin
-ID 2148, fitness =1271.56, minion 3vachemin, minion 4vachemin
-ID 2038, fitness =1281.08, minion 3vachemin, minion 4vachemin
-ID 2114, fitness =1307.52, minion 3vachemin, minion 4vachemin
-ID 1929, fitness =1330.72, minion 3vachemin, minion 4vachemin
-ID 2150, fitness =1347.92, minion 3vachemin, minion 4vachemin
-ID 2183, fitness =1353.68, minion 3vachemin, minion 4vachemin
-ID 1885, fitness =1369.44, minion 3vachemin, minion 4vachemin
-ID 2187, fitness =1383, minion 3vachemin, minion 4vachemin
-ID 1948, fitness =1383.48, minion 3vachemin, minion 4vachemin
-ID 2184, fitness =1386.56, minion 3vachemin, minion 4vachemin
-ID 1873, fitness =1392.16, minion 3vachemin, minion 4vachemin
-ID 2116, fitness =1398.04, minion 3vachemin, minion 4vachemin
-ID 2102, fitness =1452.88, minion 3vachemin, minion 4vachemin
-ID 2168, fitness =1477.8, minion 3vachemin, minion 4vachemin
-ID 2179, fitness =1477.8, minion 3vachemin, minion 4vachemin
-ID 1926, fitness =1481.96, minion 3vachemin, minion 4vachemin
-ID 2058, fitness =1485.52, minion 3vachemin, minion 4vachemin
-ID 1965, fitness =1507.84, minion 3vachemin, minion 4vachemin
-ID 2135, fitness =1532.24, minion 3vachemin, minion 4vachemin
-ID 2185, fitness =631.72, minion 4vachemin
-ID 2176, fitness =657, minion 4vachemin
-ID 2140, fitness =661.08, minion 4vachemin
-ID 2170, fitness =675.64, minion 4vachemin
-ID 2175, fitness =676.44, minion 4vachemin
-ID 2171, fitness =676.92, minion 4vachemin
-ID 2137, fitness =681.92, minion 4vachemin
-ID 2177, fitness =686.84, minion 4vachemin
-ID 2128, fitness =691.92, minion 4vachemin
-ID 2169, fitness =695.16, minion 4vachemin
-ID 2188, fitness =700.44, minion 4vachemin
-ID 2189, fitness =700.92, minion 4vachemin
-ID 2136, fitness =705, minion 4vachemin
-ID 2147, fitness =707.84, minion 4vachemin
-ID 1906, fitness =712.2, minion 4vachemin
-ID 2152, fitness =714.36, minion 4vachemin
-ID 2134, fitness =716.2, minion 4vachemin
-ID 2025, fitness =724.92, minion 4vachemin
-ID 2096, fitness =725, minion 4vachemin
-ID 2120, fitness =728.44, minion 4vachemin
-ID 2159, fitness =732.04, minion 4vachemin
-ID 2154, fitness =732.76, minion 4vachemin
-ID 2182, fitness =733.32, minion 4vachemin
-ID 2162, fitness =736.44, minion 4vachemin
-ID 2178, fitness =738.36, minion 4vachemin
-ID 2172, fitness =739.96, minion 4vachemin
-ID 2041, fitness =742.36, minion 4vachemin
-ID 2138, fitness =742.68, minion 4vachemin
-ID 2133, fitness =745.8, minion 4vachemin
-ID 2160, fitness =747.32, minion 4vachemin
-ID 2062, fitness =747.8, minion 4vachemin
-ID 2121, fitness =750.76, minion 4vachemin
-ID 2181, fitness =753.32, minion 4vachemin
-ID 2180, fitness =754.2, minion 4vachemin
-ID 2016, fitness =755.16, minion 4vachemin
-ID 2112, fitness =766.28, minion 4vachemin
-ID 2048, fitness =779, minion 4vachemin
-ID 2028, fitness =780.2, minion 4vachemin
-ID 2080, fitness =820.84, minion 4vachemin
-ID 1962, fitness =831.16, minion 4vachemin
-ID 1887, fitness =896.12, minion 3vachemin
-ID 1925, fitness =909, minion 3vachemin
-ID 1895, fitness =917.8, minion 4vachemin
-ID 1989, fitness =1043.36, minion 3vachemin
-ID 2186, fitness =267.04
-ID 2153, fitness =269.92
-ID 2161, fitness =271.36
-ID 2145, fitness =281.6
-ID 2167, fitness =286.08
-ID 2109, fitness =295.68
-ID 2118, fitness =301.92
-ID 2093, fitness =302.56
-ID 2066, fitness =315.2
-ID 2092, fitness =320.96
-ID 2034, fitness =325.6
-ID 2071, fitness =328.8
-ID 2164, fitness =334.88
-ID 2099, fitness =337.44
-ID 2068, fitness =338.56
-ID 2022, fitness =352.64
-ID 2108, fitness =353.92
-ID 2023, fitness =364.64
-ID 2100, fitness =366.72
-ID 2057, fitness =384.8
-ID 1986, fitness =384.96
-ID 1831, fitness =422.72
-_______________________
-Président (id=1214)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
-
-*******************************************************
-ITERATION NUMERO 200
-Stats: 
-2082 enfants créés.
-200 iterations.
-_______________________
-Fitness des surminions
-ID 2289, fitness =1543.8, minion 3vachemin, minion 4vachemin
-ID 1214, fitness =1144.88, minion 3vachemin, minion 4vachemin
-ID 2266, fitness =1160.32, minion 3vachemin, minion 4vachemin
-ID 2208, fitness =1236.92, minion 3vachemin, minion 4vachemin
-ID 2243, fitness =1238.4, minion 3vachemin, minion 4vachemin
-ID 1935, fitness =1263.24, minion 3vachemin, minion 4vachemin
-ID 1682, fitness =1270.2, minion 3vachemin, minion 4vachemin
-ID 2148, fitness =1310.6, minion 3vachemin, minion 4vachemin
-ID 1929, fitness =1320.64, minion 3vachemin, minion 4vachemin
-ID 2150, fitness =1359.16, minion 3vachemin, minion 4vachemin
-ID 1948, fitness =1383.32, minion 3vachemin, minion 4vachemin
-ID 1873, fitness =1391.28, minion 3vachemin, minion 4vachemin
-ID 2245, fitness =1405.16, minion 3vachemin, minion 4vachemin
-ID 2184, fitness =1408.4, minion 3vachemin, minion 4vachemin
-ID 2256, fitness =1429.16, minion 3vachemin, minion 4vachemin
-ID 2116, fitness =1432.52, minion 3vachemin, minion 4vachemin
-ID 2223, fitness =1461.44, minion 3vachemin, minion 4vachemin
-ID 2190, fitness =1493.32, minion 3vachemin, minion 4vachemin
-ID 2058, fitness =1513.76, minion 3vachemin, minion 4vachemin
-ID 1965, fitness =1513.84, minion 3vachemin, minion 4vachemin
-ID 2278, fitness =1547.4, minion 3vachemin, minion 4vachemin
-ID 2263, fitness =635.64, minion 4vachemin
-ID 2286, fitness =657.56, minion 4vachemin
-ID 2281, fitness =658.44, minion 4vachemin
-ID 2269, fitness =660.28, minion 4vachemin
-ID 2265, fitness =670.36, minion 4vachemin
-ID 2241, fitness =677.4, minion 4vachemin
-ID 2280, fitness =694.68, minion 4vachemin
-ID 2288, fitness =700.28, minion 4vachemin
-ID 2257, fitness =707.72, minion 4vachemin
-ID 2171, fitness =709.16, minion 4vachemin
-ID 2225, fitness =712.24, minion 4vachemin
-ID 2246, fitness =713.24, minion 4vachemin
-ID 2274, fitness =714.28, minion 4vachemin
-ID 2276, fitness =725.4, minion 4vachemin
-ID 2250, fitness =727.84, minion 4vachemin
-ID 2279, fitness =729.08, minion 4vachemin
-ID 2260, fitness =733.4, minion 4vachemin
-ID 2199, fitness =743.56, minion 4vachemin
-ID 2205, fitness =746.2, minion 4vachemin
-ID 2285, fitness =747.64, minion 4vachemin
-ID 2212, fitness =747.96, minion 4vachemin
-ID 2025, fitness =750.6, minion 4vachemin
-ID 2251, fitness =750.68, minion 4vachemin
-ID 2252, fitness =752.28, minion 4vachemin
-ID 2273, fitness =754.36, minion 4vachemin
-ID 2262, fitness =755.64, minion 4vachemin
-ID 2062, fitness =758.2, minion 4vachemin
-ID 2240, fitness =758.52, minion 4vachemin
-ID 2038, fitness =761.08, minion 4vachemin
-ID 2159, fitness =766.44, minion 4vachemin
-ID 2236, fitness =776.92, minion 4vachemin
-ID 2268, fitness =777.88, minion 4vachemin
-ID 1885, fitness =780.92, minion 4vachemin
-ID 2259, fitness =784.12, minion 4vachemin
-ID 2231, fitness =794.52, minion 4vachemin
-ID 2196, fitness =795.44, minion 4vachemin
-ID 2216, fitness =798.04, minion 4vachemin
-ID 2154, fitness =798.2, minion 4vachemin
-ID 2160, fitness =798.2, minion 4vachemin
-ID 2258, fitness =806.76, minion 4vachemin
-ID 2048, fitness =839.48, minion 4vachemin
-ID 2181, fitness =840.68, minion 4vachemin
-ID 2234, fitness =871.32, minion 4vachemin
-ID 2226, fitness =914.44, minion 3vachemin
-ID 2187, fitness =968.32, minion 3vachemin
-ID 2179, fitness =979.84, minion 3vachemin
-ID 2221, fitness =260.8
-ID 2235, fitness =270.72
-ID 2270, fitness =271.36
-ID 2272, fitness =272.48
-ID 2264, fitness =272.48
-ID 2287, fitness =282.4
-ID 2277, fitness =292.64
-ID 2093, fitness =308.16
-ID 2200, fitness =319.84
-ID 2203, fitness =323.84
-ID 2109, fitness =328
-ID 2239, fitness =331.04
-ID 2229, fitness =332.48
-ID 2189, fitness =333.44
-ID 2186, fitness =341.12
-ID 2164, fitness =354.08
-ID 2147, fitness =354.72
-ID 2167, fitness =369.28
-ID 2153, fitness =377.12
-ID 2145, fitness =377.28
-ID 1906, fitness =388
-ID 2100, fitness =391.2
-ID 2034, fitness =392.96
-_______________________
-Président (id=1214)
-Vachemin trouvé pour l'agent 3
-Vachemin trouvé pour l'agent 4
+==4387== Memcheck, a memory error detector
+==4387== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==4387== Using Valgrind-3.10.0.SVN and LibVEX; rerun with -h for copyright info
+==4387== Command: ./trv.exe
+==4387== 
+==4387== Thread 2:
+==4387== Invalid read of size 4
+==4387==    at 0x4299F0: SurMinion::getID() const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404C3D: Algogen::mutatePop() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x407E95: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387==  Address 0x184f0330 is 32 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 4
+==4387==    at 0x429A30: SurMinion::getVaChemin() const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x407599: Algogen::evaluate(SurMinion*) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x408149: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387==  Address 0x184f032c is 28 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 4
+==4387==    at 0x4075AF: Algogen::evaluate(SurMinion*) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x408149: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387==  Address 0x184f0328 is 24 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 4
+==4387==    at 0x429A30: SurMinion::getVaChemin() const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40744D: Algogen::evaluate(SurMinion*) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x408149: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387==  Address 0x184f032c is 28 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 4
+==4387==    at 0x407469: Algogen::evaluate(SurMinion*) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x408149: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387==  Address 0x184f0328 is 24 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 4
+==4387==    at 0x429A30: SurMinion::getVaChemin() const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x407554: Algogen::evaluate(SurMinion*) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x408149: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387==  Address 0x184f032c is 28 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 4
+==4387==    at 0x429A30: SurMinion::getVaChemin() const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x407599: Algogen::evaluate(SurMinion*) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x408946: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387==  Address 0x184f032c is 28 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 4
+==4387==    at 0x4075AF: Algogen::evaluate(SurMinion*) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x408946: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387==  Address 0x184f0328 is 24 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 4
+==4387==    at 0x429A30: SurMinion::getVaChemin() const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x407599: Algogen::evaluate(SurMinion*) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082C4: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387==  Address 0x184f032c is 28 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 4
+==4387==    at 0x4075AF: Algogen::evaluate(SurMinion*) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082C4: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387==  Address 0x184f0328 is 24 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Thread 1:
+==4387== Invalid read of size 8
+==4387==    at 0x429949: SurMinion::getNumberMinions() const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40AA6F: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0318 is 8 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x42994D: SurMinion::getNumberMinions() const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40AA6F: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0310 is 0 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A00: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40AA98: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0310 is 0 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A03: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40AA98: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0318 is 8 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A15: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40AA98: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x1abedcb0 is 0 bytes inside a block of size 8 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 4
+==4387==    at 0x4281E0: Minion::getID() const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40AAA0: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x176b578c is 44 bytes inside a block of size 56 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x42985D: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A00: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40AB33: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0310 is 0 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A03: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40AB33: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0318 is 8 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A15: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40AB33: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x1abedcb0 is 0 bytes inside a block of size 8 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x428190: Minion::getChromosome(unsigned int) const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40AB3D: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x176b5768 is 8 bytes inside a block of size 56 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x42985D: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x428194: Minion::getChromosome(unsigned int) const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40AB3D: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x176b5770 is 16 bytes inside a block of size 56 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x42985D: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x4281A6: Minion::getChromosome(unsigned int) const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40AB3D: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x1a5d7c60 is 0 bytes inside a block of size 2,048 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x429855: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 1
+==4387==    at 0x40ABAD: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0380 is 0 bytes inside a block of size 2 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x428113: Minion::~Minion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x429855: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 1
+==4387==    at 0x40ABB2: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0381 is 1 bytes inside a block of size 2 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x428113: Minion::~Minion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x429855: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 1
+==4387==    at 0x40ABD5: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0381 is 1 bytes inside a block of size 2 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x428113: Minion::~Minion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x429855: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 1
+==4387==    at 0x40ABDB: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0380 is 0 bytes inside a block of size 2 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x428113: Minion::~Minion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x429855: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A00: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40ABFE: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0310 is 0 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A03: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40ABFE: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0318 is 8 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A15: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40ABFE: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x1abedcb0 is 0 bytes inside a block of size 8 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 4
+==4387==    at 0x428200: Minion::getIDAgent() const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40AC06: Algogen::calcSousMinions() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FEE0: Controller::toc() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4037C6: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x176b5760 is 0 bytes inside a block of size 56 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x42985D: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429949: SurMinion::getNumberMinions() const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40551B: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0318 is 8 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x42994D: SurMinion::getNumberMinions() const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40551B: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0310 is 0 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A00: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40553E: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0310 is 0 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A03: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40553E: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0318 is 8 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A15: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40553E: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x1abedcb0 is 0 bytes inside a block of size 8 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 4
+==4387==    at 0x428200: Minion::getIDAgent() const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x405546: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x176b5760 is 0 bytes inside a block of size 56 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x42985D: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A00: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x405712: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0310 is 0 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A03: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x405712: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0318 is 8 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A15: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x405712: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x1abedcb0 is 0 bytes inside a block of size 8 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 4
+==4387==    at 0x428210: Minion::getCaseCible() const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40571A: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x176b5764 is 4 bytes inside a block of size 56 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x42985D: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A00: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40588D: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0310 is 0 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A03: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40588D: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0318 is 8 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A15: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40588D: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x1abedcb0 is 0 bytes inside a block of size 8 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x428411: Minion::popfront() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x405895: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x176b5768 is 8 bytes inside a block of size 56 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x42985D: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x428418: Minion::popfront() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x405895: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x1a5d7c60 is 0 bytes inside a block of size 2,048 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x429855: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid free() / delete / delete[] / realloc()
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x42841F: Minion::popfront() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x405895: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0380 is 0 bytes inside a block of size 2 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x428113: Minion::~Minion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x429855: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x428420: Minion::popfront() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x405895: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x176b5768 is 8 bytes inside a block of size 56 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x42985D: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x428424: Minion::popfront() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x405895: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x176b5770 is 16 bytes inside a block of size 56 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x42985D: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x4C2F5F0: memcpy@GLIBC_2.2.5 (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x428458: Minion::popfront() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x405895: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x1a5d7c68 is 8 bytes inside a block of size 2,048 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x429855: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid write of size 8
+==4387==    at 0x4C2F5F3: memcpy@GLIBC_2.2.5 (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x428458: Minion::popfront() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x405895: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x1a5d7c60 is 0 bytes inside a block of size 2,048 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x429855: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x4C2F5FE: memcpy@GLIBC_2.2.5 (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x428458: Minion::popfront() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x405895: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x1a5d7c78 is 24 bytes inside a block of size 2,048 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x429855: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x428459: Minion::popfront() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x405895: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x176b5770 is 16 bytes inside a block of size 56 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x42985D: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid write of size 8
+==4387==    at 0x428461: Minion::popfront() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x405895: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4036B8: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x176b5770 is 16 bytes inside a block of size 56 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x42985D: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429949: SurMinion::getNumberMinions() const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40551B: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40379B: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0318 is 8 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x42994D: SurMinion::getNumberMinions() const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40551B: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40379B: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0310 is 0 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A00: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40553E: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40379B: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0310 is 0 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A03: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40553E: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40379B: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x184f0318 is 8 bytes inside a block of size 40 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404B04: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 8
+==4387==    at 0x429A15: SurMinion::getMinion(unsigned int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40553E: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40379B: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x1abedcb0 is 0 bytes inside a block of size 8 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== Invalid read of size 4
+==4387==    at 0x428200: Minion::getIDAgent() const (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x405546: Algogen::move_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40FFA3: Controller::deplacement_agent(int, int, int) (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40379B: main (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==  Address 0x176b5760 is 0 bytes inside a block of size 56 free'd
+==4387==    at 0x4C2C2BC: operator delete(void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4387==    by 0x42985D: SurMinion::~SurMinion() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x404AFC: Algogen::cull() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x4082CC: Algogen::iterate() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x40F6A6: Controller::iterate_algogen() (in /home/etud/info/l3info/nroux/projects/TRV/src/trv.exe)
+==4387==    by 0x5382BEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==4387==    by 0x760C181: start_thread (pthread_create.c:312)
+==4387==    by 0x5BEB47C: clone (clone.S:111)
+==4387== 
+==4387== 
+==4387== HEAP SUMMARY:
+==4387==     in use at exit: 69,148,118 bytes in 2,620,991 blocks
+==4387==   total heap usage: 12,259,946 allocs, 9,638,957 frees, 520,202,821 bytes allocated
+==4387== 
+==4387== LEAK SUMMARY:
+==4387==    definitely lost: 1,481,256 bytes in 26,451 blocks
+==4387==    indirectly lost: 21,612,128 bytes in 1,594,011 blocks
+==4387==      possibly lost: 5,315 bytes in 95 blocks
+==4387==    still reachable: 46,049,419 bytes in 1,000,434 blocks
+==4387==         suppressed: 0 bytes in 0 blocks
+==4387== Rerun with --leak-check=full to see details of leaked memory
+==4387== 
+==4387== For counts of detected and suppressed errors, rerun with: -v
+==4387== ERROR SUMMARY: 7379 errors from 59 contexts (suppressed: 0 from 0)

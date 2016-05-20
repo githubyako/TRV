@@ -129,13 +129,16 @@ std::pair< int, int > Controller::proch_case(int _idAgent)
   return result;
 }
 
-
 void Controller::iterate_algogen()
 {
   while(m_rolling){
     if(m_run){
       m_iteratedone = false;
-      m_algg->iterate();
+      if(m_algg->getNbChemins()>0){
+	s_algomutex1.lock();
+	m_algg->iterate();
+	s_algomutex1.unlock();
+      }
     }else{
       usleep(1000);
     }
@@ -223,7 +226,6 @@ void Controller::initiateMap(const std::string& contentFileName)
    {
      std::cout << "Impossible d'ouvrir le fichier !" << std::endl;
    }
-   
 }
 
 void Controller::initiateRules(std::string xmlFileName)

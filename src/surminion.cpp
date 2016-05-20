@@ -24,7 +24,7 @@ void SurMinion::addMinion(Minion* _minion)
 
 void SurMinion::removeMinion(unsigned int _minionNumber)
 {
-//   delete *(m_minions.begin()+_minionNumber);
+  delete *(m_minions.begin()+_minionNumber);
   m_minions.erase(m_minions.begin()+_minionNumber);
 }
 

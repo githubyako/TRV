@@ -12,10 +12,10 @@ private:
   std::vector<std::pair<bool,bool> *> m_genomeDebut;
   std::vector<std::pair<bool,bool> *> m_genomeLeader;
   unsigned int m_leader;
-  int m_caseSource;
+  int m_caseSource,m_caseCible;
   
 public:
-  SousMinion(int _idAgent, const std::vector< std::pair< bool, bool >* >& _genome);
+  SousMinion(int _idAgent, const std::vector< std::pair< bool, bool >* >& _genome, int _caseCible);
   ~SousMinion();
   
   std::vector<std::pair<bool,bool> *> const & getGenomeDebut() const;
@@ -25,6 +25,7 @@ public:
   int getID() const;
   unsigned int getLeader() const;
   int getCaseSource() const;
+  int getCaseCible() const;
   
   void setGenomeDebut( std::vector<std::pair<bool,bool> *> const & _genome);
   void setGenomeLeader( std::vector<std::pair<bool,bool> *> const & _genome);

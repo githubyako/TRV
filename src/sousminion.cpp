@@ -1,7 +1,7 @@
 #include "sousminion.h"
 
-SousMinion::SousMinion(int _idAgent, const std::vector< std::pair< bool, bool >* >& _genome)
-:m_idAgent(_idAgent), m_genomeDebut(_genome)
+SousMinion::SousMinion(int _idAgent, const std::vector< std::pair< bool, bool >* >& _genome, int _caseCible)
+:m_idAgent(_idAgent), m_genomeDebut(_genome),m_caseCible(_caseCible)
 {
   
 }
@@ -49,6 +49,10 @@ int SousMinion::getCaseSource() const
   return m_caseSource;
 }
 
+int SousMinion::getCaseCible() const
+{
+  return m_caseCible;
+}
 
 void SousMinion::setLeader( unsigned int _leader)
 {

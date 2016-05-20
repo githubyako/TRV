@@ -7,7 +7,7 @@
 
 class Minion{
 private:
-  int m_idAgent;
+  int m_idAgent, m_caseCible;
   static unsigned int m_incrID;
   std::vector<std::pair<bool,bool> *> m_genome;
   float m_fitness;
@@ -15,7 +15,7 @@ private:
   unsigned int m_manhattan, m_id,m_sommetfinal;
   
 public:
-  Minion(std::vector<std::pair<bool,bool> *> const & _genome, int _idAgent);
+  Minion(std::vector<std::pair<bool,bool> *> const & _genome, int _idAgent, int _caseCible);
   Minion(Minion const & _minion);
   ~Minion();
   
@@ -31,6 +31,7 @@ public:
   unsigned int getID() const;
   unsigned int getSF() const;
   int getIDAgent() const;
+  int getCaseCible() const;
 
   void setFitness(float _fitness);
   void setVaChemin(bool _vaChemin);

@@ -16,31 +16,29 @@ int main(int argc, char **argv) {
 //       controller->creer_agent(4,5,"Cavalier",4);
 //       controller->creer_agent(310,310,"Cavalier",5);
 //       controller->creer_agent(400,250,"Infanterie",6);
-      std::cout << "1" <<std::endl;
       controller->create_algogen();
-      std::cout << "2" <<std::endl;
       controller->demande_chemin_algogen(0,400,400); // 5,5 -> 400,400
-      std::cout << "3" <<std::endl;
       controller->tic();
-      std::cout << "4" <<std::endl;
       controller->toc();
-      std::cout << "5" <<std::endl;
 //       std::cout << controller->proch_case(0).first << " " << controller->proch_case(0).second << std::endl;
 //       controller->demande_chemin_algogen(2,4,4); // 300,300 -> 4,4
       controller->deplacement_agent(0,controller->proch_case(0).first,controller->proch_case(0).second);
-      for(unsigned int i=0;i<100;++i){
-	
+      for(unsigned int i=0;i<5000;++i){
 	controller->tic();
-	usleep(15000);
+	usleep(1000);
 	controller->toc();
-	std::cout << controller->proch_case(0).first << " " << controller->proch_case(0).second << std::endl;
+	std::cout << "Agent 0: " << controller->proch_case(0).first << " " << controller->proch_case(0).second << std::endl;
 	controller->deplacement_agent(0,controller->proch_case(0).first,controller->proch_case(0).second);
-	
+	if(i==20){
+	  controller->demande_chemin_algogen(2,320,320);
+	}
+	if(i>20){
+	  std::cout << "Agent 2: " << controller->proch_case(2).first << " " << controller->proch_case(2).second << std::endl;
+	  controller->deplacement_agent(2,controller->proch_case(2).first,controller->proch_case(2).second);
+	}
       }
-      std::cout << "6" <<std::endl;
       controller->tic();
       controller->toc();
-      std::cout << "7" <<std::endl;
     } catch(str_exception& e){
     
       std::cout << "str_exception" << e.what() << std::endl;

@@ -19,6 +19,7 @@ public:
   void mutate(int numMinion, unsigned int _nbAjouts, float _ratioSupprs,float _ratioModifs);
   void mutateElite(int numMinion, unsigned int _nbAjouts,float _ratioModifs);
   void addMinion(Minion* _minion);
+  void removeMinion(unsigned int _minionNumber);
   unsigned int getVaChemin() const;
   float const & getFitness() const;
   std::vector<Minion*> & getMinions();

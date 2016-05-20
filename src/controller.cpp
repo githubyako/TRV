@@ -116,12 +116,17 @@ void Controller::toc()
   while(!m_iteratedone){
     usleep(500);
   }
+  s_algomutex1.lock();
   m_algg->calcSousMinions();
+  s_algomutex1.unlock();
 }
 
 std::pair< int, int > Controller::proch_case(int _idAgent)
 {
-  return m_algg->getProchCase(_idAgent);
+  s_algomutex1.lock();
+  std::pair<int,int> result = m_algg->getProchCase(_idAgent);
+  s_algomutex1.unlock();
+  return result;
 }
 
 
@@ -142,8 +147,10 @@ void Controller::iterate_algogen()
 // Fonction de déplacement d'agent, déplace l'Agent d'identificateur id à la case de coordonnées x,y
 void Controller::deplacement_agent(int id, int x, int y)
 {
-	map->move_agent(id, x, y);
-	m_algg->move_agent(id,x,y);
+  map->move_agent(id, x, y);
+  s_algomutex1.lock();
+  m_algg->move_agent(id,x,y);
+  s_algomutex1.unlock();
 }
 
 // Fonction permettant la création ou la suppression d'un obstacle à la case de coordonnées x,y

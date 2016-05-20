@@ -479,6 +479,7 @@ void Algogen::addDeplacement(int _idAgent, int _caseSource, int _caseCible, cons
       {
 	newleader=false;
 	m_sousMinions.push_back(new SousMinion(_idAgent,Map::m_map->A_star_GA(_caseSource, m_zones.at(i)->get_orig(), _typeAgent), _caseCible));
+// 	m_sousMinions.back()->setGenomeLeader(); // RECUPERER LE GENOME DU LEADER A CET INSTANT
 	m_sousMinions.back()->setLeader(m_zones.at(i)->get_leader());
 	m_sousMinions.back()->setCaseSource(_caseSource);
       }
@@ -566,19 +567,29 @@ Zone* Algogen::calcule_Zone(int _caseSource, int _caseCible)
 
 void Algogen::calcSousMinions()
 {
-  for(unsigned int i =0; i<m_sousMinions.size();++i){
+  std::cout << "1" << std::endl;
+  for(unsigned int i =0; i<m_sousMinions.size();++i){ // A VIRER
     m_sousMinions.at(i)->setGenomeLeader(m_president->getMinion(m_sousMinions.at(i)->getLeader())->getGenome());
   }
+  std::cout << "2" << std::endl;
   evaluateSSM();
+  std::cout << "3" << std::endl;
   unsigned int nbminions=m_president->getNumberMinions();
   for(unsigned int i=0;i<nbminions;++i){
     std::pair<bool,bool> const * depl = m_president->getMinion(i)->getChromosome(0);
-    m_prochCases[m_president->getMinion(i)->getIDAgent()]=std::pair<int,int>(m_orig[i]->getX() + depl->second*(1-(2*depl->first)), m_orig[i]->getY() + ((depl->second -1) * ((2*depl->first)-1)));
+    if(depl!=nullptr){
+      m_prochCases[m_president->getMinion(i)->getIDAgent()]=std::pair<int,int>(m_orig[i]->getX() + depl->second*(1-(2*depl->first)), m_orig[i]->getY() + ((depl->second -1) * ((2*depl->first)-1)));
+    }
   }
+  std::cout << "4" << std::endl;
   for(unsigned int i=0;i<m_sousMinions.size();++i){
     std::pair<bool,bool> const * depl = m_sousMinions[i]->getChromosome(0);
-    m_prochCases[m_sousMinions[i]->getID()]=std::pair<int,int>(m_sommets->at(m_sousMinions[i]->getCaseSource())->getX() + depl->second*(1-(2*depl->first)), m_sommets->at(m_sousMinions[i]->getCaseSource())->getY()+ ((depl->second -1) * ((2*depl->first)-1)));
+    std::cout << "4.1" << std::endl;
+    if(depl!=nullptr){
+      m_prochCases[m_sousMinions[i]->getID()]=std::pair<int,int>(m_sommets->at(m_sousMinions[i]->getCaseSource())->getX() + depl->second*(1-(2*depl->first)), m_sommets->at(m_sousMinions[i]->getCaseSource())->getY()+ ((depl->second -1) * ((2*depl->first)-1)));
+    }
   }
+  std::cout << "5" << std::endl;
 }
 
 std::pair< int, int > Algogen::getProchCase(int _agentID) const
@@ -596,13 +607,14 @@ void Algogen::move_agent(int id, int x, int y)
 	delete m_sousMinions.at(i);
 	m_sousMinions.erase(m_sousMinions.begin()+i);
       }else{
+	m_sousMinions.at(i)->setCaseSource(x*m_mapH+y);
 	m_sousMinions.at(i)->popfront();
 	found=true;
       }
       break;
     }
   }
-  if(!found){
+  if(!found){ // A RAJOUTER ICI: QUAND ON MOVE UN LEADER, IL FAUT RAJOUTER SON PREMIER CHROMOSOME A LA FIN DU GENOMELEADER DE TOUS SES SUIVEURS
     nbits = m_president->getNumberMinions();
     for(unsigned int i=0;i<nbits;++i){
       if(m_president->getMinion(i)->getIDAgent() == id){

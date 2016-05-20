@@ -16,9 +16,11 @@ SousMinion::~SousMinion()
 
 std::pair< bool, bool >* SousMinion::getChromosome(unsigned int _pairNumber)
 {
-  if(m_genomeDebut.size()>=_pairNumber){
+  if(m_genomeDebut.size()>_pairNumber){
+    std::cout << "genome debu " << m_genomeDebut.size() << std::endl;
     return m_genomeDebut.at(_pairNumber);
   }else{
+    std::cout << "genome leaderu" << std::endl;
     return m_genomeLeader.at(_pairNumber-m_genomeDebut.size());
   }
 }
@@ -84,5 +86,9 @@ int SousMinion::getID() const
 
 void SousMinion::popfront()
 {
-  m_genomeLeader.erase(m_genomeLeader.begin());
+  if(m_genomeDebut.size()==0){
+    m_genomeLeader.erase(m_genomeLeader.begin());
+  }else{
+    m_genomeDebut.erase(m_genomeDebut.begin());
+  }
 }

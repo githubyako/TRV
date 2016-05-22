@@ -191,6 +191,6 @@ public:
    * \return _case : A new neighboor to add.
    * 
    */
-  void add_case_vois(Case* _case);
+  void set_cases_vois(Case* _case);
 };
 #endif

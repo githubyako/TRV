@@ -29,10 +29,10 @@ public:
   
   void setGenomeDebut( std::vector<std::pair<bool,bool> *> const & _genome);
   void setGenomeLeader( std::vector<std::pair<bool,bool> *> const & _genome);
-  
   void setLeader( unsigned int _leader);
   void setCaseSource(int _sommet);
   void popfront();
+  void addChrom(std::pair<bool,bool>* _chrom);
 };
 
 #endif

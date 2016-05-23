@@ -12,6 +12,10 @@ SousMinion::~SousMinion()
   {
     delete m_genomeDebut.at(i);
   }
+  for (unsigned int i=0; i<m_genomeLeader.size(); ++i)
+  {
+    delete m_genomeLeader.at(i);
+  }
 }
 
 std::pair< bool, bool >* SousMinion::getChromosome(unsigned int _pairNumber)
@@ -69,7 +73,11 @@ void SousMinion::setGenomeDebut(const std::vector< std::pair< bool, bool >* >& _
 
 void SousMinion::setGenomeLeader(const std::vector< std::pair< bool, bool >* >& _genome)
 {
-  m_genomeLeader = _genome;
+  m_genomeLeader.clear();
+  for(unsigned int i=0;i<_genome.size();++i){
+    std::cout << "avant : " << _genome.at(i)->first << ", " << _genome.at(i)->second;
+    m_genomeLeader.push_back(new std::pair<bool,bool>(*_genome.at(i)));
+  }
 }
 
 
@@ -87,8 +95,15 @@ int SousMinion::getID() const
 void SousMinion::popfront()
 {
   if(m_genomeDebut.size()==0){
+    std::cout << std::endl << std::endl << "Erasing leader chromz" << std::endl;
+    std::cout << "genomeleader size = " << m_genomeLeader.size() << ", genome debut size = " << m_genomeDebut.size() << std::endl;
     m_genomeLeader.erase(m_genomeLeader.begin());
   }else{
     m_genomeDebut.erase(m_genomeDebut.begin());
   }
+}
+
+void SousMinion::addChrom(std::pair< bool, bool >* _chrom)
+{
+  m_genomeLeader.push_back(new std::pair<bool,bool>(*_chrom));
 }

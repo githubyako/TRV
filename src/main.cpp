@@ -25,15 +25,19 @@ int main(int argc, char **argv) {
       controller->deplacement_agent(0,controller->proch_case(0).first,controller->proch_case(0).second);
       for(unsigned int i=0;i<5000;++i){
 	controller->tic();
+	std::cout << "apres tic" << std::endl;
 	usleep(1000);
 	controller->toc();
+	std::cout << "apres toc" << std::endl;
 	std::cout << "Agent 0: " << controller->proch_case(0).first << " " << controller->proch_case(0).second << std::endl;
 	controller->deplacement_agent(0,controller->proch_case(0).first,controller->proch_case(0).second);
 	if(i==20){
 	  controller->demande_chemin_algogen(2,320,320);
-	  controller->demande_chemin_algogen(0,50,50); // 5,5 -> 400,400
+	  controller->demande_chemin_algogen(1,50,50); // 5,5 -> 400,400
 	}
 	if(i>20){
+	  std::cout << "Agent 1: " << controller->proch_case(1).first << " " << controller->proch_case(1).second << std::endl;
+	  controller->deplacement_agent(1,controller->proch_case(1).first,controller->proch_case(1).second);
 	  std::cout << "Agent 2: " << controller->proch_case(2).first << " " << controller->proch_case(2).second << std::endl;
 	  controller->deplacement_agent(2,controller->proch_case(2).first,controller->proch_case(2).second);
 	}

@@ -28,6 +28,17 @@ const std::vector< unsigned int >& Zone::get_cases() const
   return m_cases;
 }
 
+std::vector< std::pair< bool, bool >* > Zone::getDebutChemin() const
+{
+  return m_debutChemin;
+}
+
+void Zone::addDepl(std::pair< bool, bool >* _depl)
+{
+  m_debutChemin.push_back(new std::pair<bool,bool>(*_depl));
+}
+
+
 
 Zone::~Zone()
 {

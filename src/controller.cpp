@@ -118,6 +118,7 @@ void Controller::toc()
   }
   s_algomutex1.lock();
   m_algg->calcSousMinions();
+  m_algg->setTmpsAct(m_algg->getTmpsAct()+1);
   s_algomutex1.unlock();
 }
 

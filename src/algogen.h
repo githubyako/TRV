@@ -35,7 +35,6 @@ private:
 	std::vector<Case *>m_orig,m_cible; // Pointers to the requested beginning/ending tiles
 	std::vector<SurMinion*> m_pop; // Population of individuals, each of them representing every requested paths (see class SurMinion)
 	std::vector<SousMinion*> m_sousMinions; // "sub"-individuals, representing the path taken by units to fall in line with the leader of a group
-	std::vector<const Unite*> m_unite; // Storage of unit types, used to get information about the speed and collision parameters of a type of unit
 	std::vector<Zone*>m_zones; // Contains the areas subject to falling in line behind a leader rather than finding a new path
 	SurMinion* m_president, *m_superman; // Special individuals, respectively the best individual yet (the one whose path is returned, not affected by mutations/deletions/etc) and one that is created by selecting the best paths of all individuals
 	unsigned int m_popsize, m_taillemax; // Population size and maximum genome length (!)
@@ -53,7 +52,7 @@ private:
 	std::vector<std::pair<unsigned int,unsigned int>> m_conf_pres; // Container used for collision detection and subsequent genome modifications
 	unsigned int m_nbChemins,m_tmpsact;
 	
-	void initPop(int _caseSource, int _caseCible,const Unite * _typeAgent, int _idAgent); // Creation of a new sub-population in each individual, at the request of demandeDéplacement()
+	void initPop(int _caseSource, int _caseCible, const Unite * _typeAgent, int _idAgent); // Creation of a new sub-population in each individual, at the request of demandeDéplacement()
 	
 	public:
 	Algogen(int map_w, int map_h,std::map<int, Case*> const * _sommets, unsigned int _popsize, float _manhattanImportance, float _mutationRatio, 

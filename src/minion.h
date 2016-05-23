@@ -4,18 +4,20 @@
 #include <iostream>
 #include <math.h>
 #include "case.h"
+#include "unite.h"
 
 class Minion{
 private:
   int m_idAgent, m_caseCible;
   static unsigned int m_incrID;
   std::vector<std::pair<bool,bool> *> m_genome;
+  const Unite* m_unite;
   float m_fitness;
   bool m_vaChemin;
   unsigned int m_manhattan, m_id,m_sommetfinal;
   
 public:
-  Minion(std::vector<std::pair<bool,bool> *> const & _genome, int _idAgent, int _caseCible);
+  Minion(std::vector<std::pair<bool,bool> *> const & _genome, const Unite* _unite, int _idAgent, int _caseCible);
   Minion(Minion const & _minion);
   ~Minion();
   
@@ -32,6 +34,7 @@ public:
   unsigned int getSF() const;
   int getIDAgent() const;
   int getCaseCible() const;
+  const Unite* getUnite() const;
 
   void setFitness(float _fitness);
   void setVaChemin(bool _vaChemin);

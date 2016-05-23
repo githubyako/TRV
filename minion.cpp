@@ -1,18 +1,22 @@
 #include "minion.h"
 unsigned int Minion::m_incrID=0;
 
-Minion::Minion(const std::vector< std::pair< bool, bool >* >& _genome, int _idAgent, int _caseCible):m_idAgent(_idAgent), m_caseCible(_caseCible), m_genome(_genome)
+Minion::Minion(const std::vector< std::pair< bool, bool >* >& _genome, const Unite* _unite, int _idAgent, int _caseCible):m_idAgent(_idAgent), m_caseCible(_caseCible), m_genome(_genome), m_unite(_unite)
 {
   m_vaChemin=false;
   m_id=m_incrID++;
 }
 
 Minion::Minion(const Minion& _minion)
-:m_idAgent(_minion.getIDAgent()),m_caseCible(_minion.getCaseCible()),m_genome(0),m_fitness(_minion.getFitness()),m_vaChemin(_minion.getVaChemin()),m_manhattan(_minion.getManhattan()),m_sommetfinal(_minion.getSF())
+:m_idAgent(_minion.getIDAgent()),m_caseCible(_minion.getCaseCible()),m_genome(0), m_unite(_minion.getUnite()),m_fitness(_minion.getFitness()),m_vaChemin(_minion.getVaChemin()),m_manhattan(_minion.getManhattan()),m_sommetfinal(_minion.getSF())
 {
   for (unsigned int i=0; i<_minion.getGenome().size(); ++i)
   {
-    m_genome.push_back(new std::pair<bool,bool>(_minion.getChromosome(i)->first, _minion.getChromosome(i)->second));
+    if(_minion.getChromosome(i)!=nullptr){
+      m_genome.push_back(new std::pair<bool,bool>(_minion.getChromosome(i)->first, _minion.getChromosome(i)->second));
+    }else{
+      m_genome.push_back(nullptr);
+    }
   }
   m_vaChemin=false;
   m_id=m_incrID++;
@@ -83,6 +87,12 @@ int Minion::getCaseCible() const
 {
   return m_caseCible;
 }
+
+const Unite* Minion::getUnite() const
+{
+  return m_unite;
+}
+
 
 void Minion::setVaChemin(bool _vaChemin)
 {

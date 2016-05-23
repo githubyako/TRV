@@ -90,7 +90,6 @@ void Controller::create_algogen()
   }else{
     std::cerr << "Impossible de créer un nouvel algogen: il en existe déjà un" << std::endl;
   }
-  std::cout << "oui" << std::endl;
 }
 
 // Fonction demandant une recherche de chemin par pathfinding génétique à l'Agent d'identificateur id à la case de coordonnées x,y
@@ -100,8 +99,7 @@ void Controller::demande_chemin_algogen(int id, int x, int y)
     throw new str_exception("Cette case n'existe pas");
   else{
     int idsource = map->get_Agent(id)->getCase()->get_sommet();
-    const Unite * typeAgent = map->get_Agent(id)->getUnite();
-    m_algg->addDeplacement(id, idsource,x*map->get_m_h()+y,typeAgent);
+    m_algg->addDeplacement(id, idsource,x*map->get_m_h()+y,map->get_Agent(id)->getUnite());
   }
 }
 

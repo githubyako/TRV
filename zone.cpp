@@ -35,7 +35,11 @@ std::vector< std::pair< bool, bool >* > Zone::getDebutChemin() const
 
 void Zone::addDepl(std::pair< bool, bool >* _depl)
 {
-  m_debutChemin.push_back(new std::pair<bool,bool>(*_depl));
+  if(_depl!=nullptr){
+    m_debutChemin.push_back(new std::pair<bool,bool>(*_depl));
+  }else{
+    m_debutChemin.push_back(nullptr);
+  }
 }
 
 

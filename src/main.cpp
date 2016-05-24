@@ -34,24 +34,21 @@ int main(int argc, char **argv) {
 	  controller->deplacement_agent(2,controller->proch_case(2).first,controller->proch_case(2).second);
 	}
 	if(i==40){
-	  std::cout << "ici" << std::endl;
 	  controller->demande_chemin_algogen(3,5,475);
-	  std::cout << "là" << std::endl;
 	  controller->demande_chemin_algogen(5,356,498);
-	  std::cout << "où" << std::endl;
 	}
 	if(i>40){
-	  std::cout << "Agent 3: " << controller->proch_case(1).first << " " << controller->proch_case(1).second << std::endl;
-	  controller->deplacement_agent(3,controller->proch_case(1).first,controller->proch_case(1).second);
-	  std::cout << "Agent 5: " << controller->proch_case(2).first << " " << controller->proch_case(2).second << std::endl;
-	  controller->deplacement_agent(5,controller->proch_case(2).first,controller->proch_case(2).second);
+	  std::cout << "Agent 3: " << controller->proch_case(3).first << " " << controller->proch_case(3).second << std::endl;
+	  controller->deplacement_agent(3,controller->proch_case(3).first,controller->proch_case(3).second);
+	  std::cout << "Agent 5: " << controller->proch_case(5).first << " " << controller->proch_case(5).second << std::endl;
+	  controller->deplacement_agent(5,controller->proch_case(5).first,controller->proch_case(5).second);
 	}
 	if(i==50){
 	  controller->demande_chemin_algogen(4,5,475);
 	}
 	if(i>50){
-	  std::cout << "Agent 4: " << controller->proch_case(1).first << " " << controller->proch_case(1).second << std::endl;
-	  controller->deplacement_agent(4,controller->proch_case(1).first,controller->proch_case(1).second);
+	  std::cout << "Agent 4: " << controller->proch_case(4).first << " " << controller->proch_case(4).second << std::endl;
+	  controller->deplacement_agent(4,controller->proch_case(4).first,controller->proch_case(4).second);
 	}
       }
       controller->tic();

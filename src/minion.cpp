@@ -12,7 +12,11 @@ Minion::Minion(const Minion& _minion)
 {
   for (unsigned int i=0; i<_minion.getGenome().size(); ++i)
   {
-    m_genome.push_back(new std::pair<bool,bool>(_minion.getChromosome(i)->first, _minion.getChromosome(i)->second));
+    if(_minion.getChromosome(i)!=nullptr){
+      m_genome.push_back(new std::pair<bool,bool>(_minion.getChromosome(i)->first, _minion.getChromosome(i)->second));
+    }else{
+      m_genome.push_back(nullptr);
+    }
   }
   m_vaChemin=false;
   m_id=m_incrID++;

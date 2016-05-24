@@ -38,10 +38,10 @@ void Algogen::initPop(int _caseSource, int _caseCible, const Unite* _typeAgent, 
 
   m_orig.push_back(m_sommets->at(_caseSource)); // adding new path beginning to the relevant container
   m_cible.push_back(m_sommets->at(_caseCible)); // adding new path ending to the relevant container
-  unsigned int originX = m_orig[m_nbChemins]->getX(); // gathering coordinates of those cells
-  unsigned int originY = m_orig[m_nbChemins]->getY();
-  unsigned int cibleX = m_cible[m_nbChemins]->getX();
-  unsigned int cibleY = m_cible[m_nbChemins]->getY();
+  unsigned int originX = m_orig.back()->getX(); // gathering coordinates of those cells
+  unsigned int originY = m_orig.back()->getY();
+  unsigned int cibleX = m_cible.back()->getX();
+  unsigned int cibleY = m_cible.back()->getY();
   ++m_nbChemins;
   int distanceX = originX - cibleX;
   int distanceY = originY - cibleY;
@@ -526,17 +526,14 @@ Zone* Algogen::calcule_Zone(int _caseSource, int _caseCible)
   {
     for(int y = j; y<=l; ++y)
     {
-      std::cout << "x : " << x << " y : " << y << std::endl;
       m_coord.push_back(std::pair<unsigned int, unsigned int>(x,y));
       m_cases.push_back(x*m_mapH+y);
     }
   }
   for (unsigned int x=0; x<m_cases.size(); ++x)
   {
-    std::cout << "bijour x :" << m_cases.at(x) << std::endl;
     if (m_sommets->at(m_cases.at(x))->isObstacle())
     {
-      std::cout << "bijour2 x :" << m_cases.at(x) << std::endl;
       cibleX = m_sommets->at(m_cases.at(x))->getX();
       cibleY = m_sommets->at(m_cases.at(x))->getY();
       a = cibleX < originX;
@@ -631,6 +628,8 @@ void Algogen::move_agent(int id, int x, int y)
 	  for(unsigned int j=0;j<m_pop.size();++j){
 	    m_pop.at(j)->removeMinion(i);
 	  }
+	  m_orig.erase(m_orig.begin()+i);
+	  m_cible.erase(m_cible.begin()+i);
 	  --m_nbChemins;
 	}else{
 	  std::pair<bool,bool>* chromoz = m_president->getMinion(i)->getChromosome(0);

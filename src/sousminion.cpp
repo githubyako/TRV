@@ -105,5 +105,9 @@ void SousMinion::popfront()
 
 void SousMinion::addChrom(std::pair< bool, bool >* _chrom)
 {
-  m_genomeLeader.push_back(new std::pair<bool,bool>(*_chrom));
+  if(_chrom!=nullptr){
+    m_genomeLeader.push_back(new std::pair<bool,bool>(*_chrom));
+  }else{
+    m_genomeLeader.push_back(nullptr);
+  }
 }

@@ -27,6 +27,7 @@ public:
   Minion* getMinion(unsigned int _pairNumber);
   unsigned int getID() const;
 
+  bool cheminNul() const;
   void setFitness(float _fitness);
   void setVaChemin(unsigned int _vaChemin);
   void setMinions( std::vector<Minion*> const & _minions);

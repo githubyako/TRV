@@ -84,3 +84,13 @@ void SurMinion::mutateElite(int numMinion, unsigned int _nbAjouts, float _ratioM
 {
   m_minions.at(numMinion)->mutateElite(_nbAjouts,_ratioModifs);
 }
+
+bool SurMinion::cheminNul() const
+{
+  for (unsigned int i=0; i<m_minions.size(); ++i)
+  {
+    if (m_minions.at(i)->getGenome().size() == 0)
+      return true;
+  }
+  return false;
+}

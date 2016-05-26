@@ -296,8 +296,9 @@ void Algogen::evaluate(SurMinion* _surminion)
 	      ++_vaCheminSM;
 	      fitnessM = (float)((float)cout + (float)genome.size());
 	    }else{
-	      int manhattan = abs(m_cible.at(numAgent)->getX() - m_sommets->at(vec.back())->getX()) + abs(m_cible.at(numAgent)->getY() - m_sommets->at(vec.back())->getY());
-	      fitnessM = ((float)manhattan*m_manhattanImportance);
+	      int manhattanC = abs(m_cible.at(numAgent)->getX() - m_sommets->at(vec.back())->getX()) + abs(m_cible.at(numAgent)->getY() - m_sommets->at(vec.back())->getY());
+	      int manhattanS = abs(m_orig.at(numAgent)->getX() - m_sommets->at(vec.back())->getX()) + abs(m_orig.at(numAgent)->getY() - m_sommets->at(vec.back())->getY());
+	      fitnessM = (float)((float)manhattanC - (float)manhattanS);
 	    }
 	    (*it)->setFitness(fitnessM);
 	    (*it)->setManhattan(manhattan);

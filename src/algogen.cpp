@@ -197,6 +197,7 @@ void Algogen::evaluate(SurMinion* _surminion)
 	int newy;
 	unsigned int sommet_prec;
 	unsigned int sommet;
+	bool canBe = true;
 	std::vector<int> vec;
 	std::vector<float> couts;
 	std::vector<std::pair<unsigned int, unsigned int>> vec_conf;
@@ -286,6 +287,10 @@ void Algogen::evaluate(SurMinion* _surminion)
 	    m_taillemax = std::max(m_taillemax,(unsigned int)genome.size());
 	    (*it)->setVaChemin(_vaChemin);
 	    int manhattan = 0.0;
+	    if (genome.size()==0)
+	    {
+		canBe=false;
+	    }
 	    if(_vaChemin){
 // 	      std::cout << "Vachemin trouvé pour le minion n° " << (it - minions.begin()) << std::endl;;
 	      ++_vaCheminSM;
@@ -302,15 +307,15 @@ void Algogen::evaluate(SurMinion* _surminion)
 	fitnessSM = (float)(fitnessSM / (float) _surminion->getMinions().size());
 	_surminion->setFitness(fitnessSM);
 	_surminion->setVaChemin(_vaCheminSM);
-	if (_vaCheminSM==m_nbChemins && (m_president==nullptr || (m_president->getVaChemin()<_vaCheminSM) || m_president->getFitness()>fitnessSM))
+	if ((canBe && (_vaCheminSM==m_nbChemins) && (m_president==nullptr || (m_president->getVaChemin()<_vaCheminSM) || m_president->getFitness()>fitnessSM)) || (m_president!=nullptr && canBe && m_president->cheminNul()) )
 	{
 	  m_president=_surminion;
 	  m_conf_pres = vec_conf;
 	}
-	else if ( _vaCheminSM!=m_nbChemins && 
+	else if ((canBe && _vaCheminSM!=m_nbChemins && 
 	  (m_president==nullptr || 
 	  (m_president->getVaChemin()<_vaCheminSM) || 
-	  ((m_president->getFitness()>fitnessSM) && m_president->getVaChemin()==_vaCheminSM)))
+	  ((m_president->getFitness()>fitnessSM) && m_president->getVaChemin()==_vaCheminSM))) || (m_president!=nullptr && canBe && m_president->cheminNul()) )
 	{
 	  m_president=_surminion;
 	  m_conf_pres = vec_conf;

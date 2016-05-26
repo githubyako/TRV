@@ -75,7 +75,7 @@ void Controller::demande_chemin_A_star(int id, int x, int y)
 void Controller::create_algogen()
 {
   if(m_algg==nullptr){
- 	unsigned int popsize=100;
+ 	unsigned int popsize=30;
 	float manhattan = 0.8;
 	float mutaRatio = 0.05;
 	float popToMutate = 0.75;
@@ -84,7 +84,7 @@ void Controller::create_algogen()
 	float ratioModifs = 0.1;
 	float ratioElitism = 0.05;
 	float cullRatio = 0.1;
-	unsigned int  nbkids=1;
+	unsigned int  nbkids=3;
 	m_algg = new Algogen (map->get_m_w(),map->get_m_h(),map->get_sommets(),popsize,manhattan,mutaRatio,popToMutate,nbAjouts,ratioSupprs,ratioModifs,ratioElitism,cullRatio,nbkids);
 	m_algothread=std::thread(&Controller::iterate_algogen,Controller::s_controller);
   }else{
@@ -114,7 +114,7 @@ void Controller::toc()
   while(!m_iteratedone){
     usleep(500);
   }
-  s_algomutex1.lock();
+  s_algomutex1.try_lock();
   m_algg->calcSousMinions();
   m_algg->setTmpsAct(m_algg->getTmpsAct()+1);
   s_algomutex1.unlock();
@@ -124,6 +124,14 @@ std::pair< int, int > Controller::proch_case(int _idAgent)
 {
   s_algomutex1.lock();
   std::pair<int,int> result = m_algg->getProchCase(_idAgent);
+  s_algomutex1.unlock();
+  return result;
+}
+
+unsigned int Controller::proch_case_size()
+{
+  s_algomutex1.lock();
+  unsigned int result = m_algg->getProchCaseSize();
   s_algomutex1.unlock();
   return result;
 }
@@ -400,5 +408,10 @@ Controller::~Controller()
 void Controller::delete_controller()
 {
   delete s_controller;
+}
+
+unsigned int Controller::getVaChemins() const
+{
+  return m_algg->getNbCheminsFinis();
 }
 

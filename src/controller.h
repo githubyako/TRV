@@ -65,6 +65,10 @@ public:
   
   std::pair<int,int> proch_case(int _idAgent);
   
+  unsigned int proch_case_size();
+
+  unsigned int getVaChemins() const;
+  
   // Fonction de parsing du fichier regle.xml représentant les règles de leur jeu (description de toutes les unités, contraintes et terrains différents)
   void initiateRules(std::string xmlFileName);
   

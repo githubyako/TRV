@@ -115,7 +115,9 @@ void Controller::toc()
     usleep(500);
   }
   s_algomutex1.try_lock();
+//   std::cout << "avant calcsousminion" << std::endl;
   m_algg->calcSousMinions();
+//   std::cout << "apres calcsousminion" << std::endl;
   m_algg->setTmpsAct(m_algg->getTmpsAct()+1);
   s_algomutex1.unlock();
 }

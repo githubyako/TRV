@@ -40,7 +40,7 @@ const std::vector< std::pair< bool, bool >* >& SousMinion::getGenomeLeader() con
 
 unsigned int SousMinion::getGenomeSize() const
 {
-  return m_genomeDebut.size();
+  return m_genomeDebut.size() + m_genomeLeader.size();
 }
 
  unsigned int SousMinion::getLeader() const

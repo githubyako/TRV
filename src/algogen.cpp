@@ -579,7 +579,11 @@ void Algogen::calcSousMinions()
   evaluateSSM();
   unsigned int nbminions=m_president->getNumberMinions();
   for(unsigned int i=0;i<nbminions;++i){
-    std::pair<bool,bool> const * depl = m_president->getMinion(i)->getChromosome(0);
+    std::pair<bool,bool> const * depl = nullptr;
+    if(m_president->getMinion(i)->getGenomeSize()>0){
+      depl = m_president->getMinion(i)->getChromosome(0);
+      
+    }
     if(depl!=nullptr){
       m_prochCases[m_president->getMinion(i)->getIDAgent()]=std::pair<int,int>(m_orig[i]->getX() + depl->second*(1-(2*depl->first)), m_orig[i]->getY() + ((depl->second -1) * ((2*depl->first)-1)));
     }else{
@@ -587,7 +591,10 @@ void Algogen::calcSousMinions()
     }
   }
   for(unsigned int i=0;i<m_sousMinions.size();++i){
-    std::pair<bool,bool> const * depl = m_sousMinions[i]->getChromosome(0);
+    std::pair<bool,bool> const * depl = nullptr;
+    if(m_sousMinions[i]->getGenomeSize()>0){
+      depl = m_sousMinions[i]->getChromosome(0);
+    }
     if(depl!=nullptr){
       m_prochCases[m_sousMinions[i]->getID()]=std::pair<int,int>(m_sommets->at(m_sousMinions[i]->getCaseSource())->getX() + depl->second*(1-(2*depl->first)), m_sommets->at(m_sousMinions[i]->getCaseSource())->getY()+ ((depl->second -1) * ((2*depl->first)-1)));
     }else{
@@ -629,10 +636,13 @@ void Algogen::move_agent(int id, int x, int y)
 	      break;
 	    }
 	  }
-	  std::pair<bool,bool>* chromoz = m_president->getMinion(i)->getChromosome(0);
-	  for(unsigned int j=0;j<m_sousMinions.size();++j){
-	    if(m_sousMinions.at(j)->getLeader() == i){
-	      m_sousMinions.at(j)->addChrom(chromoz);
+	  std::pair<bool,bool>* chromoz = nullptr;
+	  if(m_president->getMinion(i)->getGenomeSize()>0){
+	    chromoz = m_president->getMinion(i)->getChromosome(0);
+	    for(unsigned int j=0;j<m_sousMinions.size();++j){
+	      if(m_sousMinions.at(j)->getLeader() == i){
+		m_sousMinions.at(j)->addChrom(chromoz);
+	      }
 	    }
 	  }
 	  for(unsigned int j=0;j<m_pop.size();++j){
@@ -642,25 +652,29 @@ void Algogen::move_agent(int id, int x, int y)
 	  m_cible.erase(m_cible.begin()+i);
 	  --m_nbChemins;
 	}else{
-	  std::pair<bool,bool>* chromoz = m_president->getMinion(i)->getChromosome(0);
-	  for(unsigned int j=0;j<m_zones.size();++j){
-	    if(m_zones.at(j)->get_leader()==i){
-	      m_zones.at(j)->addDepl(chromoz);
-	      break;
+	  std::pair<bool,bool>* chromoz = nullptr;
+	  if(m_president->getMinion(i)->getGenomeSize()>0){
+	    chromoz = m_president->getMinion(i)->getChromosome(0);
+	    for(unsigned int j=0;j<m_zones.size();++j){
+	      if(m_zones.at(j)->get_leader()==i){
+		m_zones.at(j)->addDepl(chromoz);
+		break;
+	      }
 	    }
-	  }
-	  for(unsigned int j=0;j<m_sousMinions.size();++j){
-	    if(m_sousMinions.at(j)->getLeader() == i){
-	      m_sousMinions.at(j)->addChrom(chromoz);
+	    for(unsigned int j=0;j<m_sousMinions.size();++j){
+	      if(m_sousMinions.at(j)->getLeader() == i){
+		m_sousMinions.at(j)->addChrom(chromoz);
+	      }
 	    }
+	    m_president->getMinion(i)->popfront();
 	  }
-	  m_president->getMinion(i)->popfront();
 	  m_orig.at(i) = m_sommets->at(x*m_mapH+y);
 	}
 	break;
       }
     }
   }
+  
 }
 
 unsigned int Algogen::getNbChemins()

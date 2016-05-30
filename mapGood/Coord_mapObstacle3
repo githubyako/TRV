@@ -1,0 +1,23 @@
+      controller->creer_agent(30,30,"Cavalier",0);
+      controller->creer_agent(195,95,"Cavalier",1);
+      controller->creer_agent(2,190,"Artillerie",2);
+      controller->creer_agent(15,195,"Cavalier",3);
+      controller->creer_agent(125,175,"Infanterie",4);
+
+      x0=180;
+      y0=180;
+      x1=5;
+      y1=110;
+      x2=190;
+      y2=2;
+      x3=195;
+      y3=195;
+      x4=130;
+      y4=10;
+
+Parcours optimal :
+Unite 0 : 300
+Unite 1 : 221
+Unite 2 : 376
+Unite 3 : 234
+Unite 4 : 204

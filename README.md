@@ -4,8 +4,8 @@
 ***********************************************************************************
 ********************************   HOW TO USE   ***********************************
 ***********************************************************************************
--Write an XML file describing your game rules in compliance with the DTD
--Write a txt file describing the map:
+-Write an XML file describing your game rules in compliance with the DTD  
+-Write a txt file describing the map:  
  -first line is two unsigned integers: map width and map height (origin is bottom left corner: 0,0)
  -following lines each describe a tile that you want to be different from the default settings:
     [x(unsigned int)] [y(unsigned int)] [terrain name(string without spaces)] [contrainte 1(string)]:[value 1(float)];[contrainte n]:[value n] [is obstacle(bool)]

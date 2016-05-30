@@ -550,8 +550,8 @@ Zone* Algogen::calcule_Zone(int _caseSource, int _caseCible)
       f = 1-d-e;
       for (std::vector<unsigned int>::iterator g =m_cases.begin(); g<m_cases.end(); ++g)
       {
-	unsigned int testX = m_sommets->at(m_cases.at((*g)))->getX();
-	unsigned int testY = m_sommets->at(m_cases.at((*g)))->getY();
+	unsigned int testX = m_sommets->at((*g))->getX();
+	unsigned int testY = m_sommets->at((*g))->getY();
 	if ((a && d) && (testX <= cibleX || testY <= cibleY))
 	  m_cases.erase(g);
 	else if ((a && e) && (testX <= cibleX && testY == cibleY))

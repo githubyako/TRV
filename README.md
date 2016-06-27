@@ -1,4 +1,7 @@
 # TRV
+# A multi-agent, genetic pathfinding algorithm
+
+
 #Dependancies: gcc, c++11, libxml2, libxml++-2.6, glibmm-2.4
 
 ***********************************************************************************
@@ -25,3 +28,5 @@
  5-tic(); starts the calculations.  
  6-toc(); interrupts the calculations. Note that coherent behavior are only guaranteed if you toc() before asking a proch_case or a deplacement_agent  
  7-Controller::delete_controller();  
+
+Autors: Théo Voillemin, Nicolas Roux, Corentin Talarmain

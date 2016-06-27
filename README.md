@@ -25,13 +25,3 @@
  5-tic(); starts the calculations.  
  6-toc(); interrupts the calculations. Note that coherent behavior are only guaranteed if you toc() before asking a proch_case or a deplacement_agent  
  7-Controller::delete_controller();  
- 
-***********************************************************************************
-************************************   XML   **************************************
-***********************************************************************************
-- Compliance with the DTD is checked on initialization  
-- <regle> </regle> : wraps all the rules: <contraintes>, <terrains> and <unites>  
-- <contrainte /> : can be seen as resources available on a tile. Used to define if a unit can go through/stay on a tile. Has a name. [DEPRECATED]  
-- <terrain_defaut /> represents the default ground type. Has a name, and a value for each contrainte.  
-- <terrain /> : represents a ground type. Has a name, and a value for each contrainte.  
-- <unite /> : Represents a unit type (eg Cavalry). Has a name, a specific time to cross each terrain (set high value for uncrossable terrains), and a value for each contrainte  

@@ -5,11 +5,6 @@
 #Dependancies: gcc, c++11, libxml2, libxml++-2.6, glibmm-2.4
 
 
-    Mettre un espace entre les "-" et la phrase
-    Utiliser "1.", "2.", ... pour les listes numérotées
-    Corriger la faute à "Authors" !
-
-
 ***********************************************************************************
 ********************************   HOW TO USE   ***********************************
 ***********************************************************************************
@@ -35,4 +30,4 @@
  6. toc(); interrupts the calculations. Note that coherent behavior are only guaranteed if you toc() before asking a proch_case or a deplacement_agent  
  7. Controller::delete_controller();  
 
-Autors: Théo Voillemin, Nicolas Roux, Corentin Talarmain
+Authors: Théo Voillemin, Nicolas Roux, Corentin Talarmain

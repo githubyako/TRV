@@ -27,7 +27,7 @@
  4. controller->deplacement_agent(id,x,y) ==>actually moves the unit to the (x,y) tile  
            example:  controller->deplacement_agent(1,controller->proch_case(1).first,controller->proch_case(1).second);  
  5. tic(); starts the calculations.  
- 6. toc(); interrupts the calculations. Note that coherent behavior are only guaranteed if you toc() before asking a proch_case or a deplacement_agent  
+ 6. toc(); interrupts the calculations. Note that coherent behavior is only guaranteed if you toc() before asking a proch_case() or a deplacement_agent()
  7. Controller::delete_controller();  
 
 Authors: Théo Voillemin, Nicolas Roux, Corentin Talarmain
